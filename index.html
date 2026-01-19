@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pride Travel Scout</title>
+
+    <meta name="theme-color" content="#1e272e">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="manifest" href="https://pridetravel.github.io/PrideTravelScoutAPP/manifest.json">
+    
+    <link rel="apple-touch-icon" href="https://pridetravel.github.io/PrideTravelScoutAPP/icon-512.png">
+
+    <style>
+        :root {
+            --primary: #ff4757;
+            --dark: #2f3542;
+            --light: #f1f2f6;
+            --card-bg: #ffffff;
+            --radius: 12px;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e272e;
+            color: #d2dae2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Search Box */
+        .search-box {
+            background: linear-gradient(135deg, #ff6b6b, #5f27cd);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        input {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #ffa502;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+            margin-top: 24px;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+            background-color: #eccc68;
+        }
+
+        /* City Result Wrapper */
+        .city-result-wrapper {
+            margin-bottom: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #57606f;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .city-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .city-title {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .city-price {
+            font-size: 1.5rem;
+            color: #ff9f43;
+            font-weight: bold;
+        }
+
+        /* Grid Layout */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* Cards */
+        .result-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            color: #2f3542;
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .result-card h2 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            color: #2f3542;
+        }
+
+        /* Card Colors */
+        .color-red {
+            border-top: 8px solid #ff4757;
+            background: #ffeaa7;
+        }
+
+        .color-orange {
+            border-top: 8px solid #ffa502;
+            background: #fab1a0;
+        }
+
+        .color-yellow {
+            border-top: 8px solid #ffee00;
+            background: #ffffd1;
+        }
+
+        .color-green {
+            border-top: 8px solid #2ed573;
+            background: #dff9fb;
+        }
+
+        .color-blue {
+            border-top: 8px solid #1e90ff;
+            background: #d1ecf1;
+        }
+
+        .color-purple {
+            border-top: 8px solid #a29bfe;
+            background: #dfe6e9;
+        }
+
+        /* Lists & Tags */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #2f3542;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-left: 8px;
+        }
+
+        .tag-sauna {
+            background: #ff4757;
+        }
+
+        /* Red tag for saunas */
+
+        .btn-link {
+            display: inline-block;
+            text-decoration: none;
+            background: #3742fa;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            transition: opacity 0.2s;
+        }
+
+        .btn-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Pride Alert Box */
+        .pride-alert {
+            grid-column: 1 / -1;
+            background: linear-gradient(90deg, #ff4757, #ffa502, #2ed573, #1e90ff, #a29bfe);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        /* Updated Header Styling */
+        .header-container {
+            text-align: center;
+            margin-bottom: 30px;
+            background-color: #f1f2f6;
+            /* Light background for contrast */
+            padding: 20px;
+            border-radius: var(--radius);
+        }
+
+        /* Force blue for header text as requested */
+        .header-container h1,
+        .header-container p {
+            color: #3742fa !important;
+        }
+
+        @media (max-width: 768px) {
+            .city-title {
+                font-size: 1.8rem;
+            }
+
+            .city-price {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header-container">
+            <h1 style="font-size: 3rem; margin-bottom: 10px;">🌈 Pride Travel Scout</h1>
+            <p style="font-size: 1.2rem; opacity: 0.8;">Find your perfect LGBTQ+ friendly destination.</p>
+        </div>
+
+        <div class="search-box">
+            <form id="flightForm" class="search-form">
+                <div class="form-group">
+                    <label>From (City or Airport)</label>
+                    <input type="text" id="origin" placeholder="e.g. New York (JFK)" required>
+                </div>
+                <div class="form-group">
+                    <label>Destination (Country or Region)</label>
+                    <input type="text" id="destination" placeholder="e.g. Japan, Europe, or Canada" required>
+                </div>
+                <div class="form-group">
+                    <label>Depart</label>
+                    <input type="date" id="departDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Return</label>
+                    <input type="date" id="returnDate" required>
+                </div>
+                <button type="submit" id="searchBtn">Start Your Journey ✈️</button>
+            </form>
+        </div>
+
+        <script>
+            window.onerror = function (msg, url, line) {
+                alert("Global Error: " + msg + "\nLine: " + line);
+                console.error("Global Error:", msg, url, line);
+                return false;
+            };
+            console.log("Script starting...");
+        </script>
+
+        <div id="results-container"></div>
+    </div>
+
+    <script>
+        // --- DATA & CONFIG ---
+
+        // Pride Dates (YYYY-MM-DD for accuracy comparison)
+        var PRIDE_CALENDAR = {
+            "london": ["2025-07-05", "2026-07-04"],
+            "paris": ["2025-06-28", "2026-06-27"],
+            "berlin": ["2025-07-26", "2026-07-25"],
+            "amsterdam": ["2025-08-02", "2026-08-01"],
+            "sydney": ["2025-03-01", "2026-02-28"], // Mardi Gras Parade
+            "melbourne": ["2025-02-01", "2026-02-08"], // Midsumma
+            "san francisco": ["2025-06-29", "2026-06-28"],
+            "new york": ["2025-06-29", "2026-06-28"],
+            "los angeles": ["2025-06-08", "2026-06-07"], // LA Pride
+            "tokyo": ["2025-04-20", "2026-06-07"], // TRP usually April/June
+            "bangkok": ["2025-06-01", "2026-06-01"],
+            "rio de janeiro": ["2025-11-23", "2026-11-15"],
+            "buenos aires": ["2025-11-01", "2026-11-07"],
+            "toronto": ["2025-06-29", "2026-06-28"],
+            "montreal": ["2025-08-17", "2026-08-16"],
+            "vancouver": ["2025-08-03", "2026-08-02"],
+            "cape town": ["2025-03-01", "2026-02-28"]
+        };
+
+        var PRIDE_LINKS = {
+            "london": "https://prideinlondon.org/",
+            "new york": "https://www.nycpride.org/",
+            "sydney": "https://www.mardigras.org.au/",
+            "san francisco": "https://sfpride.org/",
+            "amsterdam": "https://pride.amsterdam/"
+        };
+
+        // MOCK DATA v6 - Expanded Venues, Saunas, & Hemisphere Logic
+        var MOCK_DATA = {
+            cities: {
+                "london": {
+                    name: "London", country: "United Kingdom", iata: "LON",
+                    hemisphere: "northern", price: "$450 - $780",
+                    flightDetails: { stops: "Direct", airline: "JetBlue / Norse", inclusions: ["Carry-on", "Meals", "Wifi"] },
+                    lgbtqSafety: { rating: "High", text: "Soho is the main hub. Generally very safe.", marriageEquality: "Legal" },
+                    hotels: [
+                        { name: "The Mandrake", type: "Luxury", rating: "4.7/5" },
+                        { name: "Z Hotel Soho", type: "Budget", rating: "4.2/5" },
+                        { name: "W London", type: "Trendy", rating: "4.5/5" },
+                        { name: "Strand Palace", type: "Central", rating: "4.3/5" },
+                        { name: "Assembly Hotel", type: "Modern", rating: "4.4/5" }
+                    ],
+                    nightlife: [
+                        { name: "Heaven", type: "Club", description: "Legendary massive club" },
+                        { name: "G-A-Y Bar", type: "Pop Bar", description: "Famous entry-level bar" },
+                        { name: "Ku Bar", type: "Lounge", description: "Award-winning gay bar" },
+                        { name: "The Glory", type: "Performance", description: "Alt-drag & queer pub" },
+                        { name: "Pleasuredrome", type: "Sauna", description: "Waterloo, open 24/7" }
+                    ],
+                    attractions: [
+                        { name: "British Museum", type: "History" },
+                        { name: "Soho Walking Tour", type: "Culture" },
+                        { name: "Sky Garden", type: "View" }
+                    ]
+                },
+                "paris": {
+                    name: "Paris", country: "France", iata: "PAR",
+                    hemisphere: "northern", price: "$480 - $820",
+                    flightDetails: { stops: "Direct", airline: "French Bee", inclusions: ["Carry-on", "Snack"] },
+                    lgbtqSafety: { rating: "High", text: "The Marais is the gay center. Safe and open.", marriageEquality: "Legal" },
+                    hotels: [
+                        { name: "Hotel Le A", type: "Boutique", rating: "4.6/5" },
+                        { name: "Jules & Jim", type: "Stylish", rating: "4.8/5" },
+                        { name: "The Hoxton", type: "Hip", rating: "4.5/5" },
+                        { name: "Hotel Emile", type: "Marais", rating: "4.4/5" },
+                        { name: "Mama Shelter", type: "Trendy", rating: "4.3/5" }
+                    ],
+                    nightlife: [
+                        { name: "Raidd Bar", type: "Bar", description: "Popular shower show bar" },
+                        { name: "Le Dépôt", type: "Club", description: "Cruising club" },
+                        { name: "Rosa Bonheur", type: "Vibe", description: "Friendly park bar" },
+                        { name: "Cox", type: "Bar", description: "Busy bear bar" },
+                        { name: "IDM Sauna", type: "Sauna", description: "Montmartre, multi-level" }
+                    ],
+                    attractions: [
+                        { name: "Louvre", type: "Art" },
+                        { name: "Marais LGBTQ Tour", type: "Culture" },
+                        { name: "Eiffel Tower", type: "Iconic" }
+                    ]
+                },
+                "berlin": {
+                    name: "Berlin", country: "Germany", iata: "BER",
+                    hemisphere: "northern", price: "$420 - $700",
+                    flightDetails: { stops: "1 Stop (Reykjavik)", airline: "PLAY", inclusions: ["Personal Item"] },
+                    lgbtqSafety: { rating: "Very High", text: "Schöneberg is historic. Very open city.", marriageEquality: "Legal" },
+                    hotels: [
+                        { name: "Axel Hotel", type: "Gay Hotel", rating: "4.4/5" },
+                        { name: "Michelberger", type: "Hip", rating: "4.3/5" },
+                        { name: "25hours Hotel", type: "Design", rating: "4.6/5" },
+                        { name: "TWO Hotel", type: "Gay Hotel", rating: "4.5/5" },
+                        { name: "Motel One", type: "Budget", rating: "4.2/5" }
+                    ],
+                    nightlife: [
+                        { name: "Berghain", type: "Club", description: "World famous techno club" },
+                        { name: "SchwuZ", type: "Club", description: "Inclusive pop/house club" },
+                        { name: "Möbel Olfe", type: "Bar", description: "Alternative queer bar" },
+                        { name: "Grosse Freiheit", type: "Bar", description: "Late night fun" },
+                        { name: "Der Boiler", type: "Sauna", description: "Huge, premier gay sauna" }
+                    ],
+                    attractions: [
+                        { name: "Brandenburg Gate", type: "History" },
+                        { name: "Memorial to Homosexuals", type: "Memorial" },
+                        { name: "East Side Gallery", type: "Art" }
+                    ]
+                },
+                "amsterdam": {
+                    name: "Amsterdam", country: "Netherlands", iata: "AMS",
+                    hemisphere: "northern", price: "$450 - $750",
+                    flightDetails: { stops: "1 Stop", airline: "SAS / Play", inclusions: ["Carry-on"] },
+                    lgbtqSafety: { rating: "Very High", text: "Reguliersdwarsstraat is main street. Very safe.", marriageEquality: "Legal" },
+                    hotels: [
+                        { name: "Amistad Hotel", type: "Gay Friendly", rating: "4.8/5" },
+                        { name: "W Amsterdam", type: "Luxury", rating: "4.6/5" },
+                        { name: "Botel", type: "Budget", rating: "3.9/5" },
+                        { name: "The Hoxton", type: "Canal", rating: "4.7/5" },
+                        { name: "Pulitzer", type: "Classic", rating: "4.8/5" }
+                    ],
+                    nightlife: [
+                        { name: "Club Church", type: "Cruising", description: "Men only events" },
+                        { name: "PRIK", type: "Bar", description: "Fun prosecco bar" },
+                        { name: "NYX", type: "Club", description: "Multi-floor dance club" },
+                        { name: "Spijker Bar", type: "Leather", description: "Friendly leather bar" },
+                        { name: "Sauna Nieuwezijds", type: "Sauna", description: "Central, top rated" }
+                    ],
+                    attractions: [
+                        { name: "Rijksmuseum", type: "Art" },
+                        { name: "Homomonument", type: "Memorial" },
+                        { name: "Canal Cruise", type: "Leisure" }
+                    ]
+                },
+                "sydney": {
+                    name: "Sydney", country: "Australia", iata: "SYD",
+                    hemisphere: "southern", price: "$900 - $1400",
+                    flightDetails: { stops: "1 Stop", airline: "Jetstar / Qantas", inclusions: ["Checked Bag", "Meals"] },
+                    lgbtqSafety: { rating: "High", text: "Oxford Street is the hub. Safe.", marriageEquality: "Legal" },
+                    hotels: [
+                        { name: "The Imperial", type: "Historic", rating: "4.5/5" },
+                        { name: "QT Sydney", type: "Boutique", rating: "4.7/5" },
+                        { name: "Arts Hotel", type: "Budget", rating: "4.0/5" },
+                        { name: "Pullman Hyde Park", type: "Central", rating: "4.4/5" },
+                        { name: "Cambridge Hotel", type: "Surry Hills", rating: "4.2/5" }
+                    ],
+                    nightlife: [
+                        { name: "The Stonewall", type: "Bar", description: "Iconic venue" },
+                        { name: "Universal", type: "Club", description: "Drag shows & dancing" },
+                        { name: "ARQ", type: "Club", description: "Late night club" },
+                        { name: "Palms on Oxford", type: "Retro", description: "Retro dance hits" },
+                        { name: "Sydney Sauna", type: "Sauna", description: "Premium, Oxford St" }
+                    ],
+                    attractions: [
+                        { name: "Opera House", type: "Landmark" },
+                        { name: "Bondi Beach", type: "Nature" },
+                        { name: "Darlinghurst Walk", type: "Culture" }
+                    ]
+                },
+                "melbourne": {
+                    name: "Melbourne", country: "Australia", iata: "MEL",
+                    hemisphere: "southern", price: "$880 - $1350",
+                    flightDetails: { stops: "1 Stop", airline: "Jetstar / Qantas", inclusions: ["Checked Bag", "Meals"] },
+                    lgbtqSafety: { rating: "High", text: "Fitzroy/Collingwood areas. Very inclusive.", marriageEquality: "Legal" },
+                    hotels: [
+                        { name: "The Cullen", type: "Art Hotel", rating: "4.6/5" },
+                        { name: "Ovolo South Yarra", type: "Retro", rating: "4.5/5" },
+                        { name: "Cosmopolitan", type: "Budget", rating: "4.1/5" },
+                        { name: "Adelphi Hotel", type: "Boutique", rating: "4.7/5" },
+                        { name: "Jasper Hotel", type: "Central", rating: "4.3/5" }
+                    ],
+                    nightlife: [
+                        { name: "Sircuit", type: "Bar", description: "Drag shows" },
+                        { name: "The Peel", type: "Club", description: "Late night iconic" },
+                        { name: "Laird Hotel", type: "Bar", description: "Men only bear bar" },
+                        { name: "Poof Doof", type: "Club", description: "Big Saturday rave" },
+                        { name: "Wet on Wellington", type: "Sauna", description: "Pool & steam" }
+                    ],
+                    attractions: [
+                        { name: "Botanic Gardens", type: "Nature" },
+                        { name: "NGV", type: "Art" },
+                        { name: "Chapel Street", type: "Shopping" }
+                    ]
+                },
+                "san francisco": {
+                    name: "San Francisco", country: "USA", iata: "SFO",
+                    hemisphere: "northern", price: "$129 - $350",
+                    flightDetails: { stops: "Direct", airline: "Southwest / Alaska", inclusions: ["Carry-on", "Snack"] },
+                    lgbtqSafety: { rating: "Very High", text: "The Castro District is world-famous. Very safe.", marriageEquality: "Legal" },
+                    hotels: [
+                        { name: "Parker Guest House", type: "LGBTQ Owned", rating: "5/5" },
+                        { name: "Beck's Motor Lodge", type: "Iconic", rating: "4.2/5" },
+                        { name: "Hotel Zelos", type: "Modern", rating: "4.5/5" },
+                        { name: "Twin Peaks Hotel", type: "Budget", rating: "3.5/5" },
+                        { name: "Argonaut Hotel", type: "Wharf", rating: "4.6/5" }
+                    ],
+                    nightlife: [
+                        { name: "The Midnight Sun", type: "Bar", description: "Video bar in Castro" },
+                        { name: "Beaux", type: "Club", description: "Modern dance club" },
+                        { name: "The Edge", type: "Bar", description: "Neighborhood bar" },
+                        { name: "440 Castro", type: "Bar", description: "Leather & bears" },
+                        { name: "Eros", type: "Sauna", description: "Historic bathhouse" }
+                    ],
+                    attractions: [
+                        { name: "Golden Gate Park", type: "Must See" },
+                        { name: "Castro Theatre", type: "History" },
+                        { name: "Dolores Park", type: "Social" }
+                    ]
+                },
+                "new york": {
+                    name: "New York", country: "USA", iata: "NYC",
+                    hemisphere: "northern", price: "$149 - $390",
+                    flightDetails: { stops: "Direct", airline: "JetBlue / Delta", inclusions: ["Carry-on", "TV", "Snacks"] },
+                    lgbtqSafety: { rating: "Very High", text: "Hell's Kitchen & Chelsea are reliable hubs. Very safe.", marriageEquality: "Legal" },
+                    hotels: [
+                        { name: "The Standard", type: "Trendy", rating: "4.6/5" },
+                        { name: "Room Mate Grace", type: "Boutique", rating: "4.4/5" },
+                        { name: "YOTEL", type: "Modern", rating: "4.2/5" },
+                        { name: "Arlo NoMad", type: "Hip", rating: "4.5/5" },
+                        { name: "Pod 51", type: "Budget", rating: "4.0/5" }
+                    ],
+                    nightlife: [
+                        { name: "Industry Bar", type: "Bar", description: "Popular dance bar" },
+                        { name: "The Ritz", type: "Club", description: "Multi-level dance" },
+                        { name: "Stonewall Inn", type: "Historic", description: "Wait, the original" },
+                        { name: "Boxers", type: "Sports", description: "Gay sports bar" },
+                        { name: "East Side Club", type: "Sauna", description: "Bathhouse institution" }
+                    ],
+                    attractions: [
+                        { name: "Broadway", type: "Culture" },
+                        { name: "High Line", type: "Walk" },
+                        { name: "Central Park", type: "Nature" }
+                    ]
+                },
+                "los angeles": {
+                    name: "Los Angeles", country: "USA", iata: "LAX",
+                    hemisphere: "northern", price: "$139 - $360",
+                    flightDetails: { stops: "Direct", airline: "Southwest / JetBlue", inclusions: ["Carry-on", "Wifi"] },
+                    lgbtqSafety: { rating: "High", text: "West Hollywood (WeHo) is the place to be.", marriageEquality: "Legal" },
+                    hotels: [
+                        { name: "Andaz WeHo", type: "Luxury", rating: "4.7/5" },
+                        { name: "The Mondrian", type: "Iconic", rating: "4.5/5" },
+                        { name: "Ramada WeHo", type: "Budget", rating: "4.0/5" },
+                        { name: "Petit Ermitage", type: "Boutique", rating: "4.8/5" },
+                        { name: "Standard Hollywood", type: "Modern", rating: "4.3/5" }
+                    ],
+                    nightlife: [
+                        { name: "The Abbey", type: "Bar", description: "Famous gay bar" },
+                        { name: "Micky's", type: "Club", description: "Dance club" },
+                        { name: "Hi Tops", type: "Sports Bar", description: "Gay sports bar" },
+                        { name: "Gym Bar", type: "Sports", description: "Casual hangout" },
+                        { name: "North Hollywood Spa", type: "Sauna", description: "Popular bathhouse" }
+                    ],
+                    attractions: [
+                        { name: "Santa Monica Pier", type: "Fun" },
+                        { name: "Hollywood Sign", type: "Iconic" },
+                        { name: "Getty Center", type: "Art" }
+                    ]
+                },
+                "tokyo": {
+                    name: "Tokyo", country: "Japan", iata: "TYO",
+                    hemisphere: "northern", price: "$680 - $1100",
+                    flightDetails: { stops: "Direct", airline: "ZipAir", inclusions: ["Standard Seat", "Wifi"] },
+                    lgbtqSafety: { rating: "Medium", text: "Shinjuku Ni-chome is the hub. Discreet but safe.", marriageEquality: "Partnership" },
+                    hotels: [
+                        { name: "Park Hyatt", type: "Luxury", rating: "4.9/5" },
+                        { name: "Hotel Gracery", type: "Godzilla", rating: "4.4/5" },
+                        { name: "APA Hotel", type: "Budget", rating: "4.0/5" },
+                        { name: "Shinjuku Granbell", type: "Design", rating: "4.3/5" },
+                        { name: "Trunk Hotel", type: "Hip", rating: "4.7/5" }
+                    ],
+                    nightlife: [
+                        { name: "Dragon Men", type: "Bar", description: "Popular with tourists" },
+                        { name: "Arty Farty", type: "Club", description: "Dance club" },
+                        { name: "Eagle Tokyo", type: "Bar", description: "Bear bar" },
+                        { name: "Campy! Bar", type: "Drag", description: "Fun drag bar" },
+                        { name: "24 Kaikan", type: "Sauna", description: "Famous 8-floor sauna" }
+                    ],
+                    attractions: [
+                        { name: "Shinjuku Gyoen", type: "Nature" },
+                        { name: "Senso-ji", type: "History" },
+                        { name: "Shibuya Crossing", type: "City" }
+                    ]
+                },
+                "bangkok": {
+                    name: "Bangkok", country: "Thailand", iata: "BKK",
+                    hemisphere: "northern", price: "$700 - $950",
+                    flightDetails: { stops: "1 Stop", airline: "Scoot / Thai", inclusions: ["Basic Fare"] },
+                    lgbtqSafety: { rating: "High", text: "Silom area is very active. Friendly culture.", marriageEquality: "Pending" },
+                    hotels: [
+                        { name: "SO/ Bangkok", type: "Modern", rating: "4.6/5" },
+                        { name: "Babylon", type: "Sauna/Hotel", rating: "4.2/5" },
+                        { name: "W Bangkok", type: "Luxury", rating: "4.7/5" },
+                        { name: "Bandara Suites", type: "Central", rating: "4.3/5" },
+                        { name: "Lub d", type: "Budget", rating: "4.5/5" }
+                    ],
+                    nightlife: [
+                        { name: "DJ Station", type: "Club", description: "Famous drag shows" },
+                        { name: "Telephone Pub", type: "Bar", description: "Socializing" },
+                        { name: "Stranger Bar", type: "Drag", description: "Intimate shows" },
+                        { name: "G.O.D.", type: "Club", description: "Late night dance" },
+                        { name: "Chakran Sauna", type: "Sauna", description: "Modern facilities" }
+                    ],
+                    attractions: [
+                        { name: "Grand Palace", type: "Culture" },
+                        { name: "Wat Arun", type: "History" },
+                        { name: "Chatuchak Market", type: "Shopping" }
+                    ]
+                },
+                "rio de janeiro": {
+                    name: "Rio de Janeiro", country: "Brazil", iata: "RIO",
+                    hemisphere: "southern", price: "$650 - $900",
+                    flightDetails: { stops: "1 Stop", airline: "LATAM / Avianca", inclusions: ["Checked Bag", "Meals"] },
+                    lgbtqSafety: { rating: "Medium", text: "Ipanema (Farme de Amoedo) is the gay spot. Be cautious.", marriageEquality: "Legal" },
+                    hotels: [
+                        { name: "Fasano Rio", type: "Luxury", rating: "4.8/5" },
+                        { name: "Ipanema Inn", type: "Boutique", rating: "4.5/5" },
+                        { name: "Selina Copacabana", type: "Social", rating: "4.2/5" },
+                        { name: "Fairmont Rio", type: "View", rating: "4.7/5" },
+                        { name: "Arena Ipanema", type: "Modern", rating: "4.4/5" }
+                    ],
+                    nightlife: [
+                        { name: "The Week", type: "Club", description: "Huge legendary club" },
+                        { name: "Pink Flamingo", type: "Bar", description: "Popular drag bar" },
+                        { name: "Galeria Café", type: "Club", description: "Intimate dance spot" },
+                        { name: "To Nem Ai", type: "Bar", description: "Street party vibe" },
+                        { name: "Rio G Spa", type: "Sauna", description: "Famous bathhouse" }
+                    ],
+                    attractions: [
+                        { name: "Christ the Redeemer", type: "Iconic" },
+                        { name: "Sugarloaf Mountain", type: "View" },
+                        { name: "Copacabana Beach", type: "Beach" }
+                    ]
+                },
+                "buenos aires": {
+                    name: "Buenos Aires", country: "Argentina", iata: "BUE",
+                    hemisphere: "southern", price: "$720 - $950",
+                    flightDetails: { stops: "1 Stop", airline: "Aerolineas / American", inclusions: ["Checked Bag", "Meals"] },
+                    lgbtqSafety: { rating: "High", text: "Palermo & Recoleta. Very liberal and accepting.", marriageEquality: "Legal" },
+                    hotels: [
+                        { name: "Faena Hotel", type: "Luxury", rating: "4.7/5" },
+                        { name: "Home Hotel", type: "Boutique", rating: "4.6/5" },
+                        { name: "Mine Hotel", type: "Design", rating: "4.8/5" },
+                        { name: "Legado Mitico", type: "Historic", rating: "4.5/5" },
+                        { name: "Axel Hotel BA", type: "Gay Hotel", rating: "4.3/5" }
+                    ],
+                    nightlife: [
+                        { name: "Amerika", type: "Club", description: "Massive inclusive club" },
+                        { name: "Sitges", type: "Bar", description: "Weekly drag shows" },
+                        { name: "Peuteo", type: "Bar", description: "Trendy pre-club" },
+                        { name: "Glam", type: "Club", description: "Electro pop" },
+                        { name: "Homosapiens", type: "Sauna", description: "Top rated spa" }
+                    ],
+                    attractions: [
+                        { name: "San Telmo Market", type: "Culture" },
+                        { name: "Recoleta Cemetery", type: "History" },
+                        { name: "Tango Show", type: "Performance" }
+                    ]
+                },
+                "toronto": {
+                    name: "Toronto", country: "Canada", iata: "YTO",
+                    hemisphere: "northern", price: "$220 - $450",
+                    flightDetails: { stops: "Direct", airline: "Porter / Air Canada", inclusions: ["Carry-on", "Snack"] },
+                    lgbtqSafety: { rating: "Very High", text: "Church-Wellesley Village is the hub. Extremely safe.", marriageEquality: "Legal" },
+                    hotels: [
+                        { name: "The Drake", type: "Trendy", rating: "4.6/5" },
+                        { name: "Broadview Hotel", type: "Historic", rating: "4.5/5" },
+                        { name: "Chelsea Hotel", type: "Central", rating: "4.0/5" },
+                        { name: "Gladstone House", type: "Art", rating: "4.5/5" },
+                        { name: "Courtyard Downtown", type: "Village", rating: "4.2/5" }
+                    ],
+                    nightlife: [
+                        { name: "Woody's", type: "Bar", description: "Famous village complex" },
+                        { name: "Crews & Tangos", type: "Drag", description: "Drag institution" },
+                        { name: "Black Eagle", type: "Leather", description: "Fetish/Leather bar" },
+                        { name: "El Convento Rico", type: "Latin", description: "Drag & Latin" },
+                        { name: "Steamworks", type: "Sauna", description: "Village bathhouse" }
+                    ],
+                    attractions: [
+                        { name: "CN Tower", type: "Iconic" },
+                        { name: "Islands Park", type: "Nature" },
+                        { name: "Royal Ontario Museum", type: "History" }
+                    ]
+                },
+                "montreal": {
+                    name: "Montreal", country: "Canada", iata: "YMQ",
+                    hemisphere: "northern", price: "$250 - $480",
+                    flightDetails: { stops: "Direct", airline: "Air Transat / AC", inclusions: ["Carry-on"] },
+                    lgbtqSafety: { rating: "Very High", text: "Le Village is one of the largest gay villages.", marriageEquality: "Legal" },
+                    hotels: [
+                        { name: "W Montreal", type: "Luxury", rating: "4.7/5" },
+                        { name: "Hotel Place d'Armes", type: "Historic", rating: "4.6/5" },
+                        { name: "M Montreal", type: "Budget", rating: "4.3/5" },
+                        { name: "Hotel St-Christophe", type: "Village", rating: "4.1/5" },
+                        { name: "Boxotel", type: "Modern", rating: "4.6/5" }
+                    ],
+                    nightlife: [
+                        { name: "Sky Complex", type: "Club", description: "Multi-level club" },
+                        { name: "Cabaret Mado", type: "Drag", description: "Legendary drag" },
+                        { name: "Bar Renard", type: "Lounge", description: "Craft cocktails" },
+                        { name: "Stereo", type: "Afterhours", description: "Audiophile club" },
+                        { name: "Oasis Sauna", type: "Sauna", description: "Popular in Village" }
+                    ],
+                    attractions: [
+                        { name: "Old Montreal", type: "History" },
+                        { name: "Mount Royal", type: "Nature" },
+                        { name: "Botanical Garden", type: "Relax" }
+                    ]
+                },
+                "vancouver": {
+                    name: "Vancouver", country: "Canada", iata: "YVR",
+                    hemisphere: "northern", price: "$290 - $550",
+                    flightDetails: { stops: "Direct", airline: "Flair / WestJet", inclusions: ["Personal Item"] },
+                    lgbtqSafety: { rating: "Very High", text: "Davie Village. Very safe and laid back.", marriageEquality: "Legal" },
+                    hotels: [
+                        { name: "The Burrard", type: "Retro", rating: "4.4/5" },
+                        { name: "Fairmont Pacific", type: "Luxury", rating: "4.8/5" },
+                        { name: "Sandman Suites", type: "Davie", rating: "4.1/5" },
+                        { name: "Opus Hotel", type: "Yaletown", rating: "4.6/5" },
+                        { name: "Sylvia Hotel", type: "Beach", rating: "4.2/5" }
+                    ],
+                    nightlife: [
+                        { name: "Celebrities", type: "Club", description: "Top DJs & dancing" },
+                        { name: "The Junction", type: "Bar", description: "Patio & drag" },
+                        { name: "PumpJack", type: "Pub", description: "Friendly pub vibe" },
+                        { name: "Numbers", type: "Club", description: "Multi-level dance" },
+                        { name: "F212", type: "Sauna", description: "Steam & lounge" }
+                    ],
+                    attractions: [
+                        { name: "Stanley Park", type: "Nature" },
+                        { name: "Granville Island", type: "Market" },
+                        { name: "Capilano Bridge", type: "Adventure" }
+                    ]
+                },
+                "cape town": {
+                    name: "Cape Town", country: "South Africa", iata: "CPT",
+                    hemisphere: "southern", price: "$850 - $1200",
+                    flightDetails: { stops: "2 Stops", airline: "Ethiopian / Emirates", inclusions: ["2 Checked Bags", "Meals"] },
+                    lgbtqSafety: { rating: "High", text: "De Waterkant is the 'pink' area. Generally safe.", marriageEquality: "Legal" },
+                    hotels: [
+                        { name: "The Silo", type: "Luxury", rating: "4.9/5" },
+                        { name: "Capital Mirage", type: "Modern", rating: "4.6/5" },
+                        { name: "Glen Boutique", type: "Gay Friendly", rating: "4.5/5" },
+                        { name: "Radisson RED", type: "Vibe", rating: "4.4/5" },
+                        { name: "Never@Home", type: "Budget", rating: "4.2/5" }
+                    ],
+                    nightlife: [
+                        { name: "Crew Bar", type: "Bar", description: "Mens bar" },
+                        { name: "Pink Panther", type: "Club", description: "Late night dancing" },
+                        { name: "Beefcakes", type: "Show", description: "Burger & Drag" },
+                        { name: "Zer021", type: "Club", description: "Urban & diverse" },
+                        { name: "Hot House", type: "Sauna", description: "Steam & leisure" }
+                    ],
+                    attractions: [
+                        { name: "Table Mountain", type: "Iconic" },
+                        { name: "Robben Island", type: "History" },
+                        { name: "Clifton 3rd Beach", type: "Gay Beach" }
+                    ]
+                }
+            },
+            regions: {
+                "europe": ["london", "paris", "berlin", "amsterdam"],
+                "australia": ["sydney", "melbourne"],
+                "asia": ["tokyo", "bangkok"],
+                "south america": ["rio de janeiro", "buenos aires"],
+                "north america": ["new york", "los angeles", "san francisco", "toronto", "montreal", "vancouver"],
+                "canada": ["toronto", "montreal", "vancouver"],
+                "africa": ["cape town"]
+            },
+            countries: {
+                "uk": ["london"],
+                "united kingdom": ["london"],
+                "france": ["paris"],
+                "germany": ["berlin"],
+                "japan": ["tokyo"],
+                "thailand": ["bangkok"],
+                "usa": ["new york", "los angeles", "san francisco"],
+                "united states": ["new york", "los angeles", "san francisco"],
+                "brazil": ["rio de janeiro"],
+                "argentina": ["buenos aires"],
+                "canada": ["toronto", "montreal", "vancouver"],
+                "south africa": ["cape town"]
+            },
+            default: ["london", "paris"]
+        };
+
+        // --- HELPER LOGIC ---
+
+        function getPriceVal(priceStr) {
+            return parseInt(priceStr.replace(/[^0-9]/g, '')) || 99999;
+        }
+
+        function checkPride(cityKey, searchDateStr) {
+            if (!PRIDE_CALENDAR[cityKey] || !searchDateStr) return null;
+
+            const searchDate = new Date(searchDateStr);
+            const alerts = [];
+
+            PRIDE_CALENDAR[cityKey].forEach(prideDateStr => {
+                const prideDate = new Date(prideDateStr);
+                // Difference in days
+                const diffTime = prideDate - searchDate;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                // Same week (within 7 days before or after)
+                if (Math.abs(diffDays) <= 7) {
+                    if (diffDays === 0) alerts.push("Pride is happening ON your arrival date!");
+                    else if (diffDays > 0) alerts.push(`Pride is coming up in ${diffDays} days!`);
+                    else alerts.push(`Pride was just ${Math.abs(diffDays)} days ago.`);
+                }
+                // Specifically "1 week after" check as requested
+                if (diffDays >= 7 && diffDays <= 14) {
+                    alerts.push("Warning: You are arriving about a week BEFORE Pride!");
+                }
+                if (diffDays <= -7 && diffDays >= -14) {
+                    alerts.push("Warning: You are arriving about a week AFTER Pride!");
+                }
+            });
+
+            return alerts.length > 0 ? alerts[0] : null;
+        }
+
+        // Helper: Safer Date Parsing
+        function isValidDate(d) {
+            return d instanceof Date && !isNaN(d);
+        }
+
+        function getWeather(hemisphere, dateStr) {
+            let dateObj = new Date(dateStr);
+            // Fallback if invalid date
+            if (!dateStr || !isValidDate(dateObj)) {
+                dateObj = new Date(); // Use today if invalid
+            }
+
+            const month = dateObj.getMonth() + 1;
+
+            // Season Logic
+            let season = "";
+            let temp = "";
+            let condition = "";
+
+            if (hemisphere === "northern") {
+                if (month >= 6 && month <= 8) { season = "Summer"; temp = "82°F"; condition = "Sunny & Hot"; }
+                else if (month >= 9 && month <= 11) { season = "Autumn"; temp = "60°F"; condition = "Crisp/Rainy"; }
+                else if (month >= 3 && month <= 5) { season = "Spring"; temp = "65°F"; condition = "Blooming"; }
+                else { season = "Winter"; temp = "40°F"; condition = "Cold/Snowy"; }
+            } else {
+                // Southern Hemisphere
+                if (month >= 6 && month <= 8) { season = "Winter"; temp = "55°F"; condition = "Cool/Mild"; }
+                else if (month >= 9 && month <= 11) { season = "Spring"; temp = "70°F"; condition = "Pleasant"; }
+                else if (month >= 3 && month <= 5) { season = "Autumn"; temp = "65°F"; condition = "Mild"; }
+                else { season = "Summer"; temp = "85°F"; condition = "Hot/Humid"; }
+            }
+
+            return { temp, condition: `${season}`, note: `Typical ${season} weather` };
+        }
+
+        function getEventSearchLink(city, dateStr) {
+            let dateObj = new Date(dateStr);
+            if (!dateStr || !isValidDate(dateObj)) {
+                dateObj = new Date(); // Fallback to current date
+            }
+            const monthName = dateObj.toLocaleString('default', { month: 'long' });
+            const year = dateObj.getFullYear();
+            const query = `LGBTQ events in ${city} ${monthName} ${year}`;
+            return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        }
+    </script>
+
+    <script>
+        console.log("Data & Helpers loaded successfully.");
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('flightForm');
+            if (form) {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    try {
+                        const destInput = document.getElementById('destination').value.toLowerCase().trim();
+                        // Default to today if date is missing (prevents crash)
+                        const todayStr = new Date().toISOString().split('T')[0];
+                        const departFromInput = document.getElementById('departDate').value;
+                        const depart = departFromInput || todayStr;
+                        const ret = document.getElementById('returnDate').value;
+
+                        // --- RESOLVE DESTINATIONS ---
+                        let targetCities = [];
+
+                        if (MOCK_DATA.regions[destInput]) {
+                            targetCities = MOCK_DATA.regions[destInput];
+                        }
+                        else if (MOCK_DATA.countries[destInput]) {
+                            targetCities = MOCK_DATA.countries[destInput];
+                        }
+                        else if (MOCK_DATA.cities[destInput]) {
+                            targetCities = [destInput];
+                        }
+                        else {
+                            const matchedCityKey = Object.keys(MOCK_DATA.cities).find(k => k.includes(destInput));
+                            if (matchedCityKey) {
+                                targetCities = [matchedCityKey];
+                            } else {
+                                targetCities = MOCK_DATA.default;
+                                alert("Region not found. Showing default suggestions.");
+                            }
+                        }
+
+                        // --- SORT BY PRICE ---
+                        targetCities.sort((a, b) => {
+                            const priceA = getPriceVal(MOCK_DATA.cities[a].price);
+                            const priceB = getPriceVal(MOCK_DATA.cities[b].price);
+                            return priceA - priceB;
+                        });
+
+                        // --- RENDER ---
+                        const container = document.getElementById('results-container');
+                        container.innerHTML = "";
+                        container.style.display = 'block';
+
+                        targetCities.forEach(cityKey => {
+                            const cityData = MOCK_DATA.cities[cityKey];
+                            if (!cityData) return;
+
+                            const iata = cityData.iata || "AMS";
+                            const weather = getWeather(cityData.hemisphere, depart);
+                            const prideAlert = checkPride(cityKey, depart);
+                            const prideLink = PRIDE_LINKS[cityKey] ? `<a href="${PRIDE_LINKS[cityKey]}" target="_blank" style="color:white; text-decoration:underline;">Official Pride Site</a>` : "";
+                            const eventSearchLink = getEventSearchLink(cityData.name, depart);
+
+                            // Booking Links
+                            const expediaBase = `https://www.expedia.com/Hotel-Search?destination=${encodeURIComponent(cityData.name)}`;
+                            const viatorLink = `https://www.viator.com/searchResults/all?text=${encodeURIComponent(cityData.name)}`;
+
+                            // Create City Wrapper
+                            const cityWrapper = document.createElement('div');
+                            cityWrapper.className = 'city-result-wrapper';
+
+                            // Pride Alert Banner
+                            let alertHTML = "";
+                            if (prideAlert) {
+                                alertHTML = `<div class="pride-alert">🏳️‍🌈 ${prideAlert} ${prideLink}</div>`;
+                            }
+
+                            cityWrapper.innerHTML = `
+                        <div class="city-header">
+                            <h2 class="city-title">${cityData.name}, ${cityData.country}</h2>
+                            <span class="city-price">${cityData.price}</span>
+                        </div>
+                        
+                        <div class="results-grid">
+                            ${alertHTML}
+
+                            <div class="result-card color-red">
+                                <h2>✈️ Flights to ${cityData.name} (${iata})</h2>
+                                 <div 
+                                    data-skyscanner-widget="SearchWidget" 
+                                    data-locale="en-US" 
+                                    data-market="US" 
+                                    data-currency="USD" 
+                                    data-origin-geo-lookup="true"
+                                    data-destination-iata-code="${iata}"
+                                    data-colour="solar">
+                                </div>
+                                <p style="margin-top:10px; font-size:0.9rem;">
+                                    <strong>Est. Cost:</strong> ${cityData.price}<br>
+                                    <em>${cityData.flightDetails.airline}</em>
+                                </p>
+                            </div>
+
+                            <div class="result-card color-orange">
+                                <h2>🌤️ Weather</h2>
+                                <h3 style="margin:0; font-size: 2rem;">${weather.temp}</h3>
+                                <p>${weather.condition}<br>${weather.note}</p>
+                                <p style="font-size:0.8rem; opacity:0.7;">Forecast based on travel dates.</p>
+                            </div>
+
+                            <div class="result-card color-yellow">
+                                <h2>🏳️‍🌈 LGBTQ+ Info</h2>
+                                <p><strong>Safety:</strong> ${cityData.lgbtqSafety.rating}</p>
+                                <p><strong>Laws:</strong> ${cityData.lgbtqSafety.marriageEquality}</p>
+                                <p>${cityData.lgbtqSafety.text}</p>
+                                ${prideLink ? `<p>🔗 ${prideLink}</p>` : ''}
+                                <a href="${eventSearchLink}" target="_blank" class="btn-link" style="background:#ffa502; width:100%; text-align:center; box-sizing:border-box; margin-top:10px;">🔎 Search Local LGBTQ Events</a>
+                            </div>
+
+                            <div class="result-card color-green">
+                                <h2>🏨 LGBTQ Hotels</h2>
+                                <ul>
+                                    ${cityData.hotels.map(h => {
+                                const hLink = `https://www.expedia.com/Hotel-Search?destination=${encodeURIComponent(h.name + ' ' + cityData.name)}`;
+                                return `<li>
+                                            <strong>${h.name}</strong><span class="tag">${h.type}</span>
+                                            <br>Rating: ${h.rating} 
+                                            <a href="${hLink}" target="_blank" style="font-size:0.8rem; float:right;">Book</a>
+                                        </li>`;
+                            }).join('')}
+                                </ul>
+                                <a href="${expediaBase}" target="_blank" class="btn-link" style="width:100%; text-align:center; box-sizing:border-box;">View All on Expedia</a>
+                            </div>
+
+                            <div class="result-card color-blue">
+                                <h2>🍸 Nightlife & Saunas</h2>
+                                <ul>
+                                    ${cityData.nightlife.map(n => {
+                                const isSauna = n.type === 'Sauna';
+                                const tags = isSauna ? `<span class="tag tag-sauna">Sauna</span>` : `<span class="tag">${n.type}</span>`;
+                                return `<li><strong>${n.name}</strong>${tags}<br>${n.description}</li>`;
+                            }).join('')}
+                                </ul>
+                            </div>
+
+                            <div class="result-card color-purple">
+                                <h2>🎡 Attractions</h2>
+                                <ul>${cityData.attractions.map(a => `<li><strong>${a.name}</strong><span class="tag">${a.type}</span></li>`).join('')}</ul>
+                                <a href="${viatorLink}" target="_blank" class="btn-link" style="width:100%; text-align:center; box-sizing:border-box; margin-top:10px;">Book Tours on Viator</a>
+                            </div>
+                        </div>
+                    `;
+
+                            container.appendChild(cityWrapper);
+                        });
+
+                        // Re-inject Skyscanner Loader
+                        const oldScript = document.getElementById('skyscanner-loader');
+                        if (oldScript) oldScript.remove();
+                        const script = document.createElement('script');
+                        script.id = 'skyscanner-loader';
+                        script.src = "https://widgets.skyscanner.net/widget-server/js/loader.js";
+                        script.async = true;
+                        document.body.appendChild(script);
+
+                    } catch (err) {
+                        console.error("Search Error:", err);
+                        alert("An error occurred during search: " + err.message);
+                    }
+                });
+            } else {
+                console.error("Critical Error: 'flightForm' not found!");
+            }
+        });
+    </script>
+    
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('https://pridetravel.github.io/PrideTravelScoutAPP/sw.js')
+            .then((reg) => console.log('Service Worker registered!', reg))
+            .catch((err) => console.log('Service Worker failed:', err));
+        });
+      }
+    </script>
+</body>
+
+</html>
