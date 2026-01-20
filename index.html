@@ -12,10 +12,9 @@
     <link rel="manifest" href="https://pridetravel.github.io/PrideTravelScoutAPP/manifest.json">
     
     <link rel="apple-touch-icon" href="https://pridetravel.github.io/PrideTravelScoutAPP/icon-512.png">
-
+<script>
   if (typeof navigator.serviceWorker !== 'undefined') {
-    // We use the full URL to ensure GitHub Pages finds the file
-    navigator.serviceWorker.register('https://pridetravel.github.io/PrideTravelScoutAPP/sw.js')
+    navigator.serviceWorker.register('sw.js') // or your specific URL
       .then(function(registration) {
         console.log('Service Worker registered successfully:', registration);
       })
@@ -23,6 +22,7 @@
         console.log('Service Worker registration failed:', error);
       });
   }
+</script>
     <style>
         :root {
             --primary: #ff4757;
