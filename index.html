@@ -3991,98 +3991,108 @@
                             }
                         ]
                     };
-                    for (const [city, events] of Object.entries(NEW_EVENTS)) {
-                        if (DATABASE.details[city]) {
-                            DATABASE.details[city].events = events;
+                    try {
+                        // Debugging: Ensure DATABASE and mappings exist
+                        if (typeof DATABASE === 'undefined') throw new Error("DATABASE is undefined");
+                        if (!DATABASE.mappings) throw new Error("DATABASE.mappings is undefined (Injection failed?)");
+
+                        for (const [city, events] of Object.entries(NEW_EVENTS)) {
+                            if (DATABASE.details[city]) {
+                                DATABASE.details[city].events = events;
+                            }
                         }
-                    }
+
+                        // Manual Region Updates (Scoped correctly)
+                        const extraRegions = {
+                            'west coast': ['los angeles', 'san francisco', 'seattle', 'portland', 'sandiego', 'las vegas'],
+                            'east coast': ['new york', 'miami', 'fort lauderdale', 'washington dc', 'boston', 'philadelphia', 'atlanta'],
+                            'hawaii': ['honolulu'],
+                            'usa': ['new york', 'los angeles', 'san francisco', 'miami', 'las vegas', 'honolulu', 'chicago', 'new orleans']
+                        };
+
+                        if (DATABASE.mappings.regions) {
+                            Object.assign(DATABASE.mappings.regions, extraRegions);
+                        } else {
+                            throw new Error("DATABASE.mappings.regions is missing");
+                        }
+
+                        const form = document.querySelector(CONTAINER_ID + ' #searchForm');
+                        const container = document.querySelector(CONTAINER_ID + ' #resultsContainer');
+
+                        if (form) {
+                            form.addEventListener('submit', function (e) {
+                                e.preventDefault();
 
 
-                    // Manual Region Updates (Scoped correctly)
-                    const extraRegions = {
-                        'west coast': ['los angeles', 'san francisco', 'seattle', 'portland', 'sandiego', 'las vegas'],
-                        'east coast': ['new york', 'miami', 'fort lauderdale', 'washington dc', 'boston', 'philadelphia', 'atlanta'],
-                        'hawaii': ['honolulu'],
-                        'usa': ['new york', 'los angeles', 'san francisco', 'miami', 'las vegas', 'honolulu', 'chicago', 'new orleans']
-                    };
-                    Object.assign(DATABASE.mappings.regions, extraRegions);
+                                const origin = document.querySelector(CONTAINER_ID + ' #departure').value.trim();
+                                const destinationInput = document.querySelector(CONTAINER_ID + ' #destination').value.trim().toLowerCase();
+                                const dateStart = document.querySelector(CONTAINER_ID + ' #dateStart').value;
+                                const dateEnd = document.querySelector(CONTAINER_ID + ' #dateEnd').value;
 
-                    const form = document.querySelector(CONTAINER_ID + ' #searchForm');
-                    const container = document.querySelector(CONTAINER_ID + ' #resultsContainer');
+                                if (!origin || !destinationInput || !dateStart || !dateEnd) {
+                                    alert("Please fill in all fields.");
+                                    return;
+                                }
 
-                    if (form) {
-                        form.addEventListener('submit', function (e) {
-                            e.preventDefault();
+                                let targets = [];
 
-                            const origin = document.querySelector(CONTAINER_ID + ' #departure').value.trim();
-                            const destinationInput = document.querySelector(CONTAINER_ID + ' #destination').value.trim().toLowerCase();
-                            const dateStart = document.querySelector(CONTAINER_ID + ' #dateStart').value;
-                            const dateEnd = document.querySelector(CONTAINER_ID + ' #dateEnd').value;
-
-                            if (!origin || !destinationInput || !dateStart || !dateEnd) {
-                                alert("Please fill in all fields.");
-                                return;
-                            }
-
-                            let targets = [];
-
-                            if (DATABASE.mappings.regions[destinationInput]) {
-                                targets = DATABASE.mappings.regions[destinationInput];
-                            } else if (DATABASE.mappings.countries[destinationInput]) {
-                                targets = DATABASE.mappings.countries[destinationInput];
-                            } else if (DATABASE.mappings.cities[destinationInput]) {
-                                targets = DATABASE.mappings.cities[destinationInput];
-                            } else {
-                                // Check if direct key exists or IATA match
-                                const iataMatch = Object.keys(DATABASE.details).find(key =>
-                                    DATABASE.details[key].iata && DATABASE.details[key].iata.toLowerCase() === destinationInput
-                                );
-
-                                if (DATABASE.details[destinationInput]) {
-                                    targets = [destinationInput];
-                                } else if (iataMatch) {
-                                    targets = [iataMatch];
+                                if (DATABASE.mappings.regions[destinationInput]) {
+                                    targets = DATABASE.mappings.regions[destinationInput];
+                                } else if (DATABASE.mappings.countries[destinationInput]) {
+                                    targets = DATABASE.mappings.countries[destinationInput];
+                                } else if (DATABASE.mappings.cities[destinationInput]) {
+                                    targets = DATABASE.mappings.cities[destinationInput];
                                 } else {
-                                    alert("Destination not located in our curated list. Please try another city.");
-                                    return;
+                                    // Check if direct key exists or IATA match
+                                    const iataMatch = Object.keys(DATABASE.details).find(key =>
+                                        DATABASE.details[key].iata && DATABASE.details[key].iata.toLowerCase() === destinationInput
+                                    );
+
+                                    if (DATABASE.details[destinationInput]) {
+                                        targets = [destinationInput];
+                                    } else if (iataMatch) {
+                                        targets = [iataMatch];
+                                    } else {
+                                        alert("Destination not located in our curated list. Please try another city.");
+                                        return;
+                                    }
                                 }
-                            }
 
-                            container.innerHTML = '';
+                                container.innerHTML = '';
 
-                            targets.forEach((targetKey, index) => {
-                                let data = DATABASE.details[targetKey];
+                                targets.forEach((targetKey, index) => {
+                                    let data = DATABASE.details[targetKey];
 
-                                // Safety check if mapping exists but details missing (shouldn't happen with correct data)
-                                if (!data) {
-                                    alert("Destination details currently unavailable.");
-                                    return;
-                                }
+                                    // Safety check if mapping exists but details missing (shouldn't happen with correct data)
+                                    if (!data) {
+                                        alert("Destination details currently unavailable.");
+                                        return;
+                                    }
 
-                                // Randomize
-                                const randomHotels = getRandomSubset(data.hotels, 4);
-                                const randomNightlife = getRandomSubset(data.nightlife, 3);
-                                const randomTours = data.tours.slice(0, 5);
-                                const fareEstimate = calculateFareEstimate(data.baseFare);
-                                const delay = index * 200;
+                                    // Randomize
+                                    const randomHotels = getRandomSubset(data.hotels, 4);
+                                    const randomNightlife = getRandomSubset(data.nightlife, 3);
+                                    const randomTours = data.tours.slice(0, 5);
+                                    const fareEstimate = calculateFareEstimate(data.baseFare);
+                                    const delay = index * 200;
 
-                                // Check for Events
-                                let eventContent = '';
-                                const events = data.events || [];
-                                const searchStart = new Date(dateStart);
-                                const searchEnd = new Date(dateEnd);
-                                // Simple overlap check
-                                const matchingEvent = events.find(e => {
-                                    const eStart = new Date(e.start);
-                                    const eEnd = new Date(e.end);
-                                    const buffer = 7 * 24 * 60 * 60 * 1000; // 7 days in ms
-                                    const startBuffer = new Date(eStart.getTime() - buffer);
-                                    const endBuffer = new Date(eEnd.getTime() + buffer);
-                                    return (searchStart <= endBuffer && searchEnd >= startBuffer);
-                                });
+                                    // Check for Events
+                                    let eventContent = '';
+                                    const events = data.events || [];
+                                    const searchStart = new Date(dateStart);
+                                    const searchEnd = new Date(dateEnd);
+                                    // Simple overlap check
+                                    const matchingEvent = events.find(e => {
+                                        const eStart = new Date(e.start);
+                                        const eEnd = new Date(e.end);
+                                        const buffer = 7 * 24 * 60 * 60 * 1000; // 7 days in ms
+                                        const startBuffer = new Date(eStart.getTime() - buffer);
+                                        const endBuffer = new Date(eEnd.getTime() + buffer);
+                                        return (searchStart <= endBuffer && searchEnd >= startBuffer);
+                                    });
 
-                                if (matchingEvent) {
-                                    eventContent = `
+                                    if (matchingEvent) {
+                                        eventContent = `
                             <div class="mb-4 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg p-4 text-white shadow-lg animate-pulse">
                                 <div class="flex items-center gap-3 mb-2">
                                     <i class="fa-solid fa-calendar-star text-yellow-300 text-xl"></i>
@@ -4094,12 +4104,12 @@
                                     View Event Details <i class="fa-solid fa-arrow-right ml-1"></i>
                                 </a>
                             </div>`;
-                                }
+                                    }
 
-                                const card = document.createElement('div');
-                                card.className = "glass-card rounded-3xl overflow-hidden shadow-2xl fade-in-up transition-transform hover:scale-[1.01] duration-300";
-                                card.style.animationDelay = `${delay}ms`;
-                                card.innerHTML = `
+                                    const card = document.createElement('div');
+                                    card.className = "glass-card rounded-3xl overflow-hidden shadow-2xl fade-in-up transition-transform hover:scale-[1.01] duration-300";
+                                    card.style.animationDelay = `${delay}ms`;
+                                    card.innerHTML = `
                     <div class="bg-gradient-to-r from-gray-800 to-gray-900 p-6 border-b border-white/5 flex items-center justify-between">
                         <div class="flex items-center gap-4">
                             <div class="text-4xl shadow-sm">${data.image}</div>
@@ -4285,100 +4295,105 @@ ${eventContent}
 
                     </div>
                 `;
-                                container.appendChild(card);
+                                    container.appendChild(card);
+                                });
+
+                                // Re-inject Skyscanner loader to initialize new widgets
+                                const skyscannerScript = document.createElement('script');
+                                skyscannerScript.src = "https://widgets.skyscanner.net/widget-server/js/loader.js";
+                                skyscannerScript.async = true;
+                                document.body.appendChild(skyscannerScript);
                             });
 
-                            // Re-inject Skyscanner loader to initialize new widgets
-                            const skyscannerScript = document.createElement('script');
-                            skyscannerScript.src = "https://widgets.skyscanner.net/widget-server/js/loader.js";
-                            skyscannerScript.async = true;
-                            document.body.appendChild(skyscannerScript);
-                        });
+                            function formatDisplayName(data) {
+                                // Desired: "City, Airport Code, Country or Region"
+                                // data.name is typically "City, Country"
+                                // data.iata is "CODE"
 
-                        function formatDisplayName(data) {
-                            // Desired: "City, Airport Code, Country or Region"
-                            // data.name is typically "City, Country"
-                            // data.iata is "CODE"
-
-                            if (data.name.includes(',')) {
-                                const parts = data.name.split(',');
-                                const city = parts[0].trim();
-                                const country = parts.slice(1).join(',').trim();
-                                return `${city}, ${data.iata}, ${country}`;
+                                if (data.name.includes(',')) {
+                                    const parts = data.name.split(',');
+                                    const city = parts[0].trim();
+                                    const country = parts.slice(1).join(',').trim();
+                                    return `${city}, ${data.iata}, ${country}`;
+                                }
+                                return `${data.name} (${data.iata})`;
                             }
-                            return `${data.name} (${data.iata})`;
-                        }
 
-                        function getRandomSubset(arr, count) {
-                            if (!arr) return [];
-                            const shuffled = [...arr].sort(() => 0.5 - Math.random());
-                            return shuffled.slice(0, count);
-                        }
+                            function getRandomSubset(arr, count) {
+                                if (!arr) return [];
+                                const shuffled = [...arr].sort(() => 0.5 - Math.random());
+                                return shuffled.slice(0, count);
+                            }
 
-                        function calculateFareEstimate(baseRange) {
-                            if (!baseRange) return "$500 - $1600";
-                            const min = baseRange[0];
-                            const max = baseRange[1] * 2; // Double top end
-                            return `$${min} - $${max}`;
-                        }
+                            function calculateFareEstimate(baseRange) {
+                                if (!baseRange) return "$500 - $1600";
+                                const min = baseRange[0];
+                                const max = baseRange[1] * 2; // Double top end
+                                return `$${min} - $${max}`;
+                            }
 
-                        function getGoogleFlightsLink(origin, destination, start, end) {
-                            const q = `Flights from ${origin} to ${destination} on ${start} returning ${end}`;
-                            return `https://www.google.com/travel/flights?q=${encodeURIComponent(q)}`;
-                        }
+                            function getGoogleFlightsLink(origin, destination, start, end) {
+                                const q = `Flights from ${origin} to ${destination} on ${start} returning ${end}`;
+                                return `https://www.google.com/travel/flights?q=${encodeURIComponent(q)}`;
+                            }
 
-                        function getSkyscannerLink(origin, destinationIata, start, end) {
-                            // Convert YYYY-MM-DD to YYMMDD
-                            const formatDate = (d) => d.slice(2).replace(/-/g, '');
-                            const s = formatDate(start);
-                            const e = formatDate(end);
-                            // Use path format: /transport/flights/{origin}/{destination}/{yymmdd}/{yymmdd}
-                            const dest = destinationIata === 'ANY' ? 'everywhere' : destinationIata;
-                            return `https://www.skyscanner.com/transport/flights/${encodeURIComponent(origin)}/${encodeURIComponent(dest)}/${s}/${e}`;
-                        }
+                            function getSkyscannerLink(origin, destinationIata, start, end) {
+                                // Convert YYYY-MM-DD to YYMMDD
+                                const formatDate = (d) => d.slice(2).replace(/-/g, '');
+                                const s = formatDate(start);
+                                const e = formatDate(end);
+                                // Use path format: /transport/flights/{origin}/{destination}/{yymmdd}/{yymmdd}
+                                const dest = destinationIata === 'ANY' ? 'everywhere' : destinationIata;
+                                return `https://www.skyscanner.com/transport/flights/${encodeURIComponent(origin)}/${encodeURIComponent(dest)}/${s}/${e}`;
+                            }
 
-                        function getNightlifeIcon(type) {
-                            const t = type.toLowerCase();
-                            if (t.includes('sauna') || t.includes('bath')) return '<i class="fa-solid fa-bath"></i>';
-                            if (t.includes('club') || t.includes('disco')) return '<i class="fa-solid fa-champagne-glasses"></i>';
-                            if (t.includes('bar')) return '<i class="fa-solid fa-martini-glass"></i>';
-                            return '<i class="fa-solid fa-music"></i>';
-                        }
+                            function getNightlifeIcon(type) {
+                                const t = type.toLowerCase();
+                                if (t.includes('sauna') || t.includes('bath')) return '<i class="fa-solid fa-bath"></i>';
+                                if (t.includes('club') || t.includes('disco')) return '<i class="fa-solid fa-champagne-glasses"></i>';
+                                if (t.includes('bar')) return '<i class="fa-solid fa-martini-glass"></i>';
+                                return '<i class="fa-solid fa-music"></i>';
+                            }
 
-                        function getExpediaLink(destination, start, end) {
-                            return `https://www.expedia.com/Hotel-Search?destination=${encodeURIComponent(destination)}&d1=${start}&d2=${end}`;
-                        }
+                            function getExpediaLink(destination, start, end) {
+                                return `https://www.expedia.com/Hotel-Search?destination=${encodeURIComponent(destination)}&d1=${start}&d2=${end}`;
+                            }
 
-                        function getViatorLink(destination, start, end) {
-                            return `https://www.viator.com/searchResults/all?text=${encodeURIComponent(destination)}&startDate=${start}&endDate=${end}`;
-                        }
+                            function getViatorLink(destination, start, end) {
+                                return `https://www.viator.com/searchResults/all?text=${encodeURIComponent(destination)}&startDate=${start}&endDate=${end}`;
+                            }
 
-                        function getEmailLink(origin, data, start, end) {
-                            const subject = `Trip Idea: ${data.name} for Pride Travel`;
-                            const body = `Hey,\n\nI found a great trip idea using Pride Travel Scout!\n\nDestination: ${data.name}\nDates: ${start} to ${end}\nFrom: ${origin}\n\nWeather: ${data.weather}\nLGBTQ Safety: ${data.lgbtqSafety}\n\nCheck out flights:\nGoogle Flights: ${getGoogleFlightsLink(origin, data.name, start, end)}\n\nSent from Pride Travel Scout`;
-                            return `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                        }
+                            function getEmailLink(origin, data, start, end) {
+                                const subject = `Trip Idea: ${data.name} for Pride Travel`;
+                                const body = `Hey,\n\nI found a great trip idea using Pride Travel Scout!\n\nDestination: ${data.name}\nDates: ${start} to ${end}\nFrom: ${origin}\n\nWeather: ${data.weather}\nLGBTQ Safety: ${data.lgbtqSafety}\n\nCheck out flights:\nGoogle Flights: ${getGoogleFlightsLink(origin, data.name, start, end)}\n\nSent from Pride Travel Scout`;
+                                return `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                            }
 
-                        function getWeatherIcon(weatherString) {
-                            const w = weatherString.toLowerCase();
-                            if (w.includes('rain')) return '<i class="fa-solid fa-cloud-showers-heavy text-blue-300"></i>';
-                            if (w.includes('cloud')) return '<i class="fa-solid fa-cloud-sun"></i>';
-                            if (w.includes('snow')) return '<i class="fa-regular fa-snowflake text-white"></i>';
-                            return '<i class="fa-solid fa-sun text-yellow-300"></i>';
-                        }
+                            function getWeatherIcon(weatherString) {
+                                const w = weatherString.toLowerCase();
+                                if (w.includes('rain')) return '<i class="fa-solid fa-cloud-showers-heavy text-blue-300"></i>';
+                                if (w.includes('cloud')) return '<i class="fa-solid fa-cloud-sun"></i>';
+                                if (w.includes('snow')) return '<i class="fa-regular fa-snowflake text-white"></i>';
+                                return '<i class="fa-solid fa-sun text-yellow-300"></i>';
+                            }
 
-                        function getEventsLink(destination, dateString) {
-                            const month = getMonthName(dateString);
-                            const q = `LGBTQ Events in ${destination} in ${month}`;
-                            return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
-                        }
+                            function getEventsLink(destination, dateString) {
+                                const month = getMonthName(dateString);
+                                const q = `LGBTQ Events in ${destination} in ${month}`;
+                                return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
+                            }
 
-                        function getMonthName(dateString) {
-                            const date = new Date(dateString);
-                            return date.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
-                        }
+                            function getMonthName(dateString) {
+                                const date = new Date(dateString);
+                                return date.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
+                            }
 
-                    })();
+                        } // Close if (form)
+                    } catch (e) {
+                        console.error("Runtime Error:", e);
+                        alert("Runtime Error: " + e.message);
+                    }
+                })();
         </script>
         <script>
             if (typeof navigator.serviceWorker !== 'undefined') {
