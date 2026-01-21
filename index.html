@@ -257,9 +257,10 @@
                     <!-- Submit Button -->
                     <div class="lg:col-span-4 flex justify-center mt-4">
                         <button type="submit"
-                            class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-4 px-12 rounded-full shadow-lg transform transition hover:scale-105 active:scale-95 text-lg flex items-center gap-3">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            Find Flights
+                            style="background: linear-gradient(to bottom, #ef4444, #f97316, #eab308, #22c55e, #3b82f6, #a855f7);"
+                            class="text-white font-bold py-4 px-12 rounded-full shadow-lg transform transition hover:scale-105 active:scale-95 text-lg flex items-center gap-3">
+                            <i class="fa-solid fa-flag"></i>
+                            Find Your Pride
                         </button>
                     </div>
                 </form>
@@ -4300,10 +4301,15 @@ ${eventContent}
                                 });
 
                                 // Re-inject Skyscanner loader to initialize new widgets
-                                const skyscannerScript = document.createElement('script');
-                                skyscannerScript.src = "https://widgets.skyscanner.net/widget-server/js/loader.js";
-                                skyscannerScript.async = true;
-                                document.body.appendChild(skyscannerScript);
+                                // Efficiently load or reload Skyscanner widgets
+                                if (window.skyscanner && window.skyscanner.widgets) {
+                                    window.skyscanner.widgets.load();
+                                } else {
+                                    const skyscannerScript = document.createElement('script');
+                                    skyscannerScript.src = "https://widgets.skyscanner.net/widget-server/js/loader.js";
+                                    skyscannerScript.async = true;
+                                    document.body.appendChild(skyscannerScript);
+                                }
                             });
 
                             function formatDisplayName(data) {
