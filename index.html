@@ -170,8 +170,7 @@
     <link rel="manifest" href="https://pridetravel.github.io/PrideTravelScoutAPP/manifest.json">
 
     <link rel="apple-touch-icon" href="https://pridetravel.github.io/PrideTravelScoutAPP/icon-512.png">
-    <script src="https://widgets.skyscanner.net/widget-server/js/loader.js" async></script>
-    <script async src="https://widgets.skyscanner.net/widget-server/js/loader.js"></script>
+
 </head>
 
 <body class="bg-gray-900 text-white min-h-screen font-sans selection:bg-purple-500 selection:text-white">
@@ -341,7 +340,7 @@
                     cancellation.</p>
             </div>
             <div class="text-center text-gray-600 text-xs mt-6">
-                &copy; 2024 Pride Travel Scout.
+                &copy; 2026 Pride Travel .
             </div>
         </div>
         </div>
@@ -4279,21 +4278,7 @@
                                    <div class="text-xs text-red-200 uppercase tracking-wide">Estimated Roundtrip</div>
                                 </div>
 
-                                <!-- Skyscanner Widget Container -->
-                                <div class="my-4" id="skyscanner-widget-${index}">
-                                     <div 
-                                      data-skyscanner-widget="SearchWidget" 
-                                      data-locale="en-US" 
-                                      data-market="US" 
-                                      data-currency="USD" 
-                                      data-origin-geo-lookup="false"
-                                      data-origin-name="${origin}"
-                                      data-destination-iata-code="${data.iata}"
-                                      data-outbound-date="${dateStart}"
-                                      data-inbound-date="${dateEnd}"
-                                      data-colour="solar">
-                                    </div>
-                                </div>
+
 
                                 <div class="space-y-3 mt-4">
                                      <div class="flex items-center gap-3 text-sm text-gray-200">
@@ -4434,16 +4419,7 @@ ${eventContent}
                                     container.appendChild(card);
                                 });
 
-                                // Re-inject Skyscanner loader to initialize new widgets
-                                // Efficiently load or reload Skyscanner widgets
-                                if (window.skyscanner && window.skyscanner.widgets) {
-                                    window.skyscanner.widgets.load();
-                                } else {
-                                    const skyscannerScript = document.createElement('script');
-                                    skyscannerScript.src = "https://widgets.skyscanner.net/widget-server/js/loader.js";
-                                    skyscannerScript.async = true;
-                                    document.body.appendChild(skyscannerScript);
-                                }
+
                             });
 
                             function formatDisplayName(data) {
