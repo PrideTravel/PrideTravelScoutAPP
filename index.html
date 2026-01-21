@@ -380,7 +380,9 @@
                                 'cen': ['chicago', 'new orleans', 'minneapolis', 'houston', 'columbus'],
 
                                 'west coast': ['las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu'],
-                                'west': ['las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu']
+                                'west': ['las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu'],
+                                'westcoast': ['las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu'],
+                                'eastcoast': ['new york', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'san juan']
                             },
                             countries: {
                                 // Preserving explicit country logical lookups in addition to region aliases
@@ -400,7 +402,17 @@
                                 'argentina': ['buenos aires'],
                                 'colombia': ['bogota'],
                                 'south africa': ['cape town'],
-                                'curacao': ['curacao']
+                                'curacao': ['curacao'],
+                                'curaco': ['curacao'],
+                                'austraila': ['sydney', 'melbourne'],
+                                'oz': ['sydney', 'melbourne'],
+                                'tailand': ['bangkok'],
+                                'brasil': ['rio de janeiro', 'sao paulo'],
+                                'uk': ['london'],
+                                'england': ['london'],
+                                'great britain': ['london'],
+                                'us': ['new york', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu'],
+                                'america': ['new york', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu']
                             },
                             cities: {
                                 'new york': ['nyc', 'lga', 'ewr'],
@@ -537,7 +549,27 @@
                                 'seoul': ['seoul'], 'icn': ['seoul'], 'sel': ['seoul'],
                                 'aruba': ['aruba'], 'aua': ['aruba'],
                                 'portland': ['portland'], 'pdx': ['portland'],
-                                'seattle': ['seattle'], 'sea': ['seattle']
+                                'seattle': ['seattle'], 'sea': ['seattle'],
+
+                                // ALIASES & SHORTCUTS
+                                'vegas': ['las vegas'], 'sin city': ['las vegas'],
+                                'la': ['los angeles'], 'l.a.': ['los angeles'], 'hollywood': ['los angeles'],
+                                'ny': ['new york'], 'big apple': ['new york'],
+                                'sf': ['san francisco'], 'san fran': ['san francisco'], 'frisco': ['san francisco'],
+                                'south beach': ['miami'],
+                                'dc': ['washington dc'], 'wash dc': ['washington dc'], 'washington': ['washington dc'],
+                                'philly': ['philadelphia'],
+                                'nola': ['new orleans'],
+                                'ptown': ['provincetown'],
+                                'ft lauderdale': ['fort lauderdale'],
+                                'pv': ['puerto vallarta'],
+                                'cdmx': ['mexico city'],
+                                'rio': ['rio de janeiro'],
+                                'sampa': ['sao paulo'],
+                                'tailand': ['bangkok'],
+                                'curaco': ['curacao'],
+                                'austraila': ['sydney', 'melbourne']
+
                             }
                         },
                         // Rich Data
