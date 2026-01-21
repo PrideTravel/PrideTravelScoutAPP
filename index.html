@@ -3997,6 +3997,16 @@
                         }
                     }
 
+
+                    // Manual Region Updates (Scoped correctly)
+                    const extraRegions = {
+                        'west coast': ['los angeles', 'san francisco', 'seattle', 'portland', 'sandiego', 'las vegas'],
+                        'east coast': ['new york', 'miami', 'fort lauderdale', 'washington dc', 'boston', 'philadelphia', 'atlanta'],
+                        'hawaii': ['honolulu'],
+                        'usa': ['new york', 'los angeles', 'san francisco', 'miami', 'las vegas', 'honolulu', 'chicago', 'new orleans']
+                    };
+                    Object.assign(DATABASE.mappings.regions, extraRegions);
+
                     const form = document.querySelector(CONTAINER_ID + ' #searchForm');
                     const container = document.querySelector(CONTAINER_ID + ' #resultsContainer');
 
@@ -4381,16 +4391,7 @@ ${eventContent}
                     });
             }
 
-            // AUTO-UPDATE MAPPINGS
-            (function () {
-                const extraRegions = {
-                    'west coast': ['los angeles', 'san francisco', 'seattle', 'portland', 'sandiego', 'las vegas'],
-                    'east coast': ['new york', 'miami', 'fort lauderdale', 'washington dc', 'boston', 'philadelphia', 'atlanta'],
-                    'hawaii': ['honolulu'],
-                    'usa': ['new york', 'los angeles', 'san francisco', 'miami', 'las vegas', 'honolulu', 'chicago', 'new orleans']
-                };
-                Object.assign(DATABASE.mappings.regions, extraRegions);
-            })();
+
 
         </script>
 </body>
