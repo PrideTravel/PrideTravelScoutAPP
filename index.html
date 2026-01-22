@@ -4397,7 +4397,7 @@ ${eventContent}
                                class="block w-full bg-green-600/80 hover:bg-green-500 text-white text-center py-2 px-4 rounded-lg font-semibold text-sm transition shadow-lg hover:shadow-green-500/50 flex items-center justify-center gap-2">
                                <i class="fa-solid fa-hotel"></i> Book on Expedia
                             </a>
-                            <a href="https://www.misterbnb.com/search?q=${encodeURIComponent(data.name || data.iata)}" target="_blank" 
+                            <a href="https://www.misterbnb.com/search?location=${encodeURIComponent(data.name || data.iata)}&date_start=${dateStart}&date_end=${dateEnd}" target="_blank" 
                                class="block w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white text-center py-2 px-4 rounded-lg font-semibold text-sm transition shadow-lg hover:shadow-pink-500/50 flex items-center justify-center gap-2 mt-3">
                                <i class="fa-solid fa-house-user"></i> Book on misterb&b
                             </a>
