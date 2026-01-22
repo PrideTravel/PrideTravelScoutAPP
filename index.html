@@ -4150,6 +4150,35 @@
                         const container = document.querySelector(CONTAINER_ID + ' #resultsContainer');
 
                         if (form) {
+                            // Auto-increment return date logic
+                            const dateStartInput = document.querySelector(CONTAINER_ID + ' #dateStart');
+                            const dateEndInput = document.querySelector(CONTAINER_ID + ' #dateEnd');
+
+                            if (dateStartInput && dateEndInput) {
+                                dateStartInput.addEventListener('change', function () {
+                                    if (this.value) {
+                                        try {
+                                            // Create date safely in local time to avoid timezone issues
+                                            const parts = this.value.split('-');
+                                            const year = parseInt(parts[0], 10);
+                                            const month = parseInt(parts[1], 10) - 1;
+                                            const day = parseInt(parts[2], 10);
+
+                                            const startDate = new Date(year, month, day);
+                                            const nextDay = new Date(startDate);
+                                            nextDay.setDate(startDate.getDate() + 1);
+
+                                            const yyyy = nextDay.getFullYear();
+                                            const mm = String(nextDay.getMonth() + 1).padStart(2, '0');
+                                            const dd = String(nextDay.getDate()).padStart(2, '0');
+
+                                            dateEndInput.value = `${yyyy}-${mm}-${dd}`;
+                                        } catch (e) {
+                                            console.error("Date auto-update error", e);
+                                        }
+                                    }
+                                });
+                            }
                             form.addEventListener('submit', function (e) {
                                 e.preventDefault();
 
