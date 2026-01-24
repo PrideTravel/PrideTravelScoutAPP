@@ -354,8 +354,8 @@
                     const DATABASE = {
                         mappings: {
                             regions: {
-                                'east coast': ['new york', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'san juan'],
-                                'east': ['new york', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'san juan'],
+                                'east coast': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'san juan'],
+                                'east': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'san juan'],
 
                                 'europe': ['london', 'paris', 'madrid', 'barcelona', 'mykonos', 'amsterdam', 'berlin', 'ibiza', 'antwerp'],
                                 'eur': ['london', 'paris', 'madrid', 'barcelona', 'mykonos', 'amsterdam', 'berlin', 'ibiza', 'antwerp'],
@@ -381,7 +381,7 @@
                                 'west coast': ['las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu'],
                                 'west': ['las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu'],
                                 'westcoast': ['las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu'],
-                                'eastcoast': ['new york', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'san juan']
+                                'eastcoast': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'san juan']
                             },
                             countries: {
                                 // Preserving explicit country logical lookups in addition to region aliases
@@ -395,8 +395,8 @@
                                 'thailand': ['bangkok'],
                                 'taiwan': ['taipei'],
                                 'mexico': ['puerto vallarta', 'mexico city'],
-                                'usa': ['new york', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu'],
-                                'united states': ['new york', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu'],
+                                'usa': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu'],
+                                'united states': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu'],
                                 'brazil': ['rio de janeiro', 'sao paulo'],
                                 'argentina': ['buenos aires'],
                                 'colombia': ['bogota'],
@@ -410,8 +410,8 @@
                                 'uk': ['london'],
                                 'england': ['london'],
                                 'great britain': ['london'],
-                                'us': ['new york', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu'],
-                                'america': ['new york', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu']
+                                'us': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu'],
+                                'america': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu']
                             },
                             cities: {
                                 'new york': ['nyc', 'lga', 'ewr'],
@@ -4161,10 +4161,10 @@
                         // Manual Region Updates (Scoped correctly)
                         const extraRegions = {
                             'west coast': ['los angeles', 'san francisco', 'seattle', 'portland', 'sandiego', 'las vegas'],
-                            'east coast': ['new york', 'miami', 'fort lauderdale', 'washington dc', 'boston', 'philadelphia', 'atlanta'],
+                            'east coast': ['nyc', 'miami', 'fort lauderdale', 'washington dc', 'boston', 'philadelphia', 'atlanta'],
                             'hawaii': ['honolulu'],
                             'caribbean': ['aruba'],
-                            'usa': ['new york', 'los angeles', 'san francisco', 'miami', 'las vegas', 'honolulu', 'chicago', 'new orleans', 'seattle', 'portland']
+                            'usa': ['nyc', 'los angeles', 'san francisco', 'miami', 'las vegas', 'honolulu', 'chicago', 'new orleans', 'seattle', 'portland']
                         };
 
                         if (DATABASE.mappings.regions) {
