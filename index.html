@@ -4330,48 +4330,49 @@
                                     const delay = index * 200;
 
 
-                                    const link1 = matchingEvent.link || getEventsLink(data.name, dateStart);
-                                    const link1Text = matchingEvent.link ? "View Official Guide" : "Search Event Details";
-                                    const link1Icon = matchingEvent.link ? '<i class="fa-solid fa-book-open ml-1"></i>' : '<i class="fa-brands fa-google ml-1"></i>';
+                                    if (matchingEvent) {
+                                        const link1 = matchingEvent.link || getEventsLink(data.name, dateStart);
+                                        const link1Text = matchingEvent.link ? "View Official Guide" : "Search Event Details";
+                                        const link1Icon = matchingEvent.link ? '<i class="fa-solid fa-book-open ml-1"></i>' : '<i class="fa-brands fa-google ml-1"></i>';
+                                        const link2 = `https://www.google.com/search?q=${encodeURIComponent(matchingEvent.name + " 2026")}`;
 
-                                    const link2 = `https://www.google.com/search?q=${encodeURIComponent(matchingEvent.name + " 2026")}`;
-
-                                    eventContent = `
-                                        <div class="mb-4 relative group">
-                                            <div class="flex overflow-x-auto snap-x snap-mandatory rounded-lg shadow-lg no-scrollbar" style="scrollbar-width: none; -ms-overflow-style: none;">
-                                                <!-- Slide 1: Official / Primary -->
-                                                <div class="w-full flex-shrink-0 snap-center bg-gradient-to-r from-pink-600 to-purple-600 p-4 text-white">
-                                                    <div class="flex items-center gap-3 mb-2">
-                                                        <i class="fa-solid fa-calendar-star text-yellow-300 text-xl"></i>
-                                                        <h4 class="font-bold text-lg">Pride Event Detected!</h4>
+                                        eventContent = `
+                                            <div class="mb-4 relative group">
+                                                <div class="flex overflow-x-auto snap-x snap-mandatory rounded-lg shadow-lg no-scrollbar" style="scrollbar-width: none; -ms-overflow-style: none;">
+                                                    <!-- Slide 1: Official / Primary -->
+                                                    <div class="w-full flex-shrink-0 snap-center bg-gradient-to-r from-pink-600 to-purple-600 p-4 text-white">
+                                                        <div class="flex items-center gap-3 mb-2">
+                                                            <i class="fa-solid fa-calendar-star text-yellow-300 text-xl"></i>
+                                                            <h4 class="font-bold text-lg">Pride Event Detected!</h4>
+                                                        </div>
+                                                        <p class="font-bold text-white mb-1">${matchingEvent.name}</p>
+                                                        <p class="text-xs text-pink-100 mb-2">${matchingEvent.start} to ${matchingEvent.end}</p>
+                                                        <a href="${link1}" target="_blank" class="text-xs underline hover:text-white/80 font-bold">
+                                                            ${link1Text} ${link1Icon}
+                                                        </a>
+                                                        <div class="mt-2 text-[10px] text-right opacity-50 flex items-center justify-end gap-1">
+                                                            <span>Swipe for more</span> <i class="fa-solid fa-arrow-right"></i>
+                                                        </div>
                                                     </div>
-                                                    <p class="font-bold text-white mb-1">${matchingEvent.name}</p>
-                                                    <p class="text-xs text-pink-100 mb-2">${matchingEvent.start} to ${matchingEvent.end}</p>
-                                                    <a href="${link1}" target="_blank" class="text-xs underline hover:text-white/80 font-bold">
-                                                        ${link1Text} ${link1Icon}
-                                                    </a>
-                                                    <div class="mt-2 text-[10px] text-right opacity-50 flex items-center justify-end gap-1">
-                                                        <span>Swipe for more</span> <i class="fa-solid fa-arrow-right"></i>
+
+                                                    <!-- Slide 2: Google Search Fallback -->
+                                                    <div class="w-full flex-shrink-0 snap-center bg-gradient-to-r from-blue-600 to-teal-500 p-4 text-white">
+                                                        <div class="flex items-center gap-3 mb-2">
+                                                            <i class="fa-brands fa-google text-white text-xl"></i>
+                                                            <h4 class="font-bold text-lg">Search on Google</h4>
+                                                        </div>
+                                                        <p class="font-bold text-white mb-1">Find more info</p>
+                                                        <p class="text-xs text-blue-100 mb-2">Search for "${matchingEvent.name} 2026"</p>
+                                                        <a href="${link2}" target="_blank" class="text-xs underline hover:text-white/80 font-bold">
+                                                            Search Now <i class="fa-solid fa-external-link-alt ml-1"></i>
+                                                        </a>
+                                                         <div class="mt-2 text-[10px] text-right opacity-50 flex items-center justify-end gap-1">
+                                                            <i class="fa-solid fa-arrow-left"></i> <span>Swipe back</span>
+                                                        </div>
                                                     </div>
                                                 </div>
-
-                                                <!-- Slide 2: Google Search Fallback -->
-                                                <div class="w-full flex-shrink-0 snap-center bg-gradient-to-r from-blue-600 to-teal-500 p-4 text-white">
-                                                    <div class="flex items-center gap-3 mb-2">
-                                                        <i class="fa-brands fa-google text-white text-xl"></i>
-                                                        <h4 class="font-bold text-lg">Search on Google</h4>
-                                                    </div>
-                                                    <p class="font-bold text-white mb-1">Find more info</p>
-                                                    <p class="text-xs text-blue-100 mb-2">Search for "${matchingEvent.name} 2026"</p>
-                                                    <a href="${link2}" target="_blank" class="text-xs underline hover:text-white/80 font-bold">
-                                                        Search Now <i class="fa-solid fa-external-link-alt ml-1"></i>
-                                                    </a>
-                                                     <div class="mt-2 text-[10px] text-right opacity-50 flex items-center justify-end gap-1">
-                                                        <i class="fa-solid fa-arrow-left"></i> <span>Swipe back</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>`;
+                                            </div>`;
+                                    }
 
                                     const card = document.createElement('div');
                                     card.className = "glass-card rounded-3xl overflow-hidden shadow-2xl fade-in-up transition-transform hover:scale-[1.01] duration-300";
