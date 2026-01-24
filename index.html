@@ -4156,6 +4156,251 @@
                         ],
                         tours: ['Pike Place Market', 'Space Needle', 'Chihuly Garden and Glass']
                     };
+
+                    // --- BATCH 2 CITIES INJECTION ---
+                    const BATCH2_CITIES = {
+                        "osaka": {
+                            name: 'Osaka, Japan', iata: 'KIX', image: '🇯🇵', weather: 'Moderate. 65°F',
+                            baseFare: [800, 3200],
+                            lgbtqSafety: 'Japan: Safe. Doyama-cho is the vibrant gay district near Umeda.', lgbtqDistrict: 'Doyama-cho',
+                            hotels: [
+                                { name: 'W Osaka', type: 'Luxury', tags: ['Playful'] },
+                                { name: 'Swissotel Nankai Osaka', type: 'Luxury', tags: ['Central'] },
+                                { name: 'Cross Hotel Osaka', type: 'Moderate', tags: ['Dotonbori'] },
+                                { name: 'Hotel Granvia Osaka', type: 'Moderate', tags: ['Station'] },
+                                { name: 'InterContinental Osaka', type: 'Luxury', tags: ['Service'] },
+                                { name: 'Zentis Osaka', type: 'Moderate', tags: ['Design'] },
+                                { name: 'Hotel Hankyu RESPIRE', type: 'Moderate', tags: ['New'] },
+                                { name: 'Citadines Namba', type: 'Moderate', tags: ['Heritage'] },
+                                { name: 'ibis Styles Osaka Namba', type: 'Budget', tags: ['Value'] },
+                                { name: 'Moxy Osaka Shin Umeda', type: 'Moderate', tags: ['Fun'] }
+                            ],
+                            nightlife: [
+                                { name: 'Explosion', type: 'Club', tags: ['Events'] },
+                                { name: 'FrenZ-FrenZ', type: 'Bar', tags: ['Friendly'] },
+                                { name: 'Grand Slam', type: 'Bar', tags: ['Karaoke'] },
+                                { name: 'Hokuoukan', type: 'Sauna', tags: ['Men Only'] },
+                                { name: 'Physique Pride', type: 'Bar', tags: ['Bears'] },
+                                { name: 'Village', type: 'Bar', tags: ['Classic'] },
+                                { name: 'Jack in the Box', type: 'Bar', tags: ['Fun'] },
+                                { name: 'LuPu', type: 'Bar', tags: ['Lesbian'] },
+                                { name: 'Daikoku', type: 'Sauna', tags: ['Bathhouse'] },
+                                { name: 'G Physique', type: 'Bar', tags: ['Muscle'] }
+                            ],
+                            tours: ['Dotonbori Food Tour', 'Osaka Castle', 'Universal Studios Japan']
+                        },
+                        "seoul": {
+                            name: 'Seoul, South Korea', iata: 'ICN', image: '🇰🇷', weather: 'Dynamic. 60°F',
+                            baseFare: [900, 3000],
+                            lgbtqSafety: 'South Korea: Generally safe but conservative. Jongno & Itaewon are main hubs.', lgbtqDistrict: 'Jongno-3ga / Itaewon',
+                            hotels: [
+                                { name: 'RYSE, Autograph Collection', type: 'Luxury', tags: ['Hongdae'] },
+                                { name: 'L7 Hongdae by LOTTE', type: 'Moderate', tags: ['Trendy'] },
+                                { name: 'Imperial Palace Boutique', type: 'Moderate', tags: ['Itaewon'] },
+                                { name: 'Hamilton Hotel', type: 'Moderate', tags: ['Central Itaewon'] },
+                                { name: 'Mondrian Seoul Itaewon', type: 'Luxury', tags: ['Design'] },
+                                { name: 'JW Marriott Dongdaemun', type: 'Luxury', tags: ['View'] },
+                                { name: 'Four Seasons Seoul', type: 'Luxury', tags: ['Top Tier'] },
+                                { name: 'Nine Tree Premier Insadong', type: 'Moderate', tags: ['Cultural'] },
+                                { name: 'Moxy Seoul Insadong', type: 'Budget', tags: ['Hip'] },
+                                { name: 'Grand Hyatt Seoul', type: 'Luxury', tags: ['Resort'] }
+                            ],
+                            nightlife: [
+                                { name: 'King Club', type: 'Club', tags: ['Itaewon'] },
+                                { name: 'Trance', type: 'Club', tags: ['Drag'] },
+                                { name: 'Hymn', type: 'Club', tags: ['K-Pop'] },
+                                { name: 'Queen', type: 'Bar', tags: ['Popular'] },
+                                { name: 'Why Not?', type: 'Bar', tags: ['Friendly'] },
+                                { name: 'Equus', type: 'Sauna', tags: ['Men Only'] },
+                                { name: 'Hyundae Sauna', type: 'Sauna', tags: ['Gangnam'] },
+                                { name: 'SOHO', type: 'Bar', tags: ['Cocktails'] },
+                                { name: 'Always Homme', type: 'Bar', tags: ['Cozy'] },
+                                { name: 'Gray Club', type: 'Club', tags: ['Late Night'] }
+                            ],
+                            tours: ['DMZ Tour', 'Gyeongbokgung Palace', 'N Seoul Tower']
+                        },
+                        "santiago": {
+                            name: 'Santiago, Chile', iata: 'SCL', image: '🇨🇱', weather: 'Mild. 70°F',
+                            baseFare: [700, 2200],
+                            lgbtqSafety: 'Chile: Progressive. Bellavista is the lively bohemian district.', lgbtqDistrict: 'Bellavista',
+                            hotels: [
+                                { name: 'W Santiago', type: 'Luxury', tags: ['Las Condes'] },
+                                { name: 'The Singular Santiago', type: 'Luxury', tags: ['Lastarria'] },
+                                { name: 'Hotel Castillo Rojo', type: 'Moderate', tags: ['Boutique'] },
+                                { name: 'Hotel Cumbres Lastarria', type: 'Moderate', tags: ['Pool'] },
+                                { name: 'Mandarin Oriental', type: 'Luxury', tags: ['Classic'] },
+                                { name: 'Solace Hotel', type: 'Moderate', tags: ['Providencia'] },
+                                { name: 'Hotel Magnolia', type: 'Luxury', tags: ['Heritage'] },
+                                { name: 'NH Collection Plaza', type: 'Moderate', tags: ['Business'] },
+                                { name: 'Pullman Santiago El Bosque', type: 'Moderate', tags: ['Modern'] },
+                                { name: 'Ibis Santiago Providencia', type: 'Budget', tags: ['Reliable'] }
+                            ],
+                            nightlife: [
+                                { name: 'Il Divino', type: 'Club', tags: ['Large'] },
+                                { name: 'Fausto Discoteque', type: 'Club', tags: ['Legendary'] },
+                                { name: 'Lemon Lab', type: 'Club', tags: ['Pop'] },
+                                { name: 'Contramano', type: 'Bar', tags: ['Bears'] },
+                                { name: 'Station', type: 'Bar', tags: ['Patio'] },
+                                { name: 'Club Principe', type: 'Club', tags: ['Events'] },
+                                { name: 'Blondie', type: 'Club', tags: ['Alternative'] },
+                                { name: 'Burdel', type: 'Bar', tags: ['Shows'] },
+                                { name: '1051', type: 'Sauna', tags: ['Men Only'] },
+                                { name: 'Status', type: 'Sauna', tags: ['Relax'] }
+                            ],
+                            tours: ['San Cristobal Hill', 'Maipo Valley Wine', 'Valparaiso Day Trip']
+                        },
+                        "bogota": {
+                            name: 'Bogota, Colombia', iata: 'BOG', image: '🇨🇴', weather: 'Cool. 60°F',
+                            baseFare: [400, 1400],
+                            lgbtqSafety: 'Colombia: Chapinero "Chapigay" is the warm heart of LGBTQ life. Caution at night.', lgbtqDistrict: 'Chapinero',
+                            hotels: [
+                                { name: 'W Bogota', type: 'Luxury', tags: ['Usaquen'] },
+                                { name: 'Click Clack Hotel', type: 'Moderate', tags: ['Design'] },
+                                { name: 'B.O.G. Hotel', type: 'Luxury', tags: ['Gold'] },
+                                { name: 'Four Seasons Casa Medina', type: 'Luxury', tags: ['Historic'] },
+                                { name: 'NH Collection Royal Terra', type: 'Moderate', tags: ['Business'] },
+                                { name: 'Salvio Parque 93', type: 'Moderate', tags: ['Suites'] },
+                                { name: 'GHL Hotel Bioxury', type: 'Moderate', tags: ['Eco'] },
+                                { name: 'Habitel Select', type: 'Budget', tags: ['Airport'] },
+                                { name: 'Hotel Gay San Sebastian', type: 'Budget', tags: ['LGBTQ Only'] },
+                                { name: 'Selina Chapinero', type: 'Budget', tags: ['Hostel'] }
+                            ],
+                            nightlife: [
+                                { name: 'Theatron', type: 'Club', tags: ['Mega Club'] },
+                                { name: 'El Mozo', type: 'Club', tags: ['Stylish'] },
+                                { name: 'Brokeback Mountain', type: 'Bar', tags: ['Cowboy'] },
+                                { name: 'Video Club', type: 'Club', tags: ['Techno'] },
+                                { name: 'Color House', type: 'Bar', tags: ['Cafe'] },
+                                { name: 'El Recreo de Adan', type: 'Bar', tags: ['Games'] },
+                                { name: 'Estacion Café', type: 'Bar', tags: ['Relaxed'] },
+                                { name: 'Baño Turco Saint', type: 'Sauna', tags: ['Men Only'] },
+                                { name: 'Complices Spa', type: 'Sauna', tags: ['Clean'] },
+                                { name: 'Octava', type: 'Club', tags: ['Underground'] }
+                            ],
+                            tours: ['Monserrate Sanctuary', 'Gold Museum', 'Salt Cathedral Zipaquira']
+                        },
+                        "montevideo": {
+                            name: 'Montevideo, Uruguay', iata: 'MVD', image: '🇺🇾', weather: 'Nice. 70°F',
+                            baseFare: [800, 2400],
+                            lgbtqSafety: 'Uruguay: Very Safe. One of the most progressive countries in South America.', lgbtqDistrict: 'Parque Rodó / Centro',
+                            hotels: [
+                                { name: 'Sofitel Carrasco', type: 'Luxury', tags: ['Palace'] },
+                                { name: 'Hyatt Centric', type: 'Luxury', tags: ['Waterfront'] },
+                                { name: 'Alma Historica', type: 'Moderate', tags: ['Old City'] },
+                                { name: 'Don Boutique Hotel', type: 'Moderate', tags: ['Chic'] },
+                                { name: 'Dazzler by Wyndham', type: 'Moderate', tags: ['Pocitos'] },
+                                { name: 'Esplendor by Wyndham', type: 'Moderate', tags: ['Theater'] },
+                                { name: 'Smart Hotel', type: 'Budget', tags: ['Central'] },
+                                { name: 'Aloft Montevideo', type: 'Moderate', tags: ['Modern'] },
+                                { name: 'Hotel Cottage', type: 'Luxury', tags: ['Carrasco'] },
+                                { name: 'Ibis Styles Biarritz', type: 'Budget', tags: ['Value'] }
+                            ],
+                            nightlife: [
+                                { name: 'Il Tempo', type: 'Club', tags: ['Icons'] },
+                                { name: 'Chains Pub', type: 'Bar', tags: ['Friendly'] },
+                                { name: 'Cain', type: 'Club', tags: ['Dance'] },
+                                { name: 'Stereo', type: 'Bar', tags: ['Music'] },
+                                { name: 'La Commune', type: 'Bar', tags: ['Cozy'] },
+                                { name: 'Small Club', type: 'Club', tags: ['Intimate'] },
+                                { name: 'Sauna Horus', type: 'Sauna', tags: ['Men Only'] },
+                                { name: 'Gaucho', type: 'Bar', tags: ['Local'] },
+                                { name: 'Tia Vicenta', type: 'Bar', tags: ['Classic'] },
+                                { name: 'Punto y Coma', type: 'Bar', tags: ['Late'] }
+                            ],
+                            tours: ['Rambla Walk', 'Ciudad Vieja', 'Mercado del Puerto']
+                        },
+                        "medellin": {
+                            name: 'Medellin, Colombia', iata: 'MDE', image: '🇨🇴', weather: 'Spring-like. 75°F',
+                            baseFare: [350, 1300],
+                            lgbtqSafety: 'Colombia: "City of Eternal Spring". Poblado is the tourist/party hub.', lgbtqDistrict: 'El Poblado',
+                            hotels: [
+                                { name: 'The Click Clack Medellin', type: 'Luxury', tags: ['Experience'] },
+                                { name: 'Marquee Medellin', type: 'Luxury', tags: ['Poblado'] },
+                                { name: 'El Cielo Hotel', type: 'Luxury', tags: ['Gastronomy'] },
+                                { name: 'Landmark Hotel', type: 'Moderate', tags: ['Manila'] },
+                                { name: 'Selina Medellin', type: 'Budget', tags: ['Cowork'] },
+                                { name: 'Celestino', type: 'Moderate', tags: ['Botanical'] },
+                                { name: 'Diez Hotel', type: 'Moderate', tags: ['Thai Theme'] },
+                                { name: 'Sites Hotel', type: 'Moderate', tags: ['Apartments'] },
+                                { name: 'Hotel Park 10', type: 'Luxury', tags: ['Classic'] },
+                                { name: 'Masaya Medellin', type: 'Budget', tags: ['Rooftop'] }
+                            ],
+                            nightlife: [
+                                { name: 'Bar Chiquita', type: 'Bar', tags: ['Drag'] },
+                                { name: 'Donde Aquellos', type: 'Bar', tags: ['Terrace'] },
+                                { name: 'Industry Club', type: 'Club', tags: ['Techno'] },
+                                { name: 'Oracle', type: 'Club', tags: ['Circuit'] },
+                                { name: 'Querida', type: 'Bar', tags: ['Sophisticated'] },
+                                { name: 'Happy', type: 'Bar', tags: ['Fun'] },
+                                { name: 'Inkulta', type: 'Bar', tags: ['Alternative'] },
+                                { name: 'Oraculo', type: 'Sauna', tags: ['Men Only'] },
+                                { name: 'Punish', type: 'Bar', tags: ['Leather'] },
+                                { name: 'Zero', type: 'Club', tags: ['Afterhours'] }
+                            ],
+                            tours: ['Comuna 13 Graffiti', 'Guatape Rock', 'Arvi Park Cable Car']
+                        },
+                        "ho chi minh city": {
+                            name: 'Ho Chi Minh City, Vietnam', iata: 'SGN', image: '🇻🇳', weather: 'Tropical. 85°F',
+                            baseFare: [800, 2600],
+                            lgbtqSafety: 'Vietnam: Safe. Rapidly growing scene. Public displays of affection are generally discreet.', lgbtqDistrict: 'District 1',
+                            hotels: [
+                                { name: 'The Myst Dong Khoi', type: 'Luxury', tags: ['Indochine'] },
+                                { name: 'Hotel des Arts Saigon', type: 'Luxury', tags: ['Mgallery'] },
+                                { name: 'Pullman Saigon Centre', type: 'Luxury', tags: ['Modern'] },
+                                { name: 'Silverland Yen', type: 'Moderate', tags: ['Zen'] },
+                                { name: 'Caravelle Saigon', type: 'Luxury', tags: ['Historic'] },
+                                { name: 'Wink Hotel', type: 'Budget', tags: ['Tech'] },
+                                { name: 'Mia Saigon', type: 'Luxury', tags: ['Riverfront'] },
+                                { name: 'Fusion Original', type: 'Moderate', tags: ['Center'] },
+                                { name: 'Alagon Saigon', type: 'Moderate', tags: ['Spa'] },
+                                { name: 'Liberty Central', type: 'Moderate', tags: ['City View'] }
+                            ],
+                            nightlife: [
+                                { name: 'Republic Lounge', type: 'Club', tags: ['Drag'] },
+                                { name: 'Frolic', type: 'Bar', tags: ['Cocktails'] },
+                                { name: 'Thi Bar', type: 'Bar', tags: ['Live Music'] },
+                                { name: 'Whiskey & Wares', type: 'Bar', tags: ['Speakeasy'] },
+                                { name: 'Papa Cafe', type: 'Bar', tags: ['Locals'] },
+                                { name: 'Full House', type: 'Bar', tags: ['Hosts'] },
+                                { name: 'Adam Spa', type: 'Sauna', tags: ['Massage'] },
+                                { name: 'Ngoc Thao', type: 'Sauna', tags: ['Relax'] },
+                                { name: 'De Soi 9', type: 'Bar', tags: ['Acoustic'] },
+                                { name: 'Tipsy Unicorn', type: 'Bar', tags: ['Fun'] }
+                            ],
+                            tours: ['Mekong Delta', 'Cu Chi Tunnels', 'Street Food Vespa Tour']
+                        },
+                        "phuket": {
+                            name: 'Phuket, Thailand', iata: 'HKT', image: '🇹🇭', weather: 'Sunny. Beach. 88°F',
+                            baseFare: [900, 2800],
+                            lgbtqSafety: 'Thailand: "Land of Smiles". Very Open. Patong Paradise Complex is the center of gay nightlife.', lgbtqDistrict: 'Patong',
+                            hotels: [
+                                { name: 'The SIS Kata', type: 'Luxury', tags: ['Design'] },
+                                { name: 'Patong Bay Hill', type: 'Moderate', tags: ['Resort'] },
+                                { name: 'Nap Patong', type: 'Moderate', tags: ['Modern'] },
+                                { name: 'La Flora Resort', type: 'Luxury', tags: ['Beachfront'] },
+                                { name: 'Amari Phuket', type: 'Luxury', tags: ['Quiet'] },
+                                { name: 'Lub d Phuket Patong', type: 'Budget', tags: ['Social'] },
+                                { name: 'Grand Mercure', type: 'Luxury', tags: ['Pool'] },
+                                { name: 'Burasari Phuket', type: 'Moderate', tags: ['Tropical'] },
+                                { name: 'Royal Paradise', type: 'Moderate', tags: ['Complex'] },
+                                { name: 'Hotel Indigo Phuket', type: 'Luxury', tags: ['Boutique'] }
+                            ],
+                            nightlife: [
+                                { name: 'Zag Club', type: 'Club', tags: ['Shows'] },
+                                { name: 'Tangmo Club', type: 'Club', tags: ['Cabaret'] },
+                                { name: 'Connect Bar', type: 'Bar', tags: ['Friendly'] },
+                                { name: 'My Way', type: 'Bar', tags: ['Entertainment'] },
+                                { name: 'Boat Bar', type: 'Club', tags: ['Dance'] },
+                                { name: 'Passport Pub', type: 'Bar', tags: ['Relaxed'] },
+                                { name: 'Sundowners', type: 'Bar', tags: ['Terrace'] },
+                                { name: 'Babylon Beach Club', type: 'Sauna', tags: ['Cruise'] },
+                                { name: 'Aquarius', type: 'Guesthouse', tags: ['Men Only'] },
+                                { name: 'James Dean', type: 'Bar', tags: ['Classic'] }
+                            ],
+                            tours: ['Phi Phi Islands', 'James Bond Island', 'Elephant Sanctuary']
+                        }
+                    };
+                    Object.assign(DATABASE.details, BATCH2_CITIES);
                     try {
                         // Debugging: Ensure DATABASE and mappings exist
                         if (typeof DATABASE === 'undefined') throw new Error("DATABASE is undefined");
