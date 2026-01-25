@@ -3261,11 +3261,11 @@
                     // GENERATED STUBS
                     const NEW_STUBS = {
                         'new orleans': {
-                                monthlyWeather: {
-                                    5: { high: '70-80°F High', low: '55-65°F Low', summary: 'Summer Start' },
-                                    6: { high: '80-90°F High', low: '65-70°F Low', summary: 'Peak Summer' },
-                                    11: { high: '35-45°F High', low: '25-32°F Low', summary: 'Winter Cold' }
-                                },
+                            monthlyWeather: {
+                                5: { high: '70-80°F High', low: '55-65°F Low', summary: 'Summer Start' },
+                                6: { high: '80-90°F High', low: '65-70°F Low', summary: 'Peak Summer' },
+                                11: { high: '35-45°F High', low: '25-32°F Low', summary: 'Winter Cold' }
+                            },
                             name: 'New Orleans', iata: 'AAA', image: '\uD83C\uDFF3\uFE0F\u200D\uD83C\uDF08', weather: 'Check Forecast',
                             baseFare: [400, 800],
                             lgbtqSafety: 'Safe. Popular destination.', lgbtqDistrict: 'Downtown',
@@ -3274,11 +3274,11 @@
                             tours: ['City Tour']
                         },
                         'maspalomas': {
-                                monthlyWeather: {
-                                    5: { high: '85-90°F High', low: '75-80°F Low', summary: 'Tropical' },
-                                    6: { high: '88-92°F High', low: '76-82°F Low', summary: 'Hot & Humid' },
-                                    11: { high: '75-80°F High', low: '65-70°F Low', summary: 'Warm Winter' }
-                                },
+                            monthlyWeather: {
+                                5: { high: '85-90°F High', low: '75-80°F Low', summary: 'Tropical' },
+                                6: { high: '88-92°F High', low: '76-82°F Low', summary: 'Hot & Humid' },
+                                11: { high: '75-80°F High', low: '65-70°F Low', summary: 'Warm Winter' }
+                            },
                             name: 'Maspalomas', iata: 'AAA', image: '\uD83C\uDFF3\uFE0F\u200D\uD83C\uDF08', weather: 'Check Forecast',
                             baseFare: [400, 800],
                             lgbtqSafety: 'Safe. Popular destination.', lgbtqDistrict: 'Downtown',
@@ -5083,7 +5083,7 @@
                         <div class="flex items-center gap-4">
                             <div class="text-4xl shadow-sm">${data.image}</div>
                             <div>
-                                <h2 class="text-2xl font-bold text-white">${formatDisplayName(data)}</h2>
+                                <h2 class="text-sm font-bold italic text-white">${formatDisplayName(data)}</h2>
                                 <span class="text-gray-400 text-sm tracking-widest uppercase">Travel Scout Report</span>
                             </div>
                         </div>
@@ -5288,7 +5288,7 @@ ${eventContent}
                                     const country = parts.slice(1).join(',').trim();
                                     return `${city}, ${data.iata}, ${country}`;
                                 }
-                                return `${data.name} (${data.iata})`;
+                                return `${data.name}, ${data.iata}`;
                             }
 
                             function getRandomSubset(arr, count) {
