@@ -221,7 +221,7 @@
             <section id="hotspots-section">
                 <div class="flex justify-between items-end mb-4">
                     <h3 class="text-xl font-bold pride-gradient-text">Safe Hotspots</h3>
-                    <button onclick="window.scrollTo(0,0)" class="text-sm text-primary font-bold hover:underline">View
+                    <button onclick="showAllHotspots()" class="text-sm text-primary font-bold hover:underline">View
                         all</button>
                 </div>
                 <div class="flex gap-4 overflow-x-auto hide-scrollbar pb-6 -mx-4 px-4 snap-x">
@@ -299,6 +299,21 @@
             </button>
             <div id="resultsContainer">
                 <!-- Results injected here -->
+            </div>
+        </div>
+
+        <!-- View 3: All Safe Hotspots -->
+        <div id="allHotspotsView" class="view-section space-y-8 pb-32">
+            <!-- Back button for all hotspots view -->
+            <button onclick="toggleView('homeView')" class="flex items-center gap-2 text-primary font-bold mb-4">
+                <span class="material-symbols-outlined">arrow_back</span> Back
+            </button>
+            <h2 class="text-3xl font-black pride-gradient-text mb-2">Explore All Safe Hotspots</h2>
+            <p class="text-slate-500 text-sm font-medium mb-6">Discover 20 trending LGBTQ+ destinations, events, and
+                neighborhoods across the globe.</p>
+
+            <div id="allHotspotsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Randomized Hotspots injected here -->
             </div>
         </div>
     </main>
@@ -7329,16 +7344,22 @@
                             <section class="bg-gradient-to-r from-pride-red/10 via-pride-yellow/10 to-pride-purple/10 rounded-xl p-5 border border-primary/20">
                                 <div class="flex justify-between items-center mb-4">
                                     <h3 class="font-bold pride-gradient-text">Weather Outlook</h3>
-                                    <span class="text-primary font-bold">24°C</span>
+                                    <span class="text-primary font-bold">${data.weather}</span>
                                 </div>
                                 <div class="flex justify-between">
-                                    ${['MON', 'TUE', 'WED', 'THU', 'FRI'].map(day => `
+                                    ${(() => {
+                            const monthIndex = new Date(dateStart).getUTCMonth();
+                            const mWeather = data.monthlyWeather ? data.monthlyWeather[monthIndex] : null;
+                            const temp = mWeather ? (mWeather.high.split('°')[0] + '°') : '72°';
+                            const summary = mWeather ? mWeather.summary : 'Sunny';
+                            return ['MON', 'TUE', 'WED', 'THU', 'FRI'].map(day => `
                                     <div class="text-center">
                                         <p class="text-[10px] font-bold text-slate-400 mb-1">${day}</p>
-                                        <span class="material-symbols-outlined text-pride-orange">sunny</span>
-                                        <p class="text-xs font-bold mt-1 text-slate-900">22°</p>
+                                        ${getWeatherIcon(summary)}
+                                        <p class="text-xs font-bold mt-1 text-slate-900">${temp}</p>
                                     </div>
-                                    `).join('')}
+                                    `).join('');
+                        })()}
                                 </div>
                             </section>
 
@@ -7456,6 +7477,83 @@
         function getMonthName(dateString) {
             const date = new Date(dateString);
             return date.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
+        }
+
+        window.showAllHotspots = function () {
+            populateAllHotspots();
+            toggleView('allHotspotsView');
+        };
+
+        function populateAllHotspots() {
+            const grid = document.getElementById('allHotspotsGrid');
+            if (!grid) return;
+
+            const hotspots = [];
+
+            // 1. Add Events
+            if (typeof SPECIAL_EVENTS_DATA !== 'undefined') {
+                SPECIAL_EVENTS_DATA.forEach(e => {
+                    hotspots.push({
+                        type: 'Event',
+                        name: e.name,
+                        location: e.city,
+                        date: e.start,
+                        searchQuery: e.city
+                    });
+                });
+            }
+
+            // 2. Add Destinations & Districts
+            if (typeof DATABASE !== 'undefined' && DATABASE.details) {
+                Object.keys(DATABASE.details).forEach(key => {
+                    const data = DATABASE.details[key];
+                    // Add Destination
+                    hotspots.push({
+                        type: 'Destination',
+                        name: data.name,
+                        location: data.iata || '',
+                        searchQuery: key
+                    });
+
+                    // Add District if available (avoiding duplicates if city name matches district)
+                    if (data.lgbtqDistrict) {
+                        hotspots.push({
+                            type: 'District',
+                            name: data.lgbtqDistrict,
+                            location: data.name.split(',')[0],
+                            searchQuery: key
+                        });
+                    }
+                });
+            }
+
+            // Shuffle and pick 20
+            const selected = getRandomSubset(hotspots, 20);
+
+            grid.innerHTML = selected.map(h => {
+                let icon = 'location_on';
+                let badgeClass = 'bg-primary text-white';
+                if (h.type === 'Event') {
+                    icon = 'event_upcoming';
+                    badgeClass = 'bg-yellow-400 text-slate-900';
+                } else if (h.type === 'District') {
+                    icon = 'explore';
+                    badgeClass = 'bg-orange-500 text-white';
+                }
+
+                return `
+                    <div onclick="quickSearch('${h.searchQuery}')" class="bg-white p-5 rounded-2xl shadow-lg border-l-4 border-primary flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform group">
+                        <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">${icon}</span>
+                        </div>
+                        <div class="overflow-hidden">
+                            <span class="text-[10px] font-black px-2 py-0.5 rounded-md uppercase mb-1 inline-block ${badgeClass}">${h.type}</span>
+                            <p class="font-black text-slate-900 truncate">${h.name}</p>
+                            <p class="text-xs font-bold text-slate-500 uppercase tracking-tighter">${h.location} ${h.date ? '&bull; ' + h.date : ''}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
         }
 
         // --- INITIALIZATION ---
