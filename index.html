@@ -392,13 +392,42 @@
             toggleView(viewId);
         };
 
-        window.quickSearch = function (cityName) {
+        window.quickSearch = function (cityName, start, end) {
             const destInput = document.getElementById('destination');
-            if (destInput) {
-                destInput.value = cityName;
-                const searchForm = document.getElementById('searchForm');
-                if (searchForm) searchForm.dispatchEvent(new Event('submit'));
+            const dateStartInput = document.getElementById('dateStart');
+            const dateEndInput = document.getElementById('dateEnd');
+
+            if (destInput) destInput.value = cityName;
+
+            if (start && dateStartInput && dateEndInput) {
+                try {
+                    const parts = start.split('-');
+                    const sDate = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+
+                    const endParts = (end || start).split('-');
+                    const eDate = new Date(parseInt(endParts[0]), parseInt(endParts[1]) - 1, parseInt(endParts[2]));
+
+                    // 1 day before
+                    sDate.setDate(sDate.getDate() - 1);
+                    // 1 day after
+                    eDate.setDate(eDate.getDate() + 1);
+
+                    const formatDate = (d) => {
+                        const yyyy = d.getFullYear();
+                        const mm = String(d.getMonth() + 1).padStart(2, '0');
+                        const dd = String(d.getDate()).padStart(2, '0');
+                        return `${yyyy}-${mm}-${dd}`;
+                    };
+
+                    dateStartInput.value = formatDate(sDate);
+                    dateEndInput.value = formatDate(eDate);
+                } catch (e) {
+                    console.error("QuickSearch date error", e);
+                }
             }
+
+            const searchForm = document.getElementById('searchForm');
+            if (searchForm) searchForm.dispatchEvent(new Event('submit'));
         };
         const DATABASE = {
             mappings: {
@@ -7498,6 +7527,7 @@
                         name: e.name,
                         location: e.city,
                         date: e.start,
+                        endDate: e.end,
                         searchQuery: e.city
                     });
                 });
@@ -7542,7 +7572,7 @@
                 }
 
                 return `
-                    <div onclick="quickSearch('${h.searchQuery}')" class="bg-white p-5 rounded-2xl shadow-lg border-l-4 border-primary flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform group">
+                    <div onclick="quickSearch('${h.searchQuery}', '${h.date || ''}', '${h.endDate || ''}')" class="bg-white p-5 rounded-2xl shadow-lg border-l-4 border-primary flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform group">
                         <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
                             <span class="material-symbols-outlined">${icon}</span>
                         </div>
@@ -7568,7 +7598,7 @@
             // Get 3 random events
             const randomEvents = getRandomSubset(SPECIAL_EVENTS_DATA, 3);
             grid.innerHTML = randomEvents.map(e => `
-                                <div onclick="quickSearch('${e.city}')" class="bg-white p-4 rounded-2xl shadow-lg border-l-4 border-primary flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform">
+                                <div onclick="quickSearch('${e.city}', '${e.start}', '${e.end}')" class="bg-white p-4 rounded-2xl shadow-lg border-l-4 border-primary flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform">
                                     <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
                                         <span class="material-symbols-outlined">event_upcoming</span>
                                     </div>
