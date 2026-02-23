@@ -7333,7 +7333,7 @@
                                         </div>
                                         <div class="text-right">
                                             <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Booking Dates</span>
-                                            <span class="text-[11px] font-bold text-pride-blue">${dateStart} &ndash; ${dateEnd}</span>
+                                            <span class="text-[11px] font-bold text-pride-blue">${formatDateShort(dateStart)} &ndash; ${formatDateShort(dateEnd)}</span>
                                         </div>
                                     </div>
                                     <p class="text-2xl font-bold mb-1 text-slate-900">${fareEstimate} <span class="text-xs font-normal text-slate-500">/ round-trip</span></p>
@@ -7358,7 +7358,7 @@
                                         </div>
                                         <div class="text-right">
                                             <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Stay Period</span>
-                                            <span class="text-[11px] font-bold text-pride-purple">${dateStart} &ndash; ${dateEnd}</span>
+                                            <span class="text-[11px] font-bold text-pride-purple">${formatDateShort(dateStart)} &ndash; ${formatDateShort(dateEnd)}</span>
                                         </div>
                                     </div>
                                     <div class="space-y-3 mb-6">
@@ -7442,8 +7442,8 @@
                             <!-- 7. Weather Forecast -->
                             <section class="bg-gradient-to-r from-pride-red/10 via-pride-yellow/10 to-pride-purple/10 rounded-xl p-5 border border-primary/20">
                                 <div class="flex justify-between items-center mb-4">
-                                    <h3 class="font-bold pride-gradient-text">${getMonthName(dateStart)} Weather Outlook</h3>
-                                    <span class="text-primary font-bold">${data.weather}</span>
+                                    <h3 class="font-bold pride-gradient-text">${getMonthName(dateStart)} ${new Date(dateStart).getUTCFullYear()} Weather Outlook</h3>
+                                    <span class="text-primary font-bold">${data.weather.replace(/[.\s]*\d+[°&]?(deg;)?\s*[CF]/g, '').trim()}</span>
                                 </div>
                                 <div class="flex justify-between">
                                     ${(() => {
@@ -7576,6 +7576,12 @@
         function getMonthName(dateString) {
             const date = new Date(dateString);
             return date.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
+        }
+
+        function formatDateShort(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString + 'T00:00:00');
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
         }
 
         window.showAllHotspots = function () {
