@@ -591,6 +591,9 @@
                     'mdw': ['chicago'],
                     'new orleans': ['new orleans'],
                     'msy': ['new orleans'],
+                    'msy, new orleans': ['new orleans'],
+                    'new orleans, la': ['new orleans'],
+                    'new orleans, louisiana': ['new orleans'],
                     'minneapolis': ['minneapolis'],
                     'mpls': ['minneapolis'],
                     'msp': ['minneapolis'],
@@ -686,7 +689,7 @@
                 'london': {
                     name: 'London, UK', iata: 'LON', image: '&#127468;&#127463;', weather: 'Partly Cloudy, 59°F',
                     baseFare: [450, 800],
-                    lgbtqSafety: 'United Kingdom: Very Safe. Strong legal protections.', lgbtqDistrict: 'Soho & Vauxhall',
+                    lgbtqSafety: 'United Kingdom: Very Safe. Strong legal protections.', safetyScore: 68, lgbtqDistrict: 'Soho & Vauxhall',
                     monthlyWeather: {
                         0: { high: '35-40°F High', low: '25-30°F Low', summary: 'Winter Chill' },
                         1: { high: '43-48°F High', low: '33-38°F Low', summary: 'Winter Chill' },
@@ -731,7 +734,7 @@
                 'san antonio': {
                     name: 'San Antonio, TX', iata: 'SAT', image: '&#127482;&#127480;', weather: 'Sunny, 85°F',
                     baseFare: [250, 500],
-                    lgbtqSafety: 'Safe. Friendly city but exercise normal caution.', lgbtqDistrict: 'The Strip (Main Avenue)',
+                    lgbtqSafety: 'Safe. Friendly city but exercise normal caution.', safetyScore: 68, lgbtqDistrict: 'The Strip (Main Avenue)',
                     monthlyWeather: {
                         0: { high: '62°F', low: '39°F', summary: 'Mild' },
                         1: { high: '67°F', low: '44°F', summary: 'Mild' },
@@ -772,10 +775,98 @@
                     ],
                     tours: ['The Alamo', 'River Walk Cruise', 'Pearl District', 'Mission Trail', 'Market Square']
                 },
+                'new orleans': {
+                    name: 'New Orleans, USA', iata: 'MSY', image: '&#127482;&#127480;', weather: 'Humid, 75°F',
+                    baseFare: [300, 600],
+                    lgbtqSafety: 'Safe. The French Quarter and Marigny are very welcoming.', safetyScore: 68, lgbtqDistrict: 'French Quarter / Marigny',
+                    monthlyWeather: {
+                        0: { high: '62°F High', low: '45°F Low', summary: 'Mild' },
+                        1: { high: '65°F High', low: '48°F Low', summary: 'Mild' },
+                        2: { high: '72°F High', low: '54°F Low', summary: 'Warm' },
+                        3: { high: '78°F High', low: '60°F Low', summary: 'Pleasant' },
+                        4: { high: '84°F High', low: '67°F Low', summary: 'Warm' },
+                        5: { high: '89°F High', low: '72°F Low', summary: 'Hot and Humid' },
+                        6: { high: '91°F High', low: '75°F Low', summary: 'Very Hot' },
+                        7: { high: '91°F High', low: '75°F Low', summary: 'Very Hot' },
+                        8: { high: '90°F High', low: '74°F Low', summary: 'Hot and Humid' },
+                        9: { high: '84°F High', low: '66°F Low', summary: 'Pleasant' },
+                        10: { high: '74°F High', low: '56°F Low', summary: 'Cool' },
+                        11: { high: '64°F High', low: '47°F Low', summary: 'Mild' }
+                    },
+                    hotels: [
+                        { name: 'The Royal Sonesta New Orleans', type: 'Luxury', tags: ['French Quarter', 'Iconic'] },
+                        { name: 'Hotel Monteleone', type: 'Luxury', tags: ['French Quarter', 'Carousel Bar'] },
+                        { name: 'W New Orleans - French Quarter', type: 'Luxury', tags: ['Stylish', 'Vibrant'] },
+                        { name: 'Ace Hotel New Orleans', type: 'Moderate', tags: ['Warehouse District', 'Hip'] },
+                        { name: 'International House Hotel', type: 'Moderate', tags: ['Boutique', 'Central'] },
+                        { name: 'The Roosevelt New Orleans, A Waldorf Astoria Hotel', type: 'Luxury', tags: ['Historic', 'Grand'] },
+                        { name: 'New Orleans Courtyard Hotel by the French Quarter', type: 'Moderate', tags: ['LGBTQ Friendly', 'Pool'] },
+                        { name: 'Hotel St. Pierre', type: 'Moderate', tags: ['French Quarter', 'Historic'] },
+                        { name: 'Bourbon Orleans Hotel', type: 'Moderate', tags: ['French Quarter', 'Ghost Tours'] },
+                        { name: 'Maison de la Luz', type: 'Luxury', tags: ['Luxury', 'Boutique'] }
+                    ],
+                    nightlife: [
+                        { name: 'Bourbon Pub & Parade', type: 'Bar/Club', tags: ['Iconic', 'Dance'] },
+                        { name: 'Oz New Orleans', type: 'Club', tags: ['Dance', 'Shows'] },
+                        { name: 'The Phoenix', type: 'Bar', tags: ['Leather', 'Patio'] },
+                        { name: 'The Country Club', type: 'Bar/Lounge', tags: ['Bywater', 'Pool'] },
+                        { name: 'Good Friends Bar', type: 'Bar', tags: ['Local', 'Casual'] },
+                        { name: 'The Page Bar', type: 'Bar', tags: ['Vibrant', 'Local'] },
+                        { name: 'The Golden Lantern', type: 'Bar', tags: ['Historic', 'Drag'] },
+                        { name: 'Rawhide 2010', type: 'Bar', tags: ['Leather', 'Classic'] },
+                        { name: 'Corner Pocket', type: 'Bar', tags: ['Male Dancers', 'Fun'] },
+                        { name: 'AllWays Lounge & Cabaret', type: 'Bar/Show', tags: ['Burlesque', 'Diverse'] }
+                    ],
+                    tours: ['French Quarter Ghost Tour', 'Honey Island Swamp Tour', 'St. Louis Cemetery No. 1 Tour', 'Steamboat Natchez Harbor Cruise', 'Garden District Walking Tour']
+                },
+                'maspalomas': {
+                    name: 'Maspalomas, Gran Canaria', iata: 'LPA', image: '&#127466;&#127480;', weather: 'Sunny, 75°F',
+                    baseFare: [400, 800],
+                    lgbtqSafety: 'Very Safe. One of the top LGBTQ+ destinations in the world.', safetyScore: 83, lgbtqDistrict: 'Yumbo Centre',
+                    monthlyWeather: {
+                        0: { high: '70°F High', low: '59°F Low', summary: 'Mild and Sunny' },
+                        1: { high: '71°F High', low: '59°F Low', summary: 'Mild and Sunny' },
+                        2: { high: '73°F High', low: '60°F Low', summary: 'Pleasant' },
+                        3: { high: '74°F High', low: '62°F Low', summary: 'Warm' },
+                        4: { high: '76°F High', low: '64°F Low', summary: 'Warm' },
+                        5: { high: '79°F High', low: '67°F Low', summary: 'Perfect' },
+                        6: { high: '82°F High', low: '71°F Low', summary: 'Hot' },
+                        7: { high: '83°F High', low: '72°F Low', summary: 'Hot' },
+                        8: { high: '82°F High', low: '71°F Low', summary: 'Warm' },
+                        9: { high: '79°F High', low: '68°F Low', summary: 'Pleasant' },
+                        10: { high: '75°F High', low: '65°F Low', summary: 'Mild' },
+                        11: { high: '71°F High', low: '61°F Low', summary: 'Mild' }
+                    },
+                    hotels: [
+                        { name: 'AxelBeach Maspalomas', type: 'Adults Only', tags: ['Iconic', 'Central'] },
+                        { name: 'Hotel Ritual Maspalomas', type: 'Adults Only', tags: ['Stylish', 'Vibrant'] },
+                        { name: 'Seven Hotel & Wellness', type: 'Luxury/Gay Only', tags: ['Private', 'Luxe'] },
+                        { name: 'Birdcage Gay Resort', type: 'Boutique/Gay Only', tags: ['Intimate', 'Garden'] },
+                        { name: 'Paso Chico', type: 'Budget/Gay Only', tags: ['Classic', 'Yumbo'] },
+                        { name: 'Vista Bonita Gay Resort', type: 'Moderate/Gay Only', tags: ['Quiet', 'Views'] },
+                        { name: 'Club Torso', type: 'Moderate/Gay Only', tags: ['Men Only', 'Social'] },
+                        { name: 'Tropicana Gay Resort', type: 'Moderate/Gay Only', tags: ['Social', 'Fun'] },
+                        { name: 'Artemis Maspalomas', type: 'Moderate/Gay Only', tags: ['Quiet', 'Friendly'] },
+                        { name: 'Neptuno Maspalomas', type: 'Adults Only', tags: ['Classic', 'Central'] }
+                    ],
+                    nightlife: [
+                        { name: 'Paddy Jack\'s', type: 'Bar', tags: ['Showbar', 'Fun'] },
+                        { name: 'Junior\'s Bar', type: 'Bar', tags: ['Social', 'Iconic'] },
+                        { name: 'Chez Funny Boy\'s', type: 'Showbar', tags: ['Drag', 'Hilarious'] },
+                        { name: 'Mykonos', type: 'Club', tags: ['Dance', 'Popular'] },
+                        { name: 'Sparkles Show Bar', type: 'Showbar', tags: ['Variety', 'Drag'] },
+                        { name: 'Mantrix', type: 'Club', tags: ['Afterhours', 'Cruise'] },
+                        { name: 'Construction', type: 'Bar', tags: ['Leather', 'Fetish'] },
+                        { name: 'Terry\'s Show Bar', type: 'Showbar', tags: ['Classic'] },
+                        { name: 'Ricky\'s Cabaret Bar', type: 'Showbar', tags: ['Drag', 'Popular'] },
+                        { name: 'Tubo', type: 'Bar', tags: ['Cocktails', 'View'] }
+                    ],
+                    tours: ['Dunes of Maspalomas Camel Safari', 'Roque Nublo Hiking Tour', 'Puerto de Mogán Boat Trip', 'Sioux City Park', 'Gran Canaria Island Tour']
+                },
                 'manchester': {
                     name: 'Manchester, UK', iata: 'MAN', image: '&#127468;&#127463;', weather: 'Rainy, 55°F',
                     baseFare: [500, 900],
-                    lgbtqSafety: 'Very Safe. Canal Street is world famous.', lgbtqDistrict: 'Canal Street (The Village)',
+                    lgbtqSafety: 'Very Safe. Canal Street is world famous.', safetyScore: 68, lgbtqDistrict: 'Canal Street (The Village)',
                     monthlyWeather: {
                         0: { high: '45°F', low: '36°F', summary: 'Cold' },
                         1: { high: '46°F', low: '36°F', summary: 'Cold' },
@@ -819,7 +910,7 @@
                 'fire island': {
                     name: 'Fire Island, NY', iata: 'ISP', image: '&#127987;&#65039;&#8205;&#127752;', weather: 'Summer Resort',
                     baseFare: [200, 400],
-                    lgbtqSafety: 'Extremely Safe. Gay vacation mecca.', lgbtqDistrict: 'The Pines & Cherry Grove',
+                    lgbtqSafety: 'Extremely Safe. Gay vacation mecca.', safetyScore: 68, lgbtqDistrict: 'The Pines & Cherry Grove',
                     monthlyWeather: {
                         0: { high: '39°F', low: '24°F', summary: 'Closed' },
                         1: { high: '40°F', low: '25°F', summary: 'Closed' },
@@ -863,7 +954,7 @@
                 'cologne': {
                     name: 'Cologne, Germany', iata: 'CGN', image: '&#127465;&#127466;', weather: 'Variables',
                     baseFare: [600, 1000],
-                    lgbtqSafety: 'Very Safe. Major LGBTQ Hub.', lgbtqDistrict: 'Rudolfplatz & Schaafenstraße',
+                    lgbtqSafety: 'Very Safe. Major LGBTQ Hub.', safetyScore: 80, lgbtqDistrict: 'Rudolfplatz & Schaafenstraße',
                     monthlyWeather: {
                         0: { high: '42°F', low: '31°F', summary: 'Cold' },
                         1: { high: '44°F', low: '31°F', summary: 'Carnival' },
@@ -907,7 +998,7 @@
                 'hamburg': {
                     name: 'Hamburg, Germany', iata: 'HAM', image: '&#127465;&#127466;', weather: 'Windy',
                     baseFare: [600, 1000],
-                    lgbtqSafety: 'Very Safe. St. Georg is the main area.', lgbtqDistrict: 'St. Georg',
+                    lgbtqSafety: 'Very Safe. St. Georg is the main area.', safetyScore: 80, lgbtqDistrict: 'St. Georg',
                     monthlyWeather: {
                         0: { high: '38°F', low: '30°F', summary: 'Cold' },
                         1: { high: '40°F', low: '30°F', summary: 'Cold' },
@@ -951,7 +1042,7 @@
                 'gran canaria': {
                     name: 'Gran Canaria, Spain', iata: 'LPA', image: '&#127466;&#127480;', weather: 'Eternal Spring',
                     baseFare: [400, 800],
-                    lgbtqSafety: 'Extremely Safe. Yumbo Center is massive.', lgbtqDistrict: 'Playa del Inglés / Maspalomas',
+                    lgbtqSafety: 'Extremely Safe. Yumbo Center is massive.', safetyScore: 83, lgbtqDistrict: 'Playa del Inglés / Maspalomas',
                     monthlyWeather: {
                         0: { high: '70°F', low: '59°F', summary: 'Perfect' },
                         1: { high: '70°F', low: '58°F', summary: 'Perfect' },
@@ -995,7 +1086,7 @@
                 'guadalajara': {
                     name: 'Guadalajara, Mexico', iata: 'GDL', image: '&#127474;&#127485;', weather: 'Warm',
                     baseFare: [300, 600],
-                    lgbtqSafety: 'Safe. Known as the SF of Mexico.', lgbtqDistrict: 'Zona Rosa',
+                    lgbtqSafety: 'Safe. Known as the SF of Mexico.', safetyScore: 70, lgbtqDistrict: 'Zona Rosa',
                     monthlyWeather: {
                         0: { high: '76°F', low: '42°F', summary: 'Dry' },
                         1: { high: '80°F', low: '44°F', summary: 'Dry' },
@@ -1039,7 +1130,7 @@
                 'dublin': {
                     name: 'Dublin, Ireland', iata: 'DUB', image: '&#127470;&#127466;', weather: 'Changeable',
                     baseFare: [400, 800],
-                    lgbtqSafety: 'Very Safe. Friendly atmosphere.', lgbtqDistrict: 'Capel Street / George\'s St',
+                    lgbtqSafety: 'Very Safe. Friendly atmosphere.', safetyScore: 70, lgbtqDistrict: 'Capel Street / George\'s St',
                     monthlyWeather: {
                         0: { high: '46°F', low: '36°F', summary: 'Cold' },
                         1: { high: '47°F', low: '36°F', summary: 'Cold' },
@@ -1083,7 +1174,7 @@
                 'vienna': {
                     name: 'Vienna, Austria', iata: 'VIE', image: '&#127462;&#127481;', weather: 'Continental',
                     baseFare: [600, 1000],
-                    lgbtqSafety: 'Very Safe. Imperial charm.', lgbtqDistrict: 'Wienzeile / Naschmarkt',
+                    lgbtqSafety: 'Very Safe. Imperial charm.', safetyScore: 71, lgbtqDistrict: 'Wienzeile / Naschmarkt',
                     monthlyWeather: {
                         0: { high: '39°F', low: '29°F', summary: 'Freezing' },
                         1: { high: '42°F', low: '29°F', summary: 'Cold' },
@@ -1127,7 +1218,7 @@
                 'shanghai': {
                     name: 'Shanghai, China', iata: 'PVG', image: '&#127464;&#127475;', weather: 'Humid',
                     baseFare: [800, 1400],
-                    lgbtqSafety: 'Ambiguous. Legal but discreet.', lgbtqDistrict: 'French Concession (scattered)',
+                    lgbtqSafety: 'Ambiguous. Legal but discreet.', safetyScore: 52, lgbtqDistrict: 'French Concession (scattered)',
                     monthlyWeather: {
                         0: { high: '46°F', low: '34°F', summary: 'Cold' },
                         1: { high: '48°F', low: '36°F', summary: 'Cool' },
@@ -1171,7 +1262,7 @@
                 'medellin': {
                     name: 'Medellin, Colombia', iata: 'MDE', image: '&#127464;&#127476;', weather: 'Spring City',
                     baseFare: [300, 600],
-                    lgbtqSafety: 'Improving. Exercise caution at night.', lgbtqDistrict: 'El Poblado / Laureles',
+                    lgbtqSafety: 'Colombia: Improving. Exercise caution at night.', safetyScore: 71, lgbtqDistrict: 'El Poblado / Laureles',
                     monthlyWeather: {
                         0: { high: '81°F', low: '63°F', summary: 'Perfect' },
                         1: { high: '82°F', low: '63°F', summary: 'Warm' },
@@ -1215,7 +1306,7 @@
                 'san diego': {
                     name: 'San Diego, CA', iata: 'SAN', image: '&#127482;&#127480;', weather: 'Coastal',
                     baseFare: [150, 450],
-                    lgbtqSafety: 'Very Safe. Hillcrest is the hub.', lgbtqDistrict: 'Hillcrest',
+                    lgbtqSafety: 'Very Safe. Hillcrest is the hub.', safetyScore: 68, lgbtqDistrict: 'Hillcrest',
                     monthlyWeather: {
                         0: { high: '65°F', low: '49°F', summary: 'Mild' },
                         1: { high: '65°F', low: '51°F', summary: 'Mild' },
@@ -1259,7 +1350,7 @@
                 'tampa': {
                     name: 'Tampa, FL', iata: 'TPA', image: '&#127482;&#127480;', weather: 'Tropical',
                     baseFare: [200, 500],
-                    lgbtqSafety: 'Safe. GaYbor is the spot.', lgbtqDistrict: 'Ybor City (GaYbor)',
+                    lgbtqSafety: 'Safe. GaYbor is the spot.', safetyScore: 68, lgbtqDistrict: 'Ybor City (GaYbor)',
                     monthlyWeather: {
                         0: { high: '70°F', low: '52°F', summary: 'Mild' },
                         1: { high: '73°F', low: '55°F', summary: 'Warm' },
@@ -1317,7 +1408,7 @@
                     },
                     name: 'London Heathrow (LHR)', iata: 'LHR', image: '&#127468;&#127463;', weather: 'Partly Cloudy, 59°F',
                     baseFare: [450, 800],
-                    lgbtqSafety: 'Very Safe.', lgbtqDistrict: 'Soho',
+                    lgbtqSafety: 'United Kingdom: Very Safe.', safetyScore: 68, lgbtqDistrict: 'Soho',
                     hotels: [
                         { name: 'Sofitel Heathrow', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'The Standard London', type: 'Luxury', tags: ['LGBTQ Friendly'] },
@@ -1361,7 +1452,7 @@
                     },
                     name: 'London Gatwick (LGW)', iata: 'LGW', image: '&#127468;&#127463;', weather: 'Partly Cloudy, 61°F',
                     baseFare: [420, 750],
-                    lgbtqSafety: 'Very Safe.', lgbtqDistrict: 'Brighton (Nearby)',
+                    lgbtqSafety: 'United Kingdom: Very Safe.', safetyScore: 68, lgbtqDistrict: 'Brighton (Nearby)',
                     hotels: [
                         { name: 'Bloc Hotel', type: 'Budget', tags: ['LGBTQ Friendly'] },
                         { name: 'The Grand Brighton', type: 'Luxury', tags: ['LGBTQ Hotel'] },
@@ -1406,7 +1497,7 @@
                     },
                     name: 'Paris, France', iata: 'PAR', image: '&#127467;&#127479;', weather: 'Sunny, 64°F',
                     baseFare: [500, 900],
-                    lgbtqSafety: 'France: Very Safe. Strong legal protections.', lgbtqDistrict: 'Le Marais',
+                    lgbtqSafety: 'France: Very Safe. Strong legal protections.', safetyScore: 74, lgbtqDistrict: 'Le Marais',
                     hotels: [
                         { name: 'Hotel Jules & Jim', type: 'Moderate', tags: ['LGBTQ Hotel'] },
                         { name: 'Sinner Paris', type: 'Luxury', tags: ['LGBTQ Friendly'] },
@@ -1450,7 +1541,7 @@
                     },
                     name: 'Paris Charles de Gaulle (CDG)', iata: 'CDG', image: '&#127467;&#127479;', weather: 'Sunny, 64°F',
                     baseFare: [500, 900],
-                    lgbtqSafety: 'Safe.', lgbtqDistrict: 'Le Marais',
+                    lgbtqSafety: 'France: Safe.', safetyScore: 74, lgbtqDistrict: 'Le Marais',
                     hotels: [
                         { name: 'Pullman CDG', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Sinner Paris', type: 'Luxury', tags: ['LGBTQ Friendly'] },
@@ -1494,7 +1585,7 @@
                     },
                     name: 'Paris Orly (ORY)', iata: 'ORY', image: '&#127467;&#127479;', weather: 'Sunny, 66°F',
                     baseFare: [480, 850],
-                    lgbtqSafety: 'Safe.', lgbtqDistrict: 'Le Marais',
+                    lgbtqSafety: 'France: Safe.', safetyScore: 74, lgbtqDistrict: 'Le Marais',
                     hotels: [
                         { name: 'Novotel Orly', type: 'Moderate', tags: ['LGBTQ Friendly'] },
                         { name: 'Kyriad', type: 'Budget', tags: ['LGBTQ Friendly'] },
@@ -1532,7 +1623,7 @@
                     },
                     name: 'Amsterdam, Netherlands', iata: 'AMS', image: '&#127475;&#127473;', weather: 'Rainy, 57°F',
                     baseFare: [550, 950],
-                    lgbtqSafety: 'Netherlands: Very Safe. Progressive protections.', lgbtqDistrict: 'Reguliersdwarsstraat',
+                    lgbtqSafety: 'Netherlands: Very Safe. Progressive protections.', safetyScore: 76, lgbtqDistrict: 'Reguliersdwarsstraat',
                     hotels: [
                         { name: 'W Amsterdam', type: 'Luxury', tags: ['LGBTQ Hotel'] },
                         { name: 'Ink Hotel', type: 'Moderate', tags: ['LGBTQ Friendly'] },
@@ -1576,7 +1667,7 @@
                     },
                     name: 'Berlin, Germany', iata: 'BER', image: '&#127465;&#127466;', weather: 'Cloudy, 54°F',
                     baseFare: [520, 880],
-                    lgbtqSafety: 'Germany: Very Safe. Strong legal protections.', lgbtqDistrict: 'Schöneberg',
+                    lgbtqSafety: 'Germany: Very Safe. Strong legal protections.', safetyScore: 80, lgbtqDistrict: 'Schöneberg',
                     hotels: [
                         { name: 'Axel Hotel Berlin', type: 'Moderate', tags: ['LGBTQ Hotel'] },
                         { name: '25hours Hotel', type: 'Moderate', tags: ['LGBTQ Friendly'] },
@@ -1622,7 +1713,7 @@
                     },
                     name: 'Sydney, Australia', iata: 'SYD', image: '&#127462;&#127482;', weather: 'Sunny, 77Â°F',
                     baseFare: [1100, 1800],
-                    lgbtqSafety: 'Australia: Very Safe. Strong legal protections.', lgbtqDistrict: 'Oxford Street (Darlinghurst)',
+                    lgbtqSafety: 'Australia: Very Safe. Strong legal protections.', safetyScore: 78, lgbtqDistrict: 'Oxford Street (Darlinghurst)',
                     hotels: [
                         { name: 'The Sentinel', type: 'Budget', tags: ['LGBTQ Friendly'] },
                         { name: 'Ovolo Woolloomooloo', type: 'Luxury', tags: ['LGBTQ Friendly'] },
@@ -1666,7 +1757,7 @@
                     },
                     name: 'Melbourne, Australia', iata: 'MEL', image: '&#127462;&#127482;', weather: 'Variable, 68Â°F',
                     baseFare: [1050, 1750],
-                    lgbtqSafety: 'Australia: Very Safe. Strong legal protections.', lgbtqDistrict: 'Collingwood & Prahran',
+                    lgbtqSafety: 'Australia: Very Safe. Strong legal protections.', safetyScore: 78, lgbtqDistrict: 'Collingwood & Prahran',
                     hotels: [
                         { name: 'The Cullen', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Adelphi Hotel', type: 'Luxury', tags: ['LGBTQ Friendly'] },
@@ -1712,7 +1803,7 @@
                     },
                     name: 'New York City (All Airports)', iata: 'NYC', image: '&#127482;&#127480;', weather: 'Sunny, 72Â°F',
                     baseFare: [200, 450],
-                    lgbtqSafety: 'Safe. NYC is very inclusive.', lgbtqDistrict: 'Hell\'s Kitchen & Chelsea',
+                    lgbtqSafety: 'Safe. NYC is very inclusive.', safetyScore: 68, lgbtqDistrict: 'Hell\'s Kitchen & Chelsea',
                     hotels: [
                         { name: 'The TWA Hotel', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Room Mate Grace', type: 'Moderate', tags: ['LGBTQ Friendly'] },
@@ -1756,7 +1847,7 @@
                     },
                     name: 'New York (JFK)', iata: 'JFK', image: '&#127482;&#127480;', weather: 'Sunny, 72Â°F',
                     baseFare: [200, 450],
-                    lgbtqSafety: 'Safe. NYC is very inclusive.', lgbtqDistrict: 'Hell\'s Kitchen & Chelsea',
+                    lgbtqSafety: 'Safe. NYC is very inclusive.', safetyScore: 68, lgbtqDistrict: 'Hell\'s Kitchen & Chelsea',
                     hotels: [
                         { name: 'The TWA Hotel', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Room Mate Grace', type: 'Moderate', tags: ['LGBTQ Friendly'] },
@@ -1800,7 +1891,7 @@
                     },
                     name: 'New York (LaGuardia)', iata: 'LGA', image: '&#127482;&#127480;', weather: 'Sunny, 72Â°F',
                     baseFare: [200, 450],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'Hell\'s Kitchen',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'Hell\'s Kitchen',
                     hotels: [
                         { name: 'Box House Hotel', type: 'Moderate', tags: ['LGBTQ Friendly'] },
                         { name: 'Paper Factory Hotel', type: 'Moderate', tags: ['LGBTQ Friendly'] },
@@ -1844,7 +1935,7 @@
                     },
                     name: 'Newark (EWR)', iata: 'EWR', image: '&#127482;&#127480;', weather: 'Sunny, 73Â°F',
                     baseFare: [200, 450],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'Jersey City / NYC',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'Jersey City / NYC',
                     hotels: [
                         { name: 'W Hoboken', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Hyatt Regency', type: 'Moderate', tags: ['LGBTQ Friendly'] },
@@ -1904,7 +1995,7 @@
                     },
                     name: 'San Francisco, CA', iata: 'SFO', image: '&#127482;&#127480;', weather: 'Foggy mornings, Sunny days. 61Â°F',
                     baseFare: [250, 500],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'The Castro',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'The Castro',
                     hotels: [
                         { name: 'Beck\'s Motor Lodge', type: 'Moderate', tags: ['LGBTQ Friendly'] },
                         { name: 'Parker Guest House', type: 'Moderate', tags: ['LGBTQ Hotel'] },
@@ -1962,7 +2053,7 @@
                     },
                     name: 'Los Angeles, CA', iata: 'LAX', image: '&#127482;&#127480;', weather: 'Sunny. Smoggy/Hazy. 77Â°F',
                     baseFare: [250, 500],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'West Hollywood (WeHo)',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'West Hollywood (WeHo)',
                     hotels: [
                         { name: 'The Abbey Hotel', type: 'Moderate', tags: ['LGBTQ Friendly'] },
                         { name: 'Andaz West Hollywood', type: 'Luxury', tags: ['LGBTQ Friendly'] },
@@ -2006,7 +2097,7 @@
                     },
                     name: 'Palm Springs, CA', iata: 'PSP', image: '&#127482;&#127480;', weather: 'Desert Heat. Intense Sun. 96Â°F',
                     baseFare: [300, 600],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'Arenas Road',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'Arenas Road',
                     hotels: [
                         { name: 'Santiago Resort', type: 'Moderate', tags: ['LGBTQ Hotel'] },
                         { name: 'Triangle Inn', type: 'Moderate', tags: ['LGBTQ Hotel'] },
@@ -2064,7 +2155,7 @@
                     },
                     name: 'Las Vegas, NV', iata: 'LAS', image: '&#127482;&#127480;', weather: 'Desert Heat. Dry & Clear. 91Â°F',
                     baseFare: [150, 400],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'Fruit Loop (off strip)',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'Fruit Loop (off strip)',
                     hotels: [
                         { name: 'Blue Moon Resort', type: 'Moderate', tags: ['LGBTQ Hotel'] },
                         { name: 'Luxor', type: 'Moderate', tags: ['LGBTQ Friendly'] },
@@ -2108,7 +2199,7 @@
                     },
                     name: 'Denver, CO', iata: 'DEN', image: '&#127482;&#127480;', weather: 'Sunny. Dry mountain air. 68Â°F',
                     baseFare: [200, 450],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'Capitol Hill (Colfax)',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'Capitol Hill (Colfax)',
                     hotels: [
                         { name: 'The Art Hotel', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Warwick Denver', type: 'Moderate', tags: ['LGBTQ Friendly'] },
@@ -2152,7 +2243,7 @@
                     },
                     name: 'Aspen, CO', iata: 'ASE', image: '&#127482;&#127480;', weather: 'Snowy/Cold. Winter storms. 32Â°F',
                     baseFare: [400, 900],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'Downtown',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'Downtown',
                     hotels: [
                         { name: 'Limelight', type: 'Moderate', tags: ['LGBTQ Friendly'] },
                         { name: 'The Little Nell', type: 'Luxury', tags: ['LGBTQ Friendly'] },
@@ -2210,7 +2301,7 @@
                     },
                     name: 'Honolulu, HI', iata: 'HNL', image: '&#127482;&#127480;', weather: 'Tropical. Warm breezes & showers. 83Â°F',
                     baseFare: [600, 1200],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'Waikiki (Hula\'s)',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'Waikiki (Hula\'s)',
                     hotels: [
                         { name: 'Surfjack', type: 'Moderate', tags: ['LGBTQ Friendly'] },
                         { name: 'Queen Kapiolani', type: 'Moderate', tags: ['LGBTQ Friendly'] },
@@ -2256,7 +2347,7 @@
                     },
                     name: 'Chicago, IL', iata: 'CHI', image: '&#127482;&#127480;', weather: 'Windy. Overcast & rainy. 64Â°F',
                     baseFare: [200, 450],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'Northalsted (Boystown)',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'Northalsted (Boystown)',
                     hotels: [
                         { name: 'Hotel Zachary', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'The Best Western Hawthorne', type: 'Moderate', tags: ['LGBTQ Friendly'] },
@@ -2300,7 +2391,7 @@
                     },
                     name: 'Columbus, OH', iata: 'CMH', image: '&#127482;&#127480;', weather: 'Moderate. Partly cloudy/rain. 69Â°F',
                     baseFare: [250, 500],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'Short North',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'Short North',
                     hotels: [
                         { name: 'Le Meridien The Joseph', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Graduate Columbus', type: 'Moderate', tags: ['LGBTQ Friendly'] },
@@ -2344,7 +2435,7 @@
                     },
                     name: 'Minneapolis, MN', iata: 'MSP', image: '&#127482;&#127480;', weather: 'Cool. Crisp air, light rain. 63Â°F',
                     baseFare: [250, 500],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'Downtown / Loring Park',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'Downtown / Loring Park',
                     hotels: [
                         { name: 'Hewing Hotel', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'W Minneapolis', type: 'Luxury', tags: ['LGBTQ Friendly'] },
@@ -2402,7 +2493,7 @@
                     },
                     name: 'Houston, TX', iata: 'IAH', image: '&#127482;&#127480;', weather: 'Humid. Scattered thunderstorms. 85Â°F',
                     baseFare: [250, 500],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'Montrose',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'Montrose',
                     hotels: [
                         { name: 'La Colombe d\'Or', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Hotel ZaZa', type: 'Luxury', tags: ['LGBTQ Friendly'] },
@@ -2448,7 +2539,7 @@
                     },
                     name: 'Boston, MA', iata: 'BOS', image: '&#127482;&#127480;', weather: 'Variable. Rainy & Cool. 62Â°F',
                     baseFare: [200, 450],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'South End',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'South End',
                     hotels: [
                         { name: 'Liberty Hotel', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'XV Beacon', type: 'Luxury', tags: ['LGBTQ Friendly'] },
@@ -2506,7 +2597,7 @@
                     },
                     name: 'Washington DC', iata: 'WAS', image: '&#127482;&#127480;', weather: 'Pleasant. Occasional rain. 71Â°F',
                     baseFare: [200, 450],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'Logan Circle',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'Logan Circle',
                     hotels: [
                         { name: 'Eaton DC', type: 'Moderate', tags: ['LGBTQ Friendly'] },
                         { name: 'Kimpton Banneker', type: 'Luxury', tags: ['LGBTQ Friendly'] },
@@ -2550,7 +2641,7 @@
                     },
                     name: 'Philadelphia, PA', iata: 'PHL', image: '&#127482;&#127480;', weather: 'Mild. Cloudy with showers. 67Â°F',
                     baseFare: [200, 450],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'The Gayborhood',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'The Gayborhood',
                     hotels: [
                         { name: 'Alexander Inn', type: 'Moderate', tags: ['LGBTQ Hotel'] },
                         { name: 'Kimpton Palomar', type: 'Luxury', tags: ['LGBTQ Friendly'] },
@@ -2594,7 +2685,7 @@
                     },
                     name: 'Atlanta, GA', iata: 'ATL', image: '&#127482;&#127480;', weather: 'Humid. Afternoon thunderstorms. 76Â°F',
                     baseFare: [200, 450],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'Midtown',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'Midtown',
                     hotels: [
                         { name: 'Georgian Terrace', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Loews Atlanta', type: 'Luxury', tags: ['LGBTQ Friendly'] },
@@ -2652,7 +2743,7 @@
                     },
                     name: 'Miami, FL', iata: 'MIA', image: '&#127482;&#127480;', weather: 'Tropical. Frequent rain showers. 83Â°F',
                     baseFare: [200, 450],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'South Beach (12th St)',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'South Beach (12th St)',
                     hotels: [
                         { name: 'AxelBeach Miami', type: 'Moderate', tags: ['LGBTQ Hotel'] },
                         { name: 'Hotel Gaythering', type: 'Moderate', tags: ['LGBTQ Hotel'] },
@@ -2696,7 +2787,7 @@
                     },
                     name: 'Fort Lauderdale, FL', iata: 'FLL', image: '&#127482;&#127480;', weather: 'Tropical. Frequent rain showers. 83Â°F',
                     baseFare: [200, 450],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'Wilton Manors',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'Wilton Manors',
                     hotels: [
                         { name: 'Pineapple Point', type: 'Luxury', tags: ['LGBTQ Hotel'] },
                         { name: 'Grand Resort', type: 'Moderate', tags: ['LGBTQ Hotel'] },
@@ -2740,7 +2831,7 @@
                     },
                     name: 'Orlando, FL', iata: 'MCO', image: '&#127482;&#127480;', weather: 'Hot & Humid. Chance of storms. 88Â°F',
                     baseFare: [200, 450],
-                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', lgbtqDistrict: 'Downtown / Milk District',
+                    lgbtqSafety: 'United States: Very Safe. Same-sex marriage is legal nationwide. Anti-discrimination laws vary by state but are generally strong in urban areas.', safetyScore: 68, lgbtqDistrict: 'Downtown / Milk District',
                     hotels: [
                         { name: 'Parliament House', type: 'Moderate', tags: ['LGBTQ Historic'] },
                         { name: 'Aloft Downtown', type: 'Moderate', tags: ['LGBTQ Friendly'] },
@@ -2784,7 +2875,7 @@
                     },
                     name: 'Dallas, Texas', iata: 'DFW', image: '&#127482;&#127480;', weather: 'Hot summers, mild winters. 85Â°F',
                     baseFare: [200, 450],
-                    lgbtqSafety: 'United States: Safe. Dallas County enforces non-discrimination ordinances. Oak Lawn is the epicenter of LGBTQ life.', lgbtqDistrict: 'Oak Lawn',
+                    lgbtqSafety: 'United States: Safe. Dallas County enforces non-discrimination ordinances. Oak Lawn is the epicenter of LGBTQ life.', safetyScore: 68, lgbtqDistrict: 'Oak Lawn',
                     hotels: [
                         { name: 'Hotel Zaza', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Rosewood Mansion', type: 'Luxury', tags: ['Iconic'] },
@@ -2814,7 +2905,7 @@
                 'houston': {
                     name: 'Houston, Texas', iata: 'IAH', image: '&#127482;&#127480;', weather: 'Humid Subtropical. 82Â°F',
                     baseFare: [200, 450],
-                    lgbtqSafety: 'United States: Safe. Harris County protects LGBTQ+ employees/residents. Montrose is the historic gay neighborhood.', lgbtqDistrict: 'Montrose',
+                    lgbtqSafety: 'United States: Safe. Harris County protects LGBTQ+ employees/residents. Montrose is the historic gay neighborhood.', safetyScore: 68, lgbtqDistrict: 'Montrose',
                     hotels: [
                         { name: 'La Colombe d\'Or', type: 'Luxury', tags: ['Boutique'] },
                         { name: 'Hotel ZaZa', type: 'Luxury', tags: ['Museum District'] },
@@ -2844,7 +2935,7 @@
                 'washington dc': {
                     name: 'Washington DC, USA', iata: 'IAD', image: '&#127482;&#127480;', weather: 'Variable seasons. 70Â°F',
                     baseFare: [200, 400],
-                    lgbtqSafety: 'United States: Very Safe. Logan Circle & Dupont Circle are historic hubs.', lgbtqDistrict: 'Logan Circle / Dupont',
+                    lgbtqSafety: 'United States: Very Safe. Logan Circle & Dupont Circle are historic hubs.', safetyScore: 68, lgbtqDistrict: 'Logan Circle / Dupont',
                     hotels: [
                         { name: 'Dupont Circle Hotel', type: 'Luxury', tags: ['Iconic'] },
                         { name: 'Eaton DC', type: 'Moderate', tags: ['Progressive'] },
@@ -2888,7 +2979,7 @@
                     },
                     name: 'Provincetown, USA', iata: 'PVC', image: 'ðŸ³ï¸â€ðŸŒˆ', weather: 'Coastal. Breezy. 65Â°F',
                     baseFare: [300, 600],
-                    lgbtqSafety: 'United States: Extremely Safe. America\'s oldest gay resort town.', lgbtqDistrict: 'Commercial Street',
+                    lgbtqSafety: 'United States: Extremely Safe. America\'s oldest gay resort town.', safetyScore: 68, lgbtqDistrict: 'Commercial Street',
                     hotels: [
                         { name: 'Brass Key', type: 'Luxury', tags: ['Guesthouse'] },
                         { name: 'Boatslip Resort', type: 'Moderate', tags: ['Tea Dance'] },
@@ -2932,7 +3023,7 @@
                     },
                     name: 'Key West, USA', iata: 'EYW', image: 'ðŸ³ï¸â€ðŸŒˆ', weather: 'Tropical. Sunny. 85Â°F',
                     baseFare: [400, 800],
-                    lgbtqSafety: 'United States: Very Safe. "One Human Family" philosophy.', lgbtqDistrict: 'Duval Street',
+                    lgbtqSafety: 'United States: Very Safe. "One Human Family" philosophy.', safetyScore: 68, lgbtqDistrict: 'Duval Street',
                     hotels: [
                         { name: 'Island House', type: 'Moderate', tags: ['Men Only'] },
                         { name: 'Equator Resort', type: 'Moderate', tags: ['Men Only'] },
@@ -2976,7 +3067,7 @@
                     },
                     name: 'Cancun, Mexico', iata: 'CUN', image: '&#127474;&#127485;', weather: 'Caribbean. Sunny. 88Â°F',
                     baseFare: [300, 600],
-                    lgbtqSafety: 'Mexico: Safe in resort areas. Cancun has a lively gay scene downtown.', lgbtqDistrict: 'Centro / Hotel Zone',
+                    lgbtqSafety: 'Mexico: Safe in resort areas. Cancun has a lively gay scene downtown.', safetyScore: 70, lgbtqDistrict: 'Centro / Hotel Zone',
                     hotels: [
                         { name: 'Oleo Cancun', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Secrets The Vine', type: 'Luxury', tags: ['Adults Only'] },
@@ -3020,7 +3111,7 @@
                     },
                     name: 'San Juan, Puerto Rico', iata: 'SJU', image: '&#127477;&#127479;', weather: 'Tropical. Breezy with showers. 87Â°F',
                     baseFare: [250, 550],
-                    lgbtqSafety: 'United States (Territory): Very Safe. Strong legal protections.', lgbtqDistrict: 'Condado / Santurce',
+                    lgbtqSafety: 'United States: Very Safe. Strong legal protections.', safetyScore: 68, lgbtqDistrict: 'Condado / Santurce',
                     hotels: [
                         { name: 'Coqui del Mar', type: 'Moderate', tags: ['LGBTQ Hotel'] },
                         { name: 'La Concha', type: 'Luxury', tags: ['LGBTQ Friendly'] },
@@ -3064,7 +3155,7 @@
                     },
                     name: 'Curacao', iata: 'CUR', image: '&#127464;&#127484;', weather: 'Sunny/Windy. Tropical storms possible. 86Â°F',
                     baseFare: [500, 900],
-                    lgbtqSafety: 'Curacao: Safe. Part of the Kingdom of the Netherlands, same-sex activity is legal. The island is known for being welcoming and LGBTQ+ friendly.', lgbtqDistrict: 'Willemstad',
+                    lgbtqSafety: 'Curacao: Safe. Part of the Kingdom of the Netherlands, same-sex activity is legal.', safetyScore: 60, lgbtqDistrict: 'Willemstad',
                     hotels: [
                         { name: 'Floris Suite Hotel', type: 'Moderate', tags: ['LGBTQ Hotel'] },
                         { name: 'Avila Beach Hotel', type: 'Luxury', tags: ['LGBTQ Friendly'] },
@@ -3110,7 +3201,7 @@
                     },
                     name: 'Puerto Vallarta, Mexico', iata: 'PVR', image: '&#127474;&#127485;', weather: 'Tropical. Hot & Humid. 88Â°F',
                     baseFare: [300, 600],
-                    lgbtqSafety: 'Mexico: Safe in tourist areas. Same-sex marriage is legal nationwide. Puerto Vallarta is the LGBTQ+ capital of Mexico.', lgbtqDistrict: 'Zona Romantica',
+                    lgbtqSafety: 'Mexico: Safe in tourist areas. Same-sex marriage is legal nationwide.', safetyScore: 70, lgbtqDistrict: 'Zona Romantica',
                     hotels: [
                         { name: 'Almar Resort', type: 'Luxury', tags: ['LGBTQ Resort'] },
                         { name: 'Blue Chairs Resort', type: 'Moderate', tags: ['LGBTQ Hotel'] },
@@ -3154,7 +3245,7 @@
                     },
                     name: 'Mexico City, Mexico', iata: 'MEX', image: '&#127474;&#127485;', weather: 'Mild. High altitude sun. 74Â°F',
                     baseFare: [300, 550],
-                    lgbtqSafety: 'Mexico: Safe/Progressive. Same-sex marriage is legal nationwide. CDMX is very liberal with strong laws.', lgbtqDistrict: 'Zona Rosa',
+                    lgbtqSafety: 'Mexico: Safe/Progressive. Same-sex marriage is legal nationwide.', safetyScore: 70, lgbtqDistrict: 'Zona Rosa',
                     hotels: [
                         { name: 'W Mexico City', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Room Mate Valentina', type: 'Moderate', tags: ['LGBTQ Friendly'] },
@@ -3198,7 +3289,7 @@
                     },
                     name: 'Rio de Janeiro, Brazil', iata: 'RIO', image: '&#127463;&#127479;', weather: 'Tropical. Sunny & Hot. 85Â°F',
                     baseFare: [600, 1100],
-                    lgbtqSafety: 'Brazil: Generally Safe in tourist zones. Same-sex marriage is legal. Be aware of surroundings.', lgbtqDistrict: 'Ipanema (Farme de Amoedo)',
+                    lgbtqSafety: 'Brazil: Generally Safe in tourist zones. Same-sex marriage is legal.', safetyScore: 75, lgbtqDistrict: 'Ipanema (Farme de Amoedo)',
                     hotels: [
                         { name: 'Fasano Rio', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Ipanema Inn', type: 'Moderate', tags: ['LGBTQ Friendly'] },
@@ -3228,7 +3319,7 @@
                 'ba': { // Mapping alias
                     name: 'Buenos Aires, Argentina', iata: 'BUE', image: '&#127462;&#127479;', weather: 'Variable. Seasons reversed. 65Â°F',
                     baseFare: [700, 1200],
-                    lgbtqSafety: 'Argentina: Very Safe. First in Latin America to legalize gay marriage. Very progressive.', lgbtqDistrict: 'Palermo / San Telmo',
+                    lgbtqSafety: 'Argentina: Very Safe. First in Latin America to legalize gay marriage.', safetyScore: 74, lgbtqDistrict: 'Palermo / San Telmo',
                     hotels: [
                         { name: 'Faena Hotel', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Legado Mitico', type: 'Moderate', tags: ['LGBTQ Friendly'] },
@@ -3258,7 +3349,7 @@
                 'buenos aires': { // Explicit Key
                     name: 'Buenos Aires, Argentina', iata: 'BUE', image: '&#127462;&#127479;', weather: 'Variable. Seasons reversed. 65Â°F',
                     baseFare: [700, 1200],
-                    lgbtqSafety: 'Argentina: Very Safe. First in Latin America to legalize gay marriage. Very progressive.', lgbtqDistrict: 'Palermo / San Telmo',
+                    lgbtqSafety: 'Argentina: Very Safe. First in Latin America to legalize gay marriage.', safetyScore: 74, lgbtqDistrict: 'Palermo / San Telmo',
                     hotels: [
                         { name: 'Faena Hotel', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Legado Mitico', type: 'Moderate', tags: ['LGBTQ Friendly'] },
@@ -3302,7 +3393,7 @@
                     },
                     name: 'Sao Paulo, Brazil', iata: 'SAO', image: '&#127463;&#127479;', weather: 'Subtropical. Humid & warm. 75Â°F',
                     baseFare: [600, 1100],
-                    lgbtqSafety: 'Brazil: Generally Safe. Largest Pride parade in the world. Vibrant scene.', lgbtqDistrict: 'Frei Caneca / Jardins',
+                    lgbtqSafety: 'Brazil: Generally Safe. Largest Pride parade in the world. Vibrant scene.', safetyScore: 75, lgbtqDistrict: 'Frei Caneca / Jardins',
                     hotels: [
                         { name: 'Unique Hotel', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Tivoli Mofarrej', type: 'Luxury', tags: ['LGBTQ Friendly'] },
@@ -3346,7 +3437,7 @@
                     },
                     name: 'Bogota, Colombia', iata: 'BOG', image: '&#127464;&#127476;', weather: 'Cool. High altitude. 60Â°F',
                     baseFare: [400, 700],
-                    lgbtqSafety: 'Colombia: Progressive. Same-sex marriage legal. Chapinero is the "Gayborhood".', lgbtqDistrict: 'Chapinero Alto',
+                    lgbtqSafety: 'Colombia: Progressive. Same-sex marriage legal. Chapinero is the "Gayborhood".', safetyScore: 71, lgbtqDistrict: 'Chapinero Alto',
                     hotels: [
                         { name: 'W Bogota', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Click Clack Hotel', type: 'Moderate', tags: ['LGBTQ Friendly'] },
@@ -3392,7 +3483,7 @@
                     },
                     name: 'Bangkok, Thailand', iata: 'BKK', image: '&#127481;&#127469;', weather: 'Tropical. Hot & Humid. 90Â°F',
                     baseFare: [800, 1400],
-                    lgbtqSafety: 'Thailand: Very Safe. Known as the "Land of Smiles", widely accepted. Same-sex unions pending legalization.', lgbtqDistrict: 'Silom Soi 4',
+                    lgbtqSafety: 'Thailand: Very Safe. Known as the "Land of Smiles", widely accepted.', safetyScore: 65, lgbtqDistrict: 'Silom Soi 4',
                     hotels: [
                         { name: 'W Bangkok', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'So/ Bangkok', type: 'Luxury', tags: ['LGBTQ Friendly'] },
@@ -3422,7 +3513,7 @@
                 'tokyo': {
                     name: 'Tokyo, Japan', iata: 'TYO', image: '&#127471;&#127477;', weather: 'Variable. Humid summers. 65Â°F',
                     baseFare: [900, 1500],
-                    lgbtqSafety: 'Japan: Safe. No legal same-sex marriage yet, but society is tolerant and discreet. Shinjuku Ni-chome is the hub.', lgbtqDistrict: 'Shinjuku Ni-chome',
+                    lgbtqSafety: 'Japan: Safe. society is tolerant and discreet.', safetyScore: 53, lgbtqDistrict: 'Shinjuku Ni-chome',
                     monthlyWeather: {
                         0: { high: '35-40°F High', low: '25-30°F Low', summary: 'Winter Chill' },
                         1: { high: '43-48°F High', low: '33-38°F Low', summary: 'Winter Chill' },
@@ -3466,7 +3557,7 @@
                 'osaka': {
                     name: 'Osaka, Japan', iata: 'KIX', image: '&#127471;&#127477;', weather: 'Humid, mild. 68°F',
                     baseFare: [950, 1550],
-                    lgbtqSafety: 'Japan: Safe. Doyama-cho is the vibrant LGBTQ district.', lgbtqDistrict: 'Doyama-cho',
+                    lgbtqSafety: 'Japan: Safe. Doyama-cho is the vibrant LGBTQ district.', safetyScore: 53, lgbtqDistrict: 'Doyama-cho',
                     monthlyWeather: {
                         0: { high: '35-40°F High', low: '25-30°F Low', summary: 'Winter Chill' },
                         1: { high: '43-48°F High', low: '33-38°F Low', summary: 'Winter Chill' },
@@ -3524,7 +3615,7 @@
                     },
                     name: 'Taipei, Taiwan', iata: 'TPE', image: '&#127481;&#127484;', weather: 'Humid subtropical. Rainy. 72Â°F',
                     baseFare: [800, 1300],
-                    lgbtqSafety: 'Taiwan: Very Safe. First in Asia to legalize same-sex marriage. Extremely friendly.', lgbtqDistrict: 'Ximen Red House',
+                    lgbtqSafety: 'Taiwan: Very Safe. First in Asia to legalize same-sex marriage.', safetyScore: 59, lgbtqDistrict: 'Ximen Red House',
                     hotels: [
                         { name: 'W Taipei', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Westgate', type: 'Moderate', tags: ['LGBTQ Friendly'] },
@@ -3568,7 +3659,7 @@
                     },
                     name: 'Auckland, New Zealand', iata: 'AKL', image: '&#127475;&#127487;', weather: 'Oceanic. Mild. 65Â°F',
                     baseFare: [1200, 2200],
-                    lgbtqSafety: 'New Zealand: Very Safe. Progressive laws and culture. Ponsoby is the gay heart.', lgbtqDistrict: 'Ponsonby / K Road',
+                    lgbtqSafety: 'New Zealand: Very Safe. Progressive laws and culture.', safetyScore: 77, lgbtqDistrict: 'Ponsonby / K Road',
                     hotels: [
                         { name: 'SkyCity Hotel', type: 'Luxury', tags: ['Casino'] },
                         { name: 'Cordis', type: 'Luxury', tags: ['LGBTQ Friendly'] },
@@ -3612,7 +3703,7 @@
                     },
                     name: 'Brisbane, Australia', iata: 'BNE', image: '&#127462;&#127482;', weather: 'Subtropical. Warm. 78Â°F',
                     baseFare: [1100, 2000],
-                    lgbtqSafety: 'Australia: Very Safe. Fortitude Valley is the party hub.', lgbtqDistrict: 'Fortitude Valley',
+                    lgbtqSafety: 'Australia: Very Safe. Fortitude Valley is the party hub.', safetyScore: 78, lgbtqDistrict: 'Fortitude Valley',
                     hotels: [
                         { name: 'The Calile', type: 'Luxury', tags: ['Urban Resort'] },
                         { name: 'Ovolo The Valley', type: 'Moderate', tags: ['Whimsical'] },
@@ -3656,7 +3747,7 @@
                     },
                     name: 'Manila, Philippines', iata: 'MNL', image: '&#127477;&#127469;', weather: 'Tropical. Hot/Humid. 88Â°F',
                     baseFare: [800, 1400],
-                    lgbtqSafety: 'Philippines: Friendly. No legal union, but very tolerant culture. BGC and Makati are upscale/safe hubs.', lgbtqDistrict: 'BGC / Makati',
+                    lgbtqSafety: 'Philippines: Friendly. No legal union, but tolerant culture.', safetyScore: 54, lgbtqDistrict: 'BGC / Makati',
                     hotels: [
                         { name: 'Shangri-La Fort', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Grand Hyatt', type: 'Luxury', tags: ['View'] },
@@ -3700,7 +3791,7 @@
                     },
                     name: 'Singapore', iata: 'SIN', image: '&#127480;&#127468;', weather: 'Tropical Rainforest. 86Â°F',
                     baseFare: [900, 1600],
-                    lgbtqSafety: 'Singapore: Safe/Conservative. 377A repealed (legal). Culture is modernizing. Chinatown has gay bars.', lgbtqDistrict: 'Neil Road (Chinatown)',
+                    lgbtqSafety: 'Singapore: Safe/Conservative.', safetyScore: 44, lgbtqDistrict: 'Neil Road (Chinatown)',
                     hotels: [
                         { name: 'Andaz Singapore', type: 'Luxury', tags: ['View'] },
                         { name: 'W Sentosa', type: 'Luxury', tags: ['Resort'] },
@@ -3744,7 +3835,7 @@
                     },
                     name: 'Hong Kong', iata: 'HKG', image: '&#127469;&#127472;', weather: 'Subtropical. Humid. 75Â°F',
                     baseFare: [1000, 1800],
-                    lgbtqSafety: 'Hong Kong: Safe. Cosmopolitan. No same-sex marriage, but diverse scene.', lgbtqDistrict: 'Central / Soho',
+                    lgbtqSafety: 'Hong Kong: Safe. Cosmopolitan.', safetyScore: 52, lgbtqDistrict: 'Central / Soho',
                     hotels: [
                         { name: 'W Hong Kong', type: 'Luxury', tags: ['Pool'] },
                         { name: 'The Fleming', type: 'Moderate', tags: ['Maritime'] },
@@ -3788,7 +3879,7 @@
                     },
                     name: 'Phuket, Thailand', iata: 'HKT', image: '&#127481;&#127469;', weather: 'Tropical Beach. 88Â°F',
                     baseFare: [900, 1500],
-                    lgbtqSafety: 'Thailand: Very Safe. Patong is the party center.', lgbtqDistrict: 'Paradise Complex (Patong)',
+                    lgbtqSafety: 'Thailand: Very Safe. Patong is the party center.', safetyScore: 65, lgbtqDistrict: 'Paradise Complex (Patong)',
                     hotels: [
                         { name: 'Aquarius', type: 'Moderate', tags: ['Men Only'] },
                         { name: 'Connect Guesthouse', type: 'Budget', tags: ['Friendly'] },
@@ -3832,7 +3923,7 @@
                     },
                     name: 'Seoul, South Korea', iata: 'SEL', image: '&#127472;&#127479;', weather: 'Four seasons. Cold winter. 60Â°F',
                     baseFare: [900, 1600],
-                    lgbtqSafety: 'South Korea: Safe. Conservative society but safe for tourists. Jongno is the gay district.', lgbtqDistrict: 'Jongno 3-ga / Itaewon',
+                    lgbtqSafety: 'South Korea: Safe. Conservative society but safe for tourists.', safetyScore: 46, lgbtqDistrict: 'Jongno 3-ga / Itaewon',
                     hotels: [
                         { name: 'L7 Hongdae', type: 'Moderate', tags: ['Hip'] },
                         { name: 'Ryse', type: 'Luxury', tags: ['Design'] },
@@ -3876,7 +3967,7 @@
                     },
                     name: 'Cape Town, South Africa', iata: 'CPT', image: '&#127487;&#127462;', weather: 'Mediterranean. Sunny & Windy. 68Â°F',
                     baseFare: [900, 1600],
-                    lgbtqSafety: 'South Africa: Safe. Constitution protects LGBTQ rights. Cape Town is the "Pink Capital".', lgbtqDistrict: 'De Waterkant',
+                    lgbtqSafety: 'South Africa: Safe. Constitution protects LGBTQ rights.', safetyScore: 67, lgbtqDistrict: 'De Waterkant',
                     hotels: [
                         { name: 'Capital Mirage', type: 'Luxury', tags: ['LGBTQ Friendly'] },
                         { name: 'Glen Boutique', type: 'Luxury', tags: ['LGBTQ Hotel'] },
@@ -3922,7 +4013,7 @@
                     },
                     name: 'Toronto, Canada', iata: 'YTO', image: '🇨🇦', weather: 'Variable. Hot Summers/Cold Winters. 70°F',
                     baseFare: [300, 600],
-                    lgbtqSafety: 'Canada: Extremely Safe. Ontario Human Rights Code prohibits discrimination. The Church-Wellesley Village is a historic safe haven.', lgbtqDistrict: 'Church-Wellesley Village',
+                    lgbtqSafety: 'Canada: Extremely Safe. Ontario Human Rights Code prohibits discrimination.', safetyScore: 79, lgbtqDistrict: 'Church-Wellesley Village',
                     hotels: [
                         { name: 'The Anndore House', type: 'Moderate', tags: ['Stylish'] },
                         { name: 'Gladstone House', type: 'Moderate', tags: ['Art Hotel'] },
@@ -3966,7 +4057,7 @@
                     },
                     name: 'Montreal, Canada', iata: 'YMQ', image: '🇨🇦', weather: 'Humid Continental. 72°F',
                     baseFare: [300, 600],
-                    lgbtqSafety: 'Canada: Extremely Safe. Quebec Charter of Human Rights applies. Le Village is one of the largest gay villages in North America.', lgbtqDistrict: 'Le Village',
+                    lgbtqSafety: 'Canada: Extremely Safe. Quebec Charter of Human Rights applies.', safetyScore: 79, lgbtqDistrict: 'Le Village',
                     hotels: [
                         { name: 'Hôtel Germain', type: 'Luxury', tags: ['Chic'] },
                         { name: 'W Montreal', type: 'Luxury', tags: ['Modern'] },
@@ -4010,7 +4101,7 @@
                     },
                     name: 'Vancouver, Canada', iata: 'YVR', image: '🇨🇦', weather: 'Oceanic. Mild & Rainy. 68°F',
                     baseFare: [350, 700],
-                    lgbtqSafety: 'Canada: Extremely Safe. British Columbia Human Rights Code applies. Davie Village is the community heart.', lgbtqDistrict: 'Davie Village',
+                    lgbtqSafety: 'Canada: Extremely Safe. British Columbia Human Rights Code applies.', safetyScore: 79, lgbtqDistrict: 'Davie Village',
                     hotels: [
                         { name: 'The Burrard', type: 'Moderate', tags: ['Retro'] },
                         { name: 'Fairmont Pacific Rim', type: 'Luxury', tags: ['Upscale'] },
@@ -4056,7 +4147,7 @@
                     },
                     name: 'Madrid, Spain', iata: 'MAD', image: '&#127466;&#127480;', weather: 'Dry/Hot Summer. Sunny. 78Â°F',
                     baseFare: [500, 900],
-                    lgbtqSafety: 'Spain: Very Safe. One of the most LGBTQ-friendly countries in the world. Chueca is a world-famous gayborhood.', lgbtqDistrict: 'Chueca',
+                    lgbtqSafety: 'Spain: Very Safe. One of the most LGBTQ-friendly countries in the world.', safetyScore: 83, lgbtqDistrict: 'Chueca',
                     hotels: [
                         { name: 'Axel Hotel Madrid', type: 'Moderate', tags: ['LGBTQ Hotel'] },
                         { name: 'Room Mate Oscar', type: 'Moderate', tags: ['LGBTQ Friendly'] },
@@ -4100,7 +4191,7 @@
                     },
                     name: 'Antwerp, Belgium', iata: 'ANR', image: '🇧🇪', weather: 'Temperate. Mild. 65°F',
                     baseFare: [500, 950],
-                    lgbtqSafety: 'Belgium: Very Safe. Second country to legalize same-sex marriage. Flanders region has strong anti-discrimination laws.', lgbtqDistrict: 'Hessenhuis / Van Schoonbekeplein',
+                    lgbtqSafety: 'Belgium: Very Safe. Second country to legalize same-sex marriage.', safetyScore: 74, lgbtqDistrict: 'Hessenhuis / Van Schoonbekeplein',
                     hotels: [
                         { name: 'Hotel Julien', type: 'Luxury', tags: ['Design'] },
                         { name: 'Banks Hotel', type: 'Moderate', tags: ['Fashion District'] },
@@ -4144,7 +4235,7 @@
                     },
                     name: 'Ibiza, Spain', iata: 'IBZ', image: '&#127466;&#127480;', weather: 'Mediterranean. Party Season (May-Oct). 80°F',
                     baseFare: [600, 1200],
-                    lgbtqSafety: 'Spain: Extremely Safe. Balearic Islands have strong anti-discrimination laws. Ibiza is a world-famous LGBTQ haven.', lgbtqDistrict: 'Calle de la Virgen',
+                    lgbtqSafety: 'Spain: Extremely Safe. Balearic Islands have strong anti-discrimination laws.', safetyScore: 83, lgbtqDistrict: 'Calle de la Virgen',
                     hotels: [
                         { name: 'AxelBeach Ibiza', type: 'Moderate', tags: ['LGBTQ Hotel'] },
                         { name: 'Hotel Es Vive', type: 'Luxury', tags: ['Art Deco'] },
@@ -4188,7 +4279,7 @@
                     },
                     name: 'Barcelona, Spain', iata: 'BCN', image: '&#127466;&#127480;', weather: 'Mediterranean. Sunny & Humid. 74Â°F',
                     baseFare: [500, 900],
-                    lgbtqSafety: 'Spain: Very Safe. Barcelona is a top gay destination. Gaixample is the heart of the community.', lgbtqDistrict: 'Gaixample (Eixample)',
+                    lgbtqSafety: 'Spain: Very Safe. Barcelona is a top gay destination.', safetyScore: 83, lgbtqDistrict: 'Gaixample (Eixample)',
                     hotels: [
                         { name: 'Axel Hotel Barcelona', type: 'Moderate', tags: ['LGBTQ Hotel'] },
                         { name: 'TWO Hotel', type: 'Moderate', tags: ['LGBTQ Hotel'] },
@@ -4232,7 +4323,7 @@
                     },
                     name: 'Mykonos, Greece', iata: 'JMK', image: '&#127468;&#127479;', weather: 'Windy. Bright sun. 79Â°F',
                     baseFare: [800, 1400],
-                    lgbtqSafety: 'Greece: Safe. Mykonos is a global gay mecca. Extremely welcoming, though expensive.', lgbtqDistrict: 'Chora / Super Paradise',
+                    lgbtqSafety: 'Greece: Safe. Mykonos is a global gay mecca.', safetyScore: 66, lgbtqDistrict: 'Chora / Super Paradise',
                     hotels: [
                         { name: 'Elysium Hotel', type: 'Luxury', tags: ['LGBTQ Hotel'] },
                         { name: 'Geranium', type: 'Moderate', tags: ['LGBTQ Hotel'] },
@@ -4276,7 +4367,7 @@
                     },
                     name: 'Rome, Italy', iata: 'FCO', image: '&#127470;&#127481;', weather: 'Mediterranean. Hot summers. 78Â°F',
                     baseFare: [450, 900],
-                    lgbtqSafety: 'Italy: Safe. Civil unions are legal. Rome is tolerant but conservative in religious areas.', lgbtqDistrict: 'Gay Street (Via San Giovanni)',
+                    lgbtqSafety: 'Italy: Safe. Civil unions are legal.', safetyScore: 66, lgbtqDistrict: 'Gay Street (Via San Giovanni)',
                     hotels: [
                         { name: 'Hotel Art by the Spanish Steps', type: 'Luxury', tags: ['Art'] },
                         { name: 'First Roma Arte', type: 'Luxury', tags: ['Boutique'] },
@@ -4320,7 +4411,7 @@
                     },
                     name: 'Sitges, Spain', iata: 'BCN', image: '&#127466;&#127480;', weather: 'Mediterranean. Sunny beach town. 75Â°F',
                     baseFare: [500, 900],
-                    lgbtqSafety: 'Spain: Extremely Safe. Sitges is one of the top gay resorts in Europe.', lgbtqDistrict: 'Carrer del Pecat',
+                    lgbtqSafety: 'Spain: Extremely Safe. Sitges is one of the top gay resorts in Europe.', safetyScore: 83, lgbtqDistrict: 'Carrer del Pecat',
                     hotels: [
                         { name: 'Calipolis', type: 'Moderate', tags: ['Sea View'] },
                         { name: 'MiM Sitges', type: 'Luxury', tags: ['Spa'] },
@@ -4364,7 +4455,7 @@
                     },
                     name: 'Torremolinos, Spain', iata: 'AGP', image: '&#127466;&#127480;', weather: 'Costa del Sol. Hot. 80Â°F',
                     baseFare: [550, 950],
-                    lgbtqSafety: 'Spain: Very Safe. Massive gay scene centered in La Nogalera.', lgbtqDistrict: 'La Nogalera',
+                    lgbtqSafety: 'Spain: Very Safe. Massive gay scene centered in La Nogalera.', safetyScore: 83, lgbtqDistrict: 'La Nogalera',
                     hotels: [
                         { name: 'Ritual Torremolinos', type: 'Moderate', tags: ['Adults Only'] },
                         { name: 'Melia Costa del Sol', type: 'Luxury', tags: ['Beach'] },
@@ -4408,7 +4499,7 @@
                     },
                     name: 'Athens, Greece', iata: 'ATH', image: '&#127468;&#127479;', weather: 'Mediterranean. Hot summers. 82°F',
                     baseFare: [600, 1100],
-                    lgbtqSafety: 'Greece: Safe. Gazi is the main hub. Growing acceptance.', lgbtqDistrict: 'Gazi',
+                    lgbtqSafety: 'Greece: Safe. Gazi is the main hub.', safetyScore: 66, lgbtqDistrict: 'Gazi',
                     hotels: [
                         { name: 'The Artist', type: 'Moderate', tags: ['Boutique'] },
                         { name: 'A for Athens', type: 'Moderate', tags: ['View'] },
@@ -4452,7 +4543,7 @@
                     },
                     name: 'Malta', iata: 'MLA', image: '&#127474;&#127481;', weather: 'Mediterranean. Sunny & Warm. 75°F',
                     baseFare: [400, 800],
-                    lgbtqSafety: 'Malta: Extremely Safe. Consistently ranked #1 in Europe for LGBTQ rights.', lgbtqDistrict: 'Valletta / St. Julian\'s',
+                    lgbtqSafety: 'Malta: Extremely Safe. Ranked high in Europe for LGBTQ rights.', safetyScore: 80, lgbtqDistrict: 'Valletta / St. Julian\'s',
                     hotels: [
                         { name: 'The Phoenicia Malta', type: 'Luxury', tags: ['Historic'] },
                         { name: 'AX The Palace', type: 'Luxury', tags: ['Sliema'] },
@@ -4484,7 +4575,7 @@
                 'los angeles': {
                     name: 'Los Angeles, USA', iata: 'LAX', image: '&#127482;&#127480;', weather: 'Sunny. 72°F',
                     baseFare: [300, 600],
-                    lgbtqSafety: 'Very Safe. West Hollywood (WeHo) is iconic.', lgbtqDistrict: 'West Hollywood',
+                    lgbtqSafety: 'United States: Very Safe. West Hollywood (WeHo) is iconic.', safetyScore: 68, lgbtqDistrict: 'West Hollywood',
                     hotels: [
                         { name: 'The Abbey Hotel', type: 'Luxury', tags: ['WeHo'] },
                         { name: 'Ramada WeHo', type: 'Budget', tags: ['Central'] },
@@ -4503,7 +4594,7 @@
                 'san francisco': {
                     name: 'San Francisco, USA', iata: 'SFO', image: '&#127482;&#127480;', weather: 'Foggy. 60°F',
                     baseFare: [350, 700],
-                    lgbtqSafety: 'Extremely Safe. The Castro is legendary.', lgbtqDistrict: 'The Castro',
+                    lgbtqSafety: 'United States: Extremely Safe. The Castro is legendary.', safetyScore: 68, lgbtqDistrict: 'The Castro',
                     hotels: [
                         { name: 'Beck\'s Motor Lodge', type: 'Moderate', tags: ['Castro'] },
                         { name: 'Parker Guest House', type: 'Moderate', tags: ['B&B'] },
@@ -4521,7 +4612,7 @@
                 'las vegas': {
                     name: 'Las Vegas, USA', iata: 'LAS', image: '&#127482;&#127480;', weather: 'Desert Heat. 90°F',
                     baseFare: [200, 500],
-                    lgbtqSafety: 'Safe. The Fruit Loop is the local scene.', lgbtqDistrict: 'Fruit Loop',
+                    lgbtqSafety: 'United States: Safe. The Fruit Loop is the local scene.', safetyScore: 68, lgbtqDistrict: 'Fruit Loop',
                     hotels: [
                         { name: 'Blue Moon Resort', type: 'Moderate', tags: ['Men Only'] },
                         { name: 'Luxor', type: 'Moderate', tags: ['Temptation'] },
@@ -4539,7 +4630,7 @@
                 'miami': {
                     name: 'Miami, USA', iata: 'MIA', image: '&#127482;&#127480;', weather: 'Tropical. 85°F',
                     baseFare: [250, 550],
-                    lgbtqSafety: 'Safe. South Beach is very gay-friendly.', lgbtqDistrict: 'South Beach',
+                    lgbtqSafety: 'United States: Safe. South Beach is very gay-friendly.', safetyScore: 68, lgbtqDistrict: 'South Beach',
                     hotels: [
                         { name: 'AxelBeach Miami', type: 'Moderate', tags: ['LGBTQ Hotel'] },
                         { name: 'Hotel Gaythering', type: 'Moderate', tags: ['Men Only'] },
@@ -4557,7 +4648,7 @@
                 'honolulu': {
                     name: 'Honolulu, USA', iata: 'HNL', image: '&#127482;&#127480;', weather: 'Perfect. 82°F',
                     baseFare: [500, 900],
-                    lgbtqSafety: 'Safe. Aloha spirit is inclusive. Hula\'s is famous.', lgbtqDistrict: 'Waikiki',
+                    lgbtqSafety: 'United States: Safe. Aloha spirit is inclusive.', safetyScore: 68, lgbtqDistrict: 'Waikiki',
                     hotels: [
                         { name: 'Surfjack', type: 'Moderate', tags: ['Retro'] },
                         { name: 'Laylow', type: 'Luxury', tags: ['Style'] },
@@ -4624,7 +4715,7 @@
                 },
                 name: 'Aruba', iata: 'AUA', image: '&#127462;&#127484;', weather: 'Tropical. Sunny & Windy. 82°F',
                 baseFare: [400, 900],
-                lgbtqSafety: 'Aruba: "One Happy Island". Very Safe. Legal unions. One of the most LGBTQ-friendly Caribbean islands.', lgbtqDistrict: 'Oranjestad / Palm Beach',
+                lgbtqSafety: 'Aruba: "One Happy Island". Very Safe. Legal unions.', safetyScore: 60, lgbtqDistrict: 'Oranjestad / Palm Beach',
                 hotels: [
                     { name: 'Bucuti & Tara', type: 'Luxury', tags: ['Adults Only'] },
                     { name: 'Renaissance Wind Creek', type: 'Luxury', tags: ['Private Island'] },
@@ -4668,7 +4759,7 @@
                 },
                 name: 'Portland, OR', iata: 'PDX', image: '&#127482;&#127480;', weather: 'Rainy. Cool. 60°F',
                 baseFare: [200, 450],
-                lgbtqSafety: 'United States: Very Safe. Extremely progressive city.', lgbtqDistrict: 'Burnside Triangle',
+                lgbtqSafety: 'United States: Very Safe. Extremely progressive city.', safetyScore: 68, lgbtqDistrict: 'Burnside Triangle',
                 hotels: [
                     { name: 'Ace Hotel', type: 'Moderate', tags: ['Hip'] },
                     { name: 'The Nines', type: 'Luxury', tags: ['Downtown'] },
@@ -4712,7 +4803,7 @@
                 },
                 name: 'Seattle, WA', iata: 'SEA', image: '&#127482;&#127480;', weather: 'Overcast. Drizzle. 60°F',
                 baseFare: [200, 500],
-                lgbtqSafety: 'United States: Very Safe. Capitol Hill is the LGBTQ+ hub.', lgbtqDistrict: 'Capitol Hill',
+                lgbtqSafety: 'United States: Very Safe. Capitol Hill is the LGBTQ+ hub.', safetyScore: 68, lgbtqDistrict: 'Capitol Hill',
                 hotels: [
                     { name: 'W Seattle', type: 'Luxury', tags: ['Downtown'] },
                     { name: 'Palihotel', type: 'Moderate', tags: ['Market'] },
@@ -4744,50 +4835,6 @@
 
         // GENERATED STUBS
         const NEW_STUBS = {
-            'new orleans': {
-                monthlyWeather: {
-                    0: { high: '35-40°F High', low: '25-30°F Low', summary: 'Winter Chill' },
-                    1: { high: '43-48°F High', low: '33-38°F Low', summary: 'Winter Chill' },
-                    2: { high: '51-56°F High', low: '41-46°F Low', summary: 'Sunny' },
-                    3: { high: '59-64°F High', low: '49-54°F Low', summary: 'Spring Breeze' },
-                    4: { high: '67-72°F High', low: '57-62°F Low', summary: 'Spring Breeze' },
-                    5: { high: '75-80°F High', low: '65-70°F Low', summary: 'Sunny' },
-                    6: { high: '83-88°F High', low: '73-78°F Low', summary: 'Warm Summer' },
-                    7: { high: '75-80°F High', low: '65-70°F Low', summary: 'Sunny' },
-                    8: { high: '67-72°F High', low: '57-62°F Low', summary: 'Sunny' },
-                    9: { high: '59-64°F High', low: '49-54°F Low', summary: 'Fall Crisp' },
-                    10: { high: '51-56°F High', low: '41-46°F Low', summary: 'Fall Crisp' },
-                    11: { high: '43-48°F High', low: '33-38°F Low', summary: 'Winter Chill' }
-                },
-                name: 'New Orleans', iata: 'AAA', image: '&#127987;&#65039;&#8205;&#127752;', weather: 'Check Forecast',
-                baseFare: [400, 800],
-                lgbtqSafety: 'Safe. Popular destination.', lgbtqDistrict: 'Downtown',
-                hotels: [{ name: 'Hotel 1', type: 'Moderate', tags: ['Friendly'] }],
-                nightlife: [{ name: 'Bar 1', type: 'Bar', tags: ['Fun'] }],
-                tours: ['City Tour']
-            },
-            'maspalomas': {
-                monthlyWeather: {
-                    0: { high: '85-90°F High', low: '75-80°F Low', summary: 'Tropical & Sunny' },
-                    1: { high: '86-91°F High', low: '76-81°F Low', summary: 'Tropical & Sunny' },
-                    2: { high: '87-92°F High', low: '75-80°F Low', summary: 'Tropical & Sunny' },
-                    3: { high: '85-90°F High', low: '76-81°F Low', summary: 'Tropical & Sunny' },
-                    4: { high: '86-91°F High', low: '75-80°F Low', summary: 'Tropical & Sunny' },
-                    5: { high: '87-92°F High', low: '76-81°F Low', summary: 'Tropical & Sunny' },
-                    6: { high: '85-90°F High', low: '75-80°F Low', summary: 'Tropical & Sunny' },
-                    7: { high: '86-91°F High', low: '76-81°F Low', summary: 'Tropical & Sunny' },
-                    8: { high: '87-92°F High', low: '75-80°F Low', summary: 'Humid & Showers' },
-                    9: { high: '85-90°F High', low: '76-81°F Low', summary: 'Humid & Showers' },
-                    10: { high: '86-91°F High', low: '75-80°F Low', summary: 'Humid & Showers' },
-                    11: { high: '87-92°F High', low: '76-81°F Low', summary: 'Tropical & Sunny' }
-                },
-                name: 'Maspalomas', iata: 'AAA', image: '&#127987;&#65039;&#8205;&#127752;', weather: 'Check Forecast',
-                baseFare: [400, 800],
-                lgbtqSafety: 'Safe. Popular destination.', lgbtqDistrict: 'Downtown',
-                hotels: [{ name: 'Hotel 1', type: 'Moderate', tags: ['Friendly'] }],
-                nightlife: [{ name: 'Bar 1', type: 'Bar', tags: ['Fun'] }],
-                tours: ['City Tour']
-            },
         };
         for (const [city, data] of Object.entries(NEW_STUBS)) {
             if (!DATABASE.details[city]) DATABASE.details[city] = data;
@@ -7236,6 +7283,22 @@
                                     </div>`;
                     }
 
+                    // Calculate safety score properties
+                    const safetyScore = data.safetyScore || 85;
+                    let safetyColor = 'text-pride-green';
+                    let safetyLabel = 'Excellent Inclusivity';
+                    if (safetyScore < 50) {
+                        safetyColor = 'text-pride-red';
+                        safetyLabel = 'Caution Advised';
+                    } else if (safetyScore < 65) {
+                        safetyColor = 'text-pride-yellow';
+                        safetyLabel = 'Moderate Inclusivity';
+                    } else {
+                        safetyColor = 'text-pride-green';
+                        safetyLabel = 'Excellent Inclusivity';
+                    }
+                    const safetyOffset = 251.2 * (1 - safetyScore / 100);
+
                     const card = document.createElement('div');
                     card.className = "bg-white rounded-xl shadow-lg border border-primary/10 overflow-hidden fade-in-up";
                     card.style.animationDelay = `${delay}ms`;
@@ -7317,18 +7380,19 @@
                                 ${eventContent}
 
                                 <div class="flex items-center gap-6 my-6">
-                                    <div class="relative w-24 h-24 flex items-center justify-center">
+                                    <a href="https://www.equaldex.com/equality-index" target="_blank" class="relative w-24 h-24 flex items-center justify-center hover:scale-110 transition-transform">
                                         <svg class="w-full h-full transform -rotate-90">
                                             <circle class="text-slate-100" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
-                                            <circle class="text-pride-green" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="25.12" stroke-width="10" stroke-linecap="round"></circle>
+                                            <circle class="${safetyColor}" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="${safetyOffset}" stroke-width="10" stroke-linecap="round"></circle>
                                         </svg>
                                         <div class="absolute inset-0 flex flex-col items-center justify-center">
-                                            <span class="text-2xl font-black text-pride-green">9.2</span>
-                                            <span class="text-[10px] uppercase font-bold text-slate-400 leading-tight">Safety</span>
+                                            <span class="text-2xl font-black ${safetyColor}">${safetyScore}</span>
+                                            <span class="text-[8px] font-bold text-slate-400 -mt-1 underline">Equaldex</span>
+                                            <span class="text-[10px] uppercase font-bold text-slate-400 leading-tight mt-1">Safety</span>
                                         </div>
-                                    </div>
+                                    </a>
                                     <div class="flex-1">
-                                        <p class="font-black text-slate-800">Excellent Inclusivity</p>
+                                        <p class="font-black text-slate-800">${safetyLabel}</p>
                                         <p class="text-sm text-slate-500 leading-relaxed">${data.lgbtqSafety}</p>
                                     </div>
                                 </div>
