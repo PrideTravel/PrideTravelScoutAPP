@@ -7077,13 +7077,14 @@
         const container = document.querySelector('#resultsContainer');
 
         if (form) {
-            // Auto-increment return date logic
+            // Auto-suggest return date only when it hasn't been set yet
             const dateStartInput = document.querySelector('#dateStart');
             const dateEndInput = document.querySelector('#dateEnd');
 
             if (dateStartInput && dateEndInput) {
                 dateStartInput.addEventListener('change', function () {
-                    if (this.value) {
+                    // Only auto-fill return date if it's empty (don't overwrite pre-filled event dates)
+                    if (this.value && !dateEndInput.value) {
                         try {
                             // Create date safely in local time
                             const parts = this.value.split('-');
