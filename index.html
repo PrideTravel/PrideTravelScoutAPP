@@ -400,14 +400,20 @@
 
             if (destInput) destInput.value = cityName;
 
-            if (start && dateStartInput) {
-                // Event logic: pre-fill departure date only (leave return date for user to set)
+            if (start && dateStartInput && dateEndInput) {
+                // Event logic: pre-fill suggested departure (event start - 1) and return (event end + 1)
+                // These are one-time defaults — changing departure afterward does NOT recalculate return
                 try {
                     const parts = start.split('-');
                     const sDate = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
 
-                    // Set departure to 1 day before the event starts
+                    const endParts = (end || start).split('-');
+                    const eDate = new Date(parseInt(endParts[0]), parseInt(endParts[1]) - 1, parseInt(endParts[2]));
+
+                    // Suggest: 1 day before event start
                     sDate.setDate(sDate.getDate() - 1);
+                    // Suggest: 1 day after event end
+                    eDate.setDate(eDate.getDate() + 1);
 
                     const formatDate = (d) => {
                         const yyyy = d.getFullYear();
@@ -417,7 +423,7 @@
                     };
 
                     dateStartInput.value = formatDate(sDate);
-                    // Return date is intentionally NOT changed
+                    dateEndInput.value = formatDate(eDate);
                 } catch (e) {
                     console.error("QuickSearch date error", e);
                 }
