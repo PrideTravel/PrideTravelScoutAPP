@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -140,11 +140,89 @@
         .view-section.active {
             display: block;
         }
+    
+    /* ===== PRIDE SCOUT AUTH STYLES ===== */
+    #ps-auth-modal-backdrop {
+      display:none;position:fixed;inset:0;z-index:9999;
+      background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);
+      align-items:center;justify-content:center;
+    }
+    #ps-auth-modal-backdrop.open{display:flex;}
+    #ps-auth-modal{
+      background:#fff;border-radius:1.5rem;padding:2rem;
+      width:min(420px,92vw);box-shadow:0 25px 60px rgba(242,13,143,0.18);
+      animation:psModalIn .25s ease;
+    }
+    @keyframes psModalIn{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+    .ps-tab{cursor:pointer;padding:.5rem 1.25rem;border-radius:999px;font-weight:700;font-size:.85rem;transition:.2s;}
+    .ps-tab.active{background:linear-gradient(90deg,#f20d8f,#86007D);color:#fff;}
+    .ps-tab:not(.active){color:#888;}
+    .ps-input{width:100%;border:2px solid #e5e7eb;border-radius:.75rem;padding:.65rem 1rem;
+      font-size:.9rem;outline:none;transition:.2s;margin-bottom:.75rem;font-family:inherit;}
+    .ps-input:focus{border-color:#f20d8f;}
+    .ps-btn-primary{
+      width:100%;padding:.75rem;border-radius:999px;font-weight:800;font-size:.9rem;
+      background:linear-gradient(90deg,#f20d8f,#86007D);color:#fff;border:none;
+      cursor:pointer;transition:.2s;margin-bottom:.5rem;font-family:inherit;
+    }
+    .ps-btn-primary:hover{opacity:.9;transform:translateY(-1px);}
+    .ps-btn-google{
+      width:100%;padding:.7rem;border-radius:999px;font-weight:700;font-size:.85rem;
+      background:#fff;color:#444;border:2px solid #e5e7eb;cursor:pointer;transition:.2s;
+      display:flex;align-items:center;justify-content:center;gap:.5rem;font-family:inherit;
+    }
+    .ps-btn-google:hover{border-color:#4285F4;color:#4285F4;}
+    .ps-error{color:#e11d48;font-size:.8rem;margin-bottom:.5rem;min-height:1.1rem;}
+    #ps-user-menu-wrap{position:fixed;top:14px;right:16px;z-index:9000;}
+    #ps-user-btn{
+      display:flex;align-items:center;gap:.5rem;padding:.4rem .9rem;
+      background:linear-gradient(90deg,#f20d8f,#86007D);color:#fff;border:none;
+      border-radius:999px;font-weight:700;font-size:.8rem;cursor:pointer;font-family:inherit;
+    }
+    #ps-user-dropdown{
+      display:none;position:absolute;right:0;top:calc(100% + .5rem);
+      background:#fff;border-radius:1rem;box-shadow:0 8px 30px rgba(0,0,0,.15);
+      min-width:160px;overflow:hidden;z-index:999;
+    }
+    #ps-user-dropdown.open{display:block;}
+    .ps-dd-item{
+      display:flex;align-items:center;gap:.6rem;padding:.75rem 1rem;
+      font-size:.85rem;font-weight:600;cursor:pointer;color:#333;transition:.15s;
+    }
+    .ps-dd-item:hover{background:#fdf0f7;color:#f20d8f;}
+    #ps-trips-panel{
+      display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.5);
+      backdrop-filter:blur(4px);
+    }
+    #ps-trips-panel.open{display:flex;align-items:flex-end;justify-content:center;}
+    #ps-trips-inner{
+      background:#fff;border-radius:1.5rem 1.5rem 0 0;width:min(480px,100vw);
+      max-height:80vh;overflow-y:auto;padding:1.75rem;
+      box-shadow:0 -8px 40px rgba(242,13,143,.15);animation:psPanelIn .3s ease;
+    }
+    @keyframes psPanelIn{from{transform:translateY(100%);}to{transform:translateY(0);}}
+    .ps-trip-card{
+      background:#fdf0f7;border-radius:1rem;padding:1rem;margin-bottom:.75rem;
+      display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;
+    }
+    .ps-save-btn{
+      background:#f0f0f0;border:none;border-radius:999px;padding:.35rem .85rem;
+      font-size:.78rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;
+      gap:.3rem;transition:.2s;color:#555;font-family:inherit;white-space:nowrap;
+    }
+    .ps-save-btn.saved{background:#dcfce7;color:#15803d;}
+    .ps-save-btn:hover:not(.saved){background:#fdf0f7;color:#f20d8f;}
+
     </style>
     <meta name="theme-color" content="#f20d8f">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <link rel="manifest" href="https://pridetravel.github.io/PrideTravelScoutAPP/manifest.json">
     <link rel="apple-touch-icon" href="https://pridetravel.github.io/PrideTravelScoutAPP/icon-512.png">
+    <!-- Firebase SDK (compat) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
 </head>
 
 <body class="bg-background-light font-display text-slate-900 min-h-screen pb-24">
@@ -362,6 +440,263 @@
         </a>
 
     </nav>
+  <!-- Pride Scout Auth Modal -->
+  <div id="ps-auth-modal-backdrop">
+    <div id="ps-auth-modal">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;">
+        <div style="background:linear-gradient(90deg,#f20d8f,#86007D);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;font-size:1.1rem;">
+          Pride Scout Account
+        </div>
+        <button onclick="psCloseModal()" style="background:none;border:none;cursor:pointer;font-size:1.4rem;color:#888;">&#x2715;</button>
+      </div>
+      <div style="display:flex;gap:.5rem;margin-bottom:1.25rem;">
+        <button class="ps-tab active" id="ps-tab-in" onclick="psSwitchTab('in')">Sign In</button>
+        <button class="ps-tab" id="ps-tab-up" onclick="psSwitchTab('up')">Create Account</button>
+      </div>
+      <p id="ps-modal-msg" style="font-size:.82rem;color:#f20d8f;font-weight:600;margin-bottom:.5rem;min-height:1.1rem;"></p>
+      <input class="ps-input" id="ps-auth-name" type="text" placeholder="Your name" style="display:none;" />
+      <input class="ps-input" id="ps-auth-email" type="email" placeholder="Email address" autocomplete="email" />
+      <input class="ps-input" id="ps-auth-pass" type="password" placeholder="Password" autocomplete="current-password" />
+      <div id="ps-auth-error" class="ps-error"></div>
+      <button class="ps-btn-primary" id="ps-auth-submit" onclick="psSubmitAuth()">Sign In</button>
+      <div style="text-align:center;color:#ccc;font-size:.8rem;margin:.5rem 0;">or</div>
+      <button class="ps-btn-google" onclick="psGoogleSignIn()">
+        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.07 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-3.57-13.46-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        Continue with Google
+      </button>
+    </div>
+  </div>
+
+  <!-- Saved Trips Panel -->
+  <div id="ps-trips-panel" onclick="psCloseTripPanel(event)">
+    <div id="ps-trips-inner">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;">
+        <h2 style="font-weight:900;font-size:1.1rem;background:linear-gradient(90deg,#f20d8f,#86007D);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+          My Saved Trips
+        </h2>
+        <button onclick="psTripPanel(false)" style="background:none;border:none;cursor:pointer;font-size:1.3rem;color:#888;">&#x2715;</button>
+      </div>
+      <div id="ps-trips-list">
+        <p style="color:#aaa;font-size:.9rem;text-align:center;padding:2rem 0;">No saved trips yet. Search for a destination and tap Save Trip!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- User menu button (rendered by JS) -->
+  <div id="ps-user-menu-wrap"></div>
+
+  <script>
+    (function () {
+      const FB_CFG = {
+        apiKey: "AIzaSyBr8E41ny_oPeQ5pjrpwuRS-Ub1pZNUhUc",
+        authDomain: "pride-scout-26f4e.firebaseapp.com",
+        projectId: "pride-scout-26f4e",
+        storageBucket: "pride-scout-26f4e.firebasestorage.app",
+        messagingSenderId: "402384469695",
+        appId: "1:402384469695:web:13fa09d6c9c287d8c3100a",
+        measurementId: "G-7SHNRD677F"
+      };
+      firebase.initializeApp(FB_CFG);
+      const auth = firebase.auth();
+      const db   = firebase.firestore();
+      let currentUser = null;
+      let savedTripIds = new Set();
+
+      // Auth state
+      auth.onAuthStateChanged(async (user) => {
+        currentUser = user;
+        renderUserBtn(user);
+        if (user) { await refreshSavedIds(); refreshSaveButtons(); }
+        else { savedTripIds.clear(); refreshSaveButtons(); }
+      });
+
+      async function refreshSavedIds() {
+        if (!currentUser) return;
+        const snap = await db.collection('users').doc(currentUser.uid).collection('trips').get();
+        savedTripIds.clear();
+        snap.docs.forEach(d => savedTripIds.add(d.data().tripKey));
+      }
+
+      // Header user button
+      function renderUserBtn(user) {
+        const wrap = document.getElementById('ps-user-menu-wrap');
+        if (!wrap) return;
+        if (user) {
+          const initials = (user.displayName || user.email || '?').slice(0,2).toUpperCase();
+          const name = user.displayName || user.email.split('@')[0];
+          wrap.innerHTML = `
+            <button id="ps-user-btn" onclick="psToggleDropdown()">
+              <span style="width:1.4rem;height:1.4rem;border-radius:50%;background:rgba(255,255,255,.3);
+                display:inline-flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:900;">
+                ${initials}
+              </span>
+              <span style="max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${name}</span>
+            </button>
+            <div id="ps-user-dropdown">
+              <div class="ps-dd-item" onclick="psTripPanel(true)">&#128278; My Saved Trips</div>
+              <div class="ps-dd-item" onclick="psSignOut()" style="color:#e11d48;">&#128075; Sign Out</div>
+            </div>`;
+        } else {
+          wrap.innerHTML = `<button id="ps-user-btn" onclick="psOpenModal()">&#127987;&#65039;&#8205;&#127752; Sign In</button>`;
+        }
+      }
+
+      window.psToggleDropdown = function() {
+        document.getElementById('ps-user-dropdown')?.classList.toggle('open');
+      };
+      document.addEventListener('click', e => {
+        if (!e.target.closest('#ps-user-menu-wrap'))
+          document.getElementById('ps-user-dropdown')?.classList.remove('open');
+      });
+
+      // Modal helpers
+      window.psOpenModal = function(msg) {
+        document.getElementById('ps-auth-modal-backdrop').classList.add('open');
+        if (msg) document.getElementById('ps-modal-msg').textContent = msg;
+        setTimeout(() => document.getElementById('ps-auth-email')?.focus(), 50);
+      };
+      window.psCloseModal = function() {
+        document.getElementById('ps-auth-modal-backdrop').classList.remove('open');
+        document.getElementById('ps-auth-error').textContent = '';
+        document.getElementById('ps-modal-msg').textContent = '';
+      };
+      window.psSwitchTab = function(tab) {
+        const isUp = tab === 'up';
+        document.getElementById('ps-tab-in').className = 'ps-tab' + (isUp ? '' : ' active');
+        document.getElementById('ps-tab-up').className = 'ps-tab' + (isUp ? ' active' : '');
+        document.getElementById('ps-auth-name').style.display = isUp ? 'block' : 'none';
+        document.getElementById('ps-auth-submit').textContent = isUp ? 'Create Account' : 'Sign In';
+        document.getElementById('ps-auth-pass').autocomplete = isUp ? 'new-password' : 'current-password';
+        document.getElementById('ps-auth-error').textContent = '';
+      };
+      window.psSubmitAuth = async function() {
+        const email = document.getElementById('ps-auth-email').value.trim();
+        const pass  = document.getElementById('ps-auth-pass').value;
+        const name  = document.getElementById('ps-auth-name').value.trim();
+        const isUp  = document.getElementById('ps-tab-up').classList.contains('active');
+        const errEl = document.getElementById('ps-auth-error');
+        errEl.textContent = '';
+        try {
+          if (isUp) {
+            const cred = await auth.createUserWithEmailAndPassword(email, pass);
+            if (name) await cred.user.updateProfile({ displayName: name });
+            await db.collection('users').doc(cred.user.uid).set({
+              email, displayName: name || '', createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            }, { merge: true });
+          } else {
+            await auth.signInWithEmailAndPassword(email, pass);
+          }
+          psCloseModal();
+        } catch(e) {
+          errEl.textContent = (e.message || '').replace('Firebase: ','').replace(/ \(auth\/[^)]+\)/,'');
+        }
+      };
+      window.psGoogleSignIn = async function() {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        try {
+          const cred = await auth.signInWithPopup(provider);
+          await db.collection('users').doc(cred.user.uid).set({
+            email: cred.user.email, displayName: cred.user.displayName || '',
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+          }, { merge: true });
+          psCloseModal();
+        } catch(e) {
+          document.getElementById('ps-auth-error').textContent = (e.message||'').replace('Firebase: ','').replace(/ \(auth\/[^)]+\)/,'');
+        }
+      };
+      window.psSignOut = async function() {
+        await auth.signOut();
+        document.getElementById('ps-user-dropdown')?.classList.remove('open');
+      };
+
+      // Save Trip
+      window.psSaveTrip = async function(dest, dep, ds, de, btnEl) {
+        if (!currentUser) { psOpenModal('Sign in to save trips!'); return; }
+        const key = [dest,dep,ds,de].join('|');
+        if (savedTripIds.has(key)) return;
+        await db.collection('users').doc(currentUser.uid).collection('trips').add({
+          destination: dest, departure: dep, dateStart: ds, dateEnd: de,
+          tripKey: key, savedAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        savedTripIds.add(key);
+        if (btnEl) { btnEl.classList.add('saved'); btnEl.innerHTML = '&#10003; Saved!'; }
+      };
+
+      function refreshSaveButtons() {
+        document.querySelectorAll('.ps-save-btn[data-trip-key]').forEach(btn => {
+          if (savedTripIds.has(btn.dataset.tripKey)) {
+            btn.classList.add('saved'); btn.innerHTML = '&#10003; Saved!';
+          } else {
+            btn.classList.remove('saved'); btn.innerHTML = '&#128278; Save Trip';
+          }
+        });
+      }
+
+      // Trips panel
+      window.psTripPanel = function(open) {
+        document.getElementById('ps-trips-panel').classList[open?'add':'remove']('open');
+        document.getElementById('ps-user-dropdown')?.classList.remove('open');
+        if (open) psLoadTrips();
+      };
+      window.psCloseTripPanel = function(e) {
+        if (e.target === document.getElementById('ps-trips-panel')) psTripPanel(false);
+      };
+      async function psLoadTrips() {
+        if (!currentUser) return;
+        const list = document.getElementById('ps-trips-list');
+        list.innerHTML = '<p style="color:#aaa;text-align:center;padding:1rem;">Loading...</p>';
+        try {
+          const snap = await db.collection('users').doc(currentUser.uid)
+            .collection('trips').orderBy('savedAt','desc').get();
+          if (snap.empty) {
+            list.innerHTML = '<p style="color:#aaa;font-size:.9rem;text-align:center;padding:2rem 0;">No saved trips yet.</p>';
+            return;
+          }
+          list.innerHTML = snap.docs.map(doc => {
+            const t = doc.data();
+            const dateStr = (t.dateStart && t.dateEnd) ? t.dateStart + ' to ' + t.dateEnd : '';
+            return '<div class="ps-trip-card">'
+              + '<div style="flex:1;">'
+              + '<div style="font-weight:800;font-size:.95rem;margin-bottom:.2rem;">&#9992;&#65039; '
+              + (t.departure||'?') + ' &#8594; ' + t.destination + '</div>'
+              + (dateStr ? '<div style="font-size:.8rem;color:#888;margin-bottom:.4rem;">&#128197; '+dateStr+'</div>' : '')
+              + '<button onclick="psReSearch(\'' + t.destination + '\',\'' + (t.departure||'') + '\',\'' + (t.dateStart||'') + '\',\'' + (t.dateEnd||'') + '\')"'
+              + ' style="font-size:.75rem;font-weight:700;background:linear-gradient(90deg,#f20d8f,#86007D);color:#fff;border:none;border-radius:999px;padding:.3rem .75rem;cursor:pointer;font-family:inherit;">'
+              + '&#128269; Search Again</button>'
+              + '</div>'
+              + '<button onclick="psDeleteTrip(\'' + doc.id + '\',\'' + t.tripKey + '\')" title="Remove" style="background:none;border:none;cursor:pointer;color:#e11d48;font-size:1.1rem;">&#128465;&#65039;</button>'
+              + '</div>';
+          }).join('');
+        } catch(e) { list.innerHTML = '<p style="color:#e11d48;font-size:.85rem;text-align:center;">Error loading trips.</p>'; }
+      }
+      window.psDeleteTrip = async function(docId, key) {
+        await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).delete();
+        savedTripIds.delete(key); refreshSaveButtons(); psLoadTrips();
+      };
+      window.psReSearch = function(dest, dep, ds, de) {
+        psTripPanel(false);
+        const get = id => document.getElementById(id);
+        if (get('destination')) get('destination').value = dest;
+        if (get('departure') && dep) get('departure').value = dep;
+        if (get('dateStart') && ds) get('dateStart').value = ds;
+        if (get('dateEnd') && de) get('dateEnd').value = de;
+        const form = get('searchForm');
+        if (form) form.dispatchEvent(new Event('submit'));
+      };
+
+      // Called by result card rendering
+      window.psMakeSaveBtn = function(dest, dep, ds, de) {
+        const key = [dest,dep,ds,de].join('|');
+        const saved = savedTripIds.has(key);
+        return '<button class="ps-save-btn'+(saved?' saved':'')+'" data-trip-key="'+key+'"'
+          +' onclick="psSaveTrip(\''+dest+'\',\''+dep+'\',\''+ds+'\',\''+de+'\',this)">'
+          +(saved ? '&#10003; Saved!' : '&#128278; Save Trip')+'</button>';
+      };
+
+      renderUserBtn(null); // show Sign In immediately
+    })();
+  </script>
+
 </body>
 <script>
 
@@ -7323,6 +7658,7 @@
                                title="Email Result">
                                 <span class="material-symbols-outlined text-xl">mail</span>
                             </a>
+            ${psMakeSaveBtn(data.name, origin, dateStart, dateEnd)}
                         </div>
 
                         <div class="p-4 space-y-6 bg-slate-50/50">
