@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7642,15 +7642,22 @@
                         try {
                             // Create date safely in local time
                             const parts = this.value.split('-');
+                            if (parts.length !== 3) return;
+
                             const year = parseInt(parts[0], 10);
                             const month = parseInt(parts[1], 10) - 1;
                             const day = parseInt(parts[2], 10);
 
+                            // Do NOT auto-fill until the user has typed a full valid modern year.
+                            // This stops interstitial year typing (like '0002') from auto-filling as 1902.
+                            if (isNaN(year) || year < 2000) return;
+
                             const startDate = new Date(year, month, day);
+                            startDate.setFullYear(year);
                             const nextDay = new Date(startDate);
                             nextDay.setDate(startDate.getDate() + 1);
 
-                            const yyyy = nextDay.getFullYear();
+                            const yyyy = String(nextDay.getFullYear()).padStart(4, '0');
                             const mm = String(nextDay.getMonth() + 1).padStart(2, '0');
                             const dd = String(nextDay.getDate()).padStart(2, '0');
 
