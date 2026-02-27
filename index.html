@@ -80,6 +80,11 @@
             scrollbar-width: none;
         }
 
+        body.dark {
+            background-color: #0f172a;
+            color: #f1f5f9;
+        }
+
         body {
             font-family: 'Outfit', sans-serif;
             background-color: #f8f5f7;
@@ -401,12 +406,20 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
+    <script>
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
 </head>
 
-<body class="bg-background-light font-display text-slate-900 min-h-screen pb-24">
+<body class="bg-background-light dark:bg-slate-900 font-display text-slate-900 dark:text-white min-h-screen pb-24">
     <!-- Top Navigation / Brand -->
     <header
-        class="sticky top-0 z-50 bg-background-light/80 backdrop-blur-md px-6 py-4 flex items-center justify-between border-b"
+        class="sticky top-0 z-50 bg-background-light dark:bg-slate-900/80 backdrop-blur-md px-6 py-4 flex items-center justify-between border-b"
         style="border-bottom: 4px solid; border-image: linear-gradient(to right, #FF0018, #FFA52C, #FFFF41, #008018, #0000F9, #86007D) 1;">
         <div class="flex items-center gap-2">
             <div class="w-8 h-8 rounded-lg pride-gradient-bg flex items-center justify-center shadow-lg">
@@ -422,7 +435,7 @@
             <!-- 1. Search & Info Section -->
             <section class="rainbow-card-bg rounded-3xl p-6 shadow-2xl relative overflow-hidden">
                 <!-- Decorative elements from design -->
-                <div class="absolute top-4 right-4 text-white p-2 bg-white/10 rounded-full">
+                <div class="absolute top-4 right-4 text-white p-2 bg-white dark:bg-slate-800/10 rounded-full">
                     <span class="material-symbols-outlined">info</span>
                 </div>
 
@@ -437,14 +450,14 @@
                             <span
                                 class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-primary">flight_takeoff</span>
                             <input id="departure"
-                                class="w-full pl-12 pr-4 py-4 pill-input border-none focus:ring-4 focus:ring-white/30 text-sm font-bold placeholder:text-slate-400"
+                                class="w-full pl-12 pr-4 py-4 pill-input border-none focus:ring-4 focus:ring-white/30 text-sm font-bold placeholder:text-slate-400 dark:text-slate-300"
                                 placeholder="Departure City" type="text" required />
                         </div>
                         <div class="relative">
                             <span
                                 class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-primary">location_on</span>
                             <input id="destination"
-                                class="w-full pl-12 pr-4 py-4 pill-input border-none focus:ring-4 focus:ring-white/30 text-sm font-bold placeholder:text-slate-400"
+                                class="w-full pl-12 pr-4 py-4 pill-input border-none focus:ring-4 focus:ring-white/30 text-sm font-bold placeholder:text-slate-400 dark:text-slate-300"
                                 placeholder="Destination" type="text" required />
                         </div>
                     </div>
@@ -489,7 +502,7 @@
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
                         <div class="absolute bottom-6 left-6 right-6">
                             <span
-                                class="bg-yellow-400 text-slate-900 text-[10px] font-black px-2 py-1 rounded-lg uppercase mb-2 inline-block shadow-lg">Event:
+                                class="bg-yellow-400 text-slate-900 dark:text-white text-[10px] font-black px-2 py-1 rounded-lg uppercase mb-2 inline-block shadow-lg">Event:
                                 Berlin Pride</span>
                             <h4 class="text-white text-2xl font-black mb-1">Berlin, Germany</h4>
                             <div class="flex items-center gap-2 text-white/90 text-xs font-bold">
@@ -565,7 +578,7 @@
                 <span class="material-symbols-outlined">arrow_back</span> Back
             </button>
             <h2 class="text-3xl font-black pride-gradient-text mb-2">Explore All Safe Hotspots</h2>
-            <p class="text-slate-500 text-sm font-medium mb-6">Discover 20 trending LGBTQ+ destinations, events, and
+            <p class="text-slate-500 dark:text-slate-400 dark:text-slate-300 text-sm font-medium mb-6">Discover 20 trending LGBTQ+ destinations, events, and
                 neighborhoods across the globe.</p>
 
             <div id="allHotspotsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -574,12 +587,33 @@
         </div>
     </main>
 
+    
+    <!-- Dark Mode Toggle -->
+    <div class="max-w-5xl mx-auto px-6 mb-8 flex justify-end">
+        <button onclick="toggleDarkMode()" class="flex items-center gap-2 px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-100 dark:text-white rounded-full font-bold text-sm shadow-sm transition-colors hover:bg-slate-300 dark:hover:bg-slate-600">
+            <span class="material-symbols-outlined text-sm hidden dark:block">light_mode</span>
+            <span class="material-symbols-outlined text-sm block dark:hidden">dark_mode</span>
+            Toggle Light / Dark View
+        </button>
+    </div>
+    
+    <script>
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+    </script>
     <!-- Footer / Legal Section -->
-    <section class="max-w-5xl mx-auto pt-8 pb-12 px-6 border-t border-slate-200">
-        <h4 class="text-xs font-bold text-slate-700 mb-4 uppercase tracking-wider">Terms & Conditions and Legal
+    <section class="max-w-5xl mx-auto pt-8 pb-12 px-6 border-t border-slate-200 dark:border-slate-700">
+        <h4 class="text-xs font-bold text-slate-700 dark:text-slate-200 mb-4 uppercase tracking-wider">Terms & Conditions and Legal
             Disclaimer
         </h4>
-        <div class="space-y-4 text-[10px] leading-relaxed text-slate-500">
+        <div class="space-y-4 text-[10px] leading-relaxed text-slate-500 dark:text-slate-400 dark:text-slate-300">
             <p><span class="font-bold text-slate-600">1. SCOPE OF SERVICE:</span> This Application curated to prioritize
                 locations that demonstrate established LGBTQ+ inclusivity and maintain robust legislative protections.
             </p>
@@ -594,7 +628,7 @@
                 prepaid funds.</p>
             <p><span class="font-bold text-slate-600">5. PURPOSE OF DATA COLLECTION:</span> Your email address is
                 collected specifically to provide you with curated updates, including but not limited to:</p>
-            <ul class="list-disc list-inside pl-2 space-y-1 text-slate-500">
+            <ul class="list-disc list-inside pl-2 space-y-1 text-slate-500 dark:text-slate-400 dark:text-slate-300">
                 <li><span class="font-semibold text-slate-600">Event Alerts:</span> Updates on upcoming festivals, pride
                     events, and seasonal gatherings (e.g., Pig Week, Beef Dip, Christmas Markets).</li>
                 <li><span class="font-semibold text-slate-600">Travel &amp; Lodging:</span> Exclusive hotel offers,
@@ -608,7 +642,7 @@
                 our emails or by contacting our support team directly.</p>
             <p><span class="font-bold text-slate-600">7. PRIVACY &amp; SECURITY:</span> We value your privacy,
                 especially regarding travel preferences and community affiliations.</p>
-            <ul class="list-disc list-inside pl-2 space-y-1 text-slate-500">
+            <ul class="list-disc list-inside pl-2 space-y-1 text-slate-500 dark:text-slate-400 dark:text-slate-300">
                 <li><span class="font-semibold text-slate-600">No Third-Party Sales:</span> We do not sell, rent, or
                     lease our subscription lists to third parties.</li>
                 <li><span class="font-semibold text-slate-600">Secure Storage:</span> Your data is stored using
@@ -623,7 +657,7 @@
     </section>
 
     <!-- Bottom Navigation Bar -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-lg border-t border-primary/10 px-6 py-2 flex justify-between items-center z-50 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]"
+    <nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-800/95 backdrop-blur-lg border-t border-primary/10 px-6 py-2 flex justify-between items-center z-50 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]"
         style="border-top: 3px solid; border-image: linear-gradient(to right, #FF0018, #FFA52C, #FFFF41, #008018, #0000F9, #86007D) 1;">
         <a href="javascript:void(0)" onclick="toggleView('homeView', this)"
             class="nav-item flex flex-col items-center gap-1 text-primary active-nav" data-view="homeView">
@@ -638,7 +672,7 @@
             </div>
         </div>
         <a href="javascript:void(0)"
-            class="nav-item flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+            class="nav-item flex flex-col items-center gap-1 text-slate-400 dark:text-slate-300 hover:text-primary transition-colors">
             <span class="material-symbols-outlined">security</span>
             <span class="text-[10px] font-black uppercase">Safety</span>
         </a>
@@ -937,8 +971,8 @@
             // Update Bottom Nav state
             if (navEl) {
                 document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('text-primary', 'active-nav'));
-                document.querySelectorAll('.nav-item').forEach(n => n.classList.add('text-slate-400'));
-                navEl.classList.remove('text-slate-400');
+                document.querySelectorAll('.nav-item').forEach(n => n.classList.add('text-slate-400 dark:text-slate-300'));
+                navEl.classList.remove('text-slate-400 dark:text-slate-300');
                 navEl.classList.add('text-primary', 'active-nav');
             }
         };
@@ -7835,11 +7869,11 @@
                                             ${matchingEvent.start} &ndash; ${matchingEvent.end}
                                         </p>
                                         <div class="flex gap-2">
-                                            <a href="${link1}" target="_blank" class="flex-1 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-center text-xs font-bold backdrop-blur-sm transition-colors flex items-center justify-center gap-2">
+                                            <a href="${link1}" target="_blank" class="flex-1 py-2 bg-white dark:bg-slate-800/20 hover:bg-white dark:bg-slate-800/30 rounded-lg text-center text-xs font-bold backdrop-blur-sm transition-colors flex items-center justify-center gap-2">
                                                 <span class="material-symbols-outlined text-sm">language</span>
                                                 Official
                                             </a>
-                                            <a href="${link2}" target="_blank" class="flex-1 py-2 border border-white/30 hover:bg-white/10 rounded-lg text-center text-xs font-bold transition-colors flex items-center justify-center gap-2">
+                                            <a href="${link2}" target="_blank" class="flex-1 py-2 border border-white/30 hover:bg-white dark:bg-slate-800/10 rounded-lg text-center text-xs font-bold transition-colors flex items-center justify-center gap-2">
                                                 <span class="material-symbols-outlined text-sm">search</span>
                                                 Google
                                             </a>
@@ -7864,17 +7898,17 @@
                     const safetyOffset = 251.2 * (1 - safetyScore / 100);
 
                     const card = document.createElement('div');
-                    card.className = "bg-white rounded-xl shadow-lg border border-primary/10 overflow-hidden fade-in-up";
+                    card.className = "bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-primary/10 overflow-hidden fade-in-up";
                     card.style.animationDelay = `${delay}ms`;
                     card.innerHTML = `
                          <!-- Result Header -->
-                        <div class="bg-gradient-to-r from-background-light to-white p-6 flex justify-between items-center border-b-4"
-                             style="border-image: linear-gradient(to right, #FF0018, #FFA52C, #FFFF41, #008018, #0000F9, #86007D) 1;">
+                        <div class="pride-gradient-bg p-6 flex justify-between items-center"
+                             >
                             <div class="flex items-center gap-4">
                                 <div class="text-4xl select-none filter drop-shadow-md">${data.image}</div>
                                 <div>
-                                    <h2 class="text-sm font-black italic text-slate-900">${formatDisplayName(data)}</h2>
-                                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-1">
+                                    <h2 class="text-sm font-black italic text-white">${formatDisplayName(data)}</h2>
+                                    <span class="text-[10px] font-black text-white/80 uppercase tracking-widest flex items-center gap-1">
                                         <span class="material-symbols-outlined text-[12px] text-primary">verified</span> Travel Scout Report
                                     </span>
                                 </div>
@@ -7887,22 +7921,22 @@
             ${psMakeSaveBtn(data.name, origin, dateStart, dateEnd)}
                         </div>
 
-                        <div class="p-4 space-y-6 bg-slate-50/50">
+                        <div class="p-4 space-y-6 bg-slate-50 dark:bg-slate-800/50/50">
                             <!-- 3 & 4. Flight & Hotel Hub -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <!-- Flight Card -->
-                                <div class="bg-white p-5 rounded-xl border-l-4 border-pride-blue shadow-md">
+                                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border-l-4 border-pride-blue shadow-md">
                                     <div class="flex justify-between items-start mb-4">
                                         <div class="p-2 bg-pride-blue/10 rounded-lg text-pride-blue">
                                             <span class="material-symbols-outlined">flight</span>
                                         </div>
                                         <div class="text-right">
-                                            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Booking Dates</span>
+                                            <span class="text-[10px] font-black text-slate-400 dark:text-slate-300 uppercase tracking-widest block">Booking Dates</span>
                                             <span class="text-[11px] font-bold text-pride-blue">${formatDateShort(dateStart)} &ndash; ${formatDateShort(dateEnd)}</span>
                                         </div>
                                     </div>
-                                    <p class="text-2xl font-bold mb-1 text-slate-900">${fareEstimate} <span class="text-xs font-normal text-slate-500">/ round-trip</span></p>
-                                    <p class="text-xs text-slate-500 mb-4">Cheapest options via regional budget carriers</p>
+                                    <p class="text-2xl font-bold mb-1 text-slate-900 dark:text-white">${fareEstimate} <span class="text-xs font-normal text-slate-500 dark:text-slate-400 dark:text-slate-300">/ round-trip</span></p>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-300 mb-4">Cheapest options via regional budget carriers</p>
                                     <div class="flex gap-2">
                                         <a href="${getGoogleFlightsLink(origin, data.name, dateStart, dateEnd)}" target="_blank"
                                            class="flex-1 py-2 bg-pride-blue text-white rounded-full font-bold text-sm flex items-center justify-center gap-2 transition-opacity hover:opacity-90">
@@ -7915,22 +7949,22 @@
                                     </div>
                                 </div>
                                 <!-- Hotel Card -->
-                                <div class="bg-white p-5 rounded-xl border-l-4 border-pride-purple shadow-md relative overflow-hidden">
+                                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border-l-4 border-pride-purple shadow-md relative overflow-hidden">
                                     <div class="absolute -right-4 -top-4 w-16 h-16 pride-gradient-bg rotate-45 opacity-10"></div>
                                     <div class="flex justify-between items-start mb-4">
                                         <div class="p-2 bg-pride-purple/10 rounded-lg text-pride-purple">
                                             <span class="material-symbols-outlined">hotel</span>
                                         </div>
                                         <div class="text-right">
-                                            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Stay Period</span>
+                                            <span class="text-[10px] font-black text-slate-400 dark:text-slate-300 uppercase tracking-widest block">Stay Period</span>
                                             <span class="text-[11px] font-bold text-pride-purple">${formatDateShort(dateStart)} &ndash; ${formatDateShort(dateEnd)}</span>
                                         </div>
                                     </div>
                                     <div class="space-y-3 mb-6">
                                         ${randomHotels.map(h => `
-                                            <div class="flex justify-between items-center text-xs border-b border-slate-50 pb-1 last:border-0">
-                                                <span class="font-black text-slate-800 truncate mr-2">${h.name}</span>
-                                                <span class="text-[9px] font-bold px-1.5 py-0.5 bg-slate-100 rounded text-slate-500 whitespace-nowrap">${getHotelBadge(h)}</span>
+                                            <div class="flex justify-between items-center text-xs border-b border-slate-50 dark:border-slate-700 pb-1 last:border-0">
+                                                <span class="font-black text-slate-800 dark:text-slate-100 truncate mr-2">${h.name}</span>
+                                                <span class="text-[9px] font-bold px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded text-slate-500 dark:text-slate-400 dark:text-slate-300 whitespace-nowrap">${getHotelBadge(h)}</span>
                                             </div>
                                         `).join('')}
                                     </div>
@@ -7942,7 +7976,7 @@
                             </div>
 
                              <!-- 5. Safety & Neighborhoods -->
-                            <section class="bg-white p-6 rounded-xl border-l-4 border-pride-green shadow-md relative overflow-hidden">
+                            <section class="bg-white dark:bg-slate-800 p-6 rounded-xl border-l-4 border-pride-green shadow-md relative overflow-hidden">
                                 <div class="absolute -right-6 -top-6 w-24 h-24 bg-pride-green/5 rounded-full"></div>
                                 <h3 class="text-xl font-bold mb-4 pride-gradient-text">
                                     Safety & Districts
@@ -7958,23 +7992,23 @@
                                         </svg>
                                         <div class="absolute inset-0 flex flex-col items-center justify-center">
                                             <span class="text-2xl font-black ${safetyColor}">${safetyScore}</span>
-                                            <span class="text-[8px] font-bold text-slate-400 -mt-1 underline">Equaldex</span>
-                                            <span class="text-[10px] uppercase font-bold text-slate-400 leading-tight mt-1">Safety</span>
+                                            <span class="text-[8px] font-bold text-slate-400 dark:text-slate-300 -mt-1 underline">Equaldex</span>
+                                            <span class="text-[10px] uppercase font-bold text-slate-400 dark:text-slate-300 leading-tight mt-1">Safety</span>
                                         </div>
                                     </a>
                                     <div class="flex-1">
-                                        <p class="font-black text-slate-800">${safetyLabel}</p>
-                                        <p class="text-sm text-slate-500 leading-relaxed">${data.lgbtqSafety}</p>
+                                        <p class="font-black text-slate-800 dark:text-slate-100">${safetyLabel}</p>
+                                        <p class="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-300 leading-relaxed">${data.lgbtqSafety}</p>
                                     </div>
                                 </div>
                                 <div class="space-y-3">
-                                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100">
+                                    <div class="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700">
                                         <div class="w-10 h-10 rounded-full bg-pride-yellow/20 flex items-center justify-center text-pride-yellow shadow-inner">
                                             <span class="material-symbols-outlined font-black">hub</span>
                                         </div>
                                         <div>
-                                            <p class="text-xs font-bold text-slate-400 uppercase tracking-tighter mb-0.5">Gay District</p>
-                                            <p class="text-sm font-black text-slate-900">${data.lgbtqDistrict}</p>
+                                            <p class="text-xs font-bold text-slate-400 dark:text-slate-300 uppercase tracking-tighter mb-0.5">Gay District</p>
+                                            <p class="text-sm font-black text-slate-900 dark:text-white">${data.lgbtqDistrict}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -7993,11 +8027,11 @@
                         const icon = icons[i % icons.length];
                         return `
                                         <div class="bg-${color}/5 p-4 rounded-xl border border-${color}/20 group hover:bg-${color} transition-colors duration-300 cursor-default">
-                                            <div class="w-10 h-10 bg-${color} rounded-full flex items-center justify-center text-white mb-3 group-hover:bg-white group-hover:text-${color}">
+                                            <div class="w-10 h-10 bg-${color} rounded-full flex items-center justify-center text-white mb-3 group-hover:bg-white dark:bg-slate-800 group-hover:text-${color}">
                                                 <span class="material-symbols-outlined">${icon}</span>
                                             </div>
-                                            <p class="font-bold group-hover:text-white text-slate-900">${n.name}</p>
-                                            <p class="text-xs text-slate-500 group-hover:text-white/80">${n.type} &bull; ${n.tags[0]}</p>
+                                            <p class="font-bold group-hover:text-white text-slate-900 dark:text-white">${n.name}</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-300 group-hover:text-white/80">${n.type} &bull; ${n.tags[0]}</p>
                                         </div>
                                         `;
                     }).join('')}
@@ -8019,15 +8053,15 @@
                             const lowTemp = mWeather ? mWeather.low : '55°F';
                             const summary = mWeather ? mWeather.summary : 'Sunny';
                             return `
-                            <div class="w-full flex items-center gap-5 p-3 bg-white/60 rounded-xl">
+                            <div class="w-full flex items-center gap-5 p-3 bg-white dark:bg-slate-800/60 rounded-xl">
                                 <div class="flex-shrink-0">${getWeatherIcon(summary)}</div>
                                 <div class="flex-1">
-                                    <p class="text-xs font-black text-slate-500 uppercase tracking-widest mb-1">${monthName} Average</p>
+                                    <p class="text-xs font-black text-slate-500 dark:text-slate-400 dark:text-slate-300 uppercase tracking-widest mb-1">${monthName} Average</p>
                                     <div class="flex items-baseline gap-3">
-                                        <span class="text-2xl font-black text-slate-900">${highTemp}</span>
-                                        <span class="text-sm font-bold text-slate-400">High</span>
-                                        <span class="text-lg font-bold text-slate-500">${lowTemp}</span>
-                                        <span class="text-sm font-bold text-slate-400">Low</span>
+                                        <span class="text-2xl font-black text-slate-900 dark:text-white">${highTemp}</span>
+                                        <span class="text-sm font-bold text-slate-400 dark:text-slate-300">High</span>
+                                        <span class="text-lg font-bold text-slate-500 dark:text-slate-400 dark:text-slate-300">${lowTemp}</span>
+                                        <span class="text-sm font-bold text-slate-400 dark:text-slate-300">Low</span>
                                     </div>
                                     <p class="text-xs font-bold text-primary mt-1">${summary}</p>
                                 </div>
@@ -8044,10 +8078,10 @@
                                 </h3>
                                 <div class="space-y-4">
                                     ${randomTours.map(t => `
-                                    <div class="flex gap-4 items-center bg-white p-3 rounded-xl shadow-sm group cursor-pointer border border-slate-100 hover:border-primary/20">
+                                    <div class="flex gap-4 items-center bg-white dark:bg-slate-800 p-3 rounded-xl shadow-sm group cursor-pointer border border-slate-100 dark:border-slate-700 hover:border-primary/20">
                                         <div class="flex-1">
-                                            <p class="font-bold text-sm text-slate-900">${t}</p>
-                                            <p class="text-xs text-slate-500">Approx. 3 hours • Featured Tour</p>
+                                            <p class="font-bold text-sm text-slate-900 dark:text-white">${t}</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-300">Approx. 3 hours • Featured Tour</p>
                                         </div>
                                     </div>
                                     `).join('')}
@@ -8154,7 +8188,7 @@
         function getWeatherIcon(weatherString) {
             const w = weatherString.toLowerCase();
             if (w.includes('rain')) return '<span class="material-symbols-outlined text-pride-blue">rainy</span>';
-            if (w.includes('cloud')) return '<span class="material-symbols-outlined text-slate-400">cloudy</span>';
+            if (w.includes('cloud')) return '<span class="material-symbols-outlined text-slate-400 dark:text-slate-300">cloudy</span>';
             if (w.includes('snow')) return '<span class="material-symbols-outlined text-slate-200">snowing</span>';
             return '<span class="material-symbols-outlined text-pride-orange">sunny</span>';
         }
@@ -8253,21 +8287,21 @@
                 let badgeClass = 'bg-primary text-white';
                 if (h.type === 'Event') {
                     icon = 'event_upcoming';
-                    badgeClass = 'bg-yellow-400 text-slate-900';
+                    badgeClass = 'bg-yellow-400 text-slate-900 dark:text-white';
                 } else if (h.type === 'District') {
                     icon = 'explore';
                     badgeClass = 'bg-orange-500 text-white';
                 }
 
                 return `
-                    <div onclick="quickSearch('${h.searchQuery}', '${h.date || ''}', '${h.endDate || ''}')" class="bg-white p-5 rounded-2xl shadow-lg border-l-4 border-primary flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform group">
+                    <div onclick="quickSearch('${h.searchQuery}', '${h.date || ''}', '${h.endDate || ''}')" class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-lg border-l-4 border-primary flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform group">
                         <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
                             <span class="material-symbols-outlined">${icon}</span>
                         </div>
                         <div class="overflow-hidden">
                             <span class="text-[10px] font-black px-2 py-0.5 rounded-md uppercase mb-1 inline-block ${badgeClass}">${getHotelBadge(h)}</span>
-                            <p class="font-black text-slate-900 truncate">${h.name}</p>
-                            <p class="text-xs font-bold text-slate-500 uppercase tracking-tighter">${h.location} ${h.date ? '&bull; ' + h.date : ''}</p>
+                            <p class="font-black text-slate-900 dark:text-white truncate">${h.name}</p>
+                            <p class="text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-300 uppercase tracking-tighter">${h.location} ${h.date ? '&bull; ' + h.date : ''}</p>
                         </div>
                     </div>
                 `;
@@ -8286,13 +8320,13 @@
             // Get 3 random events
             const randomEvents = getRandomSubset(SPECIAL_EVENTS_DATA, 3);
             grid.innerHTML = randomEvents.map(e => `
-                                <div onclick="quickSearch('${e.city}', '${e.start}', '${e.end}')" class="bg-white p-4 rounded-2xl shadow-lg border-l-4 border-primary flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform">
+                                <div onclick="quickSearch('${e.city}', '${e.start}', '${e.end}')" class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-lg border-l-4 border-primary flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform">
                                     <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
                                         <span class="material-symbols-outlined">event_upcoming</span>
                                     </div>
                                     <div class="overflow-hidden">
-                                        <p class="font-black text-slate-900 truncate">${e.name}</p>
-                                        <p class="text-xs font-bold text-slate-500 uppercase tracking-tighter">${e.city} &bull; ${e.start}</p>
+                                        <p class="font-black text-slate-900 dark:text-white truncate">${e.name}</p>
+                                        <p class="text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-300 uppercase tracking-tighter">${e.city} &bull; ${e.start}</p>
                                     </div>
                                 </div>
                             `).join('');
