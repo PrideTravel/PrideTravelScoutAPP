@@ -7923,7 +7923,7 @@
                                         ${randomHotels.map(h => `
                                             <div class="flex justify-between items-center text-xs border-b border-slate-50 pb-1 last:border-0">
                                                 <span class="font-black text-slate-800 truncate mr-2">${h.name}</span>
-                                                <span class="text-[9px] font-bold px-1.5 py-0.5 bg-slate-100 rounded text-slate-500 whitespace-nowrap">${h.type}</span>
+                                                <span class="text-[9px] font-bold px-1.5 py-0.5 bg-slate-100 rounded text-slate-500 whitespace-nowrap">${getHotelBadge(h)}</span>
                                             </div>
                                         `).join('')}
                                     </div>
@@ -8081,6 +8081,23 @@
             if (!arr) return [];
             const shuffled = [...arr].sort(() => 0.5 - Math.random());
             return shuffled.slice(0, count);
+        }
+
+        function getHotelBadge(h) {
+            if (h.type === 'Event Special') return 'Event Special';
+            let specialTags = ['LGBTQ Friendly', 'LGBTQ Hotels & Resorts', 'LGBTQ Resort', 'LGBTQ Hotel', 'LGBTQ Owned', 'Gay Hotel', 'Men Only', 'Adults Only', 'Adults-Only', 'Mens Only'];
+            if (h.tags) {
+                let found = h.tags.find(t => specialTags.includes(t));
+                if (found) {
+                    if (found === 'Men Only' || found === 'Mens Only') found = 'Men-Only';
+                    if (found === 'Adults Only') found = 'Adults-Only';
+                    if (h.type && found.toLowerCase().includes(h.type.toLowerCase())) {
+                        return found;
+                    }
+                    return `${h.type} ${found}`;
+                }
+            }
+            return h.type;
         }
 
         function calculateFareEstimate(baseRange) {
@@ -8241,7 +8258,7 @@
                             <span class="material-symbols-outlined">${icon}</span>
                         </div>
                         <div class="overflow-hidden">
-                            <span class="text-[10px] font-black px-2 py-0.5 rounded-md uppercase mb-1 inline-block ${badgeClass}">${h.type}</span>
+                            <span class="text-[10px] font-black px-2 py-0.5 rounded-md uppercase mb-1 inline-block ${badgeClass}">${getHotelBadge(h)}</span>
                             <p class="font-black text-slate-900 truncate">${h.name}</p>
                             <p class="text-xs font-bold text-slate-500 uppercase tracking-tighter">${h.location} ${h.date ? '&bull; ' + h.date : ''}</p>
                         </div>
