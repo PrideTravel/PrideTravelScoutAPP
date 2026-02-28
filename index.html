@@ -425,7 +425,7 @@
             <div class="w-8 h-8 rounded-lg pride-gradient-bg flex items-center justify-center shadow-lg">
                 <span class="material-symbols-outlined text-white text-xl font-black">flight_takeoff</span>
             </div>
-            <h1 class="text-xl font-extrabold tracking-tight pride-gradient-text">Pride Scout</h1>
+            <h1 class="text-xl font-extrabold tracking-tight pride-gradient-text inline-block">Pride Scout</h1>
         </div>
     </header>
 
@@ -441,7 +441,7 @@
 
                 <div class="flex items-center gap-3 mb-6">
                     <span class="material-symbols-outlined text-white text-3xl">map</span>
-                    <h2 class="text-2xl font-black text-white italic">Plan Your Journey</h2>
+                    <h2 class="text-2xl font-black text-white dark:text-black italic">Plan Your Journey</h2>
                 </div>
 
                 <form id="searchForm" class="space-y-4">
@@ -489,7 +489,7 @@
             <!-- 2. Safe Hotspots Section -->
             <section id="hotspots-section">
                 <div class="flex justify-between items-end mb-4">
-                    <h3 class="text-xl font-bold pride-gradient-text">Safe Hotspots</h3>
+                    <h3 class="text-xl font-bold pride-gradient-text inline-block">Safe Hotspots</h3>
                     <button onclick="showAllHotspots()" class="text-sm text-primary font-bold hover:underline">View
                         all</button>
                 </div>
@@ -553,7 +553,7 @@
 
             <!-- 3. Trending Pride Events Section -->
             <section id="trending-events-section" class="pb-12">
-                <h3 class="text-xl font-bold pride-gradient-text mb-4">Trending Pride Events</h3>
+                <h3 class="text-xl font-bold pride-gradient-text mb-4 inline-block">Trending Pride Events</h3>
                 <div id="eventsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- JS populated -->
                 </div>
@@ -577,8 +577,9 @@
             <button onclick="toggleView('homeView')" class="flex items-center gap-2 text-primary font-bold mb-4">
                 <span class="material-symbols-outlined">arrow_back</span> Back
             </button>
-            <h2 class="text-3xl font-black pride-gradient-text mb-2">Explore All Safe Hotspots</h2>
-            <p class="text-slate-500 dark:text-slate-400 dark:text-slate-300 text-sm font-medium mb-6">Discover 20 trending LGBTQ+ destinations, events, and
+            <h2 class="text-3xl font-black pride-gradient-text mb-2 inline-block">Explore All Safe Hotspots</h2>
+            <p class="text-slate-500 dark:text-slate-400 dark:text-slate-300 text-sm font-medium mb-6">Discover 20
+                trending LGBTQ+ destinations, events, and
                 neighborhoods across the globe.</p>
 
             <div id="allHotspotsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -587,16 +588,17 @@
         </div>
     </main>
 
-    
+
     <!-- Dark Mode Toggle -->
     <div class="max-w-5xl mx-auto px-6 mb-8 flex justify-end">
-        <button onclick="toggleDarkMode()" class="flex items-center gap-2 px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-100 dark:text-white rounded-full font-bold text-sm shadow-sm transition-colors hover:bg-slate-300 dark:hover:bg-slate-600">
+        <button onclick="toggleDarkMode()"
+            class="flex items-center gap-2 px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-100 dark:text-white rounded-full font-bold text-sm shadow-sm transition-colors hover:bg-slate-300 dark:hover:bg-slate-600">
             <span class="material-symbols-outlined text-sm hidden dark:block">light_mode</span>
             <span class="material-symbols-outlined text-sm block dark:hidden">dark_mode</span>
             Toggle Light / Dark View
         </button>
     </div>
-    
+
     <script>
         function toggleDarkMode() {
             if (document.documentElement.classList.contains('dark')) {
@@ -610,7 +612,8 @@
     </script>
     <!-- Footer / Legal Section -->
     <section class="max-w-5xl mx-auto pt-8 pb-12 px-6 border-t border-slate-200 dark:border-slate-700">
-        <h4 class="text-xs font-bold text-slate-700 dark:text-slate-200 mb-4 uppercase tracking-wider">Terms & Conditions and Legal
+        <h4 class="text-xs font-bold text-slate-700 dark:text-slate-200 mb-4 uppercase tracking-wider">Terms &
+            Conditions and Legal
             Disclaimer
         </h4>
         <div class="space-y-4 text-[10px] leading-relaxed text-slate-500 dark:text-slate-400 dark:text-slate-300">
@@ -7978,7 +7981,7 @@
                              <!-- 5. Safety & Neighborhoods -->
                             <section class="bg-white dark:bg-slate-800 p-6 rounded-xl border-l-4 border-pride-green shadow-md relative overflow-hidden">
                                 <div class="absolute -right-6 -top-6 w-24 h-24 bg-pride-green/5 rounded-full"></div>
-                                <h3 class="text-xl font-bold mb-4 pride-gradient-text">
+                                <h3 class="text-xl font-bold mb-4 pride-gradient-text inline-block">
                                     Safety & Districts
                                 </h3>
 
@@ -8016,7 +8019,7 @@
 
                             <!-- 6. Bars & Nightlife -->
                             <section>
-                                <h3 class="text-xl font-bold mb-4 pride-gradient-text">
+                                <h3 class="text-xl font-bold mb-4 pride-gradient-text inline-block">
                                     Vibrant Nightlife
                                 </h3>
                                 <div class="grid grid-cols-2 gap-3">
@@ -8073,7 +8076,7 @@
 
                             <!-- 8. Must-See Tours & Excursions -->
                             <section class="pb-4">
-                                <h3 class="text-xl font-bold mb-4 pride-gradient-text">
+                                <h3 class="text-xl font-bold mb-4 pride-gradient-text inline-block">
                                     Unmissable Tours
                                 </h3>
                                 <div class="space-y-4">
