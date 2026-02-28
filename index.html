@@ -450,14 +450,14 @@
                             <span
                                 class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-primary">flight_takeoff</span>
                             <input id="departure"
-                                class="w-full pl-12 pr-4 py-4 pill-input border-none focus:ring-4 focus:ring-white/30 text-sm font-bold placeholder:text-slate-400 dark:text-slate-300"
+                                class="w-full pl-12 pr-4 py-4 pill-input border-none focus:ring-4 focus:ring-white/30 text-sm font-bold placeholder:text-slate-500 text-slate-900"
                                 placeholder="Departure City" type="text" required />
                         </div>
                         <div class="relative">
                             <span
                                 class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-primary">location_on</span>
                             <input id="destination"
-                                class="w-full pl-12 pr-4 py-4 pill-input border-none focus:ring-4 focus:ring-white/30 text-sm font-bold placeholder:text-slate-400 dark:text-slate-300"
+                                class="w-full pl-12 pr-4 py-4 pill-input border-none focus:ring-4 focus:ring-white/30 text-sm font-bold placeholder:text-slate-500 text-slate-900"
                                 placeholder="Destination" type="text" required />
                         </div>
                     </div>
@@ -467,14 +467,14 @@
                             <span
                                 class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-primary">calendar_today</span>
                             <input id="dateStart"
-                                class="w-full pl-12 pr-4 py-4 pill-input border-none focus:ring-4 focus:ring-white/30 text-xs font-bold"
+                                class="w-full pl-12 pr-4 py-4 pill-input border-none focus:ring-4 focus:ring-white/30 text-xs font-bold text-slate-900"
                                 type="date" required />
                         </div>
                         <div class="relative">
                             <span
                                 class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-primary">event_repeat</span>
                             <input id="dateEnd"
-                                class="w-full pl-12 pr-4 py-4 pill-input border-none focus:ring-4 focus:ring-white/30 text-xs font-bold"
+                                class="w-full pl-12 pr-4 py-4 pill-input border-none focus:ring-4 focus:ring-white/30 text-xs font-bold text-slate-900"
                                 type="date" required />
                         </div>
                     </div>
@@ -7927,8 +7927,8 @@
                                 <!-- Flight Card -->
                                 <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border-l-4 border-pride-blue shadow-md">
                                     <div class="flex justify-between items-start mb-4">
-                                        <div class="p-2 bg-pride-blue/10 rounded-lg text-pride-blue">
-                                            <span class="material-symbols-outlined">flight</span>
+                                        <div class="px-3 py-1 bg-pride-blue/10 rounded-lg">
+                                            <span class="font-extrabold text-lg pride-gradient-text" style="background: linear-gradient(to right, #FF0018, #FFA52C, #eab308, #008018, #0000F9, #86007D); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Flights</span>
                                         </div>
                                         <div class="text-right">
                                             <span class="text-[10px] font-black text-slate-400 dark:text-slate-300 uppercase tracking-widest block">Booking Dates</span>
@@ -7952,8 +7952,8 @@
                                 <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border-l-4 border-pride-purple shadow-md relative overflow-hidden">
                                     <div class="absolute -right-4 -top-4 w-16 h-16 pride-gradient-bg rotate-45 opacity-10"></div>
                                     <div class="flex justify-between items-start mb-4">
-                                        <div class="p-2 bg-pride-purple/10 rounded-lg text-pride-purple">
-                                            <span class="material-symbols-outlined">hotel</span>
+                                        <div class="px-3 py-1 bg-pride-purple/10 rounded-lg">
+                                            <span class="font-extrabold text-lg pride-gradient-text" style="background: linear-gradient(to right, #FF0018, #FFA52C, #eab308, #008018, #0000F9, #86007D); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Hotels</span>
                                         </div>
                                         <div class="text-right">
                                             <span class="text-[10px] font-black text-slate-400 dark:text-slate-300 uppercase tracking-widest block">Stay Period</span>
@@ -7978,7 +7978,7 @@
                              <!-- 5. Safety & Neighborhoods -->
                             <section class="bg-white dark:bg-slate-800 p-6 rounded-xl border-l-4 border-pride-green shadow-md relative overflow-hidden">
                                 <div class="absolute -right-6 -top-6 w-24 h-24 bg-pride-green/5 rounded-full"></div>
-                                <h3 class="text-xl font-bold mb-4 pride-gradient-text">
+                                <h3 class="text-xl font-bold mb-4 pride-gradient-text" style="background: linear-gradient(to right, #FF0018, #FFA52C, #eab308, #008018, #0000F9, #86007D); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
                                     Safety & Districts
                                 </h3>
 
@@ -8016,7 +8016,7 @@
 
                             <!-- 6. Bars & Nightlife -->
                             <section>
-                                <h3 class="text-xl font-bold mb-4 pride-gradient-text">
+                                <h3 class="text-xl font-bold mb-4 pride-gradient-text" style="background: linear-gradient(to right, #FF0018, #FFA52C, #eab308, #008018, #0000F9, #86007D); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
                                     Vibrant Nightlife
                                 </h3>
                                 <div class="grid grid-cols-2 gap-3">
@@ -8026,11 +8026,11 @@
                         const color = colors[i % colors.length];
                         const icon = icons[i % icons.length];
                         return `
-                                        <div class="bg-${color}/5 p-4 rounded-xl border border-${color}/20 group hover:bg-${color} transition-colors duration-300 cursor-default">
+                                        <div class="bg-white p-4 rounded-xl border border-${color}/20 group hover:bg-${color} transition-colors duration-300 cursor-default">
                                             <div class="w-10 h-10 bg-${color} rounded-full flex items-center justify-center text-white mb-3 group-hover:bg-white dark:bg-slate-800 group-hover:text-${color}">
                                                 <span class="material-symbols-outlined">${icon}</span>
                                             </div>
-                                            <p class="font-bold group-hover:text-white text-slate-900 dark:text-white">${n.name}</p>
+                                            <p class="font-bold group-hover:text-white text-black" style="color: black !important;">${n.name}</p>
                                             <p class="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-300 group-hover:text-white/80">${n.type} &bull; ${n.tags[0]}</p>
                                         </div>
                                         `;
@@ -8073,7 +8073,7 @@
 
                             <!-- 8. Must-See Tours & Excursions -->
                             <section class="pb-4">
-                                <h3 class="text-xl font-bold mb-4 pride-gradient-text">
+                                <h3 class="text-xl font-bold mb-4 pride-gradient-text" style="background: linear-gradient(to right, #FF0018, #FFA52C, #eab308, #008018, #0000F9, #86007D); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
                                     Unmissable Tours
                                 </h3>
                                 <div class="space-y-4">
