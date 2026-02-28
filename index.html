@@ -487,8 +487,7 @@
             <section id="hotspots-section">
                 <div class="flex justify-between items-end mb-4">
                     <h3 class="text-xl font-bold pride-gradient-text inline-block">Safe Hotspots</h3>
-                    <button onclick="showAllHotspots()" class="text-sm text-primary font-bold hover:underline">View
-                        all</button>
+                    <button onclick="showAllHotspots()" class="text-sm text-primary font-bold hover:underline">View More</button>
                 </div>
                 <div class="flex gap-4 overflow-x-auto hide-scrollbar pb-6 -mx-4 px-4 snap-x">
                     <!-- Dest 1 -->
@@ -5494,7 +5493,7 @@
                 }
             ],
             "dallas": [
-               {
+                {
                     "name": "Dallas Purple Party",
                     "start": "2026-04-30",
                     "end": "2026-05-04"
@@ -5750,7 +5749,7 @@
                 }
             ],
             "new orleans": [
-               {
+                {
                     "name": "Gay Easter Parade New Orleans",
                     "start": "2026-04-05",
                     "end": "2026-04-05"
@@ -5917,7 +5916,7 @@
                 }
             ],
             "barcelona": [
-            {
+                {
                     "name": "Matinee Gay Easter Weekend",
                     "start": "2026-04-03",
                     "end": "2026-04-05"
@@ -6118,7 +6117,7 @@
                 }
             ],
             "maspalomas": [
-               {
+                {
                     "name": "Maspalomas Gay Pride",
                     "start": "2026-05-04",
                     "end": "2026-05-10"
@@ -6170,7 +6169,7 @@
                 }
             ],
             "rome": [
-               {
+                {
                     "name": "Mr Leather Italy",
                     "start": "2026-05-08",
                     "end": "2026-05-10"
@@ -6187,7 +6186,7 @@
                 }
             ],
             "sitges": [
-               {
+                {
                     "name": "Easter in Sitges",
                     "start": "2026-04-02",
                     "end": "2026-04-05"
@@ -6257,7 +6256,7 @@
                 }
             ],
             "puerto vallarta": [
-               {
+                {
                     "name": "Semana Santa Easter Festival, Puerto Vallarta",
                     "start": "2026-04-02",
                     "end": "2026-04-05",
@@ -6309,7 +6308,7 @@
                 }
             ],
             "rio de janeiro": [
-               {
+                {
                     "name": "Rio Carioca Festival by TNW",
                     "start": "2026-12-26",
                     "end": "2027-01-02",
@@ -6317,7 +6316,7 @@
                 }
             ],
             "sao paulo": [
-               {
+                {
                     "name": "TNW HIGH Pride Festival Sao Paulo",
                     "start": "2026-06-05",
                     "end": "2026-06-07",
@@ -6336,7 +6335,7 @@
                 }
             ],
             "san juan": [
-              {
+                {
                     "name": "Puerto Rico Gay Pride",
                     "start": "2026-06-05",
                     "end": "2026-06-07",
@@ -7200,7 +7199,7 @@
             }
         };
 
-        Object.assign(DATABASE.details, NEW_BATCH_3_CITIES);
+        
 
 
         // --- SPECIAL EVENTS DATA (BATCH 1) ---
@@ -7449,7 +7448,7 @@
             const dateEndInput = document.querySelector('#dateEnd');
 
             if (dateStartInput && dateEndInput) {
-                dateStartInput.addEventListener('change', function () {
+                dateStartInput.addEventListener('input', function () {
                     // Only auto-fill return date if it's empty (don't overwrite pre-filled event dates)
                     if (this.value && !dateEndInput.value) {
                         try {
