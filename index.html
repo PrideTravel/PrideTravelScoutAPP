@@ -490,61 +490,8 @@
                     <button onclick="showAllHotspots()" class="text-sm text-primary font-bold hover:underline">View
                         More</button>
                 </div>
-                <div class="flex gap-4 overflow-x-auto hide-scrollbar pb-6 -mx-4 px-4 snap-x">
-                    <!-- Dest 1 -->
-                    <div onclick="quickSearch('Berlin')"
-                        class="min-w-[280px] snap-center rounded-3xl overflow-hidden relative group shadow-2xl cursor-pointer active:scale-95 transition-transform rainbow-border">
-                        <img class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700"
-                            src="https://images.unsplash.com/photo-1560969184-10fe8719e047?auto=format&fit=crop&w=800&q=80" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 right-6">
-                            <span
-                                class="bg-yellow-400 text-slate-900 dark:text-white text-[10px] font-black px-2 py-1 rounded-lg uppercase mb-2 inline-block shadow-lg">Event:
-                                Berlin Pride</span>
-                            <h4 class="text-white text-2xl font-black mb-1">Berlin, Germany</h4>
-                            <div class="flex items-center gap-2 text-white/90 text-xs font-bold">
-                                <span
-                                    class="material-symbols-outlined text-sm text-green-400 fill-1">verified_user</span>
-                                Safety Score: 9.8/10
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Dest 2 -->
-                    <div onclick="quickSearch('Barcelona')"
-                        class="min-w-[280px] snap-center rounded-3xl overflow-hidden relative group shadow-2xl cursor-pointer active:scale-95 transition-transform rainbow-border">
-                        <img class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-                            src="https://images.unsplash.com/photo-1583997051651-8255c8d1e1bb?auto=format&fit=crop&w=800&q=80" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 right-6">
-                            <span
-                                class="bg-orange-500 text-white text-[10px] font-black px-2 py-1 rounded-lg uppercase mb-2 inline-block shadow-lg">Pride
-                                Week July 3-9</span>
-                            <h4 class="text-white text-2xl font-black mb-1">Barcelona, Spain</h4>
-                            <div class="flex items-center gap-2 text-white/90 text-xs font-bold">
-                                <span
-                                    class="material-symbols-outlined text-sm text-green-400 fill-1">verified_user</span>
-                                Safety Score: 9.5/10
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Dest 3 -->
-                    <div onclick="quickSearch('San Francisco')"
-                        class="min-w-[280px] snap-center rounded-3xl overflow-hidden relative group shadow-2xl cursor-pointer active:scale-95 transition-transform rainbow-border">
-                        <img class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-                            src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=800&q=80" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 right-6">
-                            <span
-                                class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded-lg uppercase mb-2 inline-block shadow-lg">Casto
-                                District</span>
-                            <h4 class="text-white text-2xl font-black mb-1">San Francisco, USA</h4>
-                            <div class="flex items-center gap-2 text-white/90 text-xs font-bold">
-                                <span
-                                    class="material-symbols-outlined text-sm text-green-400 fill-1">verified_user</span>
-                                Safety Score: 9.9/10
-                            </div>
-                        </div>
-                    </div>
+                <div id="hotspotsContainer" class="flex gap-4 overflow-x-auto hide-scrollbar pb-6 -mx-4 px-4 snap-x">
+                    <!-- JS populated -->
                 </div>
             </section>
 
@@ -6354,7 +6301,7 @@
                     "end": "2026-12-14",
                     "link": "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/"
                 }
-            ]
+            ],
             "bogota": [
                 {
                     "name": "Misterio International Halloween Festival Bogota",
@@ -7198,498 +7145,502 @@
                 ],
                 tours: ['Ybor City Food Tour', 'Busch Gardens', 'Riverwalk']
             }
-        }
-    };
+        };
 
-    // --- SPECIAL EVENTS DATA (BATCH 1) ---
-    const SPECIAL_EVENTS_DATA = [
-        { name: "4th of July New Orleans", city: "new orleans", start: "2026-07-04", end: "2026-07-04", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Amsterdam Bear Pride", city: "amsterdam", start: "2026-06-11", end: "2026-06-14", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Amsterdam Gay Pride", city: "amsterdam", start: "2026-07-25", end: "2026-08-08", link: "https://www.travelinpride.com/pride-amsterdam-world-pride-2026/" },
-        { name: "Amsterdam Leather & Fetish Pride", city: "amsterdam", start: "2026-10-15", end: "2026-10-19", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Amsterdam Light Festival", city: "amsterdam", start: "2027-11-26", end: "2027-01-17", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Amsterdam WorldPride 2026", city: "amsterdam", start: "2026-07-25", end: "2026-08-08", link: "https://www.travelinpride.com/pride-amsterdam-world-pride-2026/" },
-        { name: "Antwerp Gay Pride", city: "antwerp", start: "2026-08-05", end: "2026-08-09", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Asbury Park Bear Invasion", city: "asbury park", start: "2026-07-31", end: "2026-08-03", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Athens Pride", city: "athens", start: "2026-06-12", end: "2026-06-14", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Atlanta Bear Pride", city: "atlanta", start: "2026-04-24", end: "2026-04-26", link: "https://www.travelinpride.com/atlanta-pride/" },
-        { name: "Atlanta Pride", city: "atlanta", start: "2026-10-08", end: "2026-10-12", link: "https://www.travelinpride.com/atlanta-pride/" },
-        { name: "Atlanta Pride Circuit Party", city: "atlanta", start: "2026-10-08", end: "2026-10-12", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Atlanta Speedo Run", city: "atlanta", start: "2026-12-05", end: "2026-12-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Barcelona Circuit Festival", city: "barcelona", start: "2026-08-01", end: "2026-08-09", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Barcelona Gay Pride", city: "barcelona", start: "2026-07-16", end: "2026-07-19", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Barcelona NYE Nochevieja", city: "barcelona", start: "2026-12-31", end: "2026-12-31", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Barcelona Rubber Weekend", city: "barcelona", start: "2026-11-26", end: "2026-11-29", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "French Quarter Festival", city: "new orleans", start: "2026-04-16", end: "2026-04-19", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Bear Pride Cologne", city: "cologne", start: "2026-11-18", end: "2026-11-22", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Gay Easter Parade", city: "new orleans", start: "2026-04-05", end: "2026-04-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Fiesta San Antonio", city: "san antonio", start: "2026-04-16", end: "2026-04-26", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "San Antonio Pride", city: "san antonio", start: "2026-06-26", end: "2026-06-28", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Comic-Con San Diego", city: "san diego", start: "2026-07-23", end: "2026-07-26", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "BigHorn Rodeo Las Vegas", city: "las vegas", start: "2026-05-22", end: "2026-05-24", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Berlin Easter Leather/Fetish Week", city: "berlin", start: "2026-04-01", end: "2026-04-06", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Berlin Festival of Lights", city: "berlin", start: "2026-10-09", end: "2026-10-18", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Berlin Gay Pride (CSD Berlin)", city: "berlin", start: "2026-07-18", end: "2026-07-26", link: "https://www.travelinpride.com/csd-berlin-berlin-pride/" },
-        { name: "Berlin SKINS & Punks Weekend", city: "berlin", start: "2026-10-29", end: "2026-11-01", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "BierPassie Weekend", city: "antwerp", start: "2026-06-19", end: "2026-06-21", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Las Vegas Labor Day Weekend", city: "las vegas", start: "2026-09-04", end: "2026-09-06", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Black Tie Weekend Dallas", city: "dallas", start: "2026-11-13", end: "2026-11-15", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Halloween New Orleans", city: "new orleans", start: "2026-10-23", end: "2026-10-31", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Bonaparte Outdoor Party", city: "antwerp", start: "2026-08-09", end: "2026-08-09", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Bone Island Bear it All Weekend", city: "key west", start: "2026-07-08", end: "2026-07-12", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "BOOM! Hamburg Silvester NYE", city: "hamburg", start: "2026-12-31", end: "2026-12-31", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Boston Gay Pride", city: "boston", start: "2026-06-06", end: "2026-06-14", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Boston Harborfest", city: "boston", start: "2026-07-02", end: "2026-07-04", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Sin City Classic", city: "las vegas", start: "2027-01-14", end: "2027-01-17", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "New Orleans Holiday/NYE Season", city: "new orleans", start: "2026-11-13", end: "2026-12-31", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "New Orleans Jazz Fest", city: "new orleans", start: "2026-04-23", end: "2026-04-30", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Bunnies on the Bayou (Easter)", city: "houston", start: "2026-04-05", end: "2026-04-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Smokeout Las Vegas", city: "las vegas", start: "2026-04-01", end: "2026-04-06", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "San Diego Pride", city: "san diego", start: "2026-07-15", end: "2026-07-19", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Bearrison Street Fair", city: "san francisco", start: "2026-10-17", end: "2026-10-17", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Chicago Air and Water Show Weekend", city: "chicago", start: "2026-08-28", end: "2026-08-30", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Chicago Gay Pride", city: "chicago", start: "2026-06-20", end: "2026-06-28", link: "https://www.travelinpride.com/chicago-pride/" },
-        { name: "Christmas Avenue Berlin", city: "berlin", start: "2026-11-23", end: "2026-12-23", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "CLAW Columbus (Leather Awareness)", city: "columbus", start: "2026-04-02", end: "2026-04-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Cologne Fetish Pride", city: "cologne", start: "2026-05-21", end: "2026-05-26", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Cologne Gay Pride", city: "cologne", start: "2026-07-03", end: "2026-07-06", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Columbus Pride Festival", city: "columbus", start: "2026-06-19", end: "2026-06-21", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Castro Street Fair", city: "san francisco", start: "2026-10-04", end: "2026-10-04", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Conch Republic Drag Race", city: "key west", start: "2026-04-17", end: "2026-04-26", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Dallas Pride", city: "dallas", start: "2026-06-06", end: "2026-06-06", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Dallas Purple Party", city: "dallas", start: "2026-04-30", end: "2026-05-04", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Denver Pride", city: "denver", start: "2026-06-24", end: "2026-06-27", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "New Orleans Pride Festival", city: "new orleans", start: "2026-06-11", end: "2026-06-14", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Dragon Con Atlanta", city: "atlanta", start: "2026-09-03", end: "2026-09-07", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Dublin Bear Pride", city: "dublin", start: "2026-06-26", end: "2026-06-28", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Easter Sunday in The Park", city: "san francisco", start: "2026-04-05", end: "2026-04-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Folsom Street Fair", city: "san francisco", start: "2026-09-20", end: "2026-09-27", link: "https://www.travelinpride.com/san-francisco-pride-duplicate-9120/" },
-        { name: "San Francisco Gay Pride", city: "san francisco", start: "2026-06-20", end: "2026-06-28", link: "https://www.travelinpride.com/san-francisco-pride/" },
-        { name: "BEEFMINCE EASTER", city: "london", start: "2026-04-03", end: "2026-04-03", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Up Your Alley Weekend!", city: "san francisco", start: "2026-07-22", end: "2026-07-27", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Festa Major de Gràcia", city: "barcelona", start: "2026-08-14", end: "2026-08-20", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Fetish Week London", city: "london", start: "2026-07-05", end: "2026-07-12", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Puerto Rico Gay Pride", city: "san juan", start: "2026-06-05", end: "2026-06-07", link: "https://www.travelinpride.com/pride-puerto-rico/" },
-        { name: "Cabo Rojo Pride", city: "san juan", start: "2026-06-12", end: "2026-06-14", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Fire Island Bear Weekend", city: "fire island", start: "2026-06-11", end: "2026-06-14", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Fire Island Invasion", city: "fire island", start: "2026-07-03", end: "2026-07-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Fire Island Leather Weekend", city: "fire island", start: "2026-05-15", end: "2026-05-17", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Fire Island Pines Party", city: "fire island", start: "2026-07-31", end: "2026-08-02", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Red Dress Run New Orleans", city: "new orleans", start: "2026-08-08", end: "2026-08-08", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Floatarama Fort Lauderdale", city: "fort lauderdale", start: "2026-06-13", end: "2026-06-13", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Flockfest Fort Lauderdale", city: "fort lauderdale", start: "2026-07-09", end: "2026-07-12", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Folsom Europe", city: "berlin", start: "2026-09-10", end: "2026-09-13", link: "https://www.travelinpride.com/folsom-europe/" },
-        { name: "Winter Pride Fest Puerto Rico", city: "san juan", start: "2026-12-10", end: "2026-12-14", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Fort Lauderdale Tropical Bear Week", city: "fort lauderdale", start: "2026-04-07", end: "2026-04-12", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Southern Decadence", city: "new orleans", start: "2026-09-03", end: "2026-09-07", link: "https://www.travelinpride.com/southern-decadence/" },
-        { name: "Broadway Bares New York", city: "new york city", start: "2026-06-21", end: "2026-06-21", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "TNW HIGH Pride Festival Sao Paulo", city: "sao paulo", start: "2026-06-05", end: "2026-06-07", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "London Pride", city: "london", start: "2026-07-03", end: "2026-07-05", link: "https://www.travelinpride.com/london-pride/" },
-        { name: "Brooklyn Pride", city: "new york city", start: "2026-06-08", end: "2026-06-14", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Harlem Pride New York", city: "new york city", start: "2026-06-27", end: "2026-06-27", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Gay New Years Eve Key West", city: "key west", start: "2026-12-31", end: "2026-12-31", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Gay Pride Dublin", city: "dublin", start: "2026-06-25", end: "2026-06-28", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Gay Pride Houston", city: "houston", start: "2026-06-04", end: "2026-06-07", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Mighty Hoopla London", city: "london", start: "2026-05-30", end: "2026-05-31", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Gay Days Anaheim", city: "los angeles", start: "2026-09-18", end: "2026-09-20", link: "https://www.travelinpride.com/gay-days-anaheim/" },
-        { name: "Long Island Pride New York", city: "new york city", start: "2026-06-14", end: "2026-06-14", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Hamburg Gay Pride", city: "hamburg", start: "2026-07-30", end: "2026-08-02", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Harbor Pride Hamburg", city: "hamburg", start: "2026-05-08", end: "2026-05-10", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Hard Labor Fort Lauderdale", city: "fort lauderdale", start: "2026-09-03", end: "2026-09-06", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "New York City Gay Pride", city: "new york city", start: "2026-06-24", end: "2026-06-29", link: "https://www.travelinpride.com/nyc-pride/" },
-        { name: "Heavenue (Christmas Market)", city: "cologne", start: "2026-11-16", end: "2026-12-23", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Sao Paulo Gay Pride", city: "sao paulo", start: "2026-06-03", end: "2026-06-07", link: "https://www.travelinpride.com/sao-paulo-pride/" },
-        { name: "Honolulu Gay Pride", city: "honolulu", start: "2026-10-16", end: "2026-10-18", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "New York Comic Con", city: "new york city", start: "2026-10-08", end: "2026-10-11", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Ibiza Gay Pride", city: "ibiza", start: "2026-06-06", end: "2026-06-13", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "The Urban Bear Weekend New York", city: "new york city", start: "2026-09-17", end: "2026-09-20", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Village Halloween Parade", city: "new york city", start: "2026-10-31", end: "2026-10-31", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "International Mr Leather (IML)", city: "chicago", start: "2026-05-21", end: "2026-05-25", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Jersey Pride Festival Asbury Park", city: "asbury park", start: "2026-06-05", end: "2026-06-07", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Joining Hearts Weekend Atlanta", city: "atlanta", start: "2026-07-24", end: "2026-07-26", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Key West - Fantasy Fest", city: "key west", start: "2026-10-16", end: "2026-10-25", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Key West Bear Weekend", city: "key west", start: "2026-10-28", end: "2026-11-01", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Key West Gay Pride", city: "key west", start: "2026-06-03", end: "2026-06-07", link: "https://www.travelinpride.com/key-west-pride" },
-        { name: "Kingsday (Amsterdam)", city: "amsterdam", start: "2026-04-27", end: "2026-04-27", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Shanghai Dragon Boat Festival", city: "shanghai", start: "2026-06-19", end: "2026-06-19", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Bear Jamboree", city: "orlando", start: "2026-06-04", end: "2026-06-08", link: "https://www.travelinpride.com/bear-jamboree/" },
-        { name: "La Mercè Festival", city: "barcelona", start: "2026-09-20", end: "2026-09-24", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Halloween Carnival West Hollywood", city: "los angeles", start: "2026-10-31", end: "2026-10-31", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "LeiBear Weekend Honolulu", city: "honolulu", start: "2026-05-21", end: "2026-05-25", link: "https://www.travelinpride.com/lei-a-bear-weekend/" },
-        { name: "LesBiSchwule Parkfest", city: "berlin", start: "2026-08-08", end: "2026-08-08", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Los Angeles Gay Pride", city: "los angeles", start: "2026-06-12", end: "2026-06-14", link: "https://www.travelinpride.com/la-pride/" },
-        { name: "Gay Days Orlando", city: "orlando", start: "2026-06-04", end: "2026-06-08", link: "https://www.travelinpride.com/gay-days-2026/" },
-        { name: "Off Sunset Festival", city: "los angeles", start: "2026-05-03", end: "2026-05-03", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Love United Festival Antwerp", city: "antwerp", start: "2026-08-08", end: "2026-08-08", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "New Year's Eve in Shanghai", city: "shanghai", start: "2026-12-31", end: "2026-12-31", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "OutLoud Music Festival", city: "los angeles", start: "2026-06-06", end: "2026-06-07", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "WeHo Pride West Hollywood", city: "los angeles", start: "2026-06-05", end: "2026-06-07", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Brava Festival Madrid", city: "madrid", start: "2026-09-18", end: "2026-09-19", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Mad Bear Madrid", city: "madrid", start: "2026-12-03", end: "2026-12-10", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Madrid Leather Weekend", city: "madrid", start: "2026-10-30", end: "2026-11-01", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Madrid Pride", city: "madrid", start: "2026-06-25", end: "2026-07-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Sleazy Madrid", city: "madrid", start: "2026-04-29", end: "2026-05-03", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "WE Party Madrid NYE Party", city: "madrid", start: "2026-12-31", end: "2026-12-31", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "We Party Pride Festival Madrid", city: "madrid", start: "2026-07-01", end: "2026-07-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Malta Fireworks Festival", city: "malta", start: "2026-04-20", end: "2026-04-30", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Malta Gay Pride", city: "malta", start: "2026-09-04", end: "2026-09-13", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Mighty Hoopla Malta", city: "malta", start: "2026-09-25", end: "2026-09-27", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Matinee Gay Easter Weekend", city: "barcelona", start: "2026-04-03", end: "2026-04-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Bears Week Sitges (May)", city: "sitges", start: "2026-04-30", end: "2026-05-03", link: "https://www.travelinpride.com/bears-week-sitges-may/" },
-        { name: "Bears Week Sitges (Sept)", city: "sitges", start: "2026-09-04", end: "2026-09-13", link: "https://www.travelinpride.com/bears-week-sitges-september/" },
-        { name: "One Magical Weekend", city: "orlando", start: "2026-06-04", end: "2026-06-08", link: "https://www.travelinpride.com/one-magical-weekend/" },
-        { name: "Great British Bears Bash", city: "manchester", start: "2026-04-30", end: "2026-05-04", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Easter in Sitges", city: "sitges", start: "2026-04-02", end: "2026-04-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Midsummer Party (Antwerp)", city: "antwerp", start: "2026-08-06", end: "2026-08-06", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Manchester Gay Pride", city: "manchester", start: "2026-08-28", end: "2026-08-31", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Manchester Leather Weekend", city: "manchester", start: "2026-10-02", end: "2026-10-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Milkshake Festival Amsterdam", city: "amsterdam", start: "2026-07-25", end: "2026-07-26", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Blatino Oasis Palm Springs", city: "palm springs", start: "2026-04-30", end: "2026-05-03", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Desertopia Palm Springs", city: "palm springs", start: "2026-05-23", end: "2026-05-26", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Mr. International Rubber Weekend", city: "chicago", start: "2026-11-05", end: "2026-11-08", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Hot Rodeo Palm Springs", city: "palm springs", start: "2026-05-01", end: "2026-05-03", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Palm Springs Gay Pride", city: "palm springs", start: "2026-11-05", end: "2026-11-08", link: "https://www.travelinpride.com/palm-springs-pride/" },
-        { name: "Palm Springs Labor Day Weekend", city: "palm springs", start: "2026-09-03", end: "2026-09-07", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Palm Springs Leather Pride", city: "palm springs", start: "2026-10-29", end: "2026-11-01", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Festa de la Verema Sitges", city: "sitges", start: "2026-10-02", end: "2026-10-04", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Manchester Rubber Weekend", city: "manchester", start: "2026-05-14", end: "2026-05-18", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Palm Springs Memorial Weekend", city: "palm springs", start: "2026-05-21", end: "2026-05-24", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Pre-Hibernation Weekend", city: "manchester", start: "2026-11-13", end: "2026-11-15", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Tidal Wave Bear Week", city: "palm springs", start: "2026-06-18", end: "2026-06-21", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Kink X Paris", city: "paris", start: "2026-05-22", end: "2026-05-25", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Paris Gay Pride", city: "paris", start: "2026-06-26", end: "2026-06-28", link: "https://www.travelinpride.com/paris-pride/" },
-        { name: "Rub'Zone & Rub Week Paris", city: "paris", start: "2026-04-30", end: "2026-05-03", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Phuket Gay Pride", city: "phuket", start: "2026-06-01", end: "2026-06-07", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Peach Party", city: "atlanta", start: "2026-05-29", end: "2026-06-01", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Circuit Asia Weekend", city: "phuket", start: "2026-06-19", end: "2026-06-21", link: "https://www.travelinpride.com/circuit-asia-weekend/" },
-        { name: "Manila Metro Pride", city: "manilla", start: "2026-06-27", end: "2026-06-27", link: "https://www.travelinpride.com/manilla-pride/" },
-        { name: "Pride DeLux Antwerp", city: "antwerp", start: "2026-08-08", end: "2026-08-09", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Pride in Oaklawn & Cedar Springs", city: "dallas", start: "2026-09-13", end: "2026-09-20", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "New Years Eve in Phuket", city: "phuket", start: "2026-12-31", end: "2026-12-31", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Portland Pride", city: "portland", start: "2026-07-17", end: "2026-07-19", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Bear Week Provincetown", city: "provincetown", start: "2026-07-11", end: "2026-07-18", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "First Light Provincetown", city: "provincetown", start: "2027-12-26", end: "2027-01-01", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Frolic Weekend Provincetown", city: "provincetown", start: "2026-06-18", end: "2026-06-23", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Rocky Mountain Regional Gay Rodeo", city: "denver", start: "2026-07-24", end: "2026-07-26", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Independence Provincetown", city: "provincetown", start: "2026-06-27", end: "2026-07-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Memorial Day Weekend Provincetown", city: "provincetown", start: "2026-05-22", end: "2026-05-25", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Mr New England Leather", city: "provincetown", start: "2026-11-20", end: "2026-11-22", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Fiesta Mayor Sitges", city: "sitges", start: "2026-08-21", end: "2026-08-24", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Nit de Foc (Night of Fire)", city: "sitges", start: "2026-09-19", end: "2026-09-19", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Sitges Flower Festival", city: "sitges", start: "2026-06-07", end: "2026-06-07", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "CanCanaria Adventure Week", city: "maspalomas", start: "2027-01-25", end: "2027-01-31", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Sitges Leather & Fetish Meeting", city: "sitges", start: "2026-05-01", end: "2026-05-01", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Sitges Pride", city: "sitges", start: "2026-06-10", end: "2026-06-14", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Eurovision Pride Maspalomas", city: "maspalomas", start: "2026-05-14", end: "2026-05-17", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Provincetown Carnival", city: "provincetown", start: "2026-08-16", end: "2026-08-25", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Provincetown Halloween", city: "provincetown", start: "2026-10-29", end: "2026-11-01", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Spring Bears Cologne", city: "cologne", start: "2026-04-17", end: "2026-04-19", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Vivid Sydney Festival", city: "sydney", start: "2026-05-22", end: "2026-06-13", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Stadfest St Georg Hamburg", city: "hamburg", start: "2026-05-30", end: "2026-05-31", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Stadtfest Berlin", city: "berlin", start: "2026-07-18", end: "2026-07-19", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Stonewall Pride Wilton Manors", city: "fort lauderdale", start: "2026-06-18", end: "2026-06-21", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Streetheart Festival Amsterdam", city: "amsterdam", start: "2026-09-12", end: "2026-09-12", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Sueños de Libertad Festival", city: "ibiza", start: "2026-06-20", end: "2026-06-20", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Superflirt Festival", city: "amsterdam", start: "2026-08-29", end: "2026-08-29", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Provincetown Holly Folly", city: "provincetown", start: "2026-12-04", end: "2026-12-06", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Sydney Leather Festival", city: "sydney", start: "2026-07-16", end: "2026-07-26", link: "https://www.travelinpride.com/sydney-leather-pride/" },
-        { name: "Provincetown Pride", city: "provincetown", start: "2026-06-05", end: "2026-06-07", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Gay New Years Eve Sydney", city: "sydney", start: "2026-12-29", end: "2026-12-29", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Taiwan Gay Pride", city: "taipei", start: "2026-10-29", end: "2026-11-01", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Provincetown White Party", city: "provincetown", start: "2026-09-05", end: "2026-09-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Spooky Bear Halloween", city: "provincetown", start: "2026-10-29", end: "2026-11-01", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Formosa Pride", city: "taipei", start: "2026-10-30", end: "2026-11-01", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Gasparilla Invasion & Parade", city: "tampa", start: "2027-01-30", end: "2027-01-30", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "St. Pete Pride (Tampa)", city: "tampa", start: "2026-05-29", end: "2026-06-28", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Tropical Heat Key West", city: "key west", start: "2026-08-12", end: "2026-08-16", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Tropikali Festival Amsterdam", city: "amsterdam", start: "2026-06-13", end: "2026-06-13", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Maspalomas Christmas & NYE", city: "maspalomas", start: "2027-12-18", end: "2027-01-03", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Unicorn Festival Antwerp", city: "antwerp", start: "2026-06-19", end: "2026-06-21", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Tokyo Pride", city: "tokyo", start: "2026-06-06", end: "2026-06-07", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Sinland Tokyo Circuit Festival", city: "tokyo", start: "2026-10-02", end: "2026-10-04", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Gay Pride Toronto", city: "toronto", start: "2026-06-25", end: "2026-06-28", link: "https://www.travelinpride.com/pride-toronto/" },
-        { name: "Swim for Life Weekend", city: "provincetown", start: "2026-09-11", end: "2026-09-13", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Water Park Day Barcelona", city: "barcelona", start: "2026-08-04", end: "2026-08-04", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Maspalomas Fetish Pride", city: "maspalomas", start: "2026-10-01", end: "2026-10-12", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Maspalomas Gay Pride", city: "maspalomas", start: "2026-05-04", end: "2026-05-10", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Winter Pride Maspalomas", city: "maspalomas", start: "2026-11-02", end: "2026-11-08", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Wicked Manors Halloween", city: "fort lauderdale", start: "2026-10-31", end: "2026-10-31", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Wilton Manors 4th of July Weekend", city: "fort lauderdale", start: "2026-07-01", end: "2026-07-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Love Pride Medellin Circuit Festival", city: "medellin", start: "2026-06-26", end: "2026-06-29", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Festival of the Flowers Medellin Feria de las Flores", city: "medellin", start: "2026-08-01", end: "2026-08-10", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Woof Week Key West", city: "key west", start: "2026-04-21", end: "2026-04-26", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Mexico City Gay Pride", city: "mexico city", start: "2026-06-24", end: "2026-06-29", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Bearmex Bear Pride Festival", city: "mexico city", start: "2026-06-24", end: "2026-06-29", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Latin American Pride", city: "mexico city", start: "2026-06-24", end: "2026-06-29", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Day of the Dead Mexico Dia de los Muertos", city: "mexico city", start: "2026-10-17", end: "2026-11-03", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Miami Beach Gay Pride", city: "miami", start: "2026-04-08", end: "2026-04-12", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Thanksgiving Weekend Provincetown", city: "provincetown", start: "2026-11-26", end: "2026-11-29", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Semana Santa Easter Festival, Puerto Vallarta", city: "puerto vallarta", start: "2026-04-02", end: "2026-04-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Puerto Vallarta Gay Pride", city: "puerto vallarta", start: "2026-05-17", end: "2026-05-24", link: "https://www.travelinpride.com/puerto-vallarta-gay-pride/" },
-        { name: "Bear Pride Puerto Vallarta", city: "puerto vallarta", start: "2026-05-20", end: "2026-05-24", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "4th of July Weekend in Puerto Vallarta", city: "puerto vallarta", start: "2026-09-04", end: "2026-09-04", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Puerto Vallarta Labor Day Weekend", city: "puerto vallarta", start: "2026-07-03", end: "2026-07-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Halloween Puerto Vallarta", city: "puerto vallarta", start: "2026-10-25", end: "2026-11-02", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Gay Pride Buenos Aires", city: "buenos aires", start: "2026-11-07", end: "2026-11-07", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Puerto Vallarta Industry Club Gay New Years Party", city: "puerto vallarta", start: "2026-12-28", end: "2026-12-28", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Toronto Easter Parade & Weekend Celebration", city: "toronto", start: "2026-04-02", end: "2026-04-02", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "European Porn Awards", city: "torremolinos", start: "2026-10-09", end: "2026-10-09", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Infinity October Edition", city: "torremolinos", start: "2026-10-07", end: "2026-10-11", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Kink Weekend Torremolinos", city: "torremolinos", start: "2026-06-18", end: "2026-06-21", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Mad Bear Beach Festival", city: "torremolinos", start: "2026-08-07", end: "2026-08-18", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Matrix Easter Festival", city: "torremolinos", start: "2026-04-03", end: "2026-04-04", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Matrix Sun Festival", city: "torremolinos", start: "2026-08-18", end: "2026-08-23", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "The Grabby Awards", city: "torremolinos", start: "2026-04-23", end: "2026-04-26", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Torremolinos Bear Fest", city: "torremolinos", start: "2026-07-14", end: "2026-07-19", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Torremolinos Fetish Weekend", city: "torremolinos", start: "2026-05-07", end: "2026-05-10", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "The Bingham Cup Brisbane", city: "brisbane", start: "2026-08-16", end: "2026-08-24", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Torremolinos Pride", city: "torremolinos", start: "2026-05-26", end: "2026-06-06", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Rubbout Vancouver", city: "vancouver", start: "2026-04-16", end: "2026-04-19", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Vancouver Gay Pride", city: "vancouver", start: "2026-07-25", end: "2026-08-02", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Circuit Songkran", city: "bangkok", start: "2026-04-10", end: "2026-04-14", link: "https://www.travelinpride.com/songkran-bangkok/" },
-        { name: "Bangkok Pride Month", city: "bangkok", start: "2026-05-31", end: "2026-06-28", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Christmas Markets and Gay New Year in Bangkok", city: "bangkok", start: "2026-11-01", end: "2027-01-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Bangkok Fetish Ball", city: "bangkok", start: "2026-11-21", end: "2026-11-21", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "White Party Bangkok", city: "bangkok", start: "2026-12-29", end: "2027-01-02", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Rio Carioca Festival by TNW", city: "rio de janeiro", start: "2026-12-26", end: "2027-01-02", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Mr Leather Italy", city: "rome", start: "2026-05-08", end: "2026-05-10", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Rome Bears Week", city: "rome", start: "2027-01-01", end: "2027-01-06", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Pride Festival Vancouver", city: "vancouver", start: "2026-08-02", end: "2026-08-02", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "The Diversity Ball", city: "vienna", start: "2026-09-05", end: "2026-09-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Vienna Fetish Spring", city: "vienna", start: "2026-05-13", end: "2026-05-17", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Vienna Gay Pride", city: "vienna", start: "2026-05-29", end: "2026-06-14", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Vienna In Black", city: "vienna", start: "2026-10-23", end: "2026-10-26", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Floatilla Hong Kong", city: "hong kong", start: "2026-10-17", end: "2026-10-17", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Twin Cities Gay Pride", city: "minneapolis", start: "2026-06-27", end: "2026-06-28", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Pink Loerie Mardi Gras", city: "capetown", start: "2026-04-30", end: "2026-05-03", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Cape Town Halloween Party", city: "capetown", start: "2026-10-31", end: "2026-10-31", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Cape Town Gay Christmas and New Year", city: "capetown", start: "2026-12-01", end: "2027-01-01", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Capital Pride Washington DC", city: "washington dc", start: "2026-06-08", end: "2026-06-14", link: "https://www.travelinpride.com/capital-pride/" },
-        { name: "High Heel Drag Queen Race", city: "washington dc", start: "2026-10-27", end: "2026-10-27", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Mid Atlantic Leather Weekend", city: "washington dc", start: "2027-01-15", end: "2027-01-18", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Rome Gay Pride", city: "rome", start: "2026-06-14", end: "2026-06-20", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Winter Carnival", city: "minneapolis", start: "2027-01-28", end: "2027-02-07", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Sugarbear Weekend Montreal", city: "montreal", start: "2026-04-08", end: "2026-04-12", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Montreal Gay Pride", city: "montreal", start: "2026-07-30", end: "2026-08-09", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "L'International des Feux Loto-Québec", city: "montreal", start: "2026-08-04", end: "2026-08-22", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
-        { name: "Xlsior Mykonos", city: "mykonos", start: "2026-08-20", end: "2026-08-25", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" }
-        ,
-        { name: "BGC: Group Cruise (Port Canaveral)", city: "port canaveral", start: "2026-09-18", end: "2026-09-18", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/", type: "Cruise", company: "Big Gay Cruise" },
-        { name: "BGC: Halloween Group Cruise", city: "miami", start: "2026-10-31", end: "2026-10-31", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/", type: "Cruise", company: "Big Gay Cruise" },
-        { name: "BGC: Winter Group Cruise", city: "miami", start: "2027-01-28", end: "2027-01-28", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/", type: "Cruise", company: "Big Gay Cruise" },
-        { name: "Atlantis: Epic Caribbean Cruise", city: "miami", start: "2027-03-07", end: "2027-03-07", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/", type: "Cruise", company: "Atlantis Events" },
-        { name: "Daddy Cruise: Alaska Explorer", city: "vancouver", start: "2026-08-30", end: "2026-09-06", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/", type: "Cruise", company: "Daddy Cruises" },
-        { name: "Vacaya: Total Eclipse Med Cruise", city: "barcelona", start: "2026-08-06", end: "2026-08-06", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/", type: "Cruise", company: "Vacaya" },
-        { name: "Daddy Cruise: Singles & Friends", city: "fort lauderdale", start: "2026-12-05", end: "2026-12-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/", type: "Cruise", company: "Daddy Cruises" },
-        { name: "Chumley’s BearCruise: Alaska", city: "seattle", start: "2026-05-10", end: "2026-05-10", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/", type: "Cruise", company: "Bear Cruises" },
-        { name: "Brand g: Luxury Greek Isles", city: "athens", start: "2027-09-12", end: "2027-09-12", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/", type: "Cruise", company: "Brand g" },
-        { name: "Adventure Bears: Panama Canal", city: "fort lauderdale", start: "2026-10-30", end: "2026-11-11", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/", type: "Cruise", company: "Adventure Bears" },
-        { name: "Atlantis: Greek Isles & Turkey", city: "athens", start: "2026-07-05", end: "2026-07-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/", type: "Cruise", company: "Atlantis Events" },
-        { name: "Brand g: Castles of the Rhine", city: "amsterdam", start: "2026-08-03", end: "2026-08-03", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/", type: "Cruise", company: "Brand g" },
-        { name: "Atlantis: Thanksgiving Caribbean", city: "miami", start: "2026-11-22", end: "2026-11-22", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/", type: "Cruise", company: "Atlantis Events" },
-        { name: "Adventure Bears: Norwegian Fjords", city: "southampton", start: "2026-05-09", end: "2026-05-09", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/", type: "Cruise", company: "Adventure Bears" },
-        { name: "Vacaya: 10th Birthday Caribbean", city: "miami", start: "2027-02-14", end: "2027-02-14", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/", type: "Cruise", company: "Vacaya" }
-    ];
+        // --- SPECIAL EVENTS DATA (BATCH 1) ---
+        const SPECIAL_EVENTS_DATA = [
+            { name: "4th of July New Orleans", city: "new orleans", start: "2026-07-04", end: "2026-07-04", link: "https://www.google.com/search?q=4th%20of%20July%20New%20Orleans%20event%20New%20Orleans" },
+            { name: "Amsterdam Bear Pride", city: "amsterdam", start: "2026-06-11", end: "2026-06-14", link: "https://www.google.com/search?q=Amsterdam%20Bear%20Pride%20event%20Amsterdam" },
+            { name: "Amsterdam Gay Pride", city: "amsterdam", start: "2026-07-25", end: "2026-08-08", link: "https://www.travelinpride.com/pride-amsterdam-world-pride-2026/" },
+            { name: "Amsterdam Leather & Fetish Pride", city: "amsterdam", start: "2026-10-15", end: "2026-10-19", link: "https://www.google.com/search?q=Amsterdam%20Leather%20%26%20Fetish%20Pride%20event%20Amsterdam" },
+            { name: "Amsterdam Light Festival", city: "amsterdam", start: "2027-11-26", end: "2027-01-17", link: "https://www.google.com/search?q=Amsterdam%20Light%20Festival%20event%20Amsterdam" },
+            { name: "Amsterdam WorldPride 2026", city: "amsterdam", start: "2026-07-25", end: "2026-08-08", link: "https://www.travelinpride.com/pride-amsterdam-world-pride-2026/" },
+            { name: "Antwerp Gay Pride", city: "antwerp", start: "2026-08-05", end: "2026-08-09", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Asbury Park Bear Invasion", city: "asbury park", start: "2026-07-31", end: "2026-08-03", link: "https://www.google.com/search?q=Asbury%20Park%20Bear%20Invasion%20event%20Asbury%20Park" },
+            { name: "Athens Pride", city: "athens", start: "2026-06-12", end: "2026-06-14", link: "https://www.google.com/search?q=Athens%20Pride%20event%20Athens" },
+            { name: "Atlanta Bear Pride", city: "atlanta", start: "2026-04-24", end: "2026-04-26", link: "https://www.travelinpride.com/atlanta-pride/" },
+            { name: "Atlanta Pride", city: "atlanta", start: "2026-10-08", end: "2026-10-12", link: "https://www.travelinpride.com/atlanta-pride/" },
+            { name: "Atlanta Pride Circuit Party", city: "atlanta", start: "2026-10-08", end: "2026-10-12", link: "https://www.google.com/search?q=Atlanta%20Pride%20Circuit%20Party%20event%20Atlanta" },
+            { name: "Atlanta Speedo Run", city: "atlanta", start: "2026-12-05", end: "2026-12-05", link: "https://www.google.com/search?q=Atlanta%20Speedo%20Run%20event%20Atlanta" },
+            { name: "Barcelona Circuit Festival", city: "barcelona", start: "2026-08-01", end: "2026-08-09", link: "https://www.google.com/search?q=Barcelona%20Circuit%20Festival%20event%20Barcelona" },
+            { name: "Barcelona Gay Pride", city: "barcelona", start: "2026-07-16", end: "2026-07-19", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Barcelona NYE Nochevieja", city: "barcelona", start: "2026-12-31", end: "2026-12-31", link: "https://www.google.com/search?q=Barcelona%20NYE%20Nochevieja%20event%20Barcelona" },
+            { name: "Barcelona Rubber Weekend", city: "barcelona", start: "2026-11-26", end: "2026-11-29", link: "https://www.google.com/search?q=Barcelona%20Rubber%20Weekend%20event%20Barcelona" },
+            { name: "French Quarter Festival", city: "new orleans", start: "2026-04-16", end: "2026-04-19", link: "https://www.google.com/search?q=French%20Quarter%20Festival%20event%20New%20Orleans" },
+            { name: "Bear Pride Cologne", city: "cologne", start: "2026-11-18", end: "2026-11-22", link: "https://www.google.com/search?q=Bear%20Pride%20Cologne%20event%20Cologne" },
+            { name: "Gay Easter Parade", city: "new orleans", start: "2026-04-05", end: "2026-04-05", link: "https://www.google.com/search?q=Gay%20Easter%20Parade%20event%20New%20Orleans" },
+            { name: "Fiesta San Antonio", city: "san antonio", start: "2026-04-16", end: "2026-04-26", link: "https://www.google.com/search?q=Fiesta%20San%20Antonio%20event%20San%20Antonio" },
+            { name: "San Antonio Pride", city: "san antonio", start: "2026-06-26", end: "2026-06-28", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Comic-Con San Diego", city: "san diego", start: "2026-07-23", end: "2026-07-26", link: "https://www.google.com/search?q=Comic-Con%20San%20Diego%20event%20San%20Diego" },
+            { name: "BigHorn Rodeo Las Vegas", city: "las vegas", start: "2026-05-22", end: "2026-05-24", link: "https://www.google.com/search?q=BigHorn%20Rodeo%20Las%20Vegas%20event%20Las%20Vegas" },
+            { name: "Berlin Easter Leather/Fetish Week", city: "berlin", start: "2026-04-01", end: "2026-04-06", link: "https://www.google.com/search?q=Berlin%20Easter%20Leather/Fetish%20Week%20event%20Berlin" },
+            { name: "Berlin Festival of Lights", city: "berlin", start: "2026-10-09", end: "2026-10-18", link: "https://www.google.com/search?q=Berlin%20Festival%20of%20Lights%20event%20Berlin" },
+            { name: "Berlin Gay Pride (CSD Berlin)", city: "berlin", start: "2026-07-18", end: "2026-07-26", link: "https://www.travelinpride.com/csd-berlin-berlin-pride/" },
+            { name: "Berlin SKINS & Punks Weekend", city: "berlin", start: "2026-10-29", end: "2026-11-01", link: "https://www.google.com/search?q=Berlin%20SKINS%20%26%20Punks%20Weekend%20event%20Berlin" },
+            { name: "BierPassie Weekend", city: "antwerp", start: "2026-06-19", end: "2026-06-21", link: "https://www.google.com/search?q=BierPassie%20Weekend%20event%20Antwerp" },
+            { name: "Las Vegas Labor Day Weekend", city: "las vegas", start: "2026-09-04", end: "2026-09-06", link: "https://www.google.com/search?q=Las%20Vegas%20Labor%20Day%20Weekend%20event%20Las%20Vegas" },
+            { name: "Black Tie Weekend Dallas", city: "dallas", start: "2026-11-13", end: "2026-11-15", link: "https://www.google.com/search?q=Black%20Tie%20Weekend%20Dallas%20event%20Dallas" },
+            { name: "Halloween New Orleans", city: "new orleans", start: "2026-10-23", end: "2026-10-31", link: "https://www.google.com/search?q=Halloween%20New%20Orleans%20event%20New%20Orleans" },
+            { name: "Bonaparte Outdoor Party", city: "antwerp", start: "2026-08-09", end: "2026-08-09", link: "https://www.google.com/search?q=Bonaparte%20Outdoor%20Party%20event%20Antwerp" },
+            { name: "Bone Island Bear it All Weekend", city: "key west", start: "2026-07-08", end: "2026-07-12", link: "https://www.google.com/search?q=Bone%20Island%20Bear%20it%20All%20Weekend%20event%20Key%20West" },
+            { name: "BOOM! Hamburg Silvester NYE", city: "hamburg", start: "2026-12-31", end: "2026-12-31", link: "https://www.google.com/search?q=BOOM%21%20Hamburg%20Silvester%20NYE%20event%20Hamburg" },
+            { name: "Boston Gay Pride", city: "boston", start: "2026-06-06", end: "2026-06-14", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Boston Harborfest", city: "boston", start: "2026-07-02", end: "2026-07-04", link: "https://www.google.com/search?q=Boston%20Harborfest%20event%20Boston" },
+            { name: "Sin City Classic", city: "las vegas", start: "2027-01-14", end: "2027-01-17", link: "https://www.google.com/search?q=Sin%20City%20Classic%20event%20Las%20Vegas" },
+            { name: "New Orleans Holiday/NYE Season", city: "new orleans", start: "2026-11-13", end: "2026-12-31", link: "https://www.google.com/search?q=New%20Orleans%20Holiday/NYE%20Season%20event%20New%20Orleans" },
+            { name: "New Orleans Jazz Fest", city: "new orleans", start: "2026-04-23", end: "2026-04-30", link: "https://www.google.com/search?q=New%20Orleans%20Jazz%20Fest%20event%20New%20Orleans" },
+            { name: "Bunnies on the Bayou (Easter)", city: "houston", start: "2026-04-05", end: "2026-04-05", link: "https://www.google.com/search?q=Bunnies%20on%20the%20Bayou%20%28Easter%29%20event%20Houston" },
+            { name: "Smokeout Las Vegas", city: "las vegas", start: "2026-04-01", end: "2026-04-06", link: "https://www.google.com/search?q=Smokeout%20Las%20Vegas%20event%20Las%20Vegas" },
+            { name: "San Diego Pride", city: "san diego", start: "2026-07-15", end: "2026-07-19", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Bearrison Street Fair", city: "san francisco", start: "2026-10-17", end: "2026-10-17", link: "https://www.google.com/search?q=Bearrison%20Street%20Fair%20event%20San%20Francisco" },
+            { name: "Chicago Air and Water Show Weekend", city: "chicago", start: "2026-08-28", end: "2026-08-30", link: "https://www.google.com/search?q=Chicago%20Air%20and%20Water%20Show%20Weekend%20event%20Chicago" },
+            { name: "Chicago Gay Pride", city: "chicago", start: "2026-06-20", end: "2026-06-28", link: "https://www.travelinpride.com/chicago-pride/" },
+            { name: "Christmas Avenue Berlin", city: "berlin", start: "2026-11-23", end: "2026-12-23", link: "https://www.google.com/search?q=Christmas%20Avenue%20Berlin%20event%20Berlin" },
+            { name: "CLAW Columbus (Leather Awareness)", city: "columbus", start: "2026-04-02", end: "2026-04-05", link: "https://www.google.com/search?q=CLAW%20Columbus%20%28Leather%20Awareness%29%20event%20Columbus" },
+            { name: "Cologne Fetish Pride", city: "cologne", start: "2026-05-21", end: "2026-05-26", link: "https://www.google.com/search?q=Cologne%20Fetish%20Pride%20event%20Cologne" },
+            { name: "Cologne Gay Pride", city: "cologne", start: "2026-07-03", end: "2026-07-06", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Columbus Pride Festival", city: "columbus", start: "2026-06-19", end: "2026-06-21", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Castro Street Fair", city: "san francisco", start: "2026-10-04", end: "2026-10-04", link: "https://www.google.com/search?q=Castro%20Street%20Fair%20event%20San%20Francisco" },
+            { name: "Conch Republic Drag Race", city: "key west", start: "2026-04-17", end: "2026-04-26", link: "https://www.google.com/search?q=Conch%20Republic%20Drag%20Race%20event%20Key%20West" },
+            { name: "Dallas Pride", city: "dallas", start: "2026-06-06", end: "2026-06-06", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Dallas Purple Party", city: "dallas", start: "2026-04-30", end: "2026-05-04", link: "https://www.google.com/search?q=Dallas%20Purple%20Party%20event%20Dallas" },
+            { name: "Denver Pride", city: "denver", start: "2026-06-24", end: "2026-06-27", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "New Orleans Pride Festival", city: "new orleans", start: "2026-06-11", end: "2026-06-14", link: "https://www.google.com/search?q=New%20Orleans%20Pride%20Festival%20event%20New%20Orleans" },
+            { name: "Dragon Con Atlanta", city: "atlanta", start: "2026-09-03", end: "2026-09-07", link: "https://www.google.com/search?q=Dragon%20Con%20Atlanta%20event%20Atlanta" },
+            { name: "Dublin Bear Pride", city: "dublin", start: "2026-06-26", end: "2026-06-28", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Easter Sunday in The Park", city: "san francisco", start: "2026-04-05", end: "2026-04-05", link: "https://www.google.com/search?q=Easter%20Sunday%20in%20The%20Park%20event%20San%20Francisco" },
+            { name: "Folsom Street Fair", city: "san francisco", start: "2026-09-20", end: "2026-09-27", link: "https://www.travelinpride.com/san-francisco-pride-duplicate-9120/" },
+            { name: "San Francisco Gay Pride", city: "san francisco", start: "2026-06-20", end: "2026-06-28", link: "https://www.travelinpride.com/san-francisco-pride/" },
+            { name: "BEEFMINCE EASTER", city: "london", start: "2026-04-03", end: "2026-04-03", link: "https://www.google.com/search?q=BEEFMINCE%20EASTER%20event%20London" },
+            { name: "Up Your Alley Weekend!", city: "san francisco", start: "2026-07-22", end: "2026-07-27", link: "https://www.google.com/search?q=Up%20Your%20Alley%20Weekend%21%20event%20San%20Francisco" },
+            { name: "Festa Major de Gràcia", city: "barcelona", start: "2026-08-14", end: "2026-08-20", link: "https://www.google.com/search?q=Festa%20Major%20de%20Gr%C3%A0cia%20event%20Barcelona" },
+            { name: "Fetish Week London", city: "london", start: "2026-07-05", end: "2026-07-12", link: "https://www.google.com/search?q=Fetish%20Week%20London%20event%20London" },
+            { name: "Puerto Rico Gay Pride", city: "san juan", start: "2026-06-05", end: "2026-06-07", link: "https://www.travelinpride.com/pride-puerto-rico/" },
+            { name: "Cabo Rojo Pride", city: "san juan", start: "2026-06-12", end: "2026-06-14", link: "https://www.google.com/search?q=Cabo%20Rojo%20Pride%20event%20San%20Juan" },
+            { name: "Fire Island Bear Weekend", city: "fire island", start: "2026-06-11", end: "2026-06-14", link: "https://www.google.com/search?q=Fire%20Island%20Bear%20Weekend%20event%20Fire%20Island" },
+            { name: "Fire Island Invasion", city: "fire island", start: "2026-07-03", end: "2026-07-05", link: "https://www.google.com/search?q=Fire%20Island%20Invasion%20event%20Fire%20Island" },
+            { name: "Fire Island Leather Weekend", city: "fire island", start: "2026-05-15", end: "2026-05-17", link: "https://www.google.com/search?q=Fire%20Island%20Leather%20Weekend%20event%20Fire%20Island" },
+            { name: "Fire Island Pines Party", city: "fire island", start: "2026-07-31", end: "2026-08-02", link: "https://www.google.com/search?q=Fire%20Island%20Pines%20Party%20event%20Fire%20Island" },
+            { name: "Red Dress Run New Orleans", city: "new orleans", start: "2026-08-08", end: "2026-08-08", link: "https://www.google.com/search?q=Red%20Dress%20Run%20New%20Orleans%20event%20New%20Orleans" },
+            { name: "Floatarama Fort Lauderdale", city: "fort lauderdale", start: "2026-06-13", end: "2026-06-13", link: "https://www.google.com/search?q=Floatarama%20Fort%20Lauderdale%20event%20Fort%20Lauderdale" },
+            { name: "Flockfest Fort Lauderdale", city: "fort lauderdale", start: "2026-07-09", end: "2026-07-12", link: "https://www.google.com/search?q=Flockfest%20Fort%20Lauderdale%20event%20Fort%20Lauderdale" },
+            { name: "Folsom Europe", city: "berlin", start: "2026-09-10", end: "2026-09-13", link: "https://www.travelinpride.com/folsom-europe/" },
+            { name: "Winter Pride Fest Puerto Rico", city: "san juan", start: "2026-12-10", end: "2026-12-14", link: "https://www.google.com/search?q=Winter%20Pride%20Fest%20Puerto%20Rico%20event%20San%20Juan" },
+            { name: "Fort Lauderdale Tropical Bear Week", city: "fort lauderdale", start: "2026-04-07", end: "2026-04-12", link: "https://www.google.com/search?q=Fort%20Lauderdale%20Tropical%20Bear%20Week%20event%20Fort%20Lauderdale" },
+            { name: "Southern Decadence", city: "new orleans", start: "2026-09-03", end: "2026-09-07", link: "https://www.travelinpride.com/southern-decadence/" },
+            { name: "Broadway Bares New York", city: "new york city", start: "2026-06-21", end: "2026-06-21", link: "https://www.google.com/search?q=Broadway%20Bares%20New%20York%20event%20New%20York%20City" },
+            { name: "TNW HIGH Pride Festival Sao Paulo", city: "sao paulo", start: "2026-06-05", end: "2026-06-07", link: "https://www.google.com/search?q=TNW%20HIGH%20Pride%20Festival%20Sao%20Paulo%20event%20Sao%20Paulo" },
+            { name: "London Pride", city: "london", start: "2026-07-03", end: "2026-07-05", link: "https://www.travelinpride.com/london-pride/" },
+            { name: "Brooklyn Pride", city: "new york city", start: "2026-06-08", end: "2026-06-14", link: "https://www.google.com/search?q=Brooklyn%20Pride%20event%20New%20York%20City" },
+            { name: "Harlem Pride New York", city: "new york city", start: "2026-06-27", end: "2026-06-27", link: "https://www.google.com/search?q=Harlem%20Pride%20New%20York%20event%20New%20York%20City" },
+            { name: "Gay New Years Eve Key West", city: "key west", start: "2026-12-31", end: "2026-12-31", link: "https://www.google.com/search?q=Gay%20New%20Years%20Eve%20Key%20West%20event%20Key%20West" },
+            { name: "Gay Pride Dublin", city: "dublin", start: "2026-06-25", end: "2026-06-28", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Gay Pride Houston", city: "houston", start: "2026-06-04", end: "2026-06-07", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Mighty Hoopla London", city: "london", start: "2026-05-30", end: "2026-05-31", link: "https://www.google.com/search?q=Mighty%20Hoopla%20London%20event%20London" },
+            { name: "Gay Days Anaheim", city: "los angeles", start: "2026-09-18", end: "2026-09-20", link: "https://www.travelinpride.com/gay-days-anaheim/" },
+            { name: "Long Island Pride New York", city: "new york city", start: "2026-06-14", end: "2026-06-14", link: "https://www.google.com/search?q=Long%20Island%20Pride%20New%20York%20event%20New%20York%20City" },
+            { name: "Hamburg Gay Pride", city: "hamburg", start: "2026-07-30", end: "2026-08-02", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Harbor Pride Hamburg", city: "hamburg", start: "2026-05-08", end: "2026-05-10", link: "https://www.google.com/search?q=Harbor%20Pride%20Hamburg%20event%20Hamburg" },
+            { name: "Hard Labor Fort Lauderdale", city: "fort lauderdale", start: "2026-09-03", end: "2026-09-06", link: "https://www.google.com/search?q=Hard%20Labor%20Fort%20Lauderdale%20event%20Fort%20Lauderdale" },
+            { name: "New York City Gay Pride", city: "new york city", start: "2026-06-24", end: "2026-06-29", link: "https://www.travelinpride.com/nyc-pride/" },
+            { name: "Heavenue (Christmas Market)", city: "cologne", start: "2026-11-16", end: "2026-12-23", link: "https://www.google.com/search?q=Heavenue%20%28Christmas%20Market%29%20event%20Cologne" },
+            { name: "Sao Paulo Gay Pride", city: "sao paulo", start: "2026-06-03", end: "2026-06-07", link: "https://www.travelinpride.com/sao-paulo-pride/" },
+            { name: "Honolulu Gay Pride", city: "honolulu", start: "2026-10-16", end: "2026-10-18", link: "https://www.google.com/search?q=Honolulu%20Gay%20Pride%20event%20Honolulu" },
+            { name: "New York Comic Con", city: "new york city", start: "2026-10-08", end: "2026-10-11", link: "https://www.google.com/search?q=New%20York%20Comic%20Con%20event%20New%20York%20City" },
+            { name: "Ibiza Gay Pride", city: "ibiza", start: "2026-06-06", end: "2026-06-13", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "The Urban Bear Weekend New York", city: "new york city", start: "2026-09-17", end: "2026-09-20", link: "https://www.google.com/search?q=The%20Urban%20Bear%20Weekend%20New%20York%20event%20New%20York%20City" },
+            { name: "Village Halloween Parade", city: "new york city", start: "2026-10-31", end: "2026-10-31", link: "https://www.google.com/search?q=Village%20Halloween%20Parade%20event%20New%20York%20City" },
+            { name: "International Mr Leather (IML)", city: "chicago", start: "2026-05-21", end: "2026-05-25", link: "https://www.google.com/search?q=International%20Mr%20Leather%20%28IML%29%20event%20Chicago" },
+            { name: "Jersey Pride Festival Asbury Park", city: "asbury park", start: "2026-06-05", end: "2026-06-07", link: "https://www.google.com/search?q=Jersey%20Pride%20Festival%20Asbury%20Park%20event%20Asbury%20Park" },
+            { name: "Joining Hearts Weekend Atlanta", city: "atlanta", start: "2026-07-24", end: "2026-07-26", link: "https://www.google.com/search?q=Joining%20Hearts%20Weekend%20Atlanta%20event%20Atlanta" },
+            { name: "Key West - Fantasy Fest", city: "key west", start: "2026-10-16", end: "2026-10-25", link: "https://www.google.com/search?q=Key%20West%20-%20Fantasy%20Fest%20event%20Key%20West" },
+            { name: "Key West Bear Weekend", city: "key west", start: "2026-10-28", end: "2026-11-01", link: "https://www.google.com/search?q=Key%20West%20Bear%20Weekend%20event%20Key%20West" },
+            { name: "Key West Gay Pride", city: "key west", start: "2026-06-03", end: "2026-06-07", link: "https://www.travelinpride.com/key-west-pride" },
+            { name: "Kingsday (Amsterdam)", city: "amsterdam", start: "2026-04-27", end: "2026-04-27", link: "https://www.google.com/search?q=Kingsday%20%28Amsterdam%29%20event%20Amsterdam" },
+            { name: "Shanghai Dragon Boat Festival", city: "shanghai", start: "2026-06-19", end: "2026-06-19", link: "https://www.google.com/search?q=Shanghai%20Dragon%20Boat%20Festival%20event%20Shanghai" },
+            { name: "Bear Jamboree", city: "orlando", start: "2026-06-04", end: "2026-06-08", link: "https://www.travelinpride.com/bear-jamboree/" },
+            { name: "La Mercè Festival", city: "barcelona", start: "2026-09-20", end: "2026-09-24", link: "https://www.google.com/search?q=La%20Merc%C3%A8%20Festival%20event%20Barcelona" },
+            { name: "Halloween Carnival West Hollywood", city: "los angeles", start: "2026-10-31", end: "2026-10-31", link: "https://www.google.com/search?q=Halloween%20Carnival%20West%20Hollywood%20event%20Los%20Angeles" },
+            { name: "LeiBear Weekend Honolulu", city: "honolulu", start: "2026-05-21", end: "2026-05-25", link: "https://www.travelinpride.com/lei-a-bear-weekend/" },
+            { name: "LesBiSchwule Parkfest", city: "berlin", start: "2026-08-08", end: "2026-08-08", link: "https://www.google.com/search?q=LesBiSchwule%20Parkfest%20event%20Berlin" },
+            { name: "Los Angeles Gay Pride", city: "los angeles", start: "2026-06-12", end: "2026-06-14", link: "https://www.travelinpride.com/la-pride/" },
+            { name: "Gay Days Orlando", city: "orlando", start: "2026-06-04", end: "2026-06-08", link: "https://www.travelinpride.com/gay-days-2026/" },
+            { name: "Off Sunset Festival", city: "los angeles", start: "2026-05-03", end: "2026-05-03", link: "https://www.google.com/search?q=Off%20Sunset%20Festival%20event%20Los%20Angeles" },
+            { name: "Love United Festival Antwerp", city: "antwerp", start: "2026-08-08", end: "2026-08-08", link: "https://www.google.com/search?q=Love%20United%20Festival%20Antwerp%20event%20Antwerp" },
+            { name: "New Year\'s Eve in Shanghai", city: "shanghai", start: "2026-12-31", end: "2026-12-31", link: "https://www.google.com/search?q=New%20Year%27s%20Eve%20in%20Shanghai%20event%20Shanghai" },
+            { name: "OutLoud Music Festival", city: "los angeles", start: "2026-06-06", end: "2026-06-07", link: "https://www.google.com/search?q=OutLoud%20Music%20Festival%20event%20Los%20Angeles" },
+            { name: "WeHo Pride West Hollywood", city: "los angeles", start: "2026-06-05", end: "2026-06-07", link: "https://www.google.com/search?q=WeHo%20Pride%20West%20Hollywood%20event%20Los%20Angeles" },
+            { name: "Brava Festival Madrid", city: "madrid", start: "2026-09-18", end: "2026-09-19", link: "https://www.google.com/search?q=Brava%20Festival%20Madrid%20event%20Madrid" },
+            { name: "Mad Bear Madrid", city: "madrid", start: "2026-12-03", end: "2026-12-10", link: "https://www.google.com/search?q=Mad%20Bear%20Madrid%20event%20Madrid" },
+            { name: "Madrid Leather Weekend", city: "madrid", start: "2026-10-30", end: "2026-11-01", link: "https://www.google.com/search?q=Madrid%20Leather%20Weekend%20event%20Madrid" },
+            { name: "Madrid Pride", city: "madrid", start: "2026-06-25", end: "2026-07-05", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Sleazy Madrid", city: "madrid", start: "2026-04-29", end: "2026-05-03", link: "https://www.google.com/search?q=Sleazy%20Madrid%20event%20Madrid" },
+            { name: "WE Party Madrid NYE Party", city: "madrid", start: "2026-12-31", end: "2026-12-31", link: "https://www.google.com/search?q=WE%20Party%20Madrid%20NYE%20Party%20event%20Madrid" },
+            { name: "We Party Pride Festival Madrid", city: "madrid", start: "2026-07-01", end: "2026-07-05", link: "https://www.google.com/search?q=We%20Party%20Pride%20Festival%20Madrid%20event%20Madrid" },
+            { name: "Malta Fireworks Festival", city: "malta", start: "2026-04-20", end: "2026-04-30", link: "https://www.google.com/search?q=Malta%20Fireworks%20Festival%20event%20Malta" },
+            { name: "Malta Gay Pride", city: "malta", start: "2026-09-04", end: "2026-09-13", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Mighty Hoopla Malta", city: "malta", start: "2026-09-25", end: "2026-09-27", link: "https://www.google.com/search?q=Mighty%20Hoopla%20Malta%20event%20Malta" },
+            { name: "Matinee Gay Easter Weekend", city: "barcelona", start: "2026-04-03", end: "2026-04-05", link: "https://www.google.com/search?q=Matinee%20Gay%20Easter%20Weekend%20event%20Barcelona" },
+            { name: "Bears Week Sitges (May)", city: "sitges", start: "2026-04-30", end: "2026-05-03", link: "https://www.travelinpride.com/bears-week-sitges-may/" },
+            { name: "Bears Week Sitges (Sept)", city: "sitges", start: "2026-09-04", end: "2026-09-13", link: "https://www.travelinpride.com/bears-week-sitges-september/" },
+            { name: "One Magical Weekend", city: "orlando", start: "2026-06-04", end: "2026-06-08", link: "https://www.travelinpride.com/one-magical-weekend/" },
+            { name: "Great British Bears Bash", city: "manchester", start: "2026-04-30", end: "2026-05-04", link: "https://www.google.com/search?q=Great%20British%20Bears%20Bash%20event%20Manchester" },
+            { name: "Easter in Sitges", city: "sitges", start: "2026-04-02", end: "2026-04-05", link: "https://www.google.com/search?q=Easter%20in%20Sitges%20event%20Sitges" },
+            { name: "Midsummer Party (Antwerp)", city: "antwerp", start: "2026-08-06", end: "2026-08-06", link: "https://www.google.com/search?q=Midsummer%20Party%20%28Antwerp%29%20event%20Antwerp" },
+            { name: "Manchester Gay Pride", city: "manchester", start: "2026-08-28", end: "2026-08-31", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Manchester Leather Weekend", city: "manchester", start: "2026-10-02", end: "2026-10-05", link: "https://www.google.com/search?q=Manchester%20Leather%20Weekend%20event%20Manchester" },
+            { name: "Milkshake Festival Amsterdam", city: "amsterdam", start: "2026-07-25", end: "2026-07-26", link: "https://www.google.com/search?q=Milkshake%20Festival%20Amsterdam%20event%20Amsterdam" },
+            { name: "Blatino Oasis Palm Springs", city: "palm springs", start: "2026-04-30", end: "2026-05-03", link: "https://www.google.com/search?q=Blatino%20Oasis%20Palm%20Springs%20event%20Palm%20Springs" },
+            { name: "Desertopia Palm Springs", city: "palm springs", start: "2026-05-23", end: "2026-05-26", link: "https://www.google.com/search?q=Desertopia%20Palm%20Springs%20event%20Palm%20Springs" },
+            { name: "Mr. International Rubber Weekend", city: "chicago", start: "2026-11-05", end: "2026-11-08", link: "https://www.google.com/search?q=Mr.%20International%20Rubber%20Weekend%20event%20Chicago" },
+            { name: "Hot Rodeo Palm Springs", city: "palm springs", start: "2026-05-01", end: "2026-05-03", link: "https://www.google.com/search?q=Hot%20Rodeo%20Palm%20Springs%20event%20Palm%20Springs" },
+            { name: "Palm Springs Gay Pride", city: "palm springs", start: "2026-11-05", end: "2026-11-08", link: "https://www.travelinpride.com/palm-springs-pride/" },
+            { name: "Palm Springs Labor Day Weekend", city: "palm springs", start: "2026-09-03", end: "2026-09-07", link: "https://www.google.com/search?q=Palm%20Springs%20Labor%20Day%20Weekend%20event%20Palm%20Springs" },
+            { name: "Palm Springs Leather Pride", city: "palm springs", start: "2026-10-29", end: "2026-11-01", link: "https://www.google.com/search?q=Palm%20Springs%20Leather%20Pride%20event%20Palm%20Springs" },
+            { name: "Festa de la Verema Sitges", city: "sitges", start: "2026-10-02", end: "2026-10-04", link: "https://www.google.com/search?q=Festa%20de%20la%20Verema%20Sitges%20event%20Sitges" },
+            { name: "Manchester Rubber Weekend", city: "manchester", start: "2026-05-14", end: "2026-05-18", link: "https://www.google.com/search?q=Manchester%20Rubber%20Weekend%20event%20Manchester" },
+            { name: "Palm Springs Memorial Weekend", city: "palm springs", start: "2026-05-21", end: "2026-05-24", link: "https://www.google.com/search?q=Palm%20Springs%20Memorial%20Weekend%20event%20Palm%20Springs" },
+            { name: "Pre-Hibernation Weekend", city: "manchester", start: "2026-11-13", end: "2026-11-15", link: "https://www.google.com/search?q=Pre-Hibernation%20Weekend%20event%20Manchester" },
+            { name: "Tidal Wave Bear Week", city: "palm springs", start: "2026-06-18", end: "2026-06-21", link: "https://www.google.com/search?q=Tidal%20Wave%20Bear%20Week%20event%20Palm%20Springs" },
+            { name: "Kink X Paris", city: "paris", start: "2026-05-22", end: "2026-05-25", link: "https://www.google.com/search?q=Kink%20X%20Paris%20event%20Paris" },
+            { name: "Paris Gay Pride", city: "paris", start: "2026-06-26", end: "2026-06-28", link: "https://www.travelinpride.com/paris-pride/" },
+            { name: "Rub\'Zone & Rub Week Paris", city: "paris", start: "2026-04-30", end: "2026-05-03", link: "https://www.google.com/search?q=Rub%27Zone%20%26%20Rub%20Week%20Paris%20event%20Paris" },
+            { name: "Phuket Gay Pride", city: "phuket", start: "2026-06-01", end: "2026-06-07", link: "https://www.google.com/search?q=Phuket%20Gay%20Pride%20event%20Phuket" },
+            { name: "Peach Party", city: "atlanta", start: "2026-05-29", end: "2026-06-01", link: "https://www.google.com/search?q=Peach%20Party%20event%20Atlanta" },
+            { name: "Circuit Asia Weekend", city: "phuket", start: "2026-06-19", end: "2026-06-21", link: "https://www.travelinpride.com/circuit-asia-weekend/" },
+            { name: "Manila Metro Pride", city: "manilla", start: "2026-06-27", end: "2026-06-27", link: "https://www.travelinpride.com/manilla-pride/" },
+            { name: "Pride DeLux Antwerp", city: "antwerp", start: "2026-08-08", end: "2026-08-09", link: "https://www.google.com/search?q=Pride%20DeLux%20Antwerp%20event%20Antwerp" },
+            { name: "Pride in Oaklawn & Cedar Springs", city: "dallas", start: "2026-09-13", end: "2026-09-20", link: "https://www.google.com/search?q=Pride%20in%20Oaklawn%20%26%20Cedar%20Springs%20event%20Dallas" },
+            { name: "New Years Eve in Phuket", city: "phuket", start: "2026-12-31", end: "2026-12-31", link: "https://www.google.com/search?q=New%20Years%20Eve%20in%20Phuket%20event%20Phuket" },
+            { name: "Portland Pride", city: "portland", start: "2026-07-17", end: "2026-07-19", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Bear Week Provincetown", city: "provincetown", start: "2026-07-11", end: "2026-07-18", link: "https://www.google.com/search?q=Bear%20Week%20Provincetown%20event%20Provincetown" },
+            { name: "First Light Provincetown", city: "provincetown", start: "2027-12-26", end: "2027-01-01", link: "https://www.google.com/search?q=First%20Light%20Provincetown%20event%20Provincetown" },
+            { name: "Frolic Weekend Provincetown", city: "provincetown", start: "2026-06-18", end: "2026-06-23", link: "https://www.google.com/search?q=Frolic%20Weekend%20Provincetown%20event%20Provincetown" },
+            { name: "Rocky Mountain Regional Gay Rodeo", city: "denver", start: "2026-07-24", end: "2026-07-26", link: "https://www.google.com/search?q=Rocky%20Mountain%20Regional%20Gay%20Rodeo%20event%20Denver" },
+            { name: "Independence Provincetown", city: "provincetown", start: "2026-06-27", end: "2026-07-05", link: "https://www.google.com/search?q=Independence%20Provincetown%20event%20Provincetown" },
+            { name: "Memorial Day Weekend Provincetown", city: "provincetown", start: "2026-05-22", end: "2026-05-25", link: "https://www.google.com/search?q=Memorial%20Day%20Weekend%20Provincetown%20event%20Provincetown" },
+            { name: "Mr New England Leather", city: "provincetown", start: "2026-11-20", end: "2026-11-22", link: "https://www.google.com/search?q=Mr%20New%20England%20Leather%20event%20Provincetown" },
+            { name: "Fiesta Mayor Sitges", city: "sitges", start: "2026-08-21", end: "2026-08-24", link: "https://www.google.com/search?q=Fiesta%20Mayor%20Sitges%20event%20Sitges" },
+            { name: "Nit de Foc (Night of Fire)", city: "sitges", start: "2026-09-19", end: "2026-09-19", link: "https://www.google.com/search?q=Nit%20de%20Foc%20%28Night%20of%20Fire%29%20event%20Sitges" },
+            { name: "Sitges Flower Festival", city: "sitges", start: "2026-06-07", end: "2026-06-07", link: "https://www.google.com/search?q=Sitges%20Flower%20Festival%20event%20Sitges" },
+            { name: "CanCanaria Adventure Week", city: "maspalomas", start: "2027-01-25", end: "2027-01-31", link: "https://www.google.com/search?q=CanCanaria%20Adventure%20Week%20event%20Maspalomas" },
+            { name: "Sitges Leather & Fetish Meeting", city: "sitges", start: "2026-05-01", end: "2026-05-01", link: "https://www.google.com/search?q=Sitges%20Leather%20%26%20Fetish%20Meeting%20event%20Sitges" },
+            { name: "Sitges Pride", city: "sitges", start: "2026-06-10", end: "2026-06-14", link: "https://www.google.com/search?q=Sitges%20Pride%20event%20Sitges" },
+            { name: "Eurovision Pride Maspalomas", city: "maspalomas", start: "2026-05-14", end: "2026-05-17", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Provincetown Carnival", city: "provincetown", start: "2026-08-16", end: "2026-08-25", link: "https://www.google.com/search?q=Provincetown%20Carnival%20event%20Provincetown" },
+            { name: "Provincetown Halloween", city: "provincetown", start: "2026-10-29", end: "2026-11-01", link: "https://www.google.com/search?q=Provincetown%20Halloween%20event%20Provincetown" },
+            { name: "Spring Bears Cologne", city: "cologne", start: "2026-04-17", end: "2026-04-19", link: "https://www.google.com/search?q=Spring%20Bears%20Cologne%20event%20Cologne" },
+            { name: "Vivid Sydney Festival", city: "sydney", start: "2026-05-22", end: "2026-06-13", link: "https://www.google.com/search?q=Vivid%20Sydney%20Festival%20event%20Sydney" },
+            { name: "Stadfest St Georg Hamburg", city: "hamburg", start: "2026-05-30", end: "2026-05-31", link: "https://www.google.com/search?q=Stadfest%20St%20Georg%20Hamburg%20event%20Hamburg" },
+            { name: "Stadtfest Berlin", city: "berlin", start: "2026-07-18", end: "2026-07-19", link: "https://www.google.com/search?q=Stadtfest%20Berlin%20event%20Berlin" },
+            { name: "Stonewall Pride Wilton Manors", city: "fort lauderdale", start: "2026-06-18", end: "2026-06-21", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Streetheart Festival Amsterdam", city: "amsterdam", start: "2026-09-12", end: "2026-09-12", link: "https://www.google.com/search?q=Streetheart%20Festival%20Amsterdam%20event%20Amsterdam" },
+            { name: "Sueños de Libertad Festival", city: "ibiza", start: "2026-06-20", end: "2026-06-20", link: "https://www.google.com/search?q=Sue%C3%B1os%20de%20Libertad%20Festival%20event%20Ibiza" },
+            { name: "Superflirt Festival", city: "amsterdam", start: "2026-08-29", end: "2026-08-29", link: "https://www.google.com/search?q=Superflirt%20Festival%20event%20Amsterdam" },
+            { name: "Provincetown Holly Folly", city: "provincetown", start: "2026-12-04", end: "2026-12-06", link: "https://www.google.com/search?q=Provincetown%20Holly%20Folly%20event%20Provincetown" },
+            { name: "Sydney Leather Festival", city: "sydney", start: "2026-07-16", end: "2026-07-26", link: "https://www.travelinpride.com/sydney-leather-pride/" },
+            { name: "Provincetown Pride", city: "provincetown", start: "2026-06-05", end: "2026-06-07", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Gay New Years Eve Sydney", city: "sydney", start: "2026-12-29", end: "2027-01-03", link: "https://www.google.com/search?q=Gay%20New%20Years%20Eve%20Sydney%20event%20Sydney" },
+            { name: "Taiwan Gay Pride", city: "taipei", start: "2026-10-29", end: "2026-11-01", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Provincetown White Party", city: "provincetown", start: "2026-09-05", end: "2026-09-05", link: "https://www.google.com/search?q=Provincetown%20White%20Party%20event%20Provincetown" },
+            { name: "Spooky Bear Halloween", city: "provincetown", start: "2026-10-29", end: "2026-11-01", link: "https://www.google.com/search?q=Spooky%20Bear%20Halloween%20event%20Provincetown" },
+            { name: "Formosa Pride", city: "taipei", start: "2026-10-30", end: "2026-11-01", link: "https://www.google.com/search?q=Formosa%20Pride%20event%20Taipei" },
+            { name: "Gasparilla Invasion & Parade", city: "tampa", start: "2027-01-30", end: "2027-01-30", link: "https://www.google.com/search?q=Gasparilla%20Invasion%20%26%20Parade%20event%20Tampa" },
+            { name: "St. Pete Pride (Tampa)", city: "tampa", start: "2026-05-29", end: "2026-06-28", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Tropical Heat Key West", city: "key west", start: "2026-08-12", end: "2026-08-16", link: "https://www.google.com/search?q=Tropical%20Heat%20Key%20West%20event%20Key%20West" },
+            { name: "Tropikali Festival Amsterdam", city: "amsterdam", start: "2026-06-13", end: "2026-06-13", link: "https://www.google.com/search?q=Tropikali%20Festival%20Amsterdam%20event%20Amsterdam" },
+            { name: "Maspalomas Christmas & NYE", city: "maspalomas", start: "2027-12-18", end: "2027-01-03", link: "https://www.google.com/search?q=Maspalomas%20Christmas%20%26%20NYE%20event%20Maspalomas" },
+            { name: "Unicorn Festival Antwerp", city: "antwerp", start: "2026-06-19", end: "2026-06-21", link: "https://www.google.com/search?q=Unicorn%20Festival%20Antwerp%20event%20Antwerp" },
+            { name: "Tokyo Pride", city: "tokyo", start: "2026-06-06", end: "2026-06-07", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Sinland Tokyo Circuit Festival", city: "tokyo", start: "2026-10-02", end: "2026-10-04", link: "https://www.google.com/search?q=Sinland%20Tokyo%20Circuit%20Festival%20event%20Tokyo" },
+            { name: "Gay Pride Toronto", city: "toronto", start: "2026-06-25", end: "2026-06-28", link: "https://www.travelinpride.com/pride-toronto/" },
+            { name: "Swim for Life Weekend", city: "provincetown", start: "2026-09-11", end: "2026-09-13", link: "https://www.google.com/search?q=Swim%20for%20Life%20Weekend%20event%20Provincetown" },
+            { name: "Water Park Day Barcelona", city: "barcelona", start: "2026-08-04", end: "2026-08-04", link: "https://www.google.com/search?q=Water%20Park%20Day%20Barcelona%20event%20Barcelona" },
+            { name: "Maspalomas Fetish Pride", city: "maspalomas", start: "2026-10-01", end: "2026-10-12", link: "https://www.google.com/search?q=Maspalomas%20Fetish%20Pride%20event%20Maspalomas" },
+            { name: "Maspalomas Gay Pride", city: "maspalomas", start: "2026-05-04", end: "2026-05-10", link: "https://www.google.com/search?q=Maspalomas%20Gay%20Pride%20event%20Maspalomas" },
+            { name: "Winter Pride Maspalomas", city: "maspalomas", start: "2026-11-02", end: "2026-11-08", link: "https://www.google.com/search?q=Winter%20Pride%20Maspalomas%20event%20Maspalomas" },
+            { name: "Wicked Manors Halloween", city: "fort lauderdale", start: "2026-10-31", end: "2026-10-31", link: "https://www.google.com/search?q=Wicked%20Manors%20Halloween%20event%20Fort%20Lauderdale" },
+            { name: "Wilton Manors 4th of July Weekend", city: "fort lauderdale", start: "2026-07-01", end: "2026-07-05", link: "https://www.google.com/search?q=Wilton%20Manors%204th%20of%20July%20Weekend%20event%20Fort%20Lauderdale" },
+            { name: "Love Pride Medellin Circuit Festival", city: "medellin", start: "2026-06-26", end: "2026-06-29", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Festival of the Flowers Medellin Feria de las Flores", city: "medellin", start: "2026-08-01", end: "2026-08-10", link: "https://www.google.com/search?q=Festival%20of%20the%20Flowers%20Medellin%20Feria%20de%20las%20Flores%20event%20Medellin" },
+            { name: "Woof Week Key West", city: "key west", start: "2026-04-21", end: "2026-04-26", link: "https://www.google.com/search?q=Woof%20Week%20Key%20West%20event%20Key%20West" },
+            { name: "Mexico City Gay Pride", city: "mexico city", start: "2026-06-24", end: "2026-06-29", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Bearmex Bear Pride Festival", city: "mexico city", start: "2026-06-24", end: "2026-06-29", link: "https://www.google.com/search?q=Bearmex%20Bear%20Pride%20Festival%20event%20Mexico%20City" },
+            { name: "Latin American Pride", city: "mexico city", start: "2026-06-24", end: "2026-06-29", link: "https://www.google.com/search?q=Latin%20American%20Pride%20event%20Mexico%20City" },
+            { name: "Day of the Dead Mexico Dia de los Muertos", city: "mexico city", start: "2026-10-17", end: "2026-11-03", link: "https://www.google.com/search?q=Day%20of%20the%20Dead%20Mexico%20Dia%20de%20los%20Muertos%20event%20Mexico%20City" },
+            { name: "Miami Beach Gay Pride", city: "miami", start: "2026-04-08", end: "2026-04-12", link: "https://www.google.com/search?q=Miami%20Beach%20Gay%20Pride%20event%20Miami" },
+            { name: "Thanksgiving Weekend Provincetown", city: "provincetown", start: "2026-11-26", end: "2026-11-29", link: "https://www.google.com/search?q=Thanksgiving%20Weekend%20Provincetown%20event%20Provincetown" },
+            { name: "Semana Santa Easter Festival, Puerto Vallarta", city: "puerto vallarta", start: "2026-04-02", end: "2026-04-05", link: "https://www.google.com/search?q=Semana%20Santa%20Easter%20Festival%2C%20Puerto%20Vallarta%20event%20Puerto%20Vallarta" },
+            { name: "Puerto Vallarta Gay Pride", city: "puerto vallarta", start: "2026-05-17", end: "2026-05-24", link: "https://www.travelinpride.com/puerto-vallarta-gay-pride/" },
+            { name: "Bear Pride Puerto Vallarta", city: "puerto vallarta", start: "2026-05-20", end: "2026-05-24", link: "https://www.google.com/search?q=Bear%20Pride%20Puerto%20Vallarta%20event%20Puerto%20Vallarta" },
+            { name: "4th of July Weekend in Puerto Vallarta", city: "puerto vallarta", start: "2026-09-04", end: "2026-09-06", link: "https://www.google.com/search?q=4th%20of%20July%20Weekend%20in%20Puerto%20Vallarta%20event%20Puerto%20Vallarta" },
+            { name: "Puerto Vallarta Labor Day Weekend", city: "puerto vallarta", start: "2026-07-03", end: "2026-07-05", link: "https://www.google.com/search?q=Puerto%20Vallarta%20Labor%20Day%20Weekend%20event%20Puerto%20Vallarta" },
+            { name: "Halloween Puerto Vallarta", city: "puerto vallarta", start: "2026-10-25", end: "2026-11-02", link: "https://www.google.com/search?q=Halloween%20Puerto%20Vallarta%20event%20Puerto%20Vallarta" },
+            { name: "Gay Pride Buenos Aires", city: "buenos aires", start: "2026-11-07", end: "2026-11-07", link: "https://www.google.com/search?q=Gay%20Pride%20Buenos%20Aires%20event%20Buenos%20Aires" },
+            { name: "Puerto Vallarta Industry Club Gay New Years Party", city: "puerto vallarta", start: "2026-12-28", end: "2027-01-02", link: "https://www.google.com/search?q=Puerto%20Vallarta%20Industry%20Club%20Gay%20New%20Years%20Party%20event%20Puerto%20Vallarta" },
+            { name: "Toronto Easter Parade & Weekend Celebration", city: "toronto", start: "2026-04-02", end: "2026-04-05", link: "https://www.google.com/search?q=Toronto%20Easter%20Parade%20%26%20Weekend%20Celebration%20event%20Toronto" },
+            { name: "European Porn Awards", city: "torremolinos", start: "2026-10-09", end: "2026-10-09", link: "https://www.google.com/search?q=European%20Porn%20Awards%20event%20Torremolinos" },
+            { name: "Infinity October Edition", city: "torremolinos", start: "2026-10-07", end: "2026-10-11", link: "https://www.google.com/search?q=Infinity%20October%20Edition%20event%20Torremolinos" },
+            { name: "Kink Weekend Torremolinos", city: "torremolinos", start: "2026-06-18", end: "2026-06-21", link: "https://www.google.com/search?q=Kink%20Weekend%20Torremolinos%20event%20Torremolinos" },
+            { name: "Mad Bear Beach Festival", city: "torremolinos", start: "2026-08-07", end: "2026-08-18", link: "https://www.google.com/search?q=Mad%20Bear%20Beach%20Festival%20event%20Torremolinos" },
+            { name: "Matrix Easter Festival", city: "torremolinos", start: "2026-04-03", end: "2026-04-04", link: "https://www.google.com/search?q=Matrix%20Easter%20Festival%20event%20Torremolinos" },
+            { name: "Matrix Sun Festival", city: "torremolinos", start: "2026-08-18", end: "2026-08-23", link: "https://www.google.com/search?q=Matrix%20Sun%20Festival%20event%20Torremolinos" },
+            { name: "The Grabby Awards", city: "torremolinos", start: "2026-04-23", end: "2026-04-26", link: "https://www.google.com/search?q=The%20Grabby%20Awards%20event%20Torremolinos" },
+            { name: "Torremolinos Bear Fest", city: "torremolinos", start: "2026-07-14", end: "2026-07-19", link: "https://www.google.com/search?q=Torremolinos%20Bear%20Fest%20event%20Torremolinos" },
+            { name: "Torremolinos Fetish Weekend", city: "torremolinos", start: "2026-05-07", end: "2026-05-10", link: "https://www.google.com/search?q=Torremolinos%20Fetish%20Weekend%20event%20Torremolinos" },
+            { name: "The Bingham Cup Brisbane", city: "brisbane", start: "2026-08-16", end: "2026-08-24", link: "https://www.google.com/search?q=The%20Bingham%20Cup%20Brisbane%20event%20Brisbane" },
+            { name: "Torremolinos Pride", city: "torremolinos", start: "2026-05-26", end: "2026-06-06", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Rubbout Vancouver", city: "vancouver", start: "2026-04-16", end: "2026-04-19", link: "https://www.google.com/search?q=Rubbout%20Vancouver%20event%20Vancouver" },
+            { name: "Vancouver Gay Pride", city: "vancouver", start: "2026-07-25", end: "2026-08-02", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Circuit Songkran", city: "bangkok", start: "2026-04-10", end: "2026-04-14", link: "https://www.travelinpride.com/songkran-bangkok/" },
+            { name: "Bangkok Pride Month", city: "bangkok", start: "2026-05-31", end: "2026-06-28", link: "https://www.google.com/search?q=Bangkok%20Pride%20Month%20event%20Bangkok" },
+            { name: "Christmas Markets and Gay New Year in Bangkok", city: "bangkok", start: "2026-11-01", end: "2027-01-05", link: "https://www.google.com/search?q=Christmas%20Markets%20and%20Gay%20New%20Year%20in%20Bangkok%20event%20Bangkok" },
+            { name: "Bangkok Fetish Ball", city: "bangkok", start: "2026-11-21", end: "2026-11-21", link: "https://www.google.com/search?q=Bangkok%20Fetish%20Ball%20event%20Bangkok" },
+            { name: "White Party Bangkok", city: "bangkok", start: "2026-12-29", end: "2027-01-02", link: "https://www.google.com/search?q=White%20Party%20Bangkok%20event%20Bangkok" },
+            { name: "Rio Carioca Festival by TNW", city: "rio de janeiro", start: "2026-12-26", end: "2027-01-02", link: "https://www.google.com/search?q=Rio%20Carioca%20Festival%20by%20TNW%20event%20Rio%20de%20Janeiro" },
+            { name: "Mr Leather Italy", city: "rome", start: "2026-05-08", end: "2026-05-10", link: "https://www.google.com/search?q=Mr%20Leather%20Italy%20event%20Rome" },
+            { name: "Rome Bears Week", city: "rome", start: "2027-01-01", end: "2027-01-06", link: "https://www.google.com/search?q=Rome%20Bears%20Week%20event%20Rome" },
+            { name: "Pride Festival Vancouver", city: "vancouver", start: "2026-08-02", end: "2026-08-02", link: "https://www.google.com/search?q=Pride%20Festival%20Vancouver%20event%20Vancouver" },
+            { name: "The Diversity Ball", city: "vienna", start: "2026-09-05", end: "2026-09-05", link: "https://www.google.com/search?q=The%20Diversity%20Ball%20event%20Vienna" },
+            { name: "Vienna Fetish Spring", city: "vienna", start: "2026-05-13", end: "2026-05-17", link: "https://www.google.com/search?q=Vienna%20Fetish%20Spring%20event%20Vienna" },
+            { name: "Vienna Gay Pride", city: "vienna", start: "2026-05-29", end: "2026-06-14", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Vienna In Black", city: "vienna", start: "2026-10-23", end: "2026-10-26", link: "https://www.google.com/search?q=Vienna%20In%20Black%20event%20Vienna" },
+            { name: "Floatilla Hong Kong", city: "hong kong", start: "2026-10-17", end: "2026-10-17", link: "https://www.google.com/search?q=Floatilla%20Hong%20Kong%20event%20Hong%20Kong" },
+            { name: "Twin Cities Gay Pride", city: "minneapolis", start: "2026-06-27", end: "2026-06-28", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Pink Loerie Mardi Gras", city: "capetown", start: "2026-04-30", end: "2026-05-03", link: "https://www.google.com/search?q=Pink%20Loerie%20Mardi%20Gras%20event%20Capetown" },
+            { name: "Cape Town Halloween Party", city: "capetown", start: "2026-10-31", end: "2026-10-31", link: "https://www.google.com/search?q=Cape%20Town%20Halloween%20Party%20event%20Capetown" },
+            { name: "Cape Town Gay Christmas and New Year", city: "capetown", start: "2026-12-01", end: "2027-01-01", link: "https://www.google.com/search?q=Cape%20Town%20Gay%20Christmas%20and%20New%20Year%20event%20Capetown" },
+            { name: "Capital Pride Washington DC", city: "washington dc", start: "2026-06-08", end: "2026-06-14", link: "https://www.travelinpride.com/capital-pride/" },
+            { name: "High Heel Drag Queen Race", city: "washington dc", start: "2026-10-27", end: "2026-10-27", link: "https://www.google.com/search?q=High%20Heel%20Drag%20Queen%20Race%20event%20Washington%20DC" },
+            { name: "Mid Atlantic Leather Weekend", city: "washington dc", start: "2027-01-15", end: "2027-01-18", link: "https://www.google.com/search?q=Mid%20Atlantic%20Leather%20Weekend%20event%20Washington%20DC" },
+            { name: "Rome Gay Pride", city: "rome", start: "2026-06-14", end: "2026-06-20", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "Winter Carnival", city: "minneapolis", start: "2027-01-28", end: "2027-02-07", link: "https://www.google.com/search?q=Winter%20Carnival%20event%20Minneapolis%20%26%20St%20Paul" },
+            { name: "Sugarbear Weekend Montreal", city: "montreal", start: "2026-04-08", end: "2026-04-12", link: "https://www.google.com/search?q=Sugarbear%20Weekend%20Montreal%20event%20Montreal" },
+            { name: "Montreal Gay Pride", city: "montreal", start: "2026-07-30", end: "2026-08-09", link: "https://www.travelinpride.com/lgbtqia-pride-cruises-and-destination/" },
+            { name: "L\'International des Feux Loto-Québec", city: "montreal", start: "2026-08-04", end: "2026-08-22", link: "https://www.google.com/search?q=L%27International%20des%20Feux%20Loto-Qu%C3%A9bec%20event%20Montreal" },
+            { name: "Xlsior Mykonos", city: "mykonos", start: "2026-08-20", end: "2026-08-25", link: "https://www.google.com/search?q=Xlsior%20Mykonos%20event%20Mykonos" },
 
-    const form = document.querySelector('#searchForm');
-    const container = document.querySelector('#resultsContainer');
+            { name: "BGC: Group Cruise (Port Canaveral)", city: "port canaveral", start: "2026-09-18", end: "2026-09-18", link: "https://biggaycruise.com/", type: "Cruise", company: "BGC" },
+            { name: "BGC: Halloween Group Cruise", city: "miami", start: "2026-10-31", end: "2026-10-31", link: "https://biggaycruise.com/", type: "Cruise", company: "BGC" },
+            { name: "BGC: Winter Group Cruise", city: "miami", start: "2027-01-28", end: "2027-01-28", link: "https://biggaycruise.com/", type: "Cruise", company: "BGC" },
+            { name: "Atlantis: Epic Caribbean Cruise", city: "miami", start: "2027-03-07", end: "2027-03-14", link: "https://atlantisevents.com/", type: "Cruise", company: "Atlantis" },
+            { name: "Daddy Cruise: Alaska Explorer", city: "vancouver", start: "2026-08-30", end: "2026-09-06", link: "https://www.daddycruises.com/", type: "Cruise", company: "Daddy Cruise" },
+            { name: "Daddy Cruise: Greece & Italy 2026", city: "rome", start: "2026-09-11", end: "2026-09-20", link: "https://www.daddycruises.com/", type: "Cruise", company: "Daddy Cruise" },
+            { name: "Daddy Cruise: South America 2027", city: "buenos aires", start: "2027-03-09", end: "2027-03-24", link: "https://www.daddycruises.com/", type: "Cruise", company: "Daddy Cruise" },
+            { name: "Daddy Cruise: Bermuda 2027", city: "philadelphia", start: "2027-04-29", end: "2027-05-06", link: "https://www.daddycruises.com/", type: "Cruise", company: "Daddy Cruise" },
+            { name: "Daddy Cruise: Singles & Friends", city: "fort lauderdale", start: "2026-12-05", end: "2026-12-12", link: "https://www.daddycruises.com/", type: "Cruise", company: "Daddy Cruise" },
+            { name: "Chumley’s BearCruise: Alaska", city: "seattle", start: "2026-05-10", end: "2026-05-17", link: "https://www.bearcruises.com/", type: "Cruise", company: "Chumley’s BearCruise" },
+            { name: "Brand g: Luxury Greek Isles", city: "athens", start: "2027-09-12", end: "2027-09-23", link: "https://www.brandgvacations.com/", type: "Cruise", company: "Brand g" },
+            { name: "Adventure Bears: Panama Canal", city: "fort lauderdale", start: "2026-10-30", end: "2026-11-11", link: "https://www.adventurebears.com/", type: "Cruise", company: "Adventure Bears" },
+            { name: "Atlantis: Greek Isles & Turkey", city: "athens", start: "2026-07-05", end: "2026-07-15", link: "https://atlantisevents.com/", type: "Cruise", company: "Atlantis" },
+            { name: "Brand g: Castles of the Rhine", city: "amsterdam", start: "2026-08-03", end: "2026-08-10", link: "https://www.brandgvacations.com/", type: "Cruise", company: "Brand g" },
+            { name: "Atlantis: Thanksgiving Caribbean", city: "miami", start: "2026-11-22", end: "2026-11-29", link: "https://atlantisevents.com/", type: "Cruise", company: "Atlantis" },
+            { name: "Adventure Bears: Norwegian Fjords", city: "london", start: "2026-05-09", end: "2026-05-16", link: "https://www.adventurebears.com/", type: "Cruise", company: "Adventure Bears" },
+            { name: "Vacaya: 10th Birthday Caribbean", city: "miami", start: "2027-02-14", end: "2027-02-21", link: "https://www.myvacaya.com/", type: "Cruise", company: "Vacaya" },
+            { name: "Aquafet: Western Caribbean Halloween Cruise", city: "houston", start: "2026-10-25", end: "2026-11-01", link: "https://aquafestcruises.com/", type: "Cruise", company: "Aquafet" },
+            { name: "Aquafet: Circle Japan Cruise", city: "osaka", start: "2027-04-03", end: "2027-04-12", link: "https://aquafestcruises.com/", type: "Cruise", company: "Aquafet" },
+            { name: "Aquafest: Circle Mediterranean Cruise", city: "rome", start: "2027-07-17", end: "2027-07-27", link: "https://aquafestcruises.com/", type: "Cruise", company: "Aquafest" },
+            { name: "Adventure Bears: Alaska Denali Explorer 2027", city: "vancouver", start: "2027-05-15", end: "2027-05-25", link: "https://www.adventurebears.com/", type: "Cruise", company: "Adventure Bears" },];
 
-    if (form) {
-        // Auto-suggest return date only when it hasn't been set yet
-        const dateStartInput = document.querySelector('#dateStart');
-        const dateEndInput = document.querySelector('#dateEnd');
+        const form = document.querySelector('#searchForm');
+        const container = document.querySelector('#resultsContainer');
 
-        if (dateStartInput && dateEndInput) {
-            dateStartInput.addEventListener('input', function () {
-                // Only auto-fill return date if it's empty (don't overwrite pre-filled event dates)
-                if (this.value && !dateEndInput.value) {
-                    try {
-                        // Create date safely in local time
-                        const parts = this.value.split('-');
-                        if (parts.length !== 3) return;
+        if (form) {
+            // Auto-suggest return date only when it hasn't been set yet
+            const dateStartInput = document.querySelector('#dateStart');
+            const dateEndInput = document.querySelector('#dateEnd');
 
-                        const year = parseInt(parts[0], 10);
-                        const month = parseInt(parts[1], 10) - 1;
-                        const day = parseInt(parts[2], 10);
+            if (dateStartInput && dateEndInput) {
+                dateStartInput.addEventListener('input', function () {
+                    // Only auto-fill return date if it's empty (don't overwrite pre-filled event dates)
+                    if (this.value && !dateEndInput.value) {
+                        try {
+                            // Create date safely in local time
+                            const parts = this.value.split('-');
+                            if (parts.length !== 3) return;
 
-                        // Do NOT auto-fill until the user has typed a full valid modern year.
-                        // This stops interstitial year typing (like '0002') from auto-filling as 1902.
-                        if (isNaN(year) || year < 2000) return;
+                            const year = parseInt(parts[0], 10);
+                            const month = parseInt(parts[1], 10) - 1;
+                            const day = parseInt(parts[2], 10);
 
-                        const startDate = new Date(year, month, day);
-                        startDate.setFullYear(year);
-                        const nextDay = new Date(startDate);
-                        nextDay.setDate(startDate.getDate() + 1);
+                            // Do NOT auto-fill until the user has typed a full valid modern year.
+                            // This stops interstitial year typing (like '0002') from auto-filling as 1902.
+                            if (isNaN(year) || year < 2000) return;
 
-                        const yyyy = String(nextDay.getFullYear()).padStart(4, '0');
-                        const mm = String(nextDay.getMonth() + 1).padStart(2, '0');
-                        const dd = String(nextDay.getDate()).padStart(2, '0');
+                            const startDate = new Date(year, month, day);
+                            startDate.setFullYear(year);
+                            const nextDay = new Date(startDate);
+                            nextDay.setDate(startDate.getDate() + 1);
 
-                        dateEndInput.value = `${yyyy}-${mm}-${dd}`;
-                    } catch (e) {
-                        console.error("Date auto-update error", e);
+                            const yyyy = String(nextDay.getFullYear()).padStart(4, '0');
+                            const mm = String(nextDay.getMonth() + 1).padStart(2, '0');
+                            const dd = String(nextDay.getDate()).padStart(2, '0');
+
+                            dateEndInput.value = `${yyyy}-${mm}-${dd}`;
+                        } catch (e) {
+                            console.error("Date auto-update error", e);
+                        }
+                    }
+                });
+            }
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const origin = document.querySelector('#departure').value.trim();
+                const destinationInput = document.querySelector('#destination').value.trim().toLowerCase();
+                const dateStart = document.querySelector('#dateStart').value;
+                const dateEnd = document.querySelector('#dateEnd').value;
+
+                if (!origin || !destinationInput || !dateStart || !dateEnd) {
+                    alert("Please fill in all fields.");
+                    return;
+                }
+
+                let targets = [];
+
+                if (DATABASE.mappings.regions[destinationInput]) {
+                    targets = DATABASE.mappings.regions[destinationInput];
+                } else if (DATABASE.mappings.countries[destinationInput]) {
+                    targets = DATABASE.mappings.countries[destinationInput];
+                } else if (DATABASE.mappings.cities && DATABASE.mappings.cities[destinationInput]) {
+                    targets = DATABASE.mappings.cities[destinationInput];
+                } else {
+                    // Check if direct key exists or IATA match
+                    const iataMatch = Object.keys(DATABASE.details).find(key =>
+                        DATABASE.details[key].iata && DATABASE.details[key].iata.toLowerCase() === destinationInput
+                    );
+
+                    if (DATABASE.details[destinationInput]) {
+                        targets = [destinationInput];
+                    } else if (iataMatch) {
+                        targets = [iataMatch];
+                    } else {
+                        alert("Destination not located in our curated list. Please try another city.");
+                        return;
                     }
                 }
-            });
-        }
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
 
-            const origin = document.querySelector('#departure').value.trim();
-            const destinationInput = document.querySelector('#destination').value.trim().toLowerCase();
-            const dateStart = document.querySelector('#dateStart').value;
-            const dateEnd = document.querySelector('#dateEnd').value;
+                container.innerHTML = '';
+                if (typeof showView === 'function') showView('resultsView');
 
-            if (!origin || !destinationInput || !dateStart || !dateEnd) {
-                alert("Please fill in all fields.");
-                return;
-            }
+                targets.forEach((targetKey, index) => {
+                    let data = DATABASE.details[targetKey];
 
-            let targets = [];
+                    // Safety check if mapping exists but details missing (shouldn't happen with correct data)
+                    if (!data) {
+                        alert("Destination details currently unavailable.");
+                        return;
+                    }
 
-            if (DATABASE.mappings.regions[destinationInput]) {
-                targets = DATABASE.mappings.regions[destinationInput];
-            } else if (DATABASE.mappings.countries[destinationInput]) {
-                targets = DATABASE.mappings.countries[destinationInput];
-            } else if (DATABASE.mappings.cities && DATABASE.mappings.cities[destinationInput]) {
-                targets = DATABASE.mappings.cities[destinationInput];
-            } else {
-                // Check if direct key exists or IATA match
-                const iataMatch = Object.keys(DATABASE.details).find(key =>
-                    DATABASE.details[key].iata && DATABASE.details[key].iata.toLowerCase() === destinationInput
-                );
+                    // Specific Hotels for Events
+                    const EVENT_HOTELS = {
+                        "Amsterdam Gay Pride": ["Hotel Not Hotel", "Leonardo Hotel Amsterdam City Center", "Sofitel Legend The Grand"],
+                        "New York City Gay Pride": ["Hotel Moca NYC", "Days Inn by Wyndham Brooklyn Borough Park", "Holiday Inn Express & Suites Woodside LaGuardia Airport by IHG"],
+                        "Folsom Street Fair": ["Windsor Hotel", "Hotel Zetta San Francisco", "Hyatt Regency SF Downtown SOMA"],
+                        "Folsom Europe": ["Radisson RED Berlin Kudamm", "Dorint Kurfürstendamm Berlin", "SANA Berlin Hotel"],
+                        "Gay Days Orlando": ["Holiday Inn Express & Suites Orlando- Lake Buena Vista by IHG", "SpringHill Suites by Marriott Orlando at SeaWorld", "DoubleTree Suites by Hilton Orlando at Disney Springs"],
+                        "Bear Jamboree": ["Holiday Inn Express & Suites Orlando- Lake Buena Vista by IHG", "SpringHill Suites by Marriott Orlando at SeaWorld", "DoubleTree Suites by Hilton Orlando at Disney Springs"],
+                        "One Magical Weekend": ["Holiday Inn Express & Suites Orlando- Lake Buena Vista by IHG", "SpringHill Suites by Marriott Orlando at SeaWorld", "DoubleTree Suites by Hilton Orlando at Disney Springs"],
+                        "Los Angeles Gay Pride": ["The Dixie Hollywood", "The Hollywood Franklin Hotel near Universal Studios", "Hotel Rudra – Hollywood"],
+                        "San Francisco Gay Pride": ["Embassy Hotel", "Warfield Hotel", "Symphony Inn"],
+                        "Sao Paulo Gay Pride": ["Ibis Styles SP Centro", "Sooz Hotel Collection", "Hotel Cadoro São Paulo"],
+                        "Southern Decadence": ["New Orleans Courtyard Hotel by the French Quarter", "Hotel St Pierre French Quarter", "The Royal Sonesta New Orleans"],
+                        "Bears Week Sitges": ["Hotel El Xalet", "Platjador", "Hotel Subur"],
+                        "Bears Week Sitges - May Edition": ["Hotel El Xalet", "Hotel Sitges", "Calipolis"],
+                        "LeiBear Weekend Honolulu": ["Waikiki Heritage Hotel", "Hotel Renew", "Romer House"],
+                        "Atlanta Pride": ["Sonesta Select Atlanta Midtown Georgia Tech", "Atlanta Marriott Suites Midtown", "Hotel Indigo Atlanta Midtown by IHG"],
+                        "Berlin Gay Pride": ["Mercure Hotel MOA Berlin", "Holiday Inn - the niu, Flash Berlin Charlottenburg by IHG", "ibis Berlin Kurfuerstendamm"],
+                        "Capital Pride Washington": ["Days Inn by Wyndham Washington DC/Connecticut Avenue", "YOTEL Washington DC"],
+                        "Chicago Gay Pride": ["Hotel Chicago West Loop, SureStay Collection by Best Western", "FOUND Hotel Chicago River North", "Freehand Chicago"],
+                        "Gay Days Anaheim": ["Best Western Courtesy Inn Hotel - Anaheim Resort at the Park", "Staybridge Suites Anaheim At The Park by IHG", "Howard Johnson by Wyndham Anaheim Hotel and Water Playground"],
+                        "Paris Gay Pride": ["Hôtel Des Arts-Bastille", "Absolute Hotel Paris République", "ibis Paris Père Lachaise"],
+                        "Palm Springs Gay Pride": ["The Infusion Beach Club", "Desert Zen at Speakeasy Hotel - Adults Only", "El Noa Noa"],
+                        "London Pride": ["STG Hotel Oxford Street - formerly St Giles Hotel", "citizenM London Bankside", "Ruby Stella Hotel London"],
+                        "Puerto Vallarta Gay Pride": ["Fiesta Inn Puerto Vallarta Isla", "Hotel Mio Vallarta", "Las Palmas by the Sea"],
+                        "Puerto Rico Gay Pride": ["Somos Hotel San Juan", "The Lofts At Santurce", "Hilton Garden Inn San Juan Condado"],
+                        "Gay Pride Toronto": ["Chelsea Hotel Toronto", "Toor Hotel Toronto, By Hyatt", "Hilton Toronto"],
+                        "Sydney Leather Festival": ["Meriton Suites Waterloo", "Quest Macquarie Park", "Aiden by Best Western Darling Harbour"],
+                        "Circuit Songkran": ["Valia Hotel Bangkok", "INNSiDE by Melia Bangkok Sukhumvit", "Eastin Grand Hotel Sathorn"],
+                        "Circuit Asia Weekend": ["Buasri Boutique Patong", "The Lunar Patong", "The Royal Paradise Hotel & Spa"],
+                        "Manila Metro Pride": ["The B Hotel Quezon City", "Diamond Hotel Philippines", "Admiral Hotel Manila \u2013 MGallery Collection"]
+                    };
 
-                if (DATABASE.details[destinationInput]) {
-                    targets = [destinationInput];
-                } else if (iataMatch) {
-                    targets = [iataMatch];
-                } else {
-                    alert("Destination not located in our curated list. Please try another city.");
-                    return;
-                }
-            }
+                    // --- EVENT DETECTION LOGIC ---
+                    let eventContent = '';
+                    const searchStart = new Date(dateStart);
+                    const searchEnd = new Date(dateEnd);
+                    const bufferTime = 14 * 24 * 60 * 60 * 1000; // 14 Days Buffer
 
-            container.innerHTML = '';
-            if (typeof showView === 'function') showView('resultsView');
+                    // 1. Search in SPECIAL_EVENTS_DATA (Primary Source)
+                    let matchingEvent = SPECIAL_EVENTS_DATA.find(e => {
+                        // Check city match - only match events for THIS specific city (targetKey)
+                        const normalize = s => s ? s.toLowerCase().trim() : '';
+                        const cityMatch = normalize(e.city) === normalize(targetKey);
 
-            targets.forEach((targetKey, index) => {
-                let data = DATABASE.details[targetKey];
+                        if (!cityMatch) return false;
 
-                // Safety check if mapping exists but details missing (shouldn't happen with correct data)
-                if (!data) {
-                    alert("Destination details currently unavailable.");
-                    return;
-                }
-
-                // Specific Hotels for Events
-                const EVENT_HOTELS = {
-                    "Amsterdam Gay Pride": ["Hotel Not Hotel", "Leonardo Hotel Amsterdam City Center", "Sofitel Legend The Grand"],
-                    "New York City Gay Pride": ["Hotel Moca NYC", "Days Inn by Wyndham Brooklyn Borough Park", "Holiday Inn Express & Suites Woodside LaGuardia Airport by IHG"],
-                    "Folsom Street Fair": ["Windsor Hotel", "Hotel Zetta San Francisco", "Hyatt Regency SF Downtown SOMA"],
-                    "Folsom Europe": ["Radisson RED Berlin Kudamm", "Dorint Kurfürstendamm Berlin", "SANA Berlin Hotel"],
-                    "Gay Days Orlando": ["Holiday Inn Express & Suites Orlando- Lake Buena Vista by IHG", "SpringHill Suites by Marriott Orlando at SeaWorld", "DoubleTree Suites by Hilton Orlando at Disney Springs"],
-                    "Bear Jamboree": ["Holiday Inn Express & Suites Orlando- Lake Buena Vista by IHG", "SpringHill Suites by Marriott Orlando at SeaWorld", "DoubleTree Suites by Hilton Orlando at Disney Springs"],
-                    "One Magical Weekend": ["Holiday Inn Express & Suites Orlando- Lake Buena Vista by IHG", "SpringHill Suites by Marriott Orlando at SeaWorld", "DoubleTree Suites by Hilton Orlando at Disney Springs"],
-                    "Los Angeles Gay Pride": ["The Dixie Hollywood", "The Hollywood Franklin Hotel near Universal Studios", "Hotel Rudra – Hollywood"],
-                    "San Francisco Gay Pride": ["Embassy Hotel", "Warfield Hotel", "Symphony Inn"],
-                    "Sao Paulo Gay Pride": ["Ibis Styles SP Centro", "Sooz Hotel Collection", "Hotel Cadoro São Paulo"],
-                    "Southern Decadence": ["New Orleans Courtyard Hotel by the French Quarter", "Hotel St Pierre French Quarter", "The Royal Sonesta New Orleans"],
-                    "Bears Week Sitges": ["Hotel El Xalet", "Platjador", "Hotel Subur"],
-                    "Bears Week Sitges - May Edition": ["Hotel El Xalet", "Hotel Sitges", "Calipolis"],
-                    "LeiBear Weekend Honolulu": ["Waikiki Heritage Hotel", "Hotel Renew", "Romer House"],
-                    "Atlanta Pride": ["Sonesta Select Atlanta Midtown Georgia Tech", "Atlanta Marriott Suites Midtown", "Hotel Indigo Atlanta Midtown by IHG"],
-                    "Berlin Gay Pride": ["Mercure Hotel MOA Berlin", "Holiday Inn - the niu, Flash Berlin Charlottenburg by IHG", "ibis Berlin Kurfuerstendamm"],
-                    "Capital Pride Washington": ["Days Inn by Wyndham Washington DC/Connecticut Avenue", "YOTEL Washington DC"],
-                    "Chicago Gay Pride": ["Hotel Chicago West Loop, SureStay Collection by Best Western", "FOUND Hotel Chicago River North", "Freehand Chicago"],
-                    "Gay Days Anaheim": ["Best Western Courtesy Inn Hotel - Anaheim Resort at the Park", "Staybridge Suites Anaheim At The Park by IHG", "Howard Johnson by Wyndham Anaheim Hotel and Water Playground"],
-                    "Paris Gay Pride": ["Hôtel Des Arts-Bastille", "Absolute Hotel Paris République", "ibis Paris Père Lachaise"],
-                    "Palm Springs Gay Pride": ["The Infusion Beach Club", "Desert Zen at Speakeasy Hotel - Adults Only", "El Noa Noa"],
-                    "London Pride": ["STG Hotel Oxford Street - formerly St Giles Hotel", "citizenM London Bankside", "Ruby Stella Hotel London"],
-                    "Puerto Vallarta Gay Pride": ["Fiesta Inn Puerto Vallarta Isla", "Hotel Mio Vallarta", "Las Palmas by the Sea"],
-                    "Puerto Rico Gay Pride": ["Somos Hotel San Juan", "The Lofts At Santurce", "Hilton Garden Inn San Juan Condado"],
-                    "Gay Pride Toronto": ["Chelsea Hotel Toronto", "Toor Hotel Toronto, By Hyatt", "Hilton Toronto"],
-                    "Sydney Leather Festival": ["Meriton Suites Waterloo", "Quest Macquarie Park", "Aiden by Best Western Darling Harbour"],
-                    "Circuit Songkran": ["Valia Hotel Bangkok", "INNSiDE by Melia Bangkok Sukhumvit", "Eastin Grand Hotel Sathorn"],
-                    "Circuit Asia Weekend": ["Buasri Boutique Patong", "The Lunar Patong", "The Royal Paradise Hotel & Spa"],
-                    "Manila Metro Pride": ["The B Hotel Quezon City", "Diamond Hotel Philippines", "Admiral Hotel Manila \u2013 MGallery Collection"]
-                };
-
-                // --- EVENT DETECTION LOGIC ---
-                let eventContent = '';
-                const searchStart = new Date(dateStart);
-                const searchEnd = new Date(dateEnd);
-                const bufferTime = 14 * 24 * 60 * 60 * 1000; // 14 Days Buffer
-
-                // 1. Search in SPECIAL_EVENTS_DATA (Primary Source)
-                let matchingEvent = SPECIAL_EVENTS_DATA.find(e => {
-                    // Check city match - only match events for THIS specific city (targetKey)
-                    const normalize = s => s ? s.toLowerCase().trim() : '';
-                    const cityMatch = normalize(e.city) === normalize(targetKey);
-
-                    if (!cityMatch) return false;
-
-                    // Check Date Overlap with Buffer
-                    const eStart = new Date(e.start);
-                    const eEnd = new Date(e.end);
-                    const startBuffer = new Date(eStart.getTime() - bufferTime);
-                    const endBuffer = new Date(eEnd.getTime() + bufferTime);
-
-                    return (searchStart <= endBuffer && searchEnd >= startBuffer);
-                });
-
-                // 2. Fallback to internal DATABASE.details events
-                if (!matchingEvent && data.events) {
-                    matchingEvent = data.events.find(e => {
+                        // Check Date Overlap with Buffer
                         const eStart = new Date(e.start);
                         const eEnd = new Date(e.end);
                         const startBuffer = new Date(eStart.getTime() - bufferTime);
                         const endBuffer = new Date(eEnd.getTime() + bufferTime);
+
                         return (searchStart <= endBuffer && searchEnd >= startBuffer);
                     });
-                }
 
-                // Randomize Standard Hotels
-                let randomHotels = getRandomSubset(data.hotels, 4);
+                    // 2. Fallback to internal DATABASE.details events
+                    if (!matchingEvent && data.events) {
+                        matchingEvent = data.events.find(e => {
+                            const eStart = new Date(e.start);
+                            const eEnd = new Date(e.end);
+                            const startBuffer = new Date(eStart.getTime() - bufferTime);
+                            const endBuffer = new Date(eEnd.getTime() + bufferTime);
+                            return (searchStart <= endBuffer && searchEnd >= startBuffer);
+                        });
+                    }
 
-                // Inject Featured Event Hotel
-                if (matchingEvent && matchingEvent.hotels && matchingEvent.hotels.length > 0) {
-                    const randomEventHotelName = matchingEvent.hotels[Math.floor(Math.random() * matchingEvent.hotels.length)];
+                    // Randomize Standard Hotels
+                    let randomHotels = getRandomSubset(data.hotels, 4);
 
-                    const specialHotel = {
-                        name: randomEventHotelName,
-                        type: 'Event Special',
-                        tags: ['Featured', 'Pride Partner']
-                    };
+                    // Inject Featured Event Hotel
+                    if (matchingEvent && matchingEvent.hotels && matchingEvent.hotels.length > 0) {
+                        const randomEventHotelName = matchingEvent.hotels[Math.floor(Math.random() * matchingEvent.hotels.length)];
 
-                    // Prepend to top of list
-                    randomHotels.unshift(specialHotel);
-                    randomHotels = randomHotels.slice(0, 4); // Keep list size managed
-                } else if (matchingEvent && EVENT_HOTELS[matchingEvent.name]) {
-                    // Legacy fallback if map matches old hardcoded name
-                    const eventHotelNames = EVENT_HOTELS[matchingEvent.name];
-                    const randomEventHotelName = eventHotelNames[Math.floor(Math.random() * eventHotelNames.length)];
-                    const specialHotel = { name: randomEventHotelName, type: 'Event Special', tags: ['Featured'] };
-                    randomHotels.unshift(specialHotel);
-                    randomHotels = randomHotels.slice(0, 4);
-                }
+                        const specialHotel = {
+                            name: randomEventHotelName,
+                            type: 'Event Special',
+                            tags: ['Featured', 'Pride Partner']
+                        };
 
-                const randomNightlife = getRandomSubset(data.nightlife, 3);
-                const randomTours = data.tours.slice(0, 5);
-                const fareEstimate = calculateFareEstimate(data.baseFare);
-                const delay = index * 200;
+                        // Prepend to top of list
+                        randomHotels.unshift(specialHotel);
+                        randomHotels = randomHotels.slice(0, 4); // Keep list size managed
+                    } else if (matchingEvent && EVENT_HOTELS[matchingEvent.name]) {
+                        // Legacy fallback if map matches old hardcoded name
+                        const eventHotelNames = EVENT_HOTELS[matchingEvent.name];
+                        const randomEventHotelName = eventHotelNames[Math.floor(Math.random() * eventHotelNames.length)];
+                        const specialHotel = { name: randomEventHotelName, type: 'Event Special', tags: ['Featured'] };
+                        randomHotels.unshift(specialHotel);
+                        randomHotels = randomHotels.slice(0, 4);
+                    }
+
+                    const randomNightlife = getRandomSubset(data.nightlife, 3);
+                    const randomTours = data.tours.slice(0, 5);
+                    const fareEstimate = calculateFareEstimate(data.baseFare);
+                    const delay = index * 200;
 
 
-                if (matchingEvent) {
-                    const link1 = matchingEvent.link || getEventsLink(data.name, dateStart);
-                    const link1Text = matchingEvent.link ? "View Official Guide" : "Search Event Details";
-                    const link2 = `https://www.google.com/search?q=${encodeURIComponent(matchingEvent.name + " 2026")}`;
+                    if (matchingEvent) {
+                        const link1 = matchingEvent.link || getEventsLink(data.name, dateStart);
+                        const link1Text = matchingEvent.link ? "View Official Guide" : "Search Event Details";
+                        const link2 = `https://www.google.com/search?q=${encodeURIComponent(matchingEvent.name + " 2026")}`;
 
-                    const isCruise = matchingEvent.type === 'Cruise';
-                    const bannerTitle = isCruise ? "Gay Cruise Detected!" : "Pride Event Detected!";
-                    const bannerIcon = isCruise ? "directions_boat" : "celebration";
-                    const bgClass = isCruise ? "from-blue-600 to-cyan-500" : "from-pride-purple to-pride-blue";
+                        const isCruise = matchingEvent.type === 'Cruise';
+                        const bannerTitle = isCruise ? "Gay Cruise Detected!" : "Pride Event Detected!";
+                        const bannerIcon = isCruise ? "directions_boat" : "celebration";
+                        const bgClass = isCruise ? "from-blue-600 to-cyan-500" : "from-pride-purple to-pride-blue";
 
-                    eventContent = `
+                        eventContent = `
                                     <div class="mt-4 bg-gradient-to-r ${bgClass} rounded-xl shadow-lg p-5 text-white relative overflow-hidden">
                                         <div class="absolute top-0 right-0 p-4 opacity-10">
                                             <span class="material-symbols-outlined text-6xl">${bannerIcon}</span>
@@ -7698,7 +7649,10 @@
                                             <span class="material-symbols-outlined text-pride-yellow fill-1">stars</span>
                                             <h4 class="font-bold text-lg">${bannerTitle}</h4>
                                         </div>
-                                        <p class="font-bold text-white text-xl mb-1">${matchingEvent.name}</p>
+                                        <a href="${link1}" target="_blank" class="font-bold text-white text-xl mb-1 hover:underline cursor-pointer flex items-center gap-1 group">
+                                            ${matchingEvent.name}
+                                            <span class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 transition-opacity">open_in_new</span>
+                                        </a>
                                         <p class="text-xs text-white/80 mb-4 flex items-center gap-1">
                                             <span class="material-symbols-outlined text-sm">calendar_today</span>
                                             ${matchingEvent.start} &ndash; ${matchingEvent.end}
@@ -7714,28 +7668,28 @@
                                             </a>
                                         </div>
                                     </div>`;
-                }
+                    }
 
-                // Calculate safety score properties
-                const safetyScore = data.safetyScore || 85;
-                let safetyColor = 'text-pride-green';
-                let safetyLabel = 'Excellent Inclusivity';
-                if (safetyScore < 50) {
-                    safetyColor = 'text-pride-red';
-                    safetyLabel = 'Caution Advised';
-                } else if (safetyScore < 65) {
-                    safetyColor = 'text-pride-yellow';
-                    safetyLabel = 'Moderate Inclusivity';
-                } else {
-                    safetyColor = 'text-pride-green';
-                    safetyLabel = 'Excellent Inclusivity';
-                }
-                const safetyOffset = 251.2 * (1 - safetyScore / 100);
+                    // Calculate safety score properties
+                    const safetyScore = data.safetyScore || 85;
+                    let safetyColor = 'text-pride-green';
+                    let safetyLabel = 'Excellent Inclusivity';
+                    if (safetyScore < 50) {
+                        safetyColor = 'text-pride-red';
+                        safetyLabel = 'Caution Advised';
+                    } else if (safetyScore < 65) {
+                        safetyColor = 'text-pride-yellow';
+                        safetyLabel = 'Moderate Inclusivity';
+                    } else {
+                        safetyColor = 'text-pride-green';
+                        safetyLabel = 'Excellent Inclusivity';
+                    }
+                    const safetyOffset = 251.2 * (1 - safetyScore / 100);
 
-                const card = document.createElement('div');
-                card.className = "bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-primary/10 overflow-hidden fade-in-up";
-                card.style.animationDelay = `${delay}ms`;
-                card.innerHTML = `
+                    const card = document.createElement('div');
+                    card.className = "bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-primary/10 overflow-hidden fade-in-up";
+                    card.style.animationDelay = `${delay}ms`;
+                    card.innerHTML = `
                          <!-- Result Header -->
                         <div class="pride-gradient-bg p-6 flex justify-between items-center"
                              >
@@ -7856,11 +7810,11 @@
                                 </h3>
                                 <div class="grid grid-cols-2 gap-3">
                                     ${randomNightlife.map((n, i) => {
-                    const colors = ['pride-red', 'pride-blue', 'pride-purple', 'pride-orange'];
-                    const icons = ['local_bar', 'celebration', 'music_note', 'wine_bar'];
-                    const color = colors[i % colors.length];
-                    const icon = icons[i % icons.length];
-                    return `
+                        const colors = ['pride-red', 'pride-blue', 'pride-purple', 'pride-orange'];
+                        const icons = ['local_bar', 'celebration', 'music_note', 'wine_bar'];
+                        const color = colors[i % colors.length];
+                        const icon = icons[i % icons.length];
+                        return `
                                         <div class="bg-white p-4 rounded-xl border border-${color}/20 group hover:bg-${color} transition-colors duration-300 cursor-default">
                                             <div class="w-10 h-10 bg-${color} rounded-full flex items-center justify-center text-white mb-3 group-hover:bg-white dark:bg-slate-800 group-hover:text-${color}">
                                                 <span class="material-symbols-outlined">${icon}</span>
@@ -7869,7 +7823,7 @@
                                             <p class="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-300 group-hover:text-white/80">${n.type} &bull; ${n.tags[0]}</p>
                                         </div>
                                         `;
-                }).join('')}
+                    }).join('')}
                                 </div>
                             </section>
 
@@ -7881,13 +7835,13 @@
                                 </div>
                                 <div class="flex justify-between">
                                     ${(() => {
-                        const monthIndex = new Date(dateStart).getUTCMonth();
-                        const monthName = getMonthName(dateStart);
-                        const mWeather = data.monthlyWeather ? data.monthlyWeather[monthIndex] : null;
-                        const highTemp = mWeather ? mWeather.high : '72°F';
-                        const lowTemp = mWeather ? mWeather.low : '55°F';
-                        const summary = mWeather ? mWeather.summary : 'Sunny';
-                        return `
+                            const monthIndex = new Date(dateStart).getUTCMonth();
+                            const monthName = getMonthName(dateStart);
+                            const mWeather = data.monthlyWeather ? data.monthlyWeather[monthIndex] : null;
+                            const highTemp = mWeather ? mWeather.high : '72°F';
+                            const lowTemp = mWeather ? mWeather.low : '55°F';
+                            const summary = mWeather ? mWeather.summary : 'Sunny';
+                            return `
                             <div class="w-full flex items-center gap-5 p-3 bg-white dark:bg-slate-800/60 rounded-xl">
                                 <div class="flex-shrink-0">${getWeatherIcon(summary)}</div>
                                 <div class="flex-1">
@@ -7902,7 +7856,7 @@
                                 </div>
                             </div>
                         `;
-                    })()}
+                        })()}
                                 </div>
                             </section>
 
@@ -7928,207 +7882,207 @@
                             </section>
                         </div>
                         `;
-                container.appendChild(card);
+                    container.appendChild(card);
+                });
+
+                // Re-inject Skyscanner loader to initialize new widgets
+                const skyscannerScript = document.createElement('script');
+                skyscannerScript.src = "https://widgets.skyscanner.net/widget-server/js/loader.js";
+                skyscannerScript.async = true;
+                document.body.appendChild(skyscannerScript);
             });
-
-            // Re-inject Skyscanner loader to initialize new widgets
-            const skyscannerScript = document.createElement('script');
-            skyscannerScript.src = "https://widgets.skyscanner.net/widget-server/js/loader.js";
-            skyscannerScript.async = true;
-            document.body.appendChild(skyscannerScript);
-        });
-    }
-
-    function formatDisplayName(data) {
-        // Desired: "City, Airport Code, Country or Region"
-        // data.name is typically "City, Country"
-        // data.iata is "CODE"
-
-        if (data.name.includes(',')) {
-            const parts = data.name.split(',');
-            const city = parts[0].trim();
-            const country = parts.slice(1).join(',').trim();
-            return `${city}, ${data.iata}, ${country} `;
         }
-        return `${data.name}, ${data.iata} `;
-    }
 
-    function getRandomSubset(arr, count) {
-        if (!arr) return [];
-        const shuffled = [...arr].sort(() => 0.5 - Math.random());
-        return shuffled.slice(0, count);
-    }
+        function formatDisplayName(data) {
+            // Desired: "City, Airport Code, Country or Region"
+            // data.name is typically "City, Country"
+            // data.iata is "CODE"
 
-    function getHotelBadge(h) {
-        if (h.type === 'Event Special') return 'Event Special';
-        let specialTags = ['LGBTQ Friendly', 'LGBTQ Hotels & Resorts', 'LGBTQ Resort', 'LGBTQ Hotel', 'LGBTQ Owned', 'Gay Hotel', 'Men Only', 'Adults Only', 'Adults-Only', 'Mens Only'];
-        if (h.tags) {
-            let found = h.tags.find(t => specialTags.includes(t));
-            if (found) {
-                if (found === 'Men Only' || found === 'Mens Only') found = 'Men-Only';
-                if (found === 'Adults Only') found = 'Adults-Only';
-                if (h.type && found.toLowerCase().includes(h.type.toLowerCase())) {
-                    return found;
-                }
-                return `${h.type} ${found}`;
+            if (data.name.includes(',')) {
+                const parts = data.name.split(',');
+                const city = parts[0].trim();
+                const country = parts.slice(1).join(',').trim();
+                return `${city}, ${data.iata}, ${country} `;
             }
-        }
-        return h.type;
-    }
-
-    function calculateFareEstimate(baseRange) {
-        if (!baseRange) return "$500 - $1600";
-        const min = baseRange[0];
-        const max = baseRange[1] * 2; // Double top end
-        return `$${min} - $${max} `;
-    }
-
-    function getGoogleFlightsLink(origin, destination, start, end) {
-        const q = `Flights from ${origin} to ${destination} on ${start} returning ${end} `;
-        return `https://www.google.com/travel/flights?q=${encodeURIComponent(q)}`;
-    }
-
-    function getSkyscannerLink(origin, destinationIata, start, end) {
-        // Convert YYYY-MM-DD to YYMMDD
-        const formatDate = (d) => d.slice(2).replace(/-/g, '');
-        const s = formatDate(start);
-        const e = formatDate(end);
-        // Use path format: /transport/flights/{origin}/{destination}/{yymmdd}/{yymmdd}
-        const dest = destinationIata === 'ANY' ? 'everywhere' : destinationIata;
-        return `https://www.skyscanner.com/transport/flights/${encodeURIComponent(origin)}/${encodeURIComponent(dest)}/${s}/${e}`;
-    }
-
-    function getNightlifeIcon(type) {
-        const t = type.toLowerCase();
-        if (t.includes('sauna') || t.includes('bath')) return '<span class="material-symbols-outlined">hot_tub</span>';
-        if (t.includes('club') || t.includes('disco')) return '<span class="material-symbols-outlined">celebration</span>';
-        if (t.includes('bar')) return '<span class="material-symbols-outlined">local_bar</span>';
-        return '<span class="material-symbols-outlined">music_note</span>';
-    }
-
-    function getExpediaLink(destination, start, end) {
-        return `https://www.expedia.com/Hotel-Search?destination=${encodeURIComponent(destination)}&startDate=${start}&endDate=${end}`;
-    }
-
-    function getViatorLink(destination, start, end) {
-        return `https://www.viator.com/searchResults/all?text=${encodeURIComponent(destination)}&startDate=${start}&endDate=${end}`;
-    }
-
-    function getEmailLink(origin, data, start, end) {
-        const subject = `Trip Idea: ${data.name} for Pride Travel`;
-        const body = `Hey,\n\nI found a great trip idea using Pride Travel Scout!\n\nDestination: ${data.name}\nDates: ${start} to ${end}\nFrom: ${origin}\n\nWeather: ${data.weather}\nLGBTQ Safety: ${data.lgbtqSafety}\n\nCheck out flights:\nGoogle Flights: ${getGoogleFlightsLink(origin, data.name, start, end)}\n\nSent from Pride Travel Scout`;
-        return `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    }
-
-    function getWeatherIcon(weatherString) {
-        const w = weatherString.toLowerCase();
-        if (w.includes('rain')) return '<span class="material-symbols-outlined text-pride-blue">rainy</span>';
-        if (w.includes('cloud')) return '<span class="material-symbols-outlined text-slate-400 dark:text-slate-300">cloudy</span>';
-        if (w.includes('snow')) return '<span class="material-symbols-outlined text-slate-200">snowing</span>';
-        return '<span class="material-symbols-outlined text-pride-orange">sunny</span>';
-    }
-
-    function getEventsLink(destination, dateString) {
-        const month = getMonthName(dateString);
-        const q = `LGBTQ Events in ${destination} in ${month}`;
-        return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
-    }
-
-    function getMonthName(dateString) {
-        const date = new Date(dateString);
-        return date.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
-    }
-
-    function formatDateShort(dateString) {
-        if (!dateString) return '';
-        const date = new Date(dateString + 'T00:00:00');
-        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-    }
-
-    window.showAllHotspots = function () {
-        populateAllHotspots();
-        toggleView('allHotspotsView');
-    };
-
-    function populateAllHotspots() {
-        const grid = document.getElementById('allHotspotsGrid');
-        if (!grid) return;
-
-        const eventPool = [];
-        const cityPool = [];
-        const districtPool = [];
-
-        // 1. Collect Events
-        if (typeof SPECIAL_EVENTS_DATA !== 'undefined') {
-            SPECIAL_EVENTS_DATA.forEach(e => {
-                eventPool.push({
-                    type: e.type || 'Event',
-                    name: e.name,
-                    location: e.city,
-                    date: e.start,
-                    endDate: e.end,
-                    searchQuery: e.city
-                });
-            });
+            return `${data.name}, ${data.iata} `;
         }
 
-        // 2. Collect Destinations & Districts
-        if (typeof DATABASE !== 'undefined' && DATABASE.details) {
-            Object.keys(DATABASE.details).forEach(key => {
-                const data = DATABASE.details[key];
-                // Add to City Pool
-                cityPool.push({
-                    type: 'Destination',
-                    name: data.name,
-                    location: data.iata || '',
-                    searchQuery: key
-                });
+        function getRandomSubset(arr, count) {
+            if (!arr) return [];
+            const shuffled = [...arr].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
 
-                // Add to District Pool if available
-                if (data.lgbtqDistrict) {
-                    districtPool.push({
-                        type: 'District',
-                        name: data.lgbtqDistrict,
-                        location: data.name.split(',')[0],
+        function getHotelBadge(h) {
+            if (h.type === 'Event Special') return 'Event Special';
+            let specialTags = ['LGBTQ Friendly', 'LGBTQ Hotels & Resorts', 'LGBTQ Resort', 'LGBTQ Hotel', 'LGBTQ Owned', 'Gay Hotel', 'Men Only', 'Adults Only', 'Adults-Only', 'Mens Only'];
+            if (h.tags) {
+                let found = h.tags.find(t => specialTags.includes(t));
+                if (found) {
+                    if (found === 'Men Only' || found === 'Mens Only') found = 'Men-Only';
+                    if (found === 'Adults Only') found = 'Adults-Only';
+                    if (h.type && found.toLowerCase().includes(h.type.toLowerCase())) {
+                        return found;
+                    }
+                    return `${h.type} ${found}`;
+                }
+            }
+            return h.type;
+        }
+
+        function calculateFareEstimate(baseRange) {
+            if (!baseRange) return "$500 - $1600";
+            const min = baseRange[0];
+            const max = baseRange[1] * 2; // Double top end
+            return `$${min} - $${max} `;
+        }
+
+        function getGoogleFlightsLink(origin, destination, start, end) {
+            const q = `Flights from ${origin} to ${destination} on ${start} returning ${end} `;
+            return `https://www.google.com/travel/flights?q=${encodeURIComponent(q)}`;
+        }
+
+        function getSkyscannerLink(origin, destinationIata, start, end) {
+            // Convert YYYY-MM-DD to YYMMDD
+            const formatDate = (d) => d.slice(2).replace(/-/g, '');
+            const s = formatDate(start);
+            const e = formatDate(end);
+            // Use path format: /transport/flights/{origin}/{destination}/{yymmdd}/{yymmdd}
+            const dest = destinationIata === 'ANY' ? 'everywhere' : destinationIata;
+            return `https://www.skyscanner.com/transport/flights/${encodeURIComponent(origin)}/${encodeURIComponent(dest)}/${s}/${e}`;
+        }
+
+        function getNightlifeIcon(type) {
+            const t = type.toLowerCase();
+            if (t.includes('sauna') || t.includes('bath')) return '<span class="material-symbols-outlined">hot_tub</span>';
+            if (t.includes('club') || t.includes('disco')) return '<span class="material-symbols-outlined">celebration</span>';
+            if (t.includes('bar')) return '<span class="material-symbols-outlined">local_bar</span>';
+            return '<span class="material-symbols-outlined">music_note</span>';
+        }
+
+        function getExpediaLink(destination, start, end) {
+            return `https://www.expedia.com/Hotel-Search?destination=${encodeURIComponent(destination)}&startDate=${start}&endDate=${end}`;
+        }
+
+        function getViatorLink(destination, start, end) {
+            return `https://www.viator.com/searchResults/all?text=${encodeURIComponent(destination)}&startDate=${start}&endDate=${end}`;
+        }
+
+        function getEmailLink(origin, data, start, end) {
+            const subject = `Trip Idea: ${data.name} for Pride Travel`;
+            const body = `Hey,\n\nI found a great trip idea using Pride Travel Scout!\n\nDestination: ${data.name}\nDates: ${start} to ${end}\nFrom: ${origin}\n\nWeather: ${data.weather}\nLGBTQ Safety: ${data.lgbtqSafety}\n\nCheck out flights:\nGoogle Flights: ${getGoogleFlightsLink(origin, data.name, start, end)}\n\nSent from Pride Travel Scout`;
+            return `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function getWeatherIcon(weatherString) {
+            const w = weatherString.toLowerCase();
+            if (w.includes('rain')) return '<span class="material-symbols-outlined text-pride-blue">rainy</span>';
+            if (w.includes('cloud')) return '<span class="material-symbols-outlined text-slate-400 dark:text-slate-300">cloudy</span>';
+            if (w.includes('snow')) return '<span class="material-symbols-outlined text-slate-200">snowing</span>';
+            return '<span class="material-symbols-outlined text-pride-orange">sunny</span>';
+        }
+
+        function getEventsLink(destination, dateString) {
+            const month = getMonthName(dateString);
+            const q = `LGBTQ Events in ${destination} in ${month}`;
+            return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
+        }
+
+        function getMonthName(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
+        }
+
+        function formatDateShort(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString + 'T00:00:00');
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        }
+
+        window.showAllHotspots = function () {
+            populateAllHotspots();
+            toggleView('allHotspotsView');
+        };
+
+        function populateAllHotspots() {
+            const grid = document.getElementById('allHotspotsGrid');
+            if (!grid) return;
+
+            const eventPool = [];
+            const cityPool = [];
+            const districtPool = [];
+
+            // 1. Collect Events
+            if (typeof SPECIAL_EVENTS_DATA !== 'undefined') {
+                SPECIAL_EVENTS_DATA.forEach(e => {
+                    eventPool.push({
+                        type: e.type || 'Event',
+                        name: e.name,
+                        location: e.city,
+                        date: e.start,
+                        endDate: e.end,
+                        searchQuery: e.city
+                    });
+                });
+            }
+
+            // 2. Collect Destinations & Districts
+            if (typeof DATABASE !== 'undefined' && DATABASE.details) {
+                Object.keys(DATABASE.details).forEach(key => {
+                    const data = DATABASE.details[key];
+                    // Add to City Pool
+                    cityPool.push({
+                        type: 'Destination',
+                        name: data.name,
+                        location: data.iata || '',
                         searchQuery: key
                     });
-                }
-            });
-        }
 
-        // 3. Balanced Selection (Target 60 total: ~7 Events, ~7 Cities, ~6 Districts)
-        const selectedEvents = getRandomSubset(eventPool, 20);
-        const selectedCities = getRandomSubset(cityPool, 20);
-        const selectedDistricts = getRandomSubset(districtPool, 20);
-
-        let selected = [...selectedEvents, ...selectedCities, ...selectedDistricts];
-
-        // 4. Backfill if total < 20
-        if (selected.length < 60) {
-            const remainingTarget = 60 - selected.length;
-            const usedNames = new Set(selected.map(s => s.name + s.type));
-            const allRemaining = [...eventPool, ...cityPool, ...districtPool]
-                .filter(item => !usedNames.has(item.name + item.type));
-
-            const extra = getRandomSubset(allRemaining, remainingTarget);
-            selected = [...selected, ...extra];
-        }
-
-        // Shuffle final list
-        selected = getRandomSubset(selected, selected.length);
-
-        grid.innerHTML = selected.map(h => {
-            let icon = 'location_on';
-            let badgeClass = 'bg-primary text-white';
-            if (h.type === 'Event' || h.type === 'Cruise') {
-                icon = h.type === 'Cruise' ? 'directions_boat' : 'event_upcoming';
-                badgeClass = h.type === 'Cruise' ? 'bg-blue-500 text-white' : 'bg-yellow-400 text-slate-900 dark:text-white';
-            } else if (h.type === 'District') {
-                icon = 'explore';
-                badgeClass = 'bg-orange-500 text-white';
+                    // Add to District Pool if available
+                    if (data.lgbtqDistrict) {
+                        districtPool.push({
+                            type: 'District',
+                            name: data.lgbtqDistrict,
+                            location: data.name.split(',')[0],
+                            searchQuery: key
+                        });
+                    }
+                });
             }
 
-            return `
+            // 3. Balanced Selection (Target 60 total: ~7 Events, ~7 Cities, ~6 Districts)
+            const selectedEvents = getRandomSubset(eventPool, 20);
+            const selectedCities = getRandomSubset(cityPool, 20);
+            const selectedDistricts = getRandomSubset(districtPool, 20);
+
+            let selected = [...selectedEvents, ...selectedCities, ...selectedDistricts];
+
+            // 4. Backfill if total < 20
+            if (selected.length < 60) {
+                const remainingTarget = 60 - selected.length;
+                const usedNames = new Set(selected.map(s => s.name + s.type));
+                const allRemaining = [...eventPool, ...cityPool, ...districtPool]
+                    .filter(item => !usedNames.has(item.name + item.type));
+
+                const extra = getRandomSubset(allRemaining, remainingTarget);
+                selected = [...selected, ...extra];
+            }
+
+            // Shuffle final list
+            selected = getRandomSubset(selected, selected.length);
+
+            grid.innerHTML = selected.map(h => {
+                let icon = 'location_on';
+                let badgeClass = 'bg-primary text-white';
+                if (h.type === 'Event' || h.type === 'Cruise') {
+                    icon = h.type === 'Cruise' ? 'directions_boat' : 'event_upcoming';
+                    badgeClass = h.type === 'Cruise' ? 'bg-blue-500 text-white' : 'bg-yellow-400 text-slate-900 dark:text-white';
+                } else if (h.type === 'District') {
+                    icon = 'explore';
+                    badgeClass = 'bg-orange-500 text-white';
+                }
+
+                return `
                     <div onclick="quickSearch('${h.searchQuery}', '${h.date || ''}', '${h.endDate || ''}')" class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-lg border-l-4 border-primary flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform group">
                         <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
                             <span class="material-symbols-outlined">${icon}</span>
@@ -8140,21 +8094,86 @@
                         </div>
                     </div>
                 `;
-        }).join('');
-    }
+            }).join('');
+        }
 
-    // --- INITIALIZATION ---
-    window.addEventListener('DOMContentLoaded', () => {
-        populateTrendingEvents();
-    });
+        // --- INITIALIZATION ---
+        window.addEventListener('DOMContentLoaded', () => {
+            populateTrendingEvents();
+            populateSafeHotspots();
+        });
 
-    function populateTrendingEvents() {
-        const grid = document.getElementById('eventsGrid');
-        if (!grid) return;
 
-        // Get 3 random events
-        const randomEvents = getRandomSubset(SPECIAL_EVENTS_DATA, 4);
-        grid.innerHTML = randomEvents.map(e => `
+        const SAFE_HOTSPOTS_DATA = [
+            { city: 'London', country: 'UK', safetyScore: 68, image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80' },
+            { city: 'Orlando', country: 'USA', safetyScore: 68, image: 'https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=800&q=80' },
+            { city: 'Tokyo', country: 'Japan', safetyScore: 53, image: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80' },
+            { city: 'Rio de Janeiro', country: 'Brazil', safetyScore: 75, image: 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=800&q=80' },
+            { city: 'Miami', country: 'USA', safetyScore: 68, image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=80' },
+            { city: 'Amsterdam', country: 'Netherlands', safetyScore: 76, image: 'https://images.unsplash.com/photo-1517736996303-4eec4a66bb17?auto=format&fit=crop&w=800&q=80' },
+            { city: 'Paris', country: 'France', safetyScore: 74, image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80' },
+            { city: 'Mexico City', country: 'Mexico', safetyScore: 70, image: 'https://images.unsplash.com/photo-1585464231875-d9ef1f5ad396?auto=format&fit=crop&w=800&q=80' },
+            { city: 'Buenos Aires', country: 'Argentina', safetyScore: 74, image: 'https://images.unsplash.com/photo-1589909202802-8f4aadce1849?auto=format&fit=crop&w=800&q=80' },
+            { city: 'Berlin', country: 'Germany', safetyScore: 80, image: 'https://images.unsplash.com/photo-1560969184-10fe8719e047?auto=format&fit=crop&w=800&q=80' },
+            { city: 'Barcelona', country: 'Spain', safetyScore: 83, image: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=800&q=80' },
+            { city: 'San Francisco', country: 'USA', safetyScore: 68, image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=800&q=80' }
+        ];
+
+        function populateSafeHotspots() {
+            const container = document.getElementById('hotspotsContainer');
+            if (!container) return;
+
+            const randomHotspots = getRandomSubset(SAFE_HOTSPOTS_DATA, 3);
+
+            container.innerHTML = randomHotspots.map(h => {
+                const cityEvents = SPECIAL_EVENTS_DATA.filter(e => e.city.toLowerCase() === h.city.toLowerCase() && e.type !== 'Cruise');
+                let eventTagHtml = '';
+                let searchParams = `\'${h.city}\'`;
+
+                if (cityEvents.length > 0) {
+                    const randomEvent = cityEvents[Math.floor(Math.random() * cityEvents.length)];
+                    eventTagHtml = `<span class="bg-pride-orange text-white text-[10px] font-black px-2 py-1 rounded-lg uppercase mb-2 inline-block shadow-lg truncate max-w-[200px]">Event: ${randomEvent.name}</span>`;
+                    searchParams = `'${h.city}', '${randomEvent.start}', '${randomEvent.end}'`;
+                } else {
+                    eventTagHtml = `<span class="bg-pride-blue text-white text-[10px] font-black px-2 py-1 rounded-lg uppercase mb-2 inline-block shadow-lg max-w-[200px]">Trending Destination</span>`;
+                }
+
+                return `
+                    <div onclick="quickSearch(${searchParams})"
+                        class="min-w-[280px] snap-center rounded-3xl overflow-hidden relative group shadow-2xl cursor-pointer active:scale-95 transition-transform rainbow-border">
+                        <img class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
+                            src="${h.image}" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            ${eventTagHtml}
+                            <h4 class="text-white text-2xl font-black mb-1">${h.city}, ${h.country}</h4>
+                            <div class="flex items-center gap-2 text-white/90 text-xs font-bold">
+                                <span class="material-symbols-outlined text-sm text-green-400 fill-1">verified_user</span>
+                                Safety Score: ${h.safetyScore}/100
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function populateTrendingEvents() {
+            const grid = document.getElementById('eventsGrid');
+            if (!grid) return;
+
+            const allCruises = SPECIAL_EVENTS_DATA.filter(e => e.type === 'Cruise');
+            const otherEvents = SPECIAL_EVENTS_DATA.filter(e => e.type !== 'Cruise');
+
+            let randomEvents = [];
+            if (allCruises.length > 0) {
+                const randomCruise = allCruises[Math.floor(Math.random() * allCruises.length)];
+                randomEvents.push(randomCruise);
+                randomEvents = randomEvents.concat(getRandomSubset(otherEvents, 3));
+                randomEvents.sort(() => Math.random() - 0.5);
+            } else {
+                randomEvents = getRandomSubset(SPECIAL_EVENTS_DATA, 4);
+            }
+            grid.innerHTML = randomEvents.map(e => `
                                 <div onclick="quickSearch('${e.city}', '${e.start}', '${e.end}')" class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-lg border-l-4 border-primary flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform">
                                     <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
                                         <span class="material-symbols-outlined">${e.type === 'Cruise' ? 'directions_boat' : 'event_upcoming'}</span>
@@ -8165,8 +8184,8 @@
                                     </div>
                                 </div>
                             `).join('');
-    }
-    }) ();
+        }
+    })();
 </script>
 <script>
     if (typeof navigator.serviceWorker !== 'undefined') {
