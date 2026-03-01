@@ -418,7 +418,7 @@
     </style>
     <meta name="theme-color" content="#f20d8f">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <link rel="manifest" href="https://pridetravel.github.io/PrideTravelScoutAPP/manifest.json">
+    <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="https://pridetravel.github.io/PrideTravelScoutAPP/icon-512.png">
     <!-- Firebase SDK (compat) -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -735,7 +735,40 @@
             auth.onAuthStateChanged(async (user) => {
                 currentUser = user;
                 renderUserBtn(user);
-                if (user) { await refreshSavedIds(); refreshSaveButtons(); }
+                if (user) {
+                    await refreshSavedIds();
+
+                    const params = new URLSearchParams(window.location.search);
+                    const shareId = params.get('shareId');
+                    if (shareId) {
+                        try {
+                            const sharedSnap = await db.collection('shared_trips').doc(shareId).get();
+                            if (sharedSnap.exists) {
+                                const st = sharedSnap.data();
+                                const tripsSnap = await db.collection('users').doc(user.uid).collection('trips').where('shareId', '==', shareId).get();
+                                if (tripsSnap.empty) {
+                                    await db.collection('users').doc(user.uid).collection('trips').add({
+                                        destination: st.destination,
+                                        departure: st.departure,
+                                        dateStart: st.dateStart,
+                                        dateEnd: st.dateEnd,
+                                        tripKey: st.tripKey,
+                                        createdAt: Date.now(),
+                                        shareId: shareId
+                                    });
+                                    alert("You have joined the collaborative trip to " + st.destination + "!");
+                                    await refreshSavedIds();
+                                }
+                                window.history.replaceState({}, document.title, window.location.pathname);
+                            } else {
+                                alert("This shared trip no longer exists.");
+                                window.history.replaceState({}, document.title, window.location.pathname);
+                            }
+                        } catch (e) { console.error("Error joining shared trip", e); }
+                    }
+
+                    refreshSaveButtons();
+                }
                 else { savedTripIds.clear(); refreshSaveButtons(); }
             });
 
@@ -755,8 +788,21 @@
                 const wrap = document.getElementById('ps-user-menu-wrap');
                 if (!wrap) return;
                 if (user) {
-                    const initials = (user.displayName || user.email || '?').slice(0, 2).toUpperCase();
-                    const name = user.displayName || user.email.split('@')[0];
+                    let initials = '?';
+                    let name = user.displayName || user.email.split('@')[0];
+                    if (user.displayName) {
+                        const parts = user.displayName.trim().split(/[\s.]+/);
+                        if (parts.length >= 2) {
+                            initials = (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+                        } else if (parts[0].length >= 2) {
+                            initials = parts[0].slice(0, 2).toUpperCase();
+                        } else if (parts[0].length === 1) {
+                            initials = parts[0].toUpperCase();
+                        }
+                    } else if (user.email) {
+                        initials = user.email.slice(0, 2).toUpperCase();
+                    }
+
                     wrap.innerHTML = `
             <button id="ps-user-btn" onclick="psToggleDropdown()">
               <span style="width:1.4rem;height:1.4rem;border-radius:50%;background:rgba(255,255,255,.3);
@@ -897,9 +943,15 @@
                     refreshSaveButtons();
                 }
 
-                await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).set({
-                    bookmarks: firebase.firestore.FieldValue.arrayUnion({ name: placeName, type: placeType })
-                }, { merge: true });
+                const updateObj = { bookmarks: firebase.firestore.FieldValue.arrayUnion({ name: placeName, type: placeType }) };
+
+                const tSnap = await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).get();
+                if (tSnap.exists && tSnap.data().shareId) {
+                    try { await db.collection('shared_trips').doc(tSnap.data().shareId).set(updateObj, { merge: true }); }
+                    catch (e) { console.error(e); }
+                }
+
+                await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).set(updateObj, { merge: true });
 
                 if (btnEl) {
                     btnEl.innerHTML = '<span class="material-symbols-outlined text-[14px]">bookmark_added</span>';
@@ -923,9 +975,15 @@
                     addedAt: Date.now()
                 };
 
-                await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).set({
-                    notes: firebase.firestore.FieldValue.arrayUnion(newNote)
-                }, { merge: true });
+                const updateObj = { notes: firebase.firestore.FieldValue.arrayUnion(newNote) };
+
+                const tSnap = await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).get();
+                if (tSnap.exists && tSnap.data().shareId) {
+                    try { await db.collection('shared_trips').doc(tSnap.data().shareId).set(updateObj, { merge: true }); }
+                    catch (e) { console.error(e); }
+                }
+
+                await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).set(updateObj, { merge: true });
 
                 inputEl.value = '';
                 psLoadTrips();
@@ -935,9 +993,15 @@
                 if (!currentUser) return;
                 try {
                     const noteObj = JSON.parse(decodeURIComponent(noteObjStr));
-                    await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).update({
-                        notes: firebase.firestore.FieldValue.arrayRemove(noteObj)
-                    });
+                    const updateObj = { notes: firebase.firestore.FieldValue.arrayRemove(noteObj) };
+
+                    const tSnap = await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).get();
+                    if (tSnap.exists && tSnap.data().shareId) {
+                        try { await db.collection('shared_trips').doc(tSnap.data().shareId).update(updateObj); }
+                        catch (e) { console.error(e); }
+                    }
+
+                    await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).update(updateObj);
                     psLoadTrips();
                 } catch (e) {
                     console.error("Error deleting note", e);
@@ -977,6 +1041,70 @@
                 window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             };
 
+            window.psSmsTrip = async function (e, origin, dest, start, end, weather, lgbtqSafety) {
+                e.preventDefault();
+                const gFlights = `https://www.google.com/travel/flights?q=${encodeURIComponent(origin + ' to ' + dest + ' ' + start)}`;
+                let body = `Trip Idea from Pride Travel Scout!\n\nDestination: ${dest}\nDates: ${start} to ${end}\nFrom: ${origin}\n\nWeather: ${weather}\nLGBTQ Safety: ${lgbtqSafety}\n\nGoogle Flights: ${gFlights}\n\n`;
+
+                const key = [dest, origin, start, end].join('|');
+                let bookmarksText = '';
+                let notesText = '';
+
+                if (currentUser && savedTripDocIds && savedTripDocIds.has(key)) {
+                    const docId = savedTripDocIds.get(key);
+                    try {
+                        const doc = await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).get();
+                        if (doc.exists) {
+                            const t = doc.data();
+                            if (t.bookmarks && t.bookmarks.length > 0) {
+                                bookmarksText = "Bookmarks:\n" + t.bookmarks.map(b => `- ${b.name}`).join('\n') + "\n\n";
+                            }
+                            if (t.notes && t.notes.length > 0) {
+                                notesText = "Notes:\n" + t.notes.map(n => `- ${n.text}`).join('\n') + "\n\n";
+                            }
+                            if (t.note) {
+                                notesText += "Notes:\n" + t.note + "\n\n";
+                            }
+                        }
+                    } catch (err) { console.error("Error fetching trip for SMS", err); }
+                }
+
+                body += bookmarksText + notesText;
+
+                // Detect iOS vs Android/Others for SMS link format
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                const separator = isIOS ? '&' : '?';
+                window.location.href = `sms:${separator}body=${encodeURIComponent(body)}`;
+            };
+
+            window.psShareTrip = async function (docId, tripKey) {
+                if (!currentUser) return;
+                try {
+                    const docRef = db.collection('users').doc(currentUser.uid).collection('trips').doc(docId);
+                    const docSnap = await docRef.get();
+                    if (!docSnap.exists) return;
+                    let t = docSnap.data();
+
+                    let shareId = t.shareId;
+                    if (!shareId) {
+                        const sharedRef = await db.collection('shared_trips').add({
+                            ...t,
+                            sharedBy: currentUser.uid,
+                            sharedAt: Date.now()
+                        });
+                        shareId = sharedRef.id;
+                        await docRef.update({ shareId: shareId });
+                    }
+
+                    const shareUrl = window.location.href.split('?')[0] + '?shareId=' + shareId;
+                    alert("Trip is now Collaborative!\nShare this link with friends so they can add notes and bookmarks:\n\n" + shareUrl);
+                    psLoadTrips();
+                } catch (e) {
+                    console.error("Error sharing trip", e);
+                    alert("Error creating shared trip. Check console.");
+                }
+            };
+
             function refreshSaveButtons() {
                 document.querySelectorAll('.ps-save-btn[data-trip-key]').forEach(btn => {
                     if (savedTripIds.has(btn.dataset.tripKey)) {
@@ -1007,8 +1135,20 @@
                         list.innerHTML = '<p style="color:#aaa;font-size:.9rem;text-align:center;padding:2rem 0;">No saved trips yet.</p>';
                         return;
                     }
-                    list.innerHTML = snap.docs.map(doc => {
+                    const HTMLs = await Promise.all(snap.docs.map(async doc => {
                         const t = doc.data();
+
+                        if (t.shareId) {
+                            try {
+                                const sharedSnap = await db.collection('shared_trips').doc(t.shareId).get();
+                                if (sharedSnap.exists) {
+                                    const st = sharedSnap.data();
+                                    t.notes = st.notes || [];
+                                    t.bookmarks = st.bookmarks || [];
+                                }
+                            } catch (e) { console.error("Could not fetch shared contents", e); }
+                        }
+
                         const dateStr = (t.dateStart && t.dateEnd) ? t.dateStart + ' to ' + t.dateEnd : '';
                         let bookmarksHtml = '';
                         if (t.bookmarks && t.bookmarks.length > 0) {
@@ -1043,15 +1183,21 @@
                         return '<div class="ps-trip-card" style="flex-direction:column; align-items:stretch; gap:.5rem;">'
                             + '<div style="display:flex; justify-content:space-between; align-items:flex-start;">'
                             + '<div style="flex:1;">'
-                            + '<div style="font-weight:800;font-size:.95rem;margin-bottom:.2rem;color:#000;">&#9992;&#65039; '
+                            + '<div style="font-weight:800;font-size:.95rem;margin-bottom:.2rem;color:#000;">' + (t.shareId ? '<span class="material-symbols-outlined" style="font-size:1rem;color:#f20d8f;margin-right:4px;">group</span>' : '&#9992;&#65039; ')
                             + (t.departure || '?') + ' &#8594; ' + t.destination + '</div>'
                             + (dateStr ? '<div style="font-size:.8rem;color:#333;margin-bottom:.4rem;">&#128197; ' + dateStr + '</div>' : '')
                             + '<button onclick="psReSearch(\'' + t.destination + '\',\'' + (t.departure || '') + '\',\'' + (t.dateStart || '') + '\',\'' + (t.dateEnd || '') + '\')"'
                             + ' style="font-size:.75rem;font-weight:700;background:linear-gradient(90deg,#f20d8f,#86007D);color:#fff;border:none;border-radius:999px;padding:.3rem .75rem;cursor:pointer;font-family:inherit;margin-right:.5rem;">'
                             + '&#128269; Search Again</button>'
                             + '<button onclick="psEmailTrip(event, \'' + (t.departure || '') + '\', \'' + t.destination + '\', \'' + (t.dateStart || '') + '\', \'' + (t.dateEnd || '') + '\', \'Varies\', \'Varies\')"'
-                            + ' style="font-size:.75rem;font-weight:700;background:#e5e7eb;color:#374151;border:none;border-radius:999px;padding:.3rem .75rem;cursor:pointer;font-family:inherit;">'
+                            + ' style="font-size:.75rem;font-weight:700;background:#e5e7eb;color:#374151;border:none;border-radius:999px;padding:.3rem .75rem;cursor:pointer;font-family:inherit;margin-right:.5rem;">'
                             + '&#x1F4E7; Email</button>'
+                            + '<button onclick="psSmsTrip(event, \'' + (t.departure || '') + '\', \'' + t.destination + '\', \'' + (t.dateStart || '') + '\', \'' + (t.dateEnd || '') + '\', \'Varies\', \'Varies\')"'
+                            + ' style="font-size:.75rem;font-weight:700;background:#e5e7eb;color:#374151;border:none;border-radius:999px;padding:.3rem .75rem;cursor:pointer;font-family:inherit;margin-right:.5rem;">'
+                            + '&#128241; Text</button>'
+                            + '<button onclick="psShareTrip(\'' + doc.id + '\', \'' + t.tripKey + '\')"'
+                            + ' style="font-size:.75rem;font-weight:700;background:#e5e7eb;color:#374151;border:none;border-radius:999px;padding:.3rem .75rem;cursor:pointer;font-family:inherit;">'
+                            + '&#128101; Collaborate</button>'
                             + '</div>'
                             + '<button onclick="psDeleteTrip(\'' + doc.id + '\',\'' + t.tripKey + '\')" title="Remove" style="background:none;border:none;cursor:pointer;color:#e11d48;font-size:1.1rem;">&#128465;&#65039;</button>'
                             + '</div>'
@@ -1064,7 +1210,8 @@
                             + 'style="background:linear-gradient(90deg,#f20d8f,#86007D);color:#fff;border:none;border-radius:6px;padding:.4rem .75rem;font-size:.8rem;font-weight:bold;cursor:pointer;font-family:inherit;">Save</button>'
                             + '</div>'
                             + '</div>';
-                    }).join('');
+                    }));
+                    list.innerHTML = HTMLs.join('');
                 } catch (e) { list.innerHTML = '<p style="color:#e11d48;font-size:.85rem;text-align:center;">Error loading trips.</p>'; }
             }
             window.psDeleteTrip = async function (docId, key) {
