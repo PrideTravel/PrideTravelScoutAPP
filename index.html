@@ -54,6 +54,23 @@
             -webkit-text-fill-color: transparent;
         }
 
+        /* Dark mode: add white backing behind rainbow gradient text for legibility */
+        body.dark .pride-gradient-text {
+            background: linear-gradient(to right, #FF0018, #FFA52C, #eab308, #008018, #0000F9, #86007D);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+            display: inline;
+            padding: 0.08em 0.3em;
+            border-radius: 0.3rem;
+            /* Use a shadow that acts as a white background behind the element */
+            box-shadow: 0 0 0 100vmax #ffffff inset;
+            /* Or simpler: just outline it with white */
+            outline: 3px solid transparent;
+        }
+
         .rainbow-border {
             position: relative;
             z-index: 0;
@@ -459,7 +476,7 @@
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-3">
+                    <div class="flex flex-col gap-3">
                         <div class="relative">
                             <span
                                 class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-primary">calendar_today</span>
@@ -521,7 +538,7 @@
             <button onclick="toggleView('homeView')" class="flex items-center gap-2 text-primary font-bold mb-4">
                 <span class="material-symbols-outlined">arrow_back</span> Back
             </button>
-            <h2 class="text-3xl font-black pride-gradient-text mb-2 inline-block">Explore All Safe Hotspots</h2>
+            <h2 class="text-3xl font-black pride-gradient-text mb-2 inline-block">Explore More Safe Hotspots</h2>
             <p class="text-slate-500 dark:text-slate-400 dark:text-slate-300 text-sm font-medium mb-6">Discover 20
                 trending LGBTQ+ destinations, events, and
                 neighborhoods across the globe.</p>
@@ -858,9 +875,9 @@
                         const dateStr = (t.dateStart && t.dateEnd) ? t.dateStart + ' to ' + t.dateEnd : '';
                         return '<div class="ps-trip-card">'
                             + '<div style="flex:1;">'
-                            + '<div style="font-weight:800;font-size:.95rem;margin-bottom:.2rem;">&#9992;&#65039; '
+                            + '<div style="font-weight:800;font-size:.95rem;margin-bottom:.2rem;color:#000;">&#9992;&#65039; '
                             + (t.departure || '?') + ' &#8594; ' + t.destination + '</div>'
-                            + (dateStr ? '<div style="font-size:.8rem;color:#888;margin-bottom:.4rem;">&#128197; ' + dateStr + '</div>' : '')
+                            + (dateStr ? '<div style="font-size:.8rem;color:#333;margin-bottom:.4rem;">&#128197; ' + dateStr + '</div>' : '')
                             + '<button onclick="psReSearch(\'' + t.destination + '\',\'' + (t.departure || '') + '\',\'' + (t.dateStart || '') + '\',\'' + (t.dateEnd || '') + '\')"'
                             + ' style="font-size:.75rem;font-weight:700;background:linear-gradient(90deg,#f20d8f,#86007D);color:#fff;border:none;border-radius:999px;padding:.3rem .75rem;cursor:pointer;font-family:inherit;">'
                             + '&#128269; Search Again</button>'
@@ -1075,6 +1092,8 @@
                     'orlando': ['orlando'],
                     'mco': ['orlando'],
                     'orlando, fl': ['orlando'],
+                    'mlb': ['orlando'],
+                    'melbourne': ['orlando'],
                     'fort lauderdale': ['fort lauderdale'],
                     'fll': ['fort lauderdale'],
                     'fort lauderdale, fl': ['fort lauderdale'],
@@ -7420,7 +7439,7 @@
             { name: "L\'International des Feux Loto-Québec", city: "montreal", start: "2026-08-04", end: "2026-08-22", link: "https://www.google.com/search?q=L%27International%20des%20Feux%20Loto-Qu%C3%A9bec%20event%20Montreal" },
             { name: "Xlsior Mykonos", city: "mykonos", start: "2026-08-20", end: "2026-08-25", link: "https://www.google.com/search?q=Xlsior%20Mykonos%20event%20Mykonos" },
 
-            { name: "BGC: Group Cruise (Port Canaveral)", city: "port canaveral", start: "2026-09-18", end: "2026-09-18", link: "https://biggaycruise.com/", type: "Cruise", company: "BGC" },
+            { name: "BGC: Group Cruise (Port Canaveral)", city: "Orlando", start: "2026-09-18", end: "2026-09-18", link: "https://biggaycruise.com/", type: "Cruise", company: "BGC" },
             { name: "BGC: Halloween Group Cruise", city: "miami", start: "2026-10-31", end: "2026-10-31", link: "https://biggaycruise.com/", type: "Cruise", company: "BGC" },
             { name: "BGC: Winter Group Cruise", city: "miami", start: "2027-01-28", end: "2027-01-28", link: "https://biggaycruise.com/", type: "Cruise", company: "BGC" },
             { name: "Atlantis: Epic Caribbean Cruise", city: "miami", start: "2027-03-07", end: "2027-03-14", link: "https://atlantisevents.com/", type: "Cruise", company: "Atlantis" },
@@ -7632,10 +7651,13 @@
 
                     if (matchingEvent) {
                         const hasTravelInPrideLink = matchingEvent.link && matchingEvent.link.includes('travelinpride.com');
-                        const link1 = matchingEvent.link || getEventsLink(data.name, dateStart);
+                        const isCruise = matchingEvent.type === 'Cruise';
+                        // Cruise: show cruise website as "Official" + Google as second. TravelInPride: Official + Google. Others: only Google.
+                        const showOfficialBtn = hasTravelInPrideLink || isCruise;
+                        const officialLink = matchingEvent.link || getEventsLink(data.name, dateStart);
+                        const link1 = officialLink;
                         const link2 = `https://www.google.com/search?q=${encodeURIComponent(matchingEvent.name + " 2026")}`;
 
-                        const isCruise = matchingEvent.type === 'Cruise';
                         const bannerTitle = isCruise ? "Gay Cruise Detected!" : "Pride Event Detected!";
                         const bannerIcon = isCruise ? "directions_boat" : "celebration";
                         const bgClass = isCruise ? "from-blue-600 to-cyan-500" : "from-pride-purple to-pride-blue";
@@ -7658,7 +7680,7 @@
                                             ${matchingEvent.start} &ndash; ${matchingEvent.end}
                                         </p>
                                         <div class="flex gap-2">
-                                            ${hasTravelInPrideLink ? `
+                                            ${showOfficialBtn ? `
                                             <a href="${link1}" target="_blank" class="flex-1 py-2 bg-white text-black dark:text-white dark:bg-slate-800/20 hover:bg-white dark:bg-slate-800/30 rounded-lg text-center text-xs font-bold backdrop-blur-sm transition-colors flex items-center justify-center gap-2">
                                                 <span class="material-symbols-outlined text-sm">language</span>
                                                 Official
@@ -7711,7 +7733,7 @@
             ${psMakeSaveBtn(data.name, origin, dateStart, dateEnd)}
                         </div>
 
-                        <div class="p-4 space-y-6 bg-slate-50 dark:bg-slate-800/50/50">
+                        <div class="p-4 space-y-6 bg-slate-50 dark:bg-gray-800">
                             <!-- 3 & 4. Flight & Hotel Hub -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <!-- Flight Card -->
@@ -8032,11 +8054,13 @@
                 Object.keys(DATABASE.details).forEach(key => {
                     const data = DATABASE.details[key];
                     // Add to City Pool
+                    const cityEqScore = data.safetyScore || null;
                     cityPool.push({
                         type: 'Destination',
                         name: data.name,
                         location: data.iata || '',
-                        searchQuery: key
+                        searchQuery: key,
+                        eqScore: cityEqScore
                     });
 
                     // Add to District Pool if available
@@ -8045,7 +8069,8 @@
                             type: 'District',
                             name: data.lgbtqDistrict,
                             location: data.name.split(',')[0],
-                            searchQuery: key
+                            searchQuery: key,
+                            eqScore: cityEqScore
                         });
                     }
                 });
@@ -8088,10 +8113,15 @@
                         <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
                             <span class="material-symbols-outlined">${icon}</span>
                         </div>
-                        <div class="overflow-hidden">
+                        <div class="overflow-hidden flex-1">
                             <span class="text-[10px] font-black px-2 py-0.5 rounded-md uppercase mb-1 inline-block ${badgeClass}">${getHotelBadge(h)}</span>
                             <p class="font-black text-slate-900 dark:text-white truncate">${h.name}</p>
                             <p class="text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-300 uppercase tracking-tighter">${h.location} ${h.date ? '&bull; ' + h.date : ''}</p>
+                            ${(h.type === 'Destination' || h.type === 'District') && h.eqScore ? `
+                            <div class="mt-1 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-xs ${h.eqScore >= 75 ? 'text-green-500' : h.eqScore >= 60 ? 'text-yellow-500' : 'text-red-500'}">shield</span>
+                                <span class="text-[10px] font-bold ${h.eqScore >= 75 ? 'text-green-600' : h.eqScore >= 60 ? 'text-yellow-600' : 'text-red-600'}">Equaldex: ${h.eqScore}/100</span>
+                            </div>` : ''}
                         </div>
                     </div>
                 `;
