@@ -55,7 +55,7 @@
         }
 
         /* Dark mode: Pride gradient does not have an innate background pill. Added where necessary via wrapper class dark-pill. */
-        body.dark .dark-pill {
+        html.dark .dark-pill {
             background-color: white !important;
             border-radius: 9999px !important;
             padding: 0.1rem 0.8rem !important;
@@ -64,7 +64,7 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
         }
 
-        body.dark .pride-gradient-text {
+        html.dark .pride-gradient-text {
             background: linear-gradient(to right, #FF0018, #FFA52C, #eab308, #008018, #0000F9, #86007D);
             -webkit-background-clip: text;
             background-clip: text;
@@ -99,7 +99,7 @@
             scrollbar-width: none;
         }
 
-        body.dark {
+        html.dark body {
             background-color: #48494b;
             color: #f1f5f9;
         }
@@ -444,7 +444,8 @@
             <div class="w-8 h-8 rounded-lg pride-gradient-bg flex items-center justify-center shadow-lg">
                 <span class="material-symbols-outlined text-white text-xl font-black">flight_takeoff</span>
             </div>
-            <h1 class="text-xl font-extrabold tracking-tight pride-gradient-text inline-block">Pride Scout</h1>
+            <h1 class="text-xl font-extrabold tracking-tight inline-block dark-pill"><span
+                    class="pride-gradient-text">Pride Scout</span></h1>
         </div>
     </header>
 
