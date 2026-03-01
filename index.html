@@ -54,21 +54,23 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Dark mode: add white backing behind rainbow gradient text for legibility */
+        /* Dark mode: Pride gradient does not have an innate background pill. Added where necessary via wrapper class dark-pill. */
+        body.dark .dark-pill {
+            background-color: white !important;
+            border-radius: 9999px !important;
+            padding: 0.1rem 0.8rem !important;
+            display: inline-block !important;
+            border: 2px solid white !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+        }
+
         body.dark .pride-gradient-text {
             background: linear-gradient(to right, #FF0018, #FFA52C, #eab308, #008018, #0000F9, #86007D);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            -webkit-box-decoration-break: clone;
             box-decoration-break: clone;
-            display: inline;
-            padding: 0.08em 0.3em;
-            border-radius: 0.3rem;
-            /* Use a shadow that acts as a white background behind the element */
-            box-shadow: 0 0 0 100vmax #ffffff inset;
-            /* Or simpler: just outline it with white */
-            outline: 3px solid transparent;
+            -webkit-box-decoration-break: clone;
         }
 
         .rainbow-border {
@@ -503,7 +505,8 @@
             <!-- 2. Safe Hotspots Section -->
             <section id="hotspots-section">
                 <div class="flex justify-between items-end mb-4">
-                    <h3 class="text-xl font-bold pride-gradient-text inline-block">Safe Hotspots</h3>
+                    <h3 class="text-xl font-bold inline-block dark-pill"><span class="pride-gradient-text">Safe
+                            Hotspots</span></h3>
                     <button onclick="showAllHotspots()" class="text-sm text-primary font-bold hover:underline">View
                         More</button>
                 </div>
@@ -514,7 +517,8 @@
 
             <!-- 3. Trending Pride Events Section -->
             <section id="trending-events-section" class="pb-12">
-                <h3 class="text-xl font-bold pride-gradient-text mb-4 inline-block">Trending Pride Events</h3>
+                <h3 class="text-xl font-bold mb-4 inline-block dark-pill"><span class="pride-gradient-text">Trending
+                        Pride Events</span></h3>
                 <div id="eventsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- JS populated -->
                 </div>
@@ -538,7 +542,8 @@
             <button onclick="toggleView('homeView')" class="flex items-center gap-2 text-primary font-bold mb-4">
                 <span class="material-symbols-outlined">arrow_back</span> Back
             </button>
-            <h2 class="text-3xl font-black pride-gradient-text mb-2 inline-block">Explore More Safe Hotspots</h2>
+            <h2 class="text-3xl font-black mb-2 inline-block dark-pill"><span class="pride-gradient-text">Explore More
+                    Safe Hotspots</span></h2>
             <p class="text-slate-500 dark:text-slate-400 dark:text-slate-300 text-sm font-medium mb-6">Discover 20
                 trending LGBTQ+ destinations, events, and
                 neighborhoods across the globe.</p>
@@ -7740,7 +7745,7 @@
                                 <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border-l-4 border-pride-blue shadow-md">
                                     <div class="flex justify-between items-start mb-4">
                                         <div class="px-3 py-1 bg-pride-blue/10 rounded-lg">
-                                            <span class="font-extrabold text-lg pride-gradient-text">Flights</span>
+                                            <span class="font-extrabold text-lg dark-pill"><span class="pride-gradient-text">Flights</span></span>
                                         </div>
                                         <div class="text-right">
                                             <span class="text-[10px] font-black text-slate-400 dark:text-slate-300 uppercase tracking-widest block">Booking Dates</span>
@@ -7765,7 +7770,7 @@
                                     <div class="absolute -right-4 -top-4 w-16 h-16 pride-gradient-bg rotate-45 opacity-10"></div>
                                     <div class="flex justify-between items-start mb-4">
                                         <div class="px-3 py-1 bg-pride-purple/10 rounded-lg">
-                                            <span class="font-extrabold text-lg pride-gradient-text">Hotels</span>
+                                            <span class="font-extrabold text-lg dark-pill"><span class="pride-gradient-text">Hotels</span></span>
                                         </div>
                                         <div class="text-right">
                                             <span class="text-[10px] font-black text-slate-400 dark:text-slate-300 uppercase tracking-widest block">Stay Period</span>
@@ -7790,8 +7795,8 @@
                              <!-- 5. Safety & Neighborhoods -->
                             <section class="bg-white dark:bg-slate-800 p-6 rounded-xl border-l-4 border-pride-green shadow-md relative overflow-hidden">
                                 <div class="absolute -right-6 -top-6 w-24 h-24 bg-pride-green/5 rounded-full"></div>
-                                <h3 class="text-xl font-bold mb-4 pride-gradient-text inline-block">
-                                    Safety & Districts
+                                <h3 class="text-xl font-bold mb-4 inline-block dark-pill">
+                                    <span class="pride-gradient-text">Safety & Districts</span>
                                 </h3>
 
                                 ${eventContent}
@@ -7828,8 +7833,8 @@
 
                             <!-- 6. Bars & Nightlife -->
                             <section>
-                                <h3 class="text-xl font-bold mb-4 pride-gradient-text inline-block">
-                                    Vibrant Nightlife
+                                <h3 class="text-xl font-bold mb-4 inline-block dark-pill">
+                                    <span class="pride-gradient-text">Vibrant Nightlife</span>
                                 </h3>
                                 <div class="grid grid-cols-2 gap-3">
                                     ${randomNightlife.map((n, i) => {
@@ -7853,7 +7858,7 @@
                             <!-- 7. Weather Forecast -->
                             <section class="bg-gradient-to-r from-pride-red/10 via-pride-yellow/10 to-pride-purple/10 rounded-xl p-5 border border-primary/20">
                                 <div class="flex justify-between items-center mb-4">
-                                    <h3 class="font-bold pride-gradient-text">${getMonthName(dateStart)} ${new Date(dateStart).getUTCFullYear()} Weather Outlook</h3>
+                                    <h3 class="font-bold dark-pill"><span class="pride-gradient-text">${getMonthName(dateStart)} ${new Date(dateStart).getUTCFullYear()} Weather Outlook</span></h3>
                                     <span class="text-primary font-bold">${data.weather.replace(/[.\s]*\d+[°&]?(deg;)?\s*[CF]/g, '').trim()}</span>
                                 </div>
                                 <div class="flex justify-between">
@@ -7885,8 +7890,8 @@
 
                             <!-- 8. Must-See Tours & Excursions -->
                             <section class="pb-4">
-                                <h3 class="text-xl font-bold mb-4 pride-gradient-text inline-block">
-                                    Unmissable Tours
+                                <h3 class="text-xl font-bold mb-4 inline-block dark-pill">
+                                    <span class="pride-gradient-text">Unmissable Tours</span>
                                 </h3>
                                 <div class="space-y-4">
                                     ${randomTours.map(t => `
