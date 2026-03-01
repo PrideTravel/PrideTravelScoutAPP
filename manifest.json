@@ -1,7 +1,7 @@
 {
   "name": "Pride Travel Scout",
   "short_name": "PrideTravel",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "id": "/PrideTravelScoutAPP/",
   "start_url": "https://pridetravel.github.io/PrideTravelScoutAPP/index.html",
   "display": "standalone",
