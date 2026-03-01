@@ -809,7 +809,6 @@
                 display:inline-flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:900;">
                 ${initials}
               </span>
-              <span style="max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${name}</span>
             </button>
             <div id="ps-user-dropdown">
               <div class="ps-dd-item" onclick="psTripPanel(true)">&#128278; My Saved Trips</div>
@@ -1097,11 +1096,20 @@
                     }
 
                     const shareUrl = window.location.href.split('?')[0] + '?shareId=' + shareId;
-                    alert("Trip is now Collaborative!\nShare this link with friends so they can add notes and bookmarks:\n\n" + shareUrl);
+                    navigator.clipboard.writeText(shareUrl).then(() => {
+                        alert("Trip is now Collaborative!\n\nCopied to clipboard!\nShare this link with friends so they can add notes and bookmarks:\n\n" + shareUrl);
+                    }).catch(err => {
+                        console.error('Failed to copy', err);
+                        alert("Trip is now Collaborative!\nShare this link with friends so they can add notes and bookmarks:\n\n" + shareUrl);
+                    });
                     psLoadTrips();
                 } catch (e) {
                     console.error("Error sharing trip", e);
-                    alert("Error creating shared trip. Check console.");
+                    if (e.code === 'permission-denied') {
+                        alert("Permission Denied: You need to update your Firebase Security Rules in the Firebase Console to allow access to the 'shared_trips' collection.");
+                    } else {
+                        alert("Error creating shared trip. Check console.");
+                    }
                 }
             };
 
@@ -1328,13 +1336,13 @@
         const DATABASE = {
             mappings: {
                 regions: {
-                    'east coast': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'san juan', 'key west', 'provincetown', 'tampa', 'fire island'],
-                    'east': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'san juan', 'key west', 'provincetown', 'tampa', 'fire island'],
+                    'east coast': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'san juan', 'key west', 'provincetown', 'tampa', 'fire island', 'newark', 'charlotte'],
+                    'east': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'san juan', 'key west', 'provincetown', 'tampa', 'fire island', 'newark', 'charlotte'],
 
-                    'europe': ['london', 'paris', 'madrid', 'barcelona', 'mykonos', 'amsterdam', 'berlin', 'ibiza', 'antwerp', 'malta', 'athens', 'sitges', 'torremolinos', 'manchester', 'cologne', 'hamburg', 'gran canaria', 'dublin', 'vienna', 'rome'],
-                    'eur': ['london', 'paris', 'madrid', 'barcelona', 'mykonos', 'amsterdam', 'berlin', 'ibiza', 'antwerp', 'malta', 'athens', 'sitges', 'torremolinos', 'manchester', 'cologne', 'hamburg', 'gran canaria', 'dublin', 'vienna', 'rome'],
+                    'europe': ['london', 'paris', 'madrid', 'barcelona', 'mykonos', 'amsterdam', 'berlin', 'ibiza', 'antwerp', 'brussels', 'malta', 'athens', 'sitges', 'torremolinos', 'manchester', 'cologne', 'hamburg', 'gran canaria', 'dublin', 'vienna', 'rome'],
+                    'eur': ['london', 'paris', 'madrid', 'barcelona', 'mykonos', 'amsterdam', 'berlin', 'ibiza', 'antwerp', 'brussels', 'malta', 'athens', 'sitges', 'torremolinos', 'manchester', 'cologne', 'hamburg', 'gran canaria', 'dublin', 'vienna', 'rome'],
 
-                    'asia': ['tokyo', 'bangkok', 'taipei', 'phuket', 'osaka', 'singapore', 'seoul', 'hong kong', 'shanghai'],
+                    'asia': ['tokyo', 'bangkok', 'taipei', 'phuket', 'osaka', 'singapore', 'seoul', 'hong kong', 'shanghai', 'bali', 'brussels'],
 
                     'africa': ['cape town'],
                     'afr': ['cape town'],
@@ -1342,20 +1350,20 @@
                     'australia': ['sydney', 'melbourne'],
                     'aus': ['sydney', 'melbourne'],
 
-                    'americas': ['puerto vallarta', 'mexico city', 'rio de janeiro', 'sao paulo', 'buenos aires', 'bogota', 'curacao', 'aruba', 'cancun', 'medellin', 'san antonio', 'tampa', 'san diego', 'fire island', 'guadalajara', 'new york', 'nyc', 'los angeles', 'san francisco', 'las vegas', 'miami', 'chicago', 'new orleans', 'seattle', 'portland', 'honolulu', 'denver', 'aspen', 'palm springs', 'columbus', 'minneapolis', 'houston', 'boston', 'philadelphia', 'washington dc', 'atlanta', 'orlando', 'fort lauderdale', 'key west', 'provincetown'],
+                    'americas': ['puerto vallarta', 'mexico city', 'rio de janeiro', 'sao paulo', 'buenos aires', 'bogota', 'curacao', 'aruba', 'cancun', 'medellin', 'san antonio', 'tampa', 'san diego', 'fire island', 'guadalajara', 'new york', 'nyc', 'los angeles', 'san francisco', 'las vegas', 'miami', 'chicago', 'new orleans', 'seattle', 'portland', 'honolulu', 'denver', 'aspen', 'palm springs', 'columbus', 'minneapolis', 'houston', 'boston', 'philadelphia', 'washington dc', 'atlanta', 'orlando', 'fort lauderdale', 'key west', 'provincetown', 'nashville', 'newark', 'detroit', 'charlotte'],
                     'mexico': ['puerto vallarta', 'mexico city', 'cancun', 'guadalajara'],
                     'central america': ['puerto vallarta', 'mexico city', 'anticua', 'curacao', 'aruba', 'cancun', 'guadalajara'],
                     'south america': ['rio de janeiro', 'sao paulo', 'buenos aires', 'bogota', 'curacao', 'aruba', 'medellin'],
                     'canada': ['toronto', 'montreal', 'vancouver'],
                     'caribbean': ['curacao', 'san juan', 'aruba'],
 
-                    'central': ['chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'dallas', 'san antonio'],
-                    'cen': ['chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'dallas', 'san antonio'],
+                    'central': ['chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'dallas', 'san antonio', 'nashville', 'detroit'],
+                    'cen': ['chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'dallas', 'san antonio', 'nashville', 'detroit'],
 
                     'west coast': ['las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu', 'seattle', 'portland', 'san diego'],
                     'west': ['las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu', 'seattle', 'portland', 'san diego'],
                     'westcoast': ['las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu', 'seattle', 'portland', 'san diego'],
-                    'eastcoast': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'san juan', 'key west', 'provincetown', 'tampa', 'fire island'],
+                    'eastcoast': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'san juan', 'key west', 'provincetown', 'tampa', 'fire island', 'newark', 'charlotte'],
                 },
                 countries: {
                     // Preserving explicit country logical lookups in addition to region aliases
@@ -1367,7 +1375,7 @@
                     'france': ['paris'],
                     'spain': ['madrid', 'barcelona', 'ibiza', 'sitges', 'torremolinos', 'maspalomas', 'gran canaria'],
                     'italy': ['rome'],
-                    'belgium': ['antwerp'],
+                    'belgium': ['antwerp', 'brussels'],
                     'malta': ['malta'],
                     'greece': ['mykonos', 'athens'],
                     'japan': ['tokyo', 'osaka'],
@@ -1381,8 +1389,8 @@
                     'taiwan': ['taipei'],
                     'mexico': ['puerto vallarta', 'mexico city', 'cancun', 'guadalajara'],
                     'canada': ['toronto', 'montreal', 'vancouver'],
-                    'usa': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu', 'seattle', 'portland', 'provincetown', 'key west', 'dallas', 'san diego', 'tampa', 'san antonio', 'fire island'],
-                    'united states': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu', 'seattle', 'portland', 'provincetown', 'key west', 'dallas', 'san diego', 'tampa', 'san antonio', 'fire island'],
+                    'usa': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu', 'seattle', 'portland', 'provincetown', 'key west', 'dallas', 'san diego', 'tampa', 'san antonio', 'fire island', 'nashville', 'newark', 'detroit', 'charlotte'],
+                    'united states': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu', 'seattle', 'portland', 'provincetown', 'key west', 'dallas', 'san diego', 'tampa', 'san antonio', 'fire island', 'nashville', 'newark', 'detroit', 'charlotte'],
                     'germany': ['berlin', 'cologne', 'hamburg'],
                     'ireland': ['dublin'],
                     'austria': ['vienna'],
@@ -1397,8 +1405,8 @@
                     'tailand': ['bangkok', 'phuket'],
                     'brasil': ['rio de janeiro', 'sao paulo'],
                     'great britain': ['london', 'manchester'],
-                    'us': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu', 'seattle', 'portland', 'provincetown', 'key west', 'dallas', 'san diego', 'tampa', 'san antonio', 'fire island'],
-                    'america': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu', 'seattle', 'portland', 'provincetown', 'key west', 'dallas', 'san diego', 'tampa', 'san antonio', 'fire island']
+                    'us': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu', 'seattle', 'portland', 'provincetown', 'key west', 'dallas', 'san diego', 'tampa', 'san antonio', 'fire island', 'nashville', 'newark', 'detroit', 'charlotte'],
+                    'america': ['nyc', 'washington dc', 'atlanta', 'miami', 'orlando', 'fort lauderdale', 'boston', 'philadelphia', 'chicago', 'new orleans', 'minneapolis', 'houston', 'columbus', 'las vegas', 'palm springs', 'san francisco', 'los angeles', 'denver', 'aspen', 'honolulu', 'seattle', 'portland', 'provincetown', 'key west', 'dallas', 'san diego', 'tampa', 'san antonio', 'fire island', 'nashville', 'newark', 'detroit', 'charlotte']
                 },
                 cities: {
                     'new york': ['nyc', 'lga', 'ewr'],
@@ -1541,9 +1549,17 @@
                     'singapore': ['singapore'], 'sin': ['singapore'],
                     'hong kong': ['hong kong'], 'hkg': ['hong kong'],
                     'phuket': ['phuket'], 'hkt': ['phuket'],
+                    'bali': ['bali'], 'dps': ['bali'], 'indonesia': ['bali'],
+                    'brussels': ['brussels'], 'bru': ['brussels'],
                     'seoul': ['seoul'], 'icn': ['seoul'], 'sel': ['seoul'],
                     'aruba': ['aruba'], 'aua': ['aruba'],
                     'portland': ['portland'], 'pdx': ['portland'],
+
+                    // NEW US CITIES
+                    'nashville': ['nashville'], 'bna': ['nashville'],
+                    'newark': ['newark'], 'ewr': ['newark'],
+                    'detroit': ['detroit'], 'dtw': ['detroit'],
+                    'charlotte': ['charlotte'], 'clt': ['charlotte'],
                     'seattle': ['seattle'], 'sea': ['seattle'],
                     'malta': ['malta'], 'mla': ['malta'],
                     // NEW ADDITIONS
@@ -3552,6 +3568,182 @@
                     ],
                     tours: ['Independence Hall', 'Liberty Bell', 'Rocky Statue']
                 },
+                'nashville': {
+                    monthlyWeather: {
+                        0: { high: '47°F', low: '29°F', summary: 'Cold' },
+                        1: { high: '52°F', low: '33°F', summary: 'Cool' },
+                        2: { high: '61°F', low: '40°F', summary: 'Mild' },
+                        3: { high: '70°F', low: '48°F', summary: 'Pleasant' },
+                        4: { high: '78°F', low: '58°F', summary: 'Warm' },
+                        5: { high: '86°F', low: '66°F', summary: 'Hot & Humid' },
+                        6: { high: '89°F', low: '70°F', summary: 'Hot & Humid' },
+                        7: { high: '89°F', low: '68°F', summary: 'Hot & Humid' },
+                        8: { high: '82°F', low: '61°F', summary: 'Warm' },
+                        9: { high: '71°F', low: '49°F', summary: 'Mild' },
+                        10: { high: '59°F', low: '39°F', summary: 'Cool' },
+                        11: { high: '50°F', low: '32°F', summary: 'Cold' }
+                    },
+                    name: 'Nashville, TN', iata: 'BNA', image: '🇺🇸', weather: 'Humid, Warm. 78°F',
+                    baseFare: [200, 450],
+                    lgbtqSafety: 'United States: Same-sex marriage legal. Tennessee laws vary, but Nashville is very welcoming. The Church Street area features several LGBTQ staples.', safetyScore: 66, lgbtqDistrict: 'Church Street',
+                    hotels: [
+                        { name: 'Noelle', type: 'Luxury', tags: ['Downtown'] },
+                        { name: 'The Hermitage Hotel', type: 'Luxury', tags: ['Historic'] },
+                        { name: '21c Museum Hotel', type: 'Moderate', tags: ['Arts'] },
+                        { name: 'Bobby Hotel', type: 'Moderate', tags: ['Rooftop'] },
+                        { name: 'Dream Nashville', type: 'Luxury', tags: ['Nightlife'] },
+                        { name: 'Hutton Hotel', type: 'Moderate', tags: ['Music Row'] },
+                        { name: 'Virgin Hotels', type: 'Moderate', tags: ['Trendy'] },
+                        { name: 'W Nashville', type: 'Luxury', tags: ['The Gulch'] },
+                        { name: 'Moxy Downtown', type: 'Budget', tags: ['Social'] },
+                        { name: 'Fairlane Hotel', type: 'Moderate', tags: ['Retro'] }
+                    ],
+                    nightlife: [
+                        { name: 'Play Dance Bar', type: 'Club', tags: ['Drag Shows'] },
+                        { name: 'Tribe', type: 'Bar', tags: ['Video Bar'] },
+                        { name: 'Lipstick Lounge', type: 'Bar', tags: ['Lesbian'] },
+                        { name: 'Canvas Lounge', type: 'Bar', tags: ['Art/Music'] },
+                        { name: 'Stirrup', type: 'Bar', tags: ['Pub'] },
+                        { name: 'Trax', type: 'Bar', tags: ['Dive'] },
+                        { name: 'Peckers', type: 'Bar', tags: ['Patio'] },
+                        { name: 'Suzy Wong\'s', type: 'Restaurant', tags: ['Drag Brunch'] },
+                        { name: 'The Rosewall', type: 'Club', tags: ['Events'] },
+                        { name: 'The Mockingbird', type: 'Restaurant', tags: ['Diner'] }
+                    ],
+                    tours: ['Grand Ole Opry', 'Ryman Auditorium', 'Country Music Hall of Fame']
+                },
+                'newark': {
+                    monthlyWeather: {
+                        0: { high: '39°F', low: '25°F', summary: 'Cold' },
+                        1: { high: '43°F', low: '28°F', summary: 'Cold' },
+                        2: { high: '52°F', low: '35°F', summary: 'Cool' },
+                        3: { high: '63°F', low: '44°F', summary: 'Mild' },
+                        4: { high: '73°F', low: '54°F', summary: 'Pleasant' },
+                        5: { high: '82°F', low: '64°F', summary: 'Warm' },
+                        6: { high: '86°F', low: '69°F', summary: 'Hot & Humid' },
+                        7: { high: '84°F', low: '68°F', summary: 'Hot & Humid' },
+                        8: { high: '77°F', low: '60°F', summary: 'Warm' },
+                        9: { high: '65°F', low: '49°F', summary: 'Mild' },
+                        10: { high: '54°F', low: '39°F', summary: 'Cool' },
+                        11: { high: '44°F', low: '30°F', summary: 'Cold' }
+                    },
+                    name: 'Newark, NJ', iata: 'EWR', image: '🇺🇸', weather: 'Temperate. 65°F',
+                    baseFare: [150, 400],
+                    lgbtqSafety: 'United States: Very Safe. New Jersey has strong anti-discrimination laws. The nearby Ironbound district is heavily inclusive.', safetyScore: 66, lgbtqDistrict: 'Downtown Newark',
+                    hotels: [
+                        { name: 'DoubleTree Penn Station', type: 'Moderate', tags: ['Transit'] },
+                        { name: 'Tryp by Wyndham', type: 'Moderate', tags: ['Downtown'] },
+                        { name: 'Robert Treat Hotel', type: 'Moderate', tags: ['Historic'] },
+                        { name: 'Hotel Indigo', type: 'Moderate', tags: ['Boutique'] },
+                        { name: 'Courtyard Downtown', type: 'Moderate', tags: ['Arena'] },
+                        { name: 'Envy Hotel', type: 'Budget', tags: ['Modern'] },
+                        { name: 'Element Harrison', type: 'Moderate', tags: ['Green'] },
+                        { name: 'W Hoboken (Nearby)', type: 'Luxury', tags: ['Views'] },
+                        { name: 'Comfort Inn', type: 'Budget', tags: ['Value'] },
+                        { name: 'SpringHill Suites', type: 'Moderate', tags: ['Airport'] }
+                    ],
+                    nightlife: [
+                        { name: 'QXT\'s Nightclub', type: 'Club', tags: ['Alternative'] },
+                        { name: 'Lit 21', type: 'Bar', tags: ['Sports'] },
+                        { name: 'Jimenez Tobacco', type: 'Bar', tags: ['Cigars'] },
+                        { name: 'McGovern\'s Tavern', type: 'Bar', tags: ['Irish'] },
+                        { name: 'Fornos of Spain', type: 'Restaurant', tags: ['Ironbound'] },
+                        { name: 'Casa d\'Paco', type: 'Restaurant', tags: ['Tapas'] },
+                        { name: 'Mompou', type: 'Bar', tags: ['Lounge'] },
+                        { name: 'The Yard', type: 'Restaurant', tags: ['Park View'] },
+                        { name: 'Bar Vanquish', type: 'Bar', tags: ['Bistro'] },
+                        { name: 'Marcus B&P', type: 'Restaurant', tags: ['Downtown'] }
+                    ],
+                    tours: ['Newark Museum of Art', 'Branch Brook Park', 'Ironbound Culinary Tour']
+                },
+                'detroit': {
+                    monthlyWeather: {
+                        0: { high: '32°F', low: '19°F', summary: 'Cold & Snow' },
+                        1: { high: '35°F', low: '21°F', summary: 'Cold' },
+                        2: { high: '45°F', low: '28°F', summary: 'Cool' },
+                        3: { high: '58°F', low: '38°F', summary: 'Mild' },
+                        4: { high: '69°F', low: '49°F', summary: 'Pleasant' },
+                        5: { high: '79°F', low: '59°F', summary: 'Warm' },
+                        6: { high: '83°F', low: '63°F', summary: 'Warm & Humid' },
+                        7: { high: '81°F', low: '62°F', summary: 'Warm' },
+                        8: { high: '74°F', low: '54°F', summary: 'Pleasant' },
+                        9: { high: '61°F', low: '43°F', summary: 'Cool' },
+                        10: { high: '48°F', low: '34°F', summary: 'Chilly' },
+                        11: { high: '36°F', low: '24°F', summary: 'Cold' }
+                    },
+                    name: 'Detroit, MI', iata: 'DTW', image: '🇺🇸', weather: 'Varied. 58°F',
+                    baseFare: [200, 400],
+                    lgbtqSafety: 'United States: Ferndale is widely recognized as the primary LGBTQ hub in the Detroit metro area, boasting strong community support and venues.', safetyScore: 66, lgbtqDistrict: 'Ferndale',
+                    hotels: [
+                        { name: 'Shinola Hotel', type: 'Luxury', tags: ['Boutique'] },
+                        { name: 'Detroit Foundation Hotel', type: 'Luxury', tags: ['Historic'] },
+                        { name: 'The Siren Hotel', type: 'Moderate', tags: ['Chic'] },
+                        { name: 'MGM Grand Detroit', type: 'Luxury', tags: ['Casino'] },
+                        { name: 'Aloft Detroit at The David Whitney', type: 'Moderate', tags: ['Design'] },
+                        { name: 'Westin Book Cadillac', type: 'Luxury', tags: ['Elegant'] },
+                        { name: 'Element Detroit', type: 'Moderate', tags: ['Extended'] },
+                        { name: 'Trumbull & Porter', type: 'Moderate', tags: ['Artisan'] },
+                        { name: 'MotorCity Casino Hotel', type: 'Luxury', tags: ['Vibrant'] },
+                        { name: 'Hotel Indigo Detroit', type: 'Moderate', tags: ['Downtown'] }
+                    ],
+                    nightlife: [
+                        { name: 'Soho', type: 'Bar', tags: ['Ferndale'] },
+                        { name: 'Pronto!', type: 'Restaurant', tags: ['Video Bar'] },
+                        { name: 'Gigi\'s', type: 'Club', tags: ['Drag Shows'] },
+                        { name: 'Menjo\'s', type: 'Club', tags: ['Complex'] },
+                        { name: 'The Woodward Bar', type: 'Bar', tags: ['Historic'] },
+                        { name: 'Temple Bar', type: 'Bar', tags: ['Dive'] },
+                        { name: 'Adam\'s Apple', type: 'Bar', tags: ['Pub'] },
+                        { name: 'Hayloft Saloon', type: 'Bar', tags: ['Cruising'] },
+                        { name: 'Ruthie\'s', type: 'Bar', tags: ['Neighborhood'] },
+                        { name: 'Bobcat Bonnie\'s', type: 'Restaurant', tags: ['Brunch'] }
+                    ],
+                    tours: ['Detroit Institute of Arts', 'Motown Museum', 'Henry Ford Museum']
+                },
+                'charlotte': {
+                    monthlyWeather: {
+                        0: { high: '51°F', low: '30°F', summary: 'Chilly' },
+                        1: { high: '56°F', low: '33°F', summary: 'Cool' },
+                        2: { high: '64°F', low: '40°F', summary: 'Mild' },
+                        3: { high: '73°F', low: '48°F', summary: 'Pleasant' },
+                        4: { high: '80°F', low: '57°F', summary: 'Warm' },
+                        5: { high: '88°F', low: '66°F', summary: 'Hot & Humid' },
+                        6: { high: '91°F', low: '70°F', summary: 'Hot & Humid' },
+                        7: { high: '89°F', low: '69°F', summary: 'Hot & Humid' },
+                        8: { high: '83°F', low: '62°F', summary: 'Warm' },
+                        9: { high: '73°F', low: '50°F', summary: 'Mild' },
+                        10: { high: '62°F', low: '40°F', summary: 'Cool' },
+                        11: { high: '53°F', low: '33°F', summary: 'Chilly' }
+                    },
+                    name: 'Charlotte, NC', iata: 'CLT', image: '🇺🇸', weather: 'Humid, Mild. 72°F',
+                    baseFare: [200, 450],
+                    lgbtqSafety: 'United States: Charlotte has a rapidly growing LGBTQ population. Plaza Midwood is noted as a strongly welcoming district.', safetyScore: 66, lgbtqDistrict: 'Plaza Midwood',
+                    hotels: [
+                        { name: 'Kimpton Tryon Park', type: 'Luxury', tags: ['Views'] },
+                        { name: 'The Ivey\'s Hotel', type: 'Luxury', tags: ['Boutique'] },
+                        { name: 'Omni Charlotte', type: 'Moderate', tags: ['Uptown'] },
+                        { name: 'Grand Bohemian', type: 'Luxury', tags: ['Art'] },
+                        { name: 'Aloft Charlotte Uptown', type: 'Moderate', tags: ['Modern'] },
+                        { name: 'Le Méridien Charlotte', type: 'Luxury', tags: ['Rooftop'] },
+                        { name: 'Charlotte Marriott City Center', type: 'Moderate', tags: ['Central'] },
+                        { name: 'The Ballantyne', type: 'Luxury', tags: ['Resort'] },
+                        { name: 'Dunhill Hotel', type: 'Moderate', tags: ['Historic'] },
+                        { name: 'Duke Mansion', type: 'Moderate', tags: ['B&B'] }
+                    ],
+                    nightlife: [
+                        { name: 'The Scorpio', type: 'Club', tags: ['Complex'] },
+                        { name: 'Chasers', type: 'Bar', tags: ['Dive'] },
+                        { name: 'Argonaut', type: 'Bar', tags: ['Lounge'] },
+                        { name: 'Woodshed Lounge', type: 'Bar', tags: ['Leather'] },
+                        { name: 'Bar Argyle', type: 'Bar', tags: ['Cocktails'] },
+                        { name: 'Sidelines Sports Bar', type: 'Bar', tags: ['Sports'] },
+                        { name: 'Petra\'s', type: 'Bar', tags: ['Piano/Art'] },
+                        { name: 'The Artisan\'s Palate', type: 'Restaurant', tags: ['Gallery'] },
+                        { name: 'White Rabbit', type: 'Shop', tags: ['Gifts'] },
+                        { name: 'Thirty Six Thirty', type: 'Club', tags: ['After Hours'] }
+                    ],
+                    tours: ['NASCAR Hall of Fame', 'Mint Museum', 'U.S. National Whitewater Center']
+                },
                 'atlanta': {
                     monthlyWeather: {
                         0: { high: '52°F', low: '35°F', summary: 'Cool' },
@@ -4745,6 +4937,50 @@
                     ],
                     tours: ['The Peak', 'Star Ferry', 'Temple St Market']
                 },
+                'bali': {
+                    monthlyWeather: {
+                        0: { high: '85°F', low: '76°F', summary: 'Warm & Humid' },
+                        1: { high: '85°F', low: '76°F', summary: 'Warm & Humid' },
+                        2: { high: '86°F', low: '76°F', summary: 'Warm' },
+                        3: { high: '85°F', low: '76°F', summary: 'Warm' },
+                        4: { high: '85°F', low: '75°F', summary: 'Warm & Sunny' },
+                        5: { high: '84°F', low: '74°F', summary: 'Pleasant & Sunny' },
+                        6: { high: '83°F', low: '73°F', summary: 'Pleasant & Sunny' },
+                        7: { high: '83°F', low: '73°F', summary: 'Pleasant & Sunny' },
+                        8: { high: '85°F', low: '74°F', summary: 'Warm & Sunny' },
+                        9: { high: '86°F', low: '75°F', summary: 'Warm' },
+                        10: { high: '86°F', low: '76°F', summary: 'Warm' },
+                        11: { high: '85°F', low: '76°F', summary: 'Warm & Humid' }
+                    },
+                    name: 'Bali, Indonesia', iata: 'DPS', image: '&#127470;&#127465;', weather: 'Tropical. 85°F',
+                    baseFare: [900, 2000],
+                    lgbtqSafety: 'Indonesia: Conservative country. No PDAs. However, Seminyak is a very LGBTQ friendly neighborhood.', safetyScore: 22, lgbtqDistrict: 'Seminyak',
+                    hotels: [
+                        { name: 'W Bali - Seminyak', type: 'Luxury', tags: ['Beachfront'] },
+                        { name: 'Hotel Indigo Bali Seminyak', type: 'Luxury', tags: ['Design'] },
+                        { name: 'Courtyard by Marriott Seminyak', type: 'Moderate', tags: ['Pool'] },
+                        { name: 'Alila Seminyak', type: 'Luxury', tags: ['Chic'] },
+                        { name: 'The Seminyak Beach Resort', type: 'Luxury', tags: ['Views'] },
+                        { name: 'Dash Hotel Seminyak', type: 'Moderate', tags: ['Fun'] },
+                        { name: 'U Paasha Seminyak', type: 'Moderate', tags: ['Modern'] },
+                        { name: 'Spartacvs Bali', type: 'Budget', tags: ['Men Only'] },
+                        { name: 'The Legian Bali', type: 'Luxury', tags: ['Exclusive'] },
+                        { name: 'Katamama', type: 'Luxury', tags: ['Artisan'] }
+                    ],
+                    nightlife: [
+                        { name: 'Mixwell Bar', type: 'Bar', tags: ['Drag Shows'] },
+                        { name: 'Bali Joe', type: 'Bar', tags: ['Go-Go Boys'] },
+                        { name: 'F Bar', type: 'Bar', tags: ['Lively'] },
+                        { name: 'Bottoms Up', type: 'Bar', tags: ['Dancing'] },
+                        { name: 'Motel Mexicola', type: 'Bar', tags: ['Vibrant'] },
+                        { name: 'La Favela', type: 'Club', tags: ['Late Night'] },
+                        { name: 'Ku De Ta', type: 'Club', tags: ['Beach Club'] },
+                        { name: 'Potato Head', type: 'Club', tags: ['Sunset'] },
+                        { name: 'Biku', type: 'Restaurant', tags: ['High Tea'] },
+                        { name: 'Sarong', type: 'Restaurant', tags: ['Fine Dining'] }
+                    ],
+                    tours: ['Ubud Temples', 'Mount Batur Sunrise', 'Uluwatu Temple Sunset']
+                },
                 'phuket': {
                     monthlyWeather: {
                         0: { high: '90°F', low: '74°F', summary: 'Hot & Sunny' },
@@ -5056,6 +5292,50 @@
                         { name: 'Roarty', type: 'Bar', tags: ['Relaxed'] }
                     ],
                     tours: ['Prado Museum', 'Royal Palace', 'Retiro Park']
+                },
+                'brussels': {
+                    monthlyWeather: {
+                        0: { high: '42°F', low: '34°F', summary: 'Cold & Damp' },
+                        1: { high: '44°F', low: '34°F', summary: 'Cold' },
+                        2: { high: '51°F', low: '38°F', summary: 'Cool' },
+                        3: { high: '57°F', low: '42°F', summary: 'Mild' },
+                        4: { high: '64°F', low: '48°F', summary: 'Pleasant' },
+                        5: { high: '70°F', low: '54°F', summary: 'Warm' },
+                        6: { high: '74°F', low: '58°F', summary: 'Warm & Partly Sunny' },
+                        7: { high: '73°F', low: '57°F', summary: 'Warm' },
+                        8: { high: '67°F', low: '52°F', summary: 'Mild' },
+                        9: { high: '58°F', low: '46°F', summary: 'Cool & Rain' },
+                        10: { high: '49°F', low: '40°F', summary: 'Cool' },
+                        11: { high: '43°F', low: '36°F', summary: 'Cold & Damp' }
+                    },
+                    name: 'Brussels, Belgium', iata: 'BRU', image: '🇧🇪', weather: 'Temperate. 65°F',
+                    baseFare: [500, 950],
+                    lgbtqSafety: 'Belgium: Very Safe. Brussels has a vibrant LGBTQ community centered around the Quartier Saint-Jacques (Saint-Jacques neighborhood).', safetyScore: 74, lgbtqDistrict: 'Quartier Saint-Jacques',
+                    hotels: [
+                        { name: 'Hotel Amigo', type: 'Luxury', tags: ['Historic'] },
+                        { name: 'The Dominican', type: 'Luxury', tags: ['Design'] },
+                        { name: 'Motel One Brussels', type: 'Budget', tags: ['Modern'] },
+                        { name: 'Radisson Collection Grand Place', type: 'Moderate', tags: ['Central'] },
+                        { name: 'Warwick Brussels', type: 'Moderate', tags: ['Classic'] },
+                        { name: 'Pillows City Hotel', type: 'Luxury', tags: ['Boutique'] },
+                        { name: 'Rocco Forte Hotel Amigo', type: 'Luxury', tags: ['Elegant'] },
+                        { name: 'Vintage Hotel', type: 'Moderate', tags: ['Quirky'] },
+                        { name: 'NH Collection Brussels Centre', type: 'Moderate', tags: ['Rooftop'] },
+                        { name: 'Jam Hotel', type: 'Budget', tags: ['Trendy', 'Pool'] }
+                    ],
+                    nightlife: [
+                        { name: 'La Réserve', type: 'Bar', tags: ['Oldest Gay Bar'] },
+                        { name: 'Le Belgica', type: 'Bar', tags: ['DJ Sets', 'Popular'] },
+                        { name: 'Station B', type: 'Bar', tags: ['Cruising'] },
+                        { name: 'Cabaret Mademoiselle', type: 'Bar', tags: ['Drag Shows'] },
+                        { name: 'The Homo Erectus', type: 'Bar', tags: ['Lively'] },
+                        { name: 'Stammbar', type: 'Club', tags: ['Men Only', 'Cruise'] },
+                        { name: 'La Demence', type: 'Club', tags: ['Legendary Party'] },
+                        { name: 'Macho Sauna', type: 'Sauna', tags: ['Relax'] },
+                        { name: 'Oasis', type: 'Sauna', tags: ['Central'] },
+                        { name: 'Chez Maman', type: 'Club', tags: ['Drag Queens'] }
+                    ],
+                    tours: ['Grand Place', 'Atomium', 'Comic Strip Trail', 'Belgian Chocolate Tour']
                 },
                 'antwerp': {
                     monthlyWeather: {
@@ -7096,6 +7376,36 @@
                     { name: 'Tipsy Unicorn', type: 'Bar', tags: ['Fun'] }
                 ],
                 tours: ['Mekong Delta', 'Cu Chi Tunnels', 'Street Food Vespa Tour']
+            },
+            "bali": {
+                name: 'Bali, Indonesia', iata: 'DPS', image: '🇮🇩', weather: 'Tropical. 85°F',
+                baseFare: [900, 2000],
+                lgbtqSafety: 'Indonesia: Conservative. Proceed with caution. No PDAs. Seminyak is the LGBTQ friendly neighborhood.', safetyScore: 22, lgbtqDistrict: 'Seminyak',
+                hotels: [
+                    { name: 'W Bali - Seminyak', type: 'Luxury', tags: ['Beachfront'] },
+                    { name: 'Hotel Indigo Bali Seminyak', type: 'Luxury', tags: ['Design'] },
+                    { name: 'Courtyard by Marriott Seminyak', type: 'Moderate', tags: ['Pool'] },
+                    { name: 'Alila Seminyak', type: 'Luxury', tags: ['Chic'] },
+                    { name: 'The Seminyak Beach Resort', type: 'Luxury', tags: ['Views'] },
+                    { name: 'Dash Hotel Seminyak', type: 'Moderate', tags: ['Fun'] },
+                    { name: 'U Paasha Seminyak', type: 'Moderate', tags: ['Modern'] },
+                    { name: 'Spartacvs Bali', type: 'Guesthouse', tags: ['Men Only'] },
+                    { name: 'The Legian Bali', type: 'Luxury', tags: ['Exclusive'] },
+                    { name: 'Katamama', type: 'Luxury', tags: ['Artisan'] }
+                ],
+                nightlife: [
+                    { name: 'Mixwell Bar', type: 'Bar', tags: ['Drag Shows'] },
+                    { name: 'Bali Joe', type: 'Bar', tags: ['Go-Go Boys'] },
+                    { name: 'F Bar', type: 'Bar', tags: ['Lively'] },
+                    { name: 'Bottoms Up', type: 'Bar', tags: ['Dancing'] },
+                    { name: 'Motel Mexicola', type: 'Bar', tags: ['Vibrant'] },
+                    { name: 'La Favela', type: 'Club', tags: ['Late Night'] },
+                    { name: 'Ku De Ta', type: 'Club', tags: ['Beach Club'] },
+                    { name: 'Potato Head', type: 'Club', tags: ['Sunset'] },
+                    { name: 'Biku', type: 'Restaurant', tags: ['High Tea'] },
+                    { name: 'Sarong', type: 'Restaurant', tags: ['Fine Dining'] }
+                ],
+                tours: ['Ubud Monkey Forest', 'Mount Batur Hike', 'Uluwatu Sunset Dance']
             },
             "phuket": {
                 name: 'Phuket, Thailand', iata: 'HKT', image: '🇹🇭', weather: 'Sunny. Beach. 88°F',
