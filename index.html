@@ -910,11 +910,37 @@
                 }
             };
 
-            window.psUpdateNote = async function (docId, noteText) {
+            window.psAddNote = async function (docId, inputId) {
                 if (!currentUser) return;
-                await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).update({
-                    note: noteText
-                });
+                const inputEl = document.getElementById(inputId);
+                if (!inputEl) return;
+                const noteText = inputEl.value.trim();
+                if (!noteText) return;
+
+                const newNote = {
+                    text: noteText,
+                    addedAt: Date.now()
+                };
+
+                await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).set({
+                    notes: firebase.firestore.FieldValue.arrayUnion(newNote)
+                }, { merge: true });
+
+                inputEl.value = '';
+                psLoadTrips();
+            };
+
+            window.psDeleteNote = async function (docId, noteObjStr) {
+                if (!currentUser) return;
+                try {
+                    const noteObj = JSON.parse(decodeURIComponent(noteObjStr));
+                    await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).update({
+                        notes: firebase.firestore.FieldValue.arrayRemove(noteObj)
+                    });
+                    psLoadTrips();
+                } catch (e) {
+                    console.error("Error deleting note", e);
+                }
             };
 
             function refreshSaveButtons() {
@@ -959,7 +985,27 @@
                                 t.bookmarks.map(b => '<li style="margin-bottom:.2rem; display:flex; align-items:center; gap:4px;"><span class="material-symbols-outlined" style="color:#aaa; font-size:12px;">fiber_manual_record</span> <strong>' + b.name + '</strong> <span style="font-size:.7rem; color:#888;">(' + b.type + ')</span></li>').join('') +
                                 '</ul></div>';
                         }
-                        const noteText = t.note || '';
+                        let notesHtml = '';
+                        if (t.notes && t.notes.length > 0) {
+                            notesHtml = '<div style="margin-top:.5rem; font-size:.8rem; background:rgba(0,0,0,0.02); padding:.5rem; border-radius:6px;">' +
+                                '<div style="font-weight:bold; margin-bottom:.4rem; color:#f20d8f; display:flex; align-items:center; gap:4px;">' +
+                                '<span class="material-symbols-outlined" style="font-size:14px;">notes</span> Saved Notes</div>' +
+                                '<ul style="list-style:none; padding:0; margin:0; color:#444;">' +
+                                t.notes.map(n => {
+                                    const dateStr = new Date(n.addedAt).toLocaleDateString();
+                                    const noteObjStr = encodeURIComponent(JSON.stringify(n));
+                                    return '<li style="margin-bottom:.3rem; display:flex; justify-content:space-between; align-items:flex-start; gap:4px; background:#fff; padding:6px; border-radius:4px; border:1px solid #eee;">' +
+                                        '<div style="flex:1; word-break:break-word;">' +
+                                        '<span style="font-size:9px; font-weight:bold; text-transform:uppercase; color:#888; display:block; margin-bottom:2px;">' + dateStr + '</span>' +
+                                        '<span>' + n.text + '</span>' +
+                                        '</div>' +
+                                        '<button onclick="psDeleteNote(\'' + doc.id + '\', \'' + noteObjStr + '\')" title="Delete Note" style="background:none; border:none; color:#e11d48; cursor:pointer; padding:0; margin-left:4px; opacity:0.6; transition:opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.6">' +
+                                        '<span class="material-symbols-outlined" style="font-size:16px;">delete</span></button>' +
+                                        '</li>';
+                                }).join('') +
+                                '</ul></div>';
+                        }
+
                         return '<div class="ps-trip-card" style="flex-direction:column; align-items:stretch; gap:.5rem;">'
                             + '<div style="display:flex; justify-content:space-between; align-items:flex-start;">'
                             + '<div style="flex:1;">'
@@ -973,11 +1019,12 @@
                             + '<button onclick="psDeleteTrip(\'' + doc.id + '\',\'' + t.tripKey + '\')" title="Remove" style="background:none;border:none;cursor:pointer;color:#e11d48;font-size:1.1rem;">&#128465;&#65039;</button>'
                             + '</div>'
                             + bookmarksHtml
-                            + '<div style="margin-top:.5rem;">'
-                            + '<textarea placeholder="Add trip notes here (e.g. booked flights, to-dos)..." '
-                            + 'onchange="psUpdateNote(\'' + doc.id + '\', this.value)" '
-                            + 'style="width:100%; border:1px solid #ccc; border-radius:6px; padding:.5rem; font-size:.8rem; font-family:inherit; resize:vertical; min-height:60px; outline:none; color:#333; box-sizing:border-box;">'
-                            + noteText + '</textarea>'
+                            + notesHtml
+                            + '<div style="margin-top:.5rem; display:flex; gap:6px;">'
+                            + '<input type="text" id="note-input-' + doc.id + '" placeholder="e.g. Flight booked..." '
+                            + 'style="flex:1; border:1px solid #ccc; border-radius:6px; padding:.4rem .6rem; font-size:.8rem; font-family:inherit; outline:none; color:#333; box-sizing:border-box;">'
+                            + '<button onclick="psAddNote(\'' + doc.id + '\', \'note-input-' + doc.id + '\')" '
+                            + 'style="background:linear-gradient(90deg,#f20d8f,#86007D);color:#fff;border:none;border-radius:6px;padding:.4rem .75rem;font-size:.8rem;font-weight:bold;cursor:pointer;font-family:inherit;">Save</button>'
                             + '</div>'
                             + '</div>';
                     }).join('');
