@@ -8303,10 +8303,13 @@
                         const bgClass = isCruise ? "from-blue-600 to-cyan-500" : "from-pride-purple to-pride-blue";
 
                         eventContent = `
-                                    <div class="mt-4 bg-gradient-to-r ${bgClass} rounded-xl shadow-lg p-5 text-white relative overflow-hidden">
+                                    <div class="mt-4 bg-gradient-to-r ${bgClass} rounded-xl shadow-lg p-5 text-white relative overflow-hidden group">
                                         <div class="absolute top-0 right-0 p-4 opacity-10">
                                             <span class="material-symbols-outlined text-6xl">${bannerIcon}</span>
                                         </div>
+                                        <button onclick="window.psBookmarkPlace('${matchingEvent.name.replace(/'/g, "\\'")}', '${isCruise ? 'Cruise' : 'Event'}', '${data.name.replace(/'/g, "\\'")}', '${origin.replace(/'/g, "\\'")}', '${dateStart}', '${dateEnd}', this)" title="Bookmark this event" class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/40 transition-colors text-white z-10 opacity-0 group-hover:opacity-100 cursor-pointer">
+                                            <span class="material-symbols-outlined text-[18px] pointer-events-none">bookmark_border</span>
+                                        </button>
                                         <div class="flex items-center gap-3 mb-3">
                                             <span class="material-symbols-outlined text-pride-yellow fill-1">stars</span>
                                             <h4 class="font-bold text-lg">${bannerTitle}</h4>
@@ -8760,11 +8763,11 @@
                 }
 
                 return `
-                    <div onclick="quickSearch('${h.searchQuery}', '${h.date || ''}', '${h.endDate || ''}')" class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-lg border-l-4 border-primary flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform group">
+                    <div onclick="quickSearch('${h.searchQuery}', '${h.date || ''}', '${h.endDate || ''}')" class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-lg border-l-4 border-primary flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform group relative">
                         <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
                             <span class="material-symbols-outlined">${icon}</span>
                         </div>
-                        <div class="overflow-hidden flex-1">
+                        <div class="overflow-hidden flex-1 pr-6">
                             <span class="text-[10px] font-black px-2 py-0.5 rounded-md uppercase mb-1 inline-block ${badgeClass}">${getHotelBadge(h)}</span>
                             <p class="font-black text-slate-900 dark:text-white truncate">${h.name}</p>
                             <p class="text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-300 uppercase tracking-tighter">${h.location} ${h.date ? '&bull; ' + h.date : ''}</p>
@@ -8774,6 +8777,9 @@
                                 <span class="text-[10px] font-bold ${h.eqScore >= 75 ? 'text-green-600' : h.eqScore >= 60 ? 'text-yellow-600' : 'text-red-600'}">Equaldex: ${h.eqScore}/100</span>
                             </div>` : ''}
                         </div>
+                        <button onclick="event.stopPropagation(); window.psBookmarkPlace('${h.name.replace(/'/g, "\\'")}', '${h.type}', '${h.searchQuery.replace(/'/g, "\\'")}', '${h.searchQuery.replace(/'/g, "\\'")}', '${h.date || ''}', '${h.endDate || ''}', this)" title="Bookmark" class="absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 transition-colors text-slate-400 z-10 opacity-0 group-hover:opacity-100 dark:bg-slate-700 dark:hover:bg-slate-600">
+                            <span class="material-symbols-outlined text-[16px] pointer-events-none">bookmark_border</span>
+                        </button>
                     </div>
                 `;
             }).join('');
@@ -8856,14 +8862,17 @@
                 randomEvents = getRandomSubset(SPECIAL_EVENTS_DATA, 4);
             }
             grid.innerHTML = randomEvents.map(e => `
-                                <div onclick="quickSearch('${e.city}', '${e.start}', '${e.end}')" class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-lg border-l-4 border-primary flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform">
+                                <div onclick="quickSearch('${e.city}', '${e.start}', '${e.end}')" class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-lg border-l-4 border-primary flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform relative group">
                                     <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
                                         <span class="material-symbols-outlined">${e.type === 'Cruise' ? 'directions_boat' : 'event_upcoming'}</span>
                                     </div>
-                                    <div class="overflow-hidden">
+                                    <div class="overflow-hidden pr-6">
                                         <p class="font-black text-slate-900 dark:text-white truncate">${e.name}</p>
                                         <p class="text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-300 uppercase tracking-tighter">${e.city} &bull; ${e.start}</p>
                                     </div>
+                                    <button onclick="event.stopPropagation(); window.psBookmarkPlace('${e.name.replace(/'/g, "\\'")}', '${e.type === 'Cruise' ? 'Cruise' : 'Event'}', '${e.city.replace(/'/g, "\\'")}', '${e.city.replace(/'/g, "\\'")}', '${e.start}', '${e.end}', this)" title="Bookmark this event" class="absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 transition-colors text-slate-400 z-10 opacity-0 group-hover:opacity-100 dark:bg-slate-700 dark:hover:bg-slate-600">
+                                        <span class="material-symbols-outlined text-[16px] pointer-events-none">bookmark_border</span>
+                                    </button>
                                 </div>
                             `).join('');
         }
