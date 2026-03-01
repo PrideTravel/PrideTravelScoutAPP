@@ -669,7 +669,9 @@
             <input class="ps-input" id="ps-auth-email" type="email" placeholder="Email address" autocomplete="email" />
             <input class="ps-input" id="ps-auth-pass" type="password" placeholder="Password"
                 autocomplete="current-password" />
-            <a href="#" id="ps-auth-forgot" onclick="psForgotPassword(event)" style="font-size:.8rem;color:#f20d8f;text-decoration:none;display:block;text-align:right;margin-top:.2rem;margin-bottom:.5rem;">Forgot Password?</a>
+            <a href="#" id="ps-auth-forgot" onclick="psForgotPassword(event)"
+                style="font-size:.8rem;color:#f20d8f;text-decoration:none;display:block;text-align:right;margin-top:.2rem;margin-bottom:.5rem;">Forgot
+                Password?</a>
             <div id="ps-auth-error" class="ps-error"></div>
             <button class="ps-btn-primary" id="ps-auth-submit" onclick="psSubmitAuth()">Sign In</button>
             <div style="text-align:center;color:#ccc;font-size:.8rem;margin:.5rem 0;">or</div>
@@ -793,14 +795,14 @@
                 document.getElementById('ps-auth-submit').textContent = isUp ? 'Create Account' : 'Sign In';
                 document.getElementById('ps-auth-pass').autocomplete = isUp ? 'new-password' : 'current-password';
                 const forgotEl = document.getElementById('ps-auth-forgot');
-                if(forgotEl) forgotEl.style.display = isUp ? 'none' : 'block';
+                if (forgotEl) forgotEl.style.display = isUp ? 'none' : 'block';
                 document.getElementById('ps-auth-error').textContent = '';
             };
             window.psForgotPassword = async function (e) {
                 e.preventDefault();
                 const email = document.getElementById('ps-auth-email').value.trim();
                 const errEl = document.getElementById('ps-auth-error');
-                if(!email) {
+                if (!email) {
                     errEl.style.color = '#e11d48';
                     errEl.textContent = 'Please enter your email address first.';
                     return;
