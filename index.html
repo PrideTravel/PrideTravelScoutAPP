@@ -728,6 +728,7 @@
             const db = firebase.firestore();
             let currentUser = null;
             let savedTripIds = new Set();
+            let savedTripDocIds = new Map();
 
             // Auth state
             auth.onAuthStateChanged(async (user) => {
@@ -741,7 +742,11 @@
                 if (!currentUser) return;
                 const snap = await db.collection('users').doc(currentUser.uid).collection('trips').get();
                 savedTripIds.clear();
-                snap.docs.forEach(d => savedTripIds.add(d.data().tripKey));
+                savedTripDocIds.clear();
+                snap.docs.forEach(d => {
+                    savedTripIds.add(d.data().tripKey);
+                    savedTripDocIds.set(d.data().tripKey, d.id);
+                });
             }
 
             // Header user button
@@ -864,12 +869,52 @@
                 if (!currentUser) { psOpenModal('Sign in to save trips!'); return; }
                 const key = [dest, dep, ds, de].join('|');
                 if (savedTripIds.has(key)) return;
-                await db.collection('users').doc(currentUser.uid).collection('trips').add({
+                const docRef = await db.collection('users').doc(currentUser.uid).collection('trips').add({
                     destination: dest, departure: dep, dateStart: ds, dateEnd: de,
-                    tripKey: key, savedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    tripKey: key, savedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    bookmarks: []
                 });
                 savedTripIds.add(key);
+                savedTripDocIds.set(key, docRef.id);
                 if (btnEl) { btnEl.classList.add('saved'); btnEl.innerHTML = '&#10003; Saved!'; }
+            };
+
+            window.psBookmarkPlace = async function (placeName, placeType, dest, dep, ds, de, btnEl) {
+                if (!currentUser) { psOpenModal('Sign in to save bookmarks!'); return; }
+                const key = [dest, dep, ds, de].join('|');
+
+                let docId = savedTripDocIds.get(key);
+                if (!docId) {
+                    const docRef = await db.collection('users').doc(currentUser.uid).collection('trips').add({
+                        destination: dest, departure: dep, dateStart: ds, dateEnd: de,
+                        tripKey: key, savedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                        bookmarks: []
+                    });
+                    savedTripIds.add(key);
+                    savedTripDocIds.set(key, docRef.id);
+                    docId = docRef.id;
+                    refreshSaveButtons();
+                }
+
+                await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).set({
+                    bookmarks: firebase.firestore.FieldValue.arrayUnion({ name: placeName, type: placeType })
+                }, { merge: true });
+
+                if (btnEl) {
+                    btnEl.innerHTML = '<span class="material-symbols-outlined text-[14px]">bookmark_added</span>';
+                    btnEl.classList.add('text-pride-green');
+                    btnEl.classList.remove('text-slate-400');
+                    btnEl.classList.remove('hover:bg-slate-200');
+                    btnEl.disabled = true;
+                    if (btnEl.title) btnEl.title = 'Saved to trip';
+                }
+            };
+
+            window.psUpdateNote = async function (docId, noteText) {
+                if (!currentUser) return;
+                await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).update({
+                    note: noteText
+                });
             };
 
             function refreshSaveButtons() {
@@ -905,7 +950,18 @@
                     list.innerHTML = snap.docs.map(doc => {
                         const t = doc.data();
                         const dateStr = (t.dateStart && t.dateEnd) ? t.dateStart + ' to ' + t.dateEnd : '';
-                        return '<div class="ps-trip-card">'
+                        let bookmarksHtml = '';
+                        if (t.bookmarks && t.bookmarks.length > 0) {
+                            bookmarksHtml = '<div style="margin-top:.5rem; font-size:.8rem; background:rgba(0,0,0,0.02); padding:.5rem; border-radius:6px;">' +
+                                '<div style="font-weight:bold; margin-bottom:.2rem; color:#f20d8f; display:flex; align-items:center; gap:4px;">' +
+                                '<span class="material-symbols-outlined" style="font-size:14px;">bookmarks</span> Bookmarked Places</div>' +
+                                '<ul style="list-style:none; padding:0; margin:0; color:#444;">' +
+                                t.bookmarks.map(b => '<li style="margin-bottom:.2rem; display:flex; align-items:center; gap:4px;"><span class="material-symbols-outlined" style="color:#aaa; font-size:12px;">fiber_manual_record</span> <strong>' + b.name + '</strong> <span style="font-size:.7rem; color:#888;">(' + b.type + ')</span></li>').join('') +
+                                '</ul></div>';
+                        }
+                        const noteText = t.note || '';
+                        return '<div class="ps-trip-card" style="flex-direction:column; align-items:stretch; gap:.5rem;">'
+                            + '<div style="display:flex; justify-content:space-between; align-items:flex-start;">'
                             + '<div style="flex:1;">'
                             + '<div style="font-weight:800;font-size:.95rem;margin-bottom:.2rem;color:#000;">&#9992;&#65039; '
                             + (t.departure || '?') + ' &#8594; ' + t.destination + '</div>'
@@ -915,6 +971,14 @@
                             + '&#128269; Search Again</button>'
                             + '</div>'
                             + '<button onclick="psDeleteTrip(\'' + doc.id + '\',\'' + t.tripKey + '\')" title="Remove" style="background:none;border:none;cursor:pointer;color:#e11d48;font-size:1.1rem;">&#128465;&#65039;</button>'
+                            + '</div>'
+                            + bookmarksHtml
+                            + '<div style="margin-top:.5rem;">'
+                            + '<textarea placeholder="Add trip notes here (e.g. booked flights, to-dos)..." '
+                            + 'onchange="psUpdateNote(\'' + doc.id + '\', this.value)" '
+                            + 'style="width:100%; border:1px solid #ccc; border-radius:6px; padding:.5rem; font-size:.8rem; font-family:inherit; resize:vertical; min-height:60px; outline:none; color:#333; box-sizing:border-box;">'
+                            + noteText + '</textarea>'
+                            + '</div>'
                             + '</div>';
                     }).join('');
                 } catch (e) { list.innerHTML = '<p style="color:#e11d48;font-size:.85rem;text-align:center;">Error loading trips.</p>'; }
@@ -7808,7 +7872,12 @@
                                         ${randomHotels.map(h => `
                                             <div class="flex justify-between items-center text-xs border-b border-slate-50 dark:border-slate-700 pb-1 last:border-0">
                                                 <span class="font-black text-slate-800 dark:text-slate-100 truncate mr-2">${h.name}</span>
-                                                <span class="text-[9px] font-bold px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded text-slate-500 dark:text-slate-400 dark:text-slate-300 whitespace-nowrap">${getHotelBadge(h)}</span>
+                                                <div class="flex items-center gap-2">
+                                                    <span class="text-[9px] font-bold px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded text-slate-500 dark:text-slate-400 dark:text-slate-300 whitespace-nowrap">${getHotelBadge(h)}</span>
+                                                    <button onclick="window.psBookmarkPlace('${h.name.replace(/'/g, "\\'")}', 'Hotel', '${data.name.replace(/'/g, "\\'")}', '${origin.replace(/'/g, "\\'")}', '${dateStart}', '${dateEnd}', this)" title="Bookmark this hotel" class="w-6 h-6 flex items-center justify-center rounded bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors text-slate-400">
+                                                        <span class="material-symbols-outlined text-[14px]">bookmark</span>
+                                                    </button>
+                                                </div>
                                             </div>
                                         `).join('')}
                                     </div>
@@ -7870,7 +7939,10 @@
                         const color = colors[i % colors.length];
                         const icon = icons[i % icons.length];
                         return `
-                                        <div class="bg-white p-4 rounded-xl border border-${color}/20 group hover:bg-${color} transition-colors duration-300 cursor-default">
+                                        <div class="bg-white p-4 rounded-xl border border-${color}/20 group hover:bg-${color} transition-colors duration-300 relative cursor-default">
+                                            <button onclick="window.psBookmarkPlace('${n.name.replace(/'/g, "\\'")}', 'Nightlife', '${data.name.replace(/'/g, "\\'")}', '${origin.replace(/'/g, "\\'")}', '${dateStart}', '${dateEnd}', this)" title="Bookmark this place" class="absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 transition-colors text-slate-400 z-10">
+                                                <span class="material-symbols-outlined text-[16px]">bookmark</span>
+                                            </button>
                                             <div class="w-10 h-10 bg-${color} rounded-full flex items-center justify-center text-white mb-3 group-hover:bg-white dark:bg-slate-800 group-hover:text-${color}">
                                                 <span class="material-symbols-outlined">${icon}</span>
                                             </div>
@@ -7927,6 +7999,9 @@
                                             <p class="font-bold text-sm text-slate-900 dark:text-white">${t}</p>
                                             <p class="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-300">Approx. 3 hours • Featured Tour</p>
                                         </div>
+                                        <button onclick="window.psBookmarkPlace('${t.replace(/'/g, "\\'")}', 'Tour', '${data.name.replace(/'/g, "\\'")}', '${origin.replace(/'/g, "\\'")}', '${dateStart}', '${dateEnd}', this)" title="Bookmark this tour" class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors text-slate-400">
+                                            <span class="material-symbols-outlined text-[18px]">bookmark</span>
+                                        </button>
                                     </div>
                                     `).join('')}
                                 </div>
