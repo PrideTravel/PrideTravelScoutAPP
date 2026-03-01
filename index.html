@@ -754,6 +754,7 @@
                                         dateEnd: st.dateEnd,
                                         tripKey: st.tripKey,
                                         createdAt: Date.now(),
+                                        savedAt: firebase.firestore.FieldValue.serverTimestamp(),
                                         shareId: shareId
                                     });
                                     alert("You have joined the collaborative trip to " + st.destination + "!");
