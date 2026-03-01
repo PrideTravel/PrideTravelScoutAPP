@@ -440,7 +440,8 @@
     <header
         class="sticky top-0 z-50 bg-background-light dark:bg-slate-900/80 backdrop-blur-md px-6 py-4 flex items-center justify-between border-b"
         style="border-bottom: 4px solid; border-image: linear-gradient(to right, #FF0018, #FFA52C, #FFFF41, #008018, #0000F9, #86007D) 1;">
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+            onclick="toggleView('homeView')" title="Back to Home">
             <div class="w-8 h-8 rounded-lg pride-gradient-bg flex items-center justify-center shadow-lg">
                 <span class="material-symbols-outlined text-white text-xl font-black">flight_takeoff</span>
             </div>
@@ -943,6 +944,39 @@
                 }
             };
 
+            window.psEmailTrip = async function (e, origin, dest, start, end, weather, lgbtqSafety) {
+                e.preventDefault();
+                const subject = `Trip Idea: ${dest} for Pride Travel`;
+                const gFlights = `https://www.google.com/travel/flights?q=${encodeURIComponent(origin + ' to ' + dest + ' ' + start)}`;
+                let body = `Hey,\n\nI found a great trip idea using Pride Travel Scout!\n\nDestination: ${dest}\nDates: ${start} to ${end}\nFrom: ${origin}\n\nWeather: ${weather}\nLGBTQ Safety: ${lgbtqSafety}\n\nCheck out flights:\nGoogle Flights: ${gFlights}\n\n`;
+
+                const key = [dest, origin, start, end].join('|');
+                let bookmarksText = '';
+                let notesText = '';
+
+                if (currentUser && savedTripDocIds && savedTripDocIds.has(key)) {
+                    const docId = savedTripDocIds.get(key);
+                    try {
+                        const doc = await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).get();
+                        if (doc.exists) {
+                            const t = doc.data();
+                            if (t.bookmarks && t.bookmarks.length > 0) {
+                                bookmarksText = "Bookmarked Places:\n" + t.bookmarks.map(b => `- ${b.name} (${b.type})`).join('\n') + "\n\n";
+                            }
+                            if (t.notes && t.notes.length > 0) {
+                                notesText = "Notes:\n" + t.notes.map(n => `- ${n.text}`).join('\n') + "\n\n";
+                            }
+                            if (t.note) {
+                                notesText += "Notes:\n" + t.note + "\n\n";
+                            }
+                        }
+                    } catch (err) { console.error("Error fetching trip for email", err); }
+                }
+
+                body += bookmarksText + notesText + `Sent from Pride Travel Scout`;
+                window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            };
+
             function refreshSaveButtons() {
                 document.querySelectorAll('.ps-save-btn[data-trip-key]').forEach(btn => {
                     if (savedTripIds.has(btn.dataset.tripKey)) {
@@ -1013,8 +1047,11 @@
                             + (t.departure || '?') + ' &#8594; ' + t.destination + '</div>'
                             + (dateStr ? '<div style="font-size:.8rem;color:#333;margin-bottom:.4rem;">&#128197; ' + dateStr + '</div>' : '')
                             + '<button onclick="psReSearch(\'' + t.destination + '\',\'' + (t.departure || '') + '\',\'' + (t.dateStart || '') + '\',\'' + (t.dateEnd || '') + '\')"'
-                            + ' style="font-size:.75rem;font-weight:700;background:linear-gradient(90deg,#f20d8f,#86007D);color:#fff;border:none;border-radius:999px;padding:.3rem .75rem;cursor:pointer;font-family:inherit;">'
+                            + ' style="font-size:.75rem;font-weight:700;background:linear-gradient(90deg,#f20d8f,#86007D);color:#fff;border:none;border-radius:999px;padding:.3rem .75rem;cursor:pointer;font-family:inherit;margin-right:.5rem;">'
                             + '&#128269; Search Again</button>'
+                            + '<button onclick="psEmailTrip(event, \'' + (t.departure || '') + '\', \'' + t.destination + '\', \'' + (t.dateStart || '') + '\', \'' + (t.dateEnd || '') + '\', \'Varies\', \'Varies\')"'
+                            + ' style="font-size:.75rem;font-weight:700;background:#e5e7eb;color:#374151;border:none;border-radius:999px;padding:.3rem .75rem;cursor:pointer;font-family:inherit;">'
+                            + '&#x1F4E7; Email</button>'
                             + '</div>'
                             + '<button onclick="psDeleteTrip(\'' + doc.id + '\',\'' + t.tripKey + '\')" title="Remove" style="background:none;border:none;cursor:pointer;color:#e11d48;font-size:1.1rem;">&#128465;&#65039;</button>'
                             + '</div>'
@@ -5376,8 +5413,11 @@
                         9: { high: '68°F', low: '52°F', summary: 'Mild' },
                         10: { high: '60°F', low: '44°F', summary: 'Cool' },
                         11: { high: '54°F', low: '40°F', summary: 'Cool' }
-                    },
-                    name: 'Destination', iata: 'ANY', image: '&#9992;&#65039;', weather: 'Check Forecast',
+                    }
+                },
+                // Fallback for unlisted
+                'ANY': {
+                    name: 'Destination', iata: 'ANY', image: '&#127987;&#65039;&#8205;&#127752;', weather: 'Check Forecast',
                     baseFare: [500, 800],
                     lgbtqSafety: 'Research Local Laws', lgbtqDistrict: 'City Center',
                     hotels: [
@@ -7868,7 +7908,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <a href="${getEmailLink(origin, data, dateStart, dateEnd)}" 
+                            <a href="#" onclick="window.psEmailTrip(event, '${origin.replace(/'/g, "\\'")}', '${data.name.replace(/'/g, "\\'")}', '${dateStart}', '${dateEnd}', '${data.weather}', '${data.lgbtqSafety}')" 
                                class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary transition-all active:scale-95 hover:bg-primary hover:text-white shadow-lg shadow-primary/10"
                                title="Email Result">
                                 <span class="material-symbols-outlined text-xl">mail</span>
