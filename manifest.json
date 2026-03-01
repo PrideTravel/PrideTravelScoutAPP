@@ -4,7 +4,9 @@
   "version": "2.0.1",
   "id": "/PrideTravelScoutAPP/",
   "start_url": "https://pridetravel.github.io/PrideTravelScoutAPP/index.html",
+  "scope": "/PrideTravelScoutAPP/",
   "display": "standalone",
+  "display_override": ["standalone", "window-controls-overlay"],
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
   "orientation": "portrait-primary",
@@ -18,11 +20,26 @@
     {
       "src": "https://pridetravel.github.io/PrideTravelScoutAPP/icon-512.png",
       "sizes": "512x512",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any"
     }
   ],
-  "description": "Pride Travel Scout app was created to make travel planning safer, easier, and more empowering for the LGBTQ community...",
+  "description": "Pride Travel Scout app was created to make travel planning safer, easier, and more empowering for the LGBTQ community. Whether you already have a destination in mind or are still deciding where to go, the app lets users explore by region or country and discover places that are known to be welcoming and inclusive. Each destination includes curated listings for hotels, tours, LGBTQ bars, and nightlife, helping travelers quickly understand what to expect before they arrive. Instead of endless searching across multiple platforms, everything is organized in one place with a focus on comfort, visibility, and community. The goal is simple: reduce uncertainty, highlight queer friendly spaces, and help LGBTQ travelers confidently choose destinations where they can relax, connect, and fully enjoy the experience.",
   "dir": "auto",
-  "lang": "en"
+  "lang": "en-US",
+  "categories": ["travel", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "Search Hotels",
+      "short_name": "Hotels",
+      "url": "/PrideTravelScoutAPP/index.html#hotels",
+      "description": "Find LGBTQ+ friendly hotels"
+    },
+    {
+      "name": "Upcoming Events",
+      "short_name": "Events",
+      "url": "/PrideTravelScoutAPP/index.html#events",
+      "description": "View LGBTQ+ events and pride dates"
+    }
+  ]
 }
