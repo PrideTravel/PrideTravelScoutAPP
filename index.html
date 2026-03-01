@@ -784,25 +784,30 @@
                 });
             }
 
+            function getUserInitials(user) {
+                if (!user) return '?';
+                let initials = '?';
+                if (user.displayName) {
+                    const parts = user.displayName.trim().split(/[\s.]+/);
+                    if (parts.length >= 2) {
+                        initials = (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+                    } else if (parts[0].length >= 2) {
+                        initials = parts[0].slice(0, 2).toUpperCase();
+                    } else if (parts[0].length === 1) {
+                        initials = parts[0].toUpperCase();
+                    }
+                } else if (user.email) {
+                    initials = user.email.slice(0, 2).toUpperCase();
+                }
+                return initials;
+            }
+
             // Header user button
             function renderUserBtn(user) {
                 const wrap = document.getElementById('ps-user-menu-wrap');
                 if (!wrap) return;
                 if (user) {
-                    let initials = '?';
-                    let name = user.displayName || user.email.split('@')[0];
-                    if (user.displayName) {
-                        const parts = user.displayName.trim().split(/[\s.]+/);
-                        if (parts.length >= 2) {
-                            initials = (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
-                        } else if (parts[0].length >= 2) {
-                            initials = parts[0].slice(0, 2).toUpperCase();
-                        } else if (parts[0].length === 1) {
-                            initials = parts[0].toUpperCase();
-                        }
-                    } else if (user.email) {
-                        initials = user.email.slice(0, 2).toUpperCase();
-                    }
+                    let initials = getUserInitials(user);
 
                     wrap.innerHTML = `
             <button id="ps-user-btn" onclick="psToggleDropdown()">
@@ -943,7 +948,8 @@
                     refreshSaveButtons();
                 }
 
-                const updateObj = { bookmarks: firebase.firestore.FieldValue.arrayUnion({ name: placeName, type: placeType }) };
+                const initials = getUserInitials(currentUser);
+                const updateObj = { bookmarks: firebase.firestore.FieldValue.arrayUnion({ name: placeName, type: placeType, addedBy: initials }) };
 
                 const tSnap = await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).get();
                 if (tSnap.exists && tSnap.data().shareId) {
@@ -970,9 +976,11 @@
                 const noteText = inputEl.value.trim();
                 if (!noteText) return;
 
+                const initials = getUserInitials(currentUser);
                 const newNote = {
                     text: noteText,
-                    addedAt: Date.now()
+                    addedAt: Date.now(),
+                    addedBy: initials
                 };
 
                 const updateObj = { notes: firebase.firestore.FieldValue.arrayUnion(newNote) };
@@ -1165,7 +1173,7 @@
                                 '<div style="font-weight:bold; margin-bottom:.2rem; color:#f20d8f; display:flex; align-items:center; gap:4px;">' +
                                 '<span class="material-symbols-outlined" style="font-size:14px;">bookmarks</span> Bookmarked Places</div>' +
                                 '<ul style="list-style:none; padding:0; margin:0; color:#444;">' +
-                                t.bookmarks.map(b => '<li style="margin-bottom:.2rem; display:flex; align-items:center; gap:4px;"><span class="material-symbols-outlined" style="color:#aaa; font-size:12px;">fiber_manual_record</span> <strong>' + b.name + '</strong> <span style="font-size:.7rem; color:#888;">(' + b.type + ')</span></li>').join('') +
+                                t.bookmarks.map(b => '<li style="margin-bottom:.2rem; display:flex; align-items:center; gap:4px;"><span class="material-symbols-outlined" style="color:#aaa; font-size:12px;">fiber_manual_record</span> <strong>' + b.name + '</strong> <span style="font-size:.7rem; color:#888;">(' + b.type + ')</span>' + (b.addedBy ? '<span style="font-size:.6rem; color:#fff; background:linear-gradient(90deg,#f20d8f,#86007D); padding:2px 5px; border-radius:99px; font-weight:bold; margin-left:4px;">' + b.addedBy + '</span>' : '') + '</li>').join('') +
                                 '</ul></div>';
                         }
                         let notesHtml = '';
@@ -1177,9 +1185,10 @@
                                 t.notes.map(n => {
                                     const dateStr = new Date(n.addedAt).toLocaleDateString();
                                     const noteObjStr = encodeURIComponent(JSON.stringify(n));
+                                    const addedByHtml = n.addedBy ? '<span style="font-size:.6rem; color:#fff; background:linear-gradient(90deg,#f20d8f,#86007D); padding:2px 5px; border-radius:99px; font-weight:bold;">' + n.addedBy + '</span>' : '';
                                     return '<li style="margin-bottom:.3rem; display:flex; justify-content:space-between; align-items:flex-start; gap:4px; background:#fff; padding:6px; border-radius:4px; border:1px solid #eee;">' +
                                         '<div style="flex:1; word-break:break-word;">' +
-                                        '<span style="font-size:9px; font-weight:bold; text-transform:uppercase; color:#888; display:block; margin-bottom:2px;">' + dateStr + '</span>' +
+                                        '<div style="display:flex; align-items:center; gap:6px; margin-bottom:2px;"><span style="font-size:9px; font-weight:bold; text-transform:uppercase; color:#888;">' + dateStr + '</span>' + addedByHtml + '</div>' +
                                         '<span>' + n.text + '</span>' +
                                         '</div>' +
                                         '<button onclick="psDeleteNote(\'' + doc.id + '\', \'' + noteObjStr + '\')" title="Delete Note" style="background:none; border:none; color:#e11d48; cursor:pointer; padding:0; margin-left:4px; opacity:0.6; transition:opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.6">' +
