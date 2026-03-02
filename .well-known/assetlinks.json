@@ -1,8 +1,11 @@
-[{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "io.github.pridetravel.twa",
-        "sha256_cert_fingerprints": ["B0:69:7F:74:86:10:BB:8E:8F:AD:E1:EA:C8:25:C1:61:21:AD:77:0D:AA:A9:02:EE:7D:B7:94:D5:30:6F:A6:5E"]
-      }
-    }]
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "io.github.pridetravel.twa",
+      "sha256_cert_fingerprints":
+        ["67:64:80:4F:45:C7:3E:F1:59:E1:A7:4E:31:EE:8A:D4:C4:23:9E:02:5E:9D:97:CD:3B:84:B9:23:41:0C:A9:84"]
+    }
+  }
+]
