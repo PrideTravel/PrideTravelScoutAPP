@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="manifest" href="/PrideTravelScoutAPP/manifest.json">
+    <link rel="manifest" href="manifest.json">
     <title>Pride Travel Scout</title>
 
     <!-- 1. External Dependencies -->
@@ -1263,7 +1263,8 @@
             window.psReSearch = function (dest, dep, ds, de) {
                 psTripPanel(false);
                 const get = id => document.getElementById(id);
-                if (get('destination')) get('destination').value = dest;
+                const searchDest = dest ? dest.split(',')[0].trim() : '';
+                if (get('destination')) get('destination').value = searchDest;
                 if (get('departure') && dep) get('departure').value = dep;
                 if (get('dateStart') && ds) get('dateStart').value = ds;
                 if (get('dateEnd') && de) get('dateEnd').value = de;
@@ -8658,9 +8659,11 @@
             const formatDate = (d) => d.slice(2).replace(/-/g, '');
             const s = formatDate(start);
             const e = formatDate(end);
-            // Use path format: /transport/flights/{origin}/{destination}/{yymmdd}/{yymmdd}
-            const dest = destinationIata === 'ANY' ? 'everywhere' : destinationIata;
-            return `https://www.skyscanner.com/transport/flights/${encodeURIComponent(origin)}/${encodeURIComponent(dest)}/${s}/${e}`;
+            // Format city names for URL
+            const o = origin ? origin.toLowerCase().replace(/[^a-z0-9]+/g, '-') : '';
+            let dest = destinationIata === 'ANY' ? 'everywhere' : destinationIata;
+            const dStr = dest ? dest.toLowerCase().replace(/[^a-z0-9]+/g, '-') : '';
+            return `https://www.skyscanner.com/transport/flights/${o}/${dStr}/${s}/${e}/`;
         }
 
         function getNightlifeIcon(type) {
@@ -8913,13 +8916,16 @@
     })();
 </script>
 <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/PrideTravelScoutAPP/pwabuilder-sw.js')
-        .then(reg => console.log('Service Worker Registered!', reg))
-        .catch(err => console.error('Service Worker Registration Failed!', err));
-    });
-  }
+    if (typeof navigator.serviceWorker !== 'undefined') {
+        navigator.serviceWorker.register('sw.js') // or your specific URL
+            .then(function (registration) {
+                console.log('Service Worker registered successfully:', registration);
+            })
+            .catch(function (error) {
+                console.log('Service Worker registration failed:', error);
+            });
+    }
+
 </script>
 </body>
 
