@@ -6004,20 +6004,6 @@
                 tours: ['Portland Japanese Garden', 'Powell\'s City of Books', 'Food Cart Tour']
             },
             'seattle': {
-                monthlyWeather: {
-                    0: { high: '46°F', low: '36°F', summary: 'Cool & Rainy' },
-                    1: { high: '50°F', low: '37°F', summary: 'Cool & Rainy' },
-                    2: { high: '54°F', low: '39°F', summary: 'Cool & Rainy' },
-                    3: { high: '59°F', low: '43°F', summary: 'Mild' },
-                    4: { high: '65°F', low: '48°F', summary: 'Mostly Cloudy' },
-                    5: { high: '70°F', low: '53°F', summary: 'Warm' },
-                    6: { high: '76°F', low: '57°F', summary: 'Warm & Sunny' },
-                    7: { high: '76°F', low: '57°F', summary: 'Warm & Sunny' },
-                    8: { high: '71°F', low: '53°F', summary: 'Mild' },
-                    9: { high: '59°F', low: '46°F', summary: 'Cool & Rainy' },
-                    10: { high: '51°F', low: '40°F', summary: 'Cool & Rainy' },
-                    11: { high: '46°F', low: '36°F', summary: 'Cool & Rainy' }
-                },
                 name: 'Seattle, WA', iata: 'SEA', image: '&#127482;&#127480;', weather: 'Overcast. Drizzle. 60°F',
                 baseFare: [200, 500],
                 lgbtqSafety: 'United States: Very Safe. Capitol Hill is the LGBTQ+ hub.', safetyScore: 68, lgbtqDistrict: 'Capitol Hill',
@@ -6045,9 +6031,82 @@
                     { name: 'CC Attle\'s', type: 'Bar', tags: ['Bear'] },
                     { name: 'Changes', type: 'Bar', tags: ['Wallingford'] }
                 ],
-                tours: ['Pike Place Market', 'Space Needle', 'Chihuly Garden and Glass']
+                tours: ['Pike Place Market', 'Space Needle', 'Chihuly Garden and Glass'],
+                monthlyWeather: {
+                    0: { high: '46°F', low: '36°F', summary: 'Cool & Rainy' },
+                    1: { high: '50°F', low: '37°F', summary: 'Cool & Rainy' },
+                    2: { high: '54°F', low: '39°F', summary: 'Cool & Rainy' },
+                    3: { high: '59°F', low: '43°F', summary: 'Mild' },
+                    4: { high: '65°F', low: '48°F', summary: 'Mostly Cloudy' },
+                    5: { high: '70°F', low: '53°F', summary: 'Warm' },
+                    6: { high: '76°F', low: '57°F', summary: 'Warm & Sunny' },
+                    7: { high: '76°F', low: '57°F', summary: 'Warm & Sunny' },
+                    8: { high: '71°F', low: '53°F', summary: 'Mild' },
+                    9: { high: '59°F', low: '46°F', summary: 'Cool & Rainy' },
+                    10: { high: '51°F', low: '40°F', summary: 'Cool & Rainy' },
+                    11: { high: '46°F', low: '36°F', summary: 'Cool & Rainy' }
+                }
             },
-
+            'miami beach': {
+                name: 'Miami Beach, FL', iata: 'MIA', image: '&#127482;&#127480;', weather: 'Tropical. 82°F',
+                baseFare: [200, 500],
+                lgbtqSafety: 'United States: Very Safe. South Beach is one of the most iconic gay destinations in the world.', lgbtqDistrict: 'South Beach (SoBe)',
+                hotels: [
+                    { name: 'Hotel Gaythering', type: 'Gay Hotel', address: '1409 Lincoln Rd, Miami Beach, FL', tags: ['LGBTQ Owned', 'Boutique'] },
+                    { name: 'The Betsy South Beach', type: 'Luxury', tags: ['Beachfront'] },
+                    { name: 'Mondrian South Beach', type: 'Luxury', tags: ['Design'] },
+                    { name: 'The Catalina Hotel', type: 'Moderate', tags: ['Art Deco'] },
+                    { name: 'SLS South Beach', type: 'Luxury', tags: ['Poolside'] },
+                    { name: 'Circa 39 Hotel', type: 'Moderate', tags: ['Boutique'] },
+                    { name: 'Kimpton Surfcomber', type: 'Luxury', tags: ['Trendy'] },
+                    { name: 'Z Ocean Hotel', type: 'Moderate', tags: ['Lincoln Rd'] },
+                    { name: 'Generator Miami', type: 'Budget', tags: ['Social'] },
+                    { name: 'Loews Miami Beach', type: 'Luxury', tags: ['Grand'] }
+                ],
+                nightlife: [
+                    { name: 'Twist', type: 'Club', tags: ['Iconic'] },
+                    { name: 'Score', type: 'Bar', tags: ['LincolnRd'] },
+                    { name: 'Palace Bar', type: 'Bar', tags: ['Drag'] },
+                    { name: 'Mango\'s Tropical Cafe', type: 'Bar', tags: ['Live Music'] },
+                    { name: 'LIV Nightclub', type: 'Club', tags: ['Mega Club'] },
+                    { name: 'E11EVEN', type: 'Club', tags: ['24hr'] },
+                    { name: 'Bar Nancy', type: 'Bar', tags: ['Dive'] },
+                    { name: 'The Birdroad Jazz Dist.', type: 'Bar', tags: ['Jazz'] },
+                    { name: 'Gramps', type: 'Bar', tags: ['Rooftop'] },
+                    { name: 'Florbar', type: 'Bar', tags: ['Cocktails'] }
+                ],
+                tours: ['South Beach Art Deco Walk', 'Wynwood Walls', 'Everglades Day Trip', 'Little Havana', 'Biscayne Bay Sunset Cruise']
+            },
+            'manuel antonio': {
+                name: 'Manuel Antonio, Costa Rica', iata: 'SJO', image: '&#127464;&#127479;', weather: 'Tropical. 84°F',
+                baseFare: [400, 800],
+                lgbtqSafety: 'Costa Rica: Very Safe. One of the most LGBTQ-friendly countries in Central America. Marriage equality since 2020.', lgbtqDistrict: 'Manuel Antonio Village',
+                hotels: [
+                    { name: 'Villa Punto de Vista', type: 'Villa', address: 'Manuel Antonio, CR', tags: ['LGBTQ Owned', 'Luxury Villa'] },
+                    { name: 'Hotel Si Como No', type: 'Luxury', tags: ['Eco-Lodge'] },
+                    { name: 'Arenas del Mar', type: 'Luxury', tags: ['Beachfront'] },
+                    { name: 'Tulemar Bungalows', type: 'Moderate', tags: ['Treehouses'] },
+                    { name: 'La Mariposa Hotel', type: 'Luxury', tags: ['Views'] },
+                    { name: 'Hotel Costa Verde', type: 'Moderate', tags: ['Jungle'] },
+                    { name: 'Gaia Hotel & Reserve', type: 'Luxury', tags: ['Reserve'] },
+                    { name: 'Makanda by the Sea', type: 'Luxury', tags: ['Adults Only'] },
+                    { name: 'Hotel Plinio', type: 'Budget', tags: ['Friendly'] },
+                    { name: 'Villas Nicolas', type: 'Moderate', tags: ['Nature'] }
+                ],
+                nightlife: [
+                    { name: 'Bambu Jam', type: 'Bar', tags: ['Live Music'] },
+                    { name: 'El Avion', type: 'Bar', tags: ['Beachfront'] },
+                    { name: 'La Cantina', type: 'Bar', tags: ['Chill'] },
+                    { name: 'Barba Roja', type: 'Bar', tags: ['Sunset'] },
+                    { name: 'Dos Locos', type: 'Bar', tags: ['Casual'] },
+                    { name: 'Salsipuedes', type: 'Bar', tags: ['Local'] },
+                    { name: 'Kapi Kapi', type: 'Bar', tags: ['Cocktails'] },
+                    { name: 'The Falls', type: 'Bar', tags: ['Dance'] },
+                    { name: 'Byblos', type: 'Club', tags: ['Dance'] },
+                    { name: 'Phat Noodle', type: 'Bar', tags: ['Social'] }
+                ],
+                tours: ['Manuel Antonio National Park', 'Whale Watching', 'Waterfall Rappelling', 'Dolphin Tour', 'Canopy Zip Line']
+            }
         };
 
         // GENERATED STUBS
@@ -8969,7 +9028,7 @@
                             <h4 class="text-white text-2xl font-black mb-1">${h.city}, ${h.country}</h4>
                             <div class="flex items-center gap-2 text-white/90 text-xs font-bold">
                                 <span class="material-symbols-outlined text-sm text-green-400 fill-1">verified_user</span>
-                                Safety Score: ${h.safetyScore}/100
+                                Equality Index Score: ${h.safetyScore}/100
                             </div>
                         </div>
                     </div>
