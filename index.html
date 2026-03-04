@@ -8529,6 +8529,28 @@
                                     </a>
                                 </div>
                             </div>
+                            <!-- Misterbnb Card -->
+                            <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border-l-4 border-pride-red shadow-md mb-4">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div class="px-3 py-1 bg-pride-red/10 rounded-lg">
+                                        <span class="font-extrabold text-lg dark-pill"><span class="pride-gradient-text">LGBTQ Rentals</span></span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="text-[10px] font-black text-slate-400 dark:text-slate-300 uppercase tracking-widest block">Stay Period</span>
+                                        <span class="text-[11px] font-bold text-pride-red">${formatDateShort(dateStart)} &ndash; ${formatDateShort(dateEnd)}</span>
+                                    </div>
+                                </div>
+                                <p class="text-sm font-bold text-slate-900 dark:text-white mb-2">Apartments, Condos, Villas and Homes</p>
+                                <a href="https://www.misterbnb.com/search?custom_location=${encodeURIComponent(data.name)}&checkin=${dateStart}&checkout=${dateEnd}" target="_blank"
+                                   class="w-full py-3 bg-pride-red text-white rounded-full font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-pride-red/20 active:scale-95 transition-all mb-4">
+                                    <span class="material-symbols-outlined text-sm">search</span> Search on Misterbnb.com
+                                </a>
+                                <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-lg border border-slate-100 dark:border-slate-700">
+                                    <p class="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed">
+                                        <strong class="text-pride-red">Reminder:</strong> Before you book, double-check the listing details! Ensure you've selected "Entire Place" if you want total privacy. If you’re okay with a "Shared Room" or "Private Room in a Home," make sure the host’s house rules align with your comfort and safety.
+                                    </p>
+                                </div>
+                            </div>
 
                              <!-- 5. Safety & Neighborhoods -->
                             <section class="bg-white dark:bg-slate-800 p-6 rounded-xl border-l-4 border-pride-green shadow-md relative overflow-hidden">
