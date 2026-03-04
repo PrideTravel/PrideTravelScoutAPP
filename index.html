@@ -8137,7 +8137,12 @@
             { name: "Aquafet: Western Caribbean Halloween Cruise", city: "houston", start: "2026-10-25", end: "2026-11-01", link: "https://aquafestcruises.com/", type: "Cruise", company: "Aquafet" },
             { name: "Aquafet: Circle Japan Cruise", city: "osaka", start: "2027-04-03", end: "2027-04-12", link: "https://aquafestcruises.com/", type: "Cruise", company: "Aquafet" },
             { name: "Aquafest: Circle Mediterranean Cruise", city: "rome", start: "2027-07-17", end: "2027-07-27", link: "https://aquafestcruises.com/", type: "Cruise", company: "Aquafest" },
-            { name: "Adventure Bears: Alaska Denali Explorer 2027", city: "vancouver", start: "2027-05-15", end: "2027-05-25", link: "https://www.adventurebears.com/", type: "Cruise", company: "Adventure Bears" },];
+            { name: "Adventure Bears: Alaska Denali Explorer 2027", city: "vancouver", start: "2027-05-15", end: "2027-05-25", link: "https://www.adventurebears.com/", type: "Cruise", company: "Adventure Bears" },
+            { name: "R Family Vacation: Paris & Normandy Cruise!", city: "paris", start: "2026-04-12", end: "2026-04-19", link: "https://www.kelligreggtravel.com/", type: "Cruise", company: "R Family" },
+            { name: "R Family Vacation: London to London Cruise", city: "london", start: "2026-05-01", end: "2026-05-11", link: "https://www.kelligreggtravel.com/", type: "Cruise", company: "R Family" },
+            { name: "R Family Cool Summer Adventure", city: "seattle", start: "2026-07-31", end: "2026-08-07", link: "https://www.kelligreggtravel.com/", type: "Cruise", company: "R Family" },
+            { name: "R Family Vacation: OUT in Japan! 2026 Cruise", city: "tokyo", start: "2026-09-17", end: "2026-10-02", link: "https://www.kelligreggtravel.com/", type: "Cruise", company: "R Family" },
+            { name: "R Family Vacation: Antarctica! 2027 Cruise", city: "buenos aires", start: "2027-02-05", end: "2027-02-14", link: "https://www.kelligreggtravel.com/", type: "Cruise", company: "R Family" }];
 
         const form = document.querySelector('#searchForm');
         const container = document.querySelector('#resultsContainer');
@@ -8341,7 +8346,7 @@
                             const link1 = officialLink;
                             const link2 = `https://www.google.com/search?q=${encodeURIComponent(evt.name + " 2026")}`;
 
-                            const bannerTitle = isCruise ? "Gay Cruise Detected!" : "Pride Event Detected!";
+                            const bannerTitle = isCruise ? "LGBTQ Cruise Alert" : "Pride Event Detected!";
                             const bannerIcon = isCruise ? "directions_boat" : "celebration";
                             const bgClass = isCruise ? "from-blue-600 to-cyan-500" : "from-pride-purple to-pride-blue";
 
@@ -8350,7 +8355,7 @@
                                             <div class="absolute top-0 right-0 p-4 opacity-10">
                                                 <span class="material-symbols-outlined text-6xl">${bannerIcon}</span>
                                             </div>
-                                            <button onclick="window.psBookmarkPlace('${evt.name.replace(/'/g, "\'")}', '${isCruise ? 'Cruise' : 'Event'}', '${data.name.replace(/'/g, "\'")}', '${origin.replace(/'/g, "\'")}', '${dateStart}', '${dateEnd}', this)" title="Bookmark this event" class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/40 transition-colors text-white z-10 opacity-0 group-hover:opacity-100 cursor-pointer">
+                                            <button onclick="window.psBookmarkPlace('${evt.name.replace(/'/g, "\\'")}', '${isCruise ? 'Cruise' : 'Event'}', '${data.name.replace(/'/g, "\\'")}', '${origin.replace(/'/g, "\\'")}', '${dateStart}', '${dateEnd}', this)" title="Bookmark this event" class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/40 transition-colors text-white z-10 opacity-0 group-hover:opacity-100 cursor-pointer">
                                                 <span class="material-symbols-outlined text-[18px] pointer-events-none">bookmark_border</span>
                                             </button>
                                             <div class="flex items-center gap-3 mb-3">
