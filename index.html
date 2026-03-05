@@ -8801,15 +8801,17 @@
         }
 
         function getSkyscannerLink(origin, destinationIata, start, end) {
-            // Convert YYYY-MM-DD to YYMMDD
-            const formatDate = (d) => d.slice(2).replace(/-/g, '');
-            const s = formatDate(start);
-            const e = formatDate(end);
-            // Format city names for URL
-            const o = origin ? origin.toLowerCase().replace(/[^a-z0-9]+/g, '-') : '';
-            let dest = destinationIata === 'ANY' ? 'everywhere' : destinationIata;
-            const dStr = dest ? dest.toLowerCase().replace(/[^a-z0-9]+/g, '-') : '';
-            return `https://www.skyscanner.com/transport/flights/${o}/${dStr}/${s}/${e}/`;
+            const s = start ? start.slice(2).replace(/-/g, '') : '';
+            const e = end ? end.slice(2).replace(/-/g, '') : '';
+
+            const o = origin ? origin.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-') : 'everywhere';
+            const d = (destinationIata && destinationIata !== 'ANY') ? destinationIata.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-') : 'everywhere';
+
+            let url = `https://www.skyscanner.com/transport/flights/${o}/${d}`;
+            if (s) url += `/${s}`;
+            if (s && e) url += `/${e}`;
+
+            return url + `/?adultsv2=1&cabinclass=economy&rtn=${(s && e) ? '1' : '0'}`;
         }
 
         function getNightlifeIcon(type) {
