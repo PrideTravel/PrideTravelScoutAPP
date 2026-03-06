@@ -10003,14 +10003,20 @@
             const container = document.getElementById('hotspotsContainer');
             if (!container) return;
 
-            const randomHotspots = getRandomSubset(SAFE_HOTSPOTS_DATA, 3);
+            // Make Amsterdam permanently featured for World Pride
+            const amsterdam = SAFE_HOTSPOTS_DATA.find(h => h.city === 'Amsterdam');
+            const others = SAFE_HOTSPOTS_DATA.filter(h => h.city !== 'Amsterdam');
+            const randomHotspots = [amsterdam, ...getRandomSubset(others, 2)];
 
             container.innerHTML = randomHotspots.map(h => {
                 const cityEvents = SPECIAL_EVENTS_DATA.filter(e => e.city.toLowerCase() === h.city.toLowerCase() && e.type !== 'Cruise');
                 let eventTagHtml = '';
                 let searchParams = `\'${h.city}\'`;
 
-                if (cityEvents.length > 0) {
+                if (h.city.toLowerCase() === 'amsterdam') {
+                    eventTagHtml = `<span class="bg-pride-orange text-white text-[10px] font-black px-2 py-1 rounded-lg uppercase mb-2 inline-block shadow-lg truncate max-w-[200px]">World Pride & Amsterdam Pride 2026</span>`;
+                    searchParams = `'Amsterdam', '2026-07-25', '2026-08-08'`;
+                } else if (cityEvents.length > 0) {
                     const randomEvent = cityEvents[Math.floor(Math.random() * cityEvents.length)];
                     eventTagHtml = `<span class="bg-pride-orange text-white text-[10px] font-black px-2 py-1 rounded-lg uppercase mb-2 inline-block shadow-lg truncate max-w-[200px]">Event: ${randomEvent.name}</span>`;
                     searchParams = `'${h.city}', '${randomEvent.start}', '${randomEvent.end}'`;
