@@ -1021,6 +1021,34 @@
                 psLoadTrips();
             };
 
+            window.psSaveBookingInfo = async function (docId, type, inputId) {
+                if (!currentUser) return;
+                const inputEl = document.getElementById(inputId);
+                if (!inputEl) return;
+                const val = inputEl.value.trim();
+
+                const updateObj = {};
+                updateObj[`bookingInfo_${type}`] = val;
+
+                const tSnap = await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).get();
+                if (tSnap.exists && tSnap.data().shareId) {
+                    try { await db.collection('shared_trips').doc(tSnap.data().shareId).set(updateObj, { merge: true }); }
+                    catch (e) { console.error(e); }
+                }
+
+                await db.collection('users').doc(currentUser.uid).collection('trips').doc(docId).set(updateObj, { merge: true });
+
+                const oldBtnHTML = inputEl.nextElementSibling.innerHTML;
+                inputEl.nextElementSibling.innerHTML = '&#10003;';
+                inputEl.nextElementSibling.style.background = '#10b981';
+                inputEl.nextElementSibling.style.color = '#fff';
+                setTimeout(() => {
+                    inputEl.nextElementSibling.innerHTML = oldBtnHTML;
+                    inputEl.nextElementSibling.style.background = '#eee';
+                    inputEl.nextElementSibling.style.color = '#333';
+                }, 1000);
+            };
+
             window.psDeleteNote = async function (docId, noteObjStr) {
                 if (!currentUser) return;
                 try {
@@ -1186,6 +1214,9 @@
                                     const st = sharedSnap.data();
                                     t.notes = st.notes || [];
                                     t.bookmarks = st.bookmarks || [];
+                                    t.bookingInfo_flight = st.bookingInfo_flight || t.bookingInfo_flight;
+                                    t.bookingInfo_hotel = st.bookingInfo_hotel || t.bookingInfo_hotel;
+                                    t.bookingInfo_tour = st.bookingInfo_tour || t.bookingInfo_tour;
                                 }
                             } catch (e) { console.error("Could not fetch shared contents", e); }
                         }
@@ -1245,11 +1276,30 @@
                             + '</div>'
                             + bookmarksHtml
                             + notesHtml
+                            + '<div style="margin-top:.5rem; font-size:.8rem; background:rgba(0,0,0,0.02); padding:.5rem; border-radius:6px;">'
+                            + '<div style="font-weight:bold; margin-bottom:.4rem; color:#f20d8f; display:flex; align-items:center; gap:4px;">'
+                            + '<span class="material-symbols-outlined" style="font-size:14px;">airplane_ticket</span> Booking Details</div>'
+                            + '<div style="display:flex; flex-direction:column; gap:6px;">'
+                            + '<div style="display:flex; align-items:center; gap:6px;">'
+                            + '<span class="material-symbols-outlined" title="Flight" style="font-size:16px; width:20px; text-align:center; color:#555;">flight_takeoff</span>'
+                            + '<input type="text" id="booking-flight-' + doc.id + '" placeholder="Flight details..." value="' + (t.bookingInfo_flight || '').replace(/"/g, '&quot;') + '" style="flex:1; border:1px solid #ccc; border-radius:4px; padding:.3rem .5rem; font-size:.75rem; font-family:inherit; outline:none; color:#333;">'
+                            + '<button onclick="psSaveBookingInfo(\'' + doc.id + '\', \'flight\', \'booking-flight-' + doc.id + '\')" style="background:#eee;color:#333;border:none;border-radius:4px;padding:.3rem .5rem;font-size:.7rem;font-weight:bold;cursor:pointer;">Save</button>'
+                            + '</div>'
+                            + '<div style="display:flex; align-items:center; gap:6px;">'
+                            + '<span class="material-symbols-outlined" title="Hotel" style="font-size:16px; width:20px; text-align:center; color:#555;">hotel</span>'
+                            + '<input type="text" id="booking-hotel-' + doc.id + '" placeholder="Hotel details..." value="' + (t.bookingInfo_hotel || '').replace(/"/g, '&quot;') + '" style="flex:1; border:1px solid #ccc; border-radius:4px; padding:.3rem .5rem; font-size:.75rem; font-family:inherit; outline:none; color:#333;">'
+                            + '<button onclick="psSaveBookingInfo(\'' + doc.id + '\', \'hotel\', \'booking-hotel-' + doc.id + '\')" style="background:#eee;color:#333;border:none;border-radius:4px;padding:.3rem .5rem;font-size:.7rem;font-weight:bold;cursor:pointer;">Save</button>'
+                            + '</div>'
+                            + '<div style="display:flex; align-items:center; gap:6px;">'
+                            + '<span class="material-symbols-outlined" title="Tour" style="font-size:16px; width:20px; text-align:center; color:#555;">explore</span>'
+                            + '<input type="text" id="booking-tour-' + doc.id + '" placeholder="Tour details..." value="' + (t.bookingInfo_tour || '').replace(/"/g, '&quot;') + '" style="flex:1; border:1px solid #ccc; border-radius:4px; padding:.3rem .5rem; font-size:.75rem; font-family:inherit; outline:none; color:#333;">'
+                            + '<button onclick="psSaveBookingInfo(\'' + doc.id + '\', \'tour\', \'booking-tour-' + doc.id + '\')" style="background:#eee;color:#333;border:none;border-radius:4px;padding:.3rem .5rem;font-size:.7rem;font-weight:bold;cursor:pointer;">Save</button>'
+                            + '</div></div></div>'
                             + '<div style="margin-top:.5rem; display:flex; gap:6px;">'
-                            + '<input type="text" id="note-input-' + doc.id + '" placeholder="e.g. Flight booked..." '
+                            + '<input type="text" id="note-input-' + doc.id + '" placeholder="e.g. Meet friends at 8PM" '
                             + 'style="flex:1; border:1px solid #ccc; border-radius:6px; padding:.4rem .6rem; font-size:.8rem; font-family:inherit; outline:none; color:#333; box-sizing:border-box;">'
                             + '<button onclick="psAddNote(\'' + doc.id + '\', \'note-input-' + doc.id + '\')" '
-                            + 'style="background:linear-gradient(90deg,#f20d8f,#86007D);color:#fff;border:none;border-radius:6px;padding:.4rem .75rem;font-size:.8rem;font-weight:bold;cursor:pointer;font-family:inherit;">Save</button>'
+                            + 'style="background:linear-gradient(90deg,#f20d8f,#86007D);color:#fff;border:none;border-radius:6px;padding:.4rem .75rem;font-size:.8rem;font-weight:bold;cursor:pointer;font-family:inherit;">Save Note</button>'
                             + '</div>'
                             + '</div>';
                     }));
@@ -1384,6 +1434,98 @@
                 }
             }
         };
+        const DESTINATION_LINKS = {
+            'frankfurt': { "gaycities": "https://frankfurt.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-germany/gay-frankfurt" },
+            'london': { "gaycities": "https://london.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-united-kingdom/gay-london", "youtube": "https://www.youtube.com/watch?v=4jqE8MoxamM" },
+            'san antonio': { "gaycities": "https://sanantonio.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-texas/gay-san-antonio" },
+            'phoenix': { "gaycities": "https://phoenix.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-arizona/gay-phoenix" },
+            'tucson': { "gaycities": "https://tucson.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-arizona/gay-tucson" },
+            'telluride': { "gaycities": "https://telluride.gaycities.com/" },
+            'cabo san lucas': { "gaycities": "https://cabo.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-mexico/gay-cabo" },
+            'cabo': { "gaycities": "https://cabo.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-mexico/gay-cabo" },
+            'new orleans': { "gaycities": "https://neworleans.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-louisiana/gay-new-orleans" },
+            'manchester': { "gaycities": "https://manchester.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-united-kingdom/gay-manchester" },
+            'fire island': { "gaycities": "https://fireisland.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-new-york/gay-fire-island" },
+            'cologne': { "gaycities": "https://cologne.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-germany/gay-cologne" },
+            'hamburg': { "gaycities": "https://hamburg.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-germany/gay-hamburg" },
+            'gran canaria': { "gaycities": "https://grancanaria.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-spain/gay-gran-canaria", "youtube": "https://www.youtube.com/watch?v=2Yk2r5E80n0" },
+            'guadalajara': { "gaycities": "https://guadalajara.gaycities.com/" },
+            'dublin': { "gaycities": "https://dublin.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-ireland/gay-dublin" },
+            'vienna': { "gaycities": "https://vienna.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-austria/gay-vienna", "youtube": "https://www.youtube.com/watch?v=paIyuNTJek0" },
+            'shanghai': { "travelgay": "https://www.travelgay.com/destination/gay-china/gay-shanghai", "youtube": "https://www.youtube.com/watch?v=BkfTpOWQjAk&t=366s" },
+            'medellin': { "gaycities": "https://medellin.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-colombia/gay-medellin" },
+            'san diego': { "gaycities": "https://sandiego.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-california/gay-san-diego" },
+            'tampa': { "gaycities": "https://tampa.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-florida/gay-tampa" },
+            'paris': { "gaycities": "https://paris.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-france/gay-paris", "youtube": "https://www.youtube.com/watch?v=f5StO9xRRMA&t=530s" },
+            'amsterdam': { "gaycities": "https://amsterdam.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-netherlands/gay-amsterdam", "youtube": "https://www.youtube.com/watch?v=JlVAFQ2OKhY" },
+            'berlin': { "gaycities": "https://berlin.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-germany/gay-berlin", "youtube": "https://www.youtube.com/watch?v=9N_Iyej3vew&t=36s" },
+            'sydney': { "gaycities": "https://sydney.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-australia/gay-sydney" },
+            'melbourne': { "gaycities": "https://melbourne.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-australia/gay-melbourne", "youtube": "https://www.youtube.com/watch?v=mFrSBVDVPcw" },
+            'nyc': { "gaycities": "https://newyork.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-new-york/gay-new-york-city", "youtube": "https://www.youtube.com/watch?v=ovNAT5eJB6I" },
+            'san francisco': { "gaycities": "https://sanfrancisco.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-california/gay-san-francisco", "youtube": "https://www.youtube.com/watch?v=SdtZBxNH8Gg" },
+            'los angeles': { "gaycities": "https://losangeles.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-california/gay-los-angeles" },
+            'palm springs': { "gaycities": "https://palmsprings.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-california/gay-palm-springs", "youtube": "https://www.youtube.com/watch?v=bPGyTQKWT00&pp=0gcJCa4KAYcqIYzv" },
+            'las vegas': { "gaycities": "https://lasvegas.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-nevada/gay-las-vegas" },
+            'denver': { "gaycities": "https://denver.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-colorado/gay-denver" },
+            'aspen': { "gaycities": "https://aspen.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-colorado/gay-aspen" },
+            'honolulu': { "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-hawaii" },
+            'chicago': { "gaycities": "https://chicago.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-illinois/gay-chicago" },
+            'columbus': { "gaycities": "https://columbus.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-ohio/gay-columbus" },
+            'minneapolis': { "gaycities": "https://minneapolis.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-minnesota/gay-minneapolis" },
+            'houston': { "gaycities": "https://houston.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-texas/gay-houston" },
+            'boston': { "gaycities": "https://boston.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-massachusetts/gay-boston" },
+            'washington dc': { "gaycities": "https://washingtondc.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-washington-dc" },
+            'philadelphia': { "gaycities": "https://philadelphia.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-pennsylvania/gay-philadelphia" },
+            'nashville': { "gaycities": "https://nashville.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-tennessee/gay-nashville" },
+            'newark': { "gaycities": "https://newyork.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-new-york/gay-new-york-city" },
+            'detroit': { "gaycities": "https://detroit.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-michigan/gay-detroit" },
+            'charlotte': { "gaycities": "https://charlotte.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-north-carolina/gay-charlotte" },
+            'atlanta': { "gaycities": "https://atlanta.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-georgia-usa/gay-atlanta" },
+            'miami': { "gaycities": "https://miami.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-florida/gay-miami", "youtube": "https://www.youtube.com/watch?v=dsaWn6NL3bQ" },
+            'fort lauderdale': { "gaycities": "https://fortlauderdale.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-florida/gay-fort-lauderdale" },
+            'orlando': { "gaycities": "https://orlando.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-florida/gay-orlando" },
+            'dallas': { "gaycities": "https://dallas.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-nevada" },
+            'provincetown': { "gaycities": "https://ptown.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-massachusetts/gay-provincetown" },
+            'key west': { "gaycities": "https://keywest.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-florida/gay-key-west" },
+            'cancun': { "gaycities": "https://cancun.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-mexico/gay-cancun" },
+            'san juan': { "gaycities": "https://puertorico.gaycities.com/", "travelgay": "https://www.travelgay.com/gay-puerto-rico" },
+            'curacao': { "gaycities": "https://curacao.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-caribbean/gay-curacao" },
+            'puerto vallarta': { "gaycities": "https://vallarta.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-mexico/gay-puerto-vallarta", "youtube": "https://www.youtube.com/watch?v=WQDW7Jrxjhk" },
+            'mexico city': { "gaycities": "https://mexicocity.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-mexico/gay-mexico-city", "youtube": "https://www.youtube.com/watch?v=IUU8PwBDSjU" },
+            'rio de janeiro': { "gaycities": "https://rio.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-brazil/gay-rio-de-janeiro", "youtube": "https://www.youtube.com/watch?v=JTSqdcq8NAc" },
+            'sao paulo': { "gaycities": "https://saopaulo.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-brazil/gay-sao-paulo", "youtube": "https://www.youtube.com/watch?v=Pa6lmeXxW60" },
+            'bogota': { "gaycities": "https://bogota.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-colombia/gay-bogota" },
+            'bangkok': { "gaycities": "https://bangkok.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-thailand/gay-bangkok", "youtube": "https://www.youtube.com/watch?v=h1Sff08SMN0" },
+            'tokyo': { "gaycities": "https://tokyo.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-japan/gay-tokyo", "youtube": "https://www.youtube.com/watch?v=LTXA1Tlm79U" },
+            'osaka': { "gaycities": "https://osaka.gaycities.com/" },
+            'taipei': { "gaycities": "https://taipei.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-taiwan/gay-taipei", "youtube": "https://www.youtube.com/watch?v=iyvQG2nv-NA&pp=0gcJCa4KAYcqIYzv" },
+            'auckland': { "gaycities": "https://auckland.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-new-zealand/gay-auckland" },
+            'brisbane': { "travelgay": "https://www.travelgay.com/destination/gay-australia/gay-brisbane" },
+            'manila': { "travelgay": "https://www.travelgay.com/destination/gay-philippines/gay-manila", "youtube": "https://www.youtube.com/watch?v=DdcIFK36ACw&pp=0gcJCa4KAYcqIYzv" },
+            'singapore': { "travelgay": "https://www.travelgay.com/destination/gay-singapore", "youtube": "https://www.youtube.com/watch?v=WPY3BRoQg_Q" },
+            'hong kong': { "travelgay": "https://www.travelgay.com/destination/gay-china/gay-hong-kong", "youtube": "https://www.youtube.com/watch?v=Oe-BnLjw-yM" },
+            'bali': { "travelgay": "https://www.travelgay.com/destination/gay-indonesia/gay-bali", "youtube": "https://www.youtube.com/watch?v=X0TaSBBAdXY" },
+            'phuket': { "gaycities": "https://phuket.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-thailand/gay-phuket" },
+            'seoul': { "travelgay": "https://www.travelgay.com/destination/gay-south-korea/gay-seoul", "youtube": "https://www.youtube.com/watch?v=MwUaAjamOf8" },
+            'cape town': { "gaycities": "https://capetown.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-south-africa/gay-cape-town" },
+            'toronto': { "gaycities": "https://toronto.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-canada/gay-toronto", "youtube": "https://www.youtube.com/watch?v=HBODdRhyuLM" },
+            'montreal': { "gaycities": "https://montreal.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-canada/gay-montreal", "youtube": "https://www.youtube.com/watch?v=8BpUZLSp7Qg" },
+            'vancouver': { "gaycities": "https://vancouver.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-canada/gay-vancouver" },
+            'madrid': { "gaycities": "https://madrid.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-spain/gay-madrid", "youtube": "https://www.youtube.com/watch?v=4njXnPnbtXo" },
+            'brussels': { "gaycities": "https://brussels.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-belgium/gay-brussels", "youtube": "https://www.youtube.com/watch?v=SHjrlgPUtoc" },
+            'antwerp': { "gaycities": "https://antwerp.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-belgium/gay-antwerp" },
+            'ibiza': { "gaycities": "https://ibiza.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-spain/gay-ibiza", "youtube": "https://www.youtube.com/watch?v=-lsjKy20DXs" },
+            'barcelona': { "gaycities": "https://barcelona.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-spain/gay-barcelona", "youtube": "https://www.youtube.com/watch?v=9kfR6E8M2cI&t=1s" },
+            'mykonos': { "gaycities": "https://mykonos.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-greece/gay-mykonos", "youtube": "https://www.youtube.com/watch?v=4TWbQ6EFKbc" },
+            'rome': { "gaycities": "https://rome.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-italy/gay-rome", "youtube": "https://www.youtube.com/watch?v=gRWKLZQ_phk" },
+            'sitges': { "gaycities": "https://sitges.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-spain/gay-sitges", "youtube": "https://www.youtube.com/watch?v=E377BctjyQc" },
+            'torremolinos': { "travelgay": "https://www.travelgay.com/destination/gay-spain/gay-torremolinos", "youtube": "https://www.youtube.com/watch?v=57vScZrAEEg" },
+            'athens': { "gaycities": "https://athens.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-greece/gay-athens", "youtube": "https://www.youtube.com/watch?v=Vw153AGI7fU" },
+            'malta': { "travelgay": "https://www.travelgay.com/destination/gay-malta", "youtube": "https://www.youtube.com/watch?v=5QdpERS8dA4" },
+            'portland': { "gaycities": "https://portland.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-oregon-usa/gay-portland" },
+            'seattle': { "gaycities": "https://seattle.gaycities.com/", "travelgay": "https://www.travelgay.com/destination/gay-usa/gay-washington-state/gay-seattle" }
+        };
+
         window.DATABASE = {
             mappings: {
                 regions: {
@@ -1627,6 +1769,11 @@
                     'medellin': ['medellin'], 'mde': ['medellin'],
                     'san diego': ['san diego'], 'san': ['san diego'],
                     'tampa': ['tampa'], 'tpa': ['tampa'],
+                    'frankfurt': ['frankfurt'], 'fra': ['frankfurt'],
+                    'tucson': ['tucson'], 'tus': ['tucson'],
+                    'phoenix': ['phoenix'], 'phx': ['phoenix'],
+                    'telluride': ['telluride'], 'tex': ['telluride'],
+                    'cabo': ['cabo san lucas', 'cabo'], 'sjd': ['cabo'],
 
                     // ALIASES & SHORTCUTS
                     'vegas': ['las vegas'], 'sin city': ['las vegas'],
@@ -8934,6 +9081,266 @@
                     'Hidden Gems Night Tour',
                     'Queer Art & Culture Walk'
                 ]
+            },
+            "frankfurt": {
+                name: 'Frankfurt, Germany', iata: 'FRA', image: '&#127465;&#127466;', weather: 'Temperate. 60°F',
+                baseFare: [500, 1000],
+                lgbtqSafety: 'Germany: Very Safe. The "Bermuda Triangle" is the vibrant gay district.', safetyScore: 78, lgbtqDistrict: 'Bermuda Triangle / Alte Gasse',
+                monthlyWeather: {
+                    0: { high: '40°F', low: '30°F', summary: 'Cold' },
+                    1: { high: '43°F', low: '32°F', summary: 'Cold' },
+                    2: { high: '51°F', low: '36°F', summary: 'Cool' },
+                    3: { high: '60°F', low: '42°F', summary: 'Mild' },
+                    4: { high: '68°F', low: '50°F', summary: 'Pleasant' },
+                    5: { high: '74°F', low: '56°F', summary: 'Warm' },
+                    6: { high: '78°F', low: '60°F', summary: 'Warm' },
+                    7: { high: '77°F', low: '59°F', summary: 'Warm' },
+                    8: { high: '69°F', low: '52°F', summary: 'Mild' },
+                    9: { high: '58°F', low: '44°F', summary: 'Cool' },
+                    10: { high: '48°F', low: '37°F', summary: 'Cold' },
+                    11: { high: '42°F', low: '32°F', summary: 'Cold' }
+                },
+                hotels: [
+                    { name: 'Roomers', type: 'Luxury', tags: ['Design'] },
+                    { name: 'Steigenberger Frankfurter Hof', type: 'Luxury', tags: ['Classic'] },
+                    { name: 'The Pure', type: 'Moderate', tags: ['Minimalist'] },
+                    { name: '25hours The Goldman', type: 'Moderate', tags: ['Quirky'] },
+                    { name: 'Hotel Scala', type: 'Budget', tags: ['Central'] },
+                    { name: 'Fleming\'s Selection', type: 'Luxury', tags: ['City View'] },
+                    { name: 'INNSiDE Frankfurt Eurotheum', type: 'Moderate', tags: ['Modern'] },
+                    { name: 'Motel One Römer', type: 'Budget', tags: ['Value'] },
+                    { name: 'Sofitel Frankfurt Opera', type: 'Luxury', tags: ['Elegant'] },
+                    { name: 'Jumeirah Frankfurt', type: 'Luxury', tags: ['Upscale'] }
+                ],
+                nightlife: [
+                    { name: 'Pulse', type: 'Club', tags: ['Dance'] },
+                    { name: 'Lucky\'s', type: 'Bar', tags: ['Local'] },
+                    { name: 'Temptation', type: 'Bar', tags: ['Friendly'] },
+                    { name: 'Bermuda', type: 'Bar', tags: ['Cocktails'] },
+                    { name: 'Golden Gates', type: 'Bar', tags: ['Lounge'] },
+                    { name: 'Switchboard', type: 'Bar', tags: ['Cafe/Bar'] },
+                    { name: 'Jerome', type: 'Sauna', tags: ['Central'] },
+                    { name: 'Central', type: 'Bar', tags: ['Classic'] },
+                    { name: 'Comeback', type: 'Bar', tags: ['Cozy'] },
+                    { name: 'Laumer', type: 'Bar', tags: ['Wine'] }
+                ],
+                tours: ['Römerberg', 'Main Tower', 'Palmengarten',
+                    'Gay-Friendly Winery Tour',
+                    'Hidden Gems Night Tour',
+                    'City Highlights Bus Tour',
+                    'Market & Shopping Spree',
+                    'Historic Gay Neighborhood Tour',
+                    'Queer Art & Culture Walk',
+                    'Sunset Cruise Excursion'
+                ]
+            },
+            "tucson": {
+                name: 'Tucson, AZ', iata: 'TUS', image: '&#127482;&#127480;', weather: 'Desert. 85°F',
+                baseFare: [200, 450],
+                lgbtqSafety: 'United States: Safe. Welcoming and artsy community.', safetyScore: 78, lgbtqDistrict: '4th Avenue',
+                monthlyWeather: {
+                    0: { high: '66°F', low: '40°F', summary: 'Mild' },
+                    1: { high: '70°F', low: '43°F', summary: 'Mild' },
+                    2: { high: '75°F', low: '47°F', summary: 'Warm' },
+                    3: { high: '83°F', low: '53°F', summary: 'Warm' },
+                    4: { high: '92°F', low: '62°F', summary: 'Hot' },
+                    5: { high: '101°F', low: '71°F', summary: 'Very Hot' },
+                    6: { high: '101°F', low: '75°F', summary: 'Hot & Humid' },
+                    7: { high: '99°F', low: '74°F', summary: 'Hot & Humid' },
+                    8: { high: '95°F', low: '69°F', summary: 'Hot' },
+                    9: { high: '86°F', low: '58°F', summary: 'Warm' },
+                    10: { high: '74°F', low: '47°F', summary: 'Mild' },
+                    11: { high: '65°F', low: '40°F', summary: 'Mild' }
+                },
+                hotels: [
+                    { name: 'Hotel Congress', type: 'Moderate', tags: ['Historic'] },
+                    { name: 'AC Hotel Tucson Downtown', type: 'Moderate', tags: ['Modern'] },
+                    { name: 'The Tuxon Hotel', type: 'Moderate', tags: ['Boutique'] },
+                    { name: 'JW Marriott Starr Pass', type: 'Luxury', tags: ['Resort'] },
+                    { name: 'Lodge on the Desert', type: 'Moderate', tags: ['Classic'] },
+                    { name: 'Arizona Inn', type: 'Luxury', tags: ['Vintage'] },
+                    { name: 'Downtown Clifton', type: 'Budget', tags: ['Retro'] },
+                    { name: 'Westward Look Wyndam', type: 'Luxury', tags: ['Views'] },
+                    { name: 'Aloft Tucson University', type: 'Moderate', tags: ['Hip'] },
+                    { name: 'Graduate Tucson', type: 'Moderate', tags: ['University'] }
+                ],
+                nightlife: [
+                    { name: 'IBT\'s', type: 'Club', tags: ['Dance/Drag'] },
+                    { name: 'The Surly Wench', type: 'Bar', tags: ['Burlesque'] },
+                    { name: 'Brothie\'s', type: 'Bar', tags: ['Lounge'] },
+                    { name: 'Sky Bar', type: 'Bar', tags: ['Astronomy'] },
+                    { name: 'Tough Luck Club', type: 'Bar', tags: ['Speakeasy'] },
+                    { name: 'Playground Bar', type: 'Bar', tags: ['Rooftop'] },
+                    { name: 'R Bar', type: 'Bar', tags: ['Arts'] },
+                    { name: 'Mr. Head\'s', type: 'Bar', tags: ['Art Gallery'] },
+                    { name: 'Ermanos', type: 'Bar', tags: ['Craft Beer'] },
+                    { name: 'Che\'s Lounge', type: 'Bar', tags: ['Dive'] }
+                ],
+                tours: ['Saguaro National Park', 'Arizona-Sonora Desert Museum', 'Mission San Xavier',
+                    'Gay-Friendly Winery Tour',
+                    'Historic Gay Neighborhood Tour',
+                    'Queer Art & Culture Walk',
+                    'Market & Shopping Spree',
+                    'Hidden Gems Night Tour',
+                    'Sunset Cruise Excursion',
+                    'City Highlights Bus Tour'
+                ]
+            },
+            "phoenix": {
+                name: 'Phoenix, AZ', iata: 'PHX', image: '&#127482;&#127480;', weather: 'Desert. 90°F',
+                baseFare: [150, 400],
+                lgbtqSafety: 'United States: Safe. Melrose District is the center of LGBTQ life.', safetyScore: 78, lgbtqDistrict: 'Melrose District',
+                monthlyWeather: {
+                    0: { high: '68°F', low: '45°F', summary: 'Mild' },
+                    1: { high: '72°F', low: '48°F', summary: 'Mild' },
+                    2: { high: '78°F', low: '53°F', summary: 'Warm' },
+                    3: { high: '86°F', low: '60°F', summary: 'Hot' },
+                    4: { high: '95°F', low: '69°F', summary: 'Very Hot' },
+                    5: { high: '104°F', low: '78°F', summary: 'Extreme Heat' },
+                    6: { high: '106°F', low: '83°F', summary: 'Extreme Heat' },
+                    7: { high: '104°F', low: '82°F', summary: 'Extreme Heat' },
+                    8: { high: '100°F', low: '76°F', summary: 'Very Hot' },
+                    9: { high: '89°F', low: '64°F', summary: 'Hot' },
+                    10: { high: '76°F', low: '52°F', summary: 'Warm' },
+                    11: { high: '66°F', low: '44°F', summary: 'Mild' }
+                },
+                hotels: [
+                    { name: 'The Clarendon Hotel', type: 'Moderate', tags: ['LGBTQ Friendly'] },
+                    { name: 'FOUNDRE Phoenix', type: 'Luxury', tags: ['Art Hotel'] },
+                    { name: 'Kimpton Hotel Palomar', type: 'Luxury', tags: ['Downtown'] },
+                    { name: 'Camby Hotel', type: 'Luxury', tags: ['Chic'] },
+                    { name: 'AC Hotel Biltmore', type: 'Moderate', tags: ['Modern'] },
+                    { name: 'Rise Uptown', type: 'Moderate', tags: ['Fun'] },
+                    { name: 'Moxy Phoenix', type: 'Budget', tags: ['Social'] },
+                    { name: 'Renaissance Downtown', type: 'Luxury', tags: ['Classy'] },
+                    { name: 'Hotel Valley Ho', type: 'Luxury', tags: ['Retro'] },
+                    { name: 'Mountain Shadows', type: 'Luxury', tags: ['Resort'] }
+                ],
+                nightlife: [
+                    { name: 'Charlie\'s', type: 'Club', tags: ['Country'] },
+                    { name: 'The Rock', type: 'Bar', tags: ['Dive'] },
+                    { name: 'Bunkhouse', type: 'Bar', tags: ['Bears'] },
+                    { name: 'Stacy\'s @ Melrose', type: 'Bar', tags: ['Gothic'] },
+                    { name: 'Kobalt', type: 'Bar', tags: ['Karaoke'] },
+                    { name: 'Cruisin\' 7th', type: 'Bar', tags: ['Drag'] },
+                    { name: 'BS West', type: 'Club', tags: ['Scottsdale'] },
+                    { name: 'Anvil', type: 'Bar', tags: ['Leather'] },
+                    { name: 'Boycott Bar', type: 'Bar', tags: ['Lesbian'] },
+                    { name: 'Karbones', type: 'Bar', tags: ['Local'] }
+                ],
+                tours: ['Desert Botanical Garden', 'Heard Museum', 'Camelback Mountain',
+                    'Melrose District Tour',
+                    'Drag Queen Hosted Pub Crawl',
+                    'Hidden Gems Night Tour',
+                    'Market & Shopping Spree',
+                    'Gay-Friendly Winery Tour',
+                    'Sunset Cruise Excursion',
+                    'Queer Art & Culture Walk'
+                ]
+            },
+            "telluride": {
+                name: 'Telluride, CO', iata: 'TEX', image: '&#127482;&#127480;', weather: 'Alpine. 55°F',
+                baseFare: [400, 800],
+                lgbtqSafety: 'United States: Very Safe. Known for Gay Ski Week.', safetyScore: 88, lgbtqDistrict: 'Downtown / Mountain Village',
+                monthlyWeather: {
+                    0: { high: '36°F', low: '8°F', summary: 'Freezing/Snow' },
+                    1: { high: '39°F', low: '11°F', summary: 'Cold/Snow' },
+                    2: { high: '45°F', low: '17°F', summary: 'Cold/Snow' },
+                    3: { high: '52°F', low: '24°F', summary: 'Cool' },
+                    4: { high: '62°F', low: '32°F', summary: 'Mild' },
+                    5: { high: '72°F', low: '39°F', summary: 'Warm' },
+                    6: { high: '76°F', low: '46°F', summary: 'Pleasant' },
+                    7: { high: '74°F', low: '45°F', summary: 'Pleasant' },
+                    8: { high: '67°F', low: '38°F', summary: 'Cool' },
+                    9: { high: '56°F', low: '28°F', summary: 'Cold' },
+                    10: { high: '45°F', low: '17°F', summary: 'Cold/Snow' },
+                    11: { high: '37°F', low: '9°F', summary: 'Freezing/Snow' }
+                },
+                hotels: [
+                    { name: 'Madeline Hotel and Residences', type: 'Luxury', tags: ['Ski-in/out'] },
+                    { name: 'The Peaks Resort', type: 'Luxury', tags: ['Spa'] },
+                    { name: 'New Sheridan Hotel', type: 'Historic', tags: ['Downtown'] },
+                    { name: 'Hotel Columbia', type: 'Moderate', tags: ['Gondola'] },
+                    { name: 'Dunton Town House', type: 'Luxury', tags: ['Boutique'] },
+                    { name: 'Lumière with Inspirato', type: 'Luxury', tags: ['Boutique'] },
+                    { name: 'Camel\'s Garden Hotel', type: 'Moderate', tags: ['Downtown'] },
+                    { name: 'Mountain Lodge', type: 'Moderate', tags: ['Village'] },
+                    { name: 'Victorian Inn', type: 'Budget', tags: ['Cozy'] },
+                    { name: 'The Hotel Telluride', type: 'Luxury', tags: ['Elegant'] }
+                ],
+                nightlife: [
+                    { name: 'New Sheridan Bar', type: 'Bar', tags: ['Historic'] },
+                    { name: 'There', type: 'Bar', tags: ['Cocktails'] },
+                    { name: 'Smuggler Union', type: 'Bar', tags: ['Brewery'] },
+                    { name: 'Liberty Bar', type: 'Bar', tags: ['Lounge'] },
+                    { name: 'Last Dollar Saloon', type: 'Bar', tags: ['Dive'] },
+                    { name: 'Tomboy Tavern', type: 'Bar', tags: ['Apres Ski'] },
+                    { name: 'Gorrono Ranch', type: 'Bar', tags: ['Mountain'] },
+                    { name: 'Altezza', type: 'Bar', tags: ['Views'] },
+                    { name: 'Oak', type: 'Bar', tags: ['BBQ/Bar'] },
+                    { name: 'The National', type: 'Bar', tags: ['Upscale'] }
+                ],
+                tours: ['Bridal Veil Falls', 'Telluride Ski Resort', 'Gondola Ride',
+                    'Historic Gay Neighborhood Tour',
+                    'Gay-Friendly Winery Tour',
+                    'Hidden Gems Night Tour',
+                    'Queer Art & Culture Walk',
+                    'Market & Shopping Spree',
+                    'Sunset Cruise Excursion',
+                    'Local Pride Food Tasting'
+                ]
+            },
+            "cabo": {
+                name: 'Cabo San Lucas, Mexico', iata: 'SJD', image: '&#127474;&#127485;', weather: 'Tropical. Sunny. 85°F',
+                baseFare: [300, 700],
+                lgbtqSafety: 'Mexico: Safe. Popular resort destination, very welcoming at resorts.', safetyScore: 78, lgbtqDistrict: 'Medano Beach',
+                monthlyWeather: {
+                    0: { high: '78°F', low: '55°F', summary: 'Pleasant' },
+                    1: { high: '79°F', low: '55°F', summary: 'Pleasant' },
+                    2: { high: '81°F', low: '57°F', summary: 'Warm' },
+                    3: { high: '84°F', low: '61°F', summary: 'Warm' },
+                    4: { high: '88°F', low: '65°F', summary: 'Hot' },
+                    5: { high: '91°F', low: '71°F', summary: 'Hot' },
+                    6: { high: '94°F', low: '76°F', summary: 'Very Hot' },
+                    7: { high: '94°F', low: '77°F', summary: 'Very Hot' },
+                    8: { high: '93°F', low: '76°F', summary: 'Very Hot' },
+                    9: { high: '90°F', low: '71°F', summary: 'Hot' },
+                    10: { high: '85°F', low: '63°F', summary: 'Warm' },
+                    11: { high: '80°F', low: '58°F', summary: 'Pleasant' }
+                },
+                hotels: [
+                    { name: 'ME Cabo', type: 'Luxury', tags: ['Party'] },
+                    { name: 'Casa Dorada', type: 'Luxury', tags: ['Beachfront'] },
+                    { name: 'Breathless Cabo', type: 'Luxury', tags: ['Adults Only'] },
+                    { name: 'The Cape, a Thompson Hotel', type: 'Luxury', tags: ['Chic'] },
+                    { name: 'Pueblo Bonito Rose', type: 'Moderate', tags: ['Resort'] },
+                    { name: 'Bahia Hotel', type: 'Moderate', tags: ['Boutique'] },
+                    { name: 'Corazon Cabo', type: 'Luxury', tags: ['Resort'] },
+                    { name: 'Nobu Hotel', type: 'Luxury', tags: ['Zen'] },
+                    { name: 'Waldorf Astoria', type: 'Luxury', tags: ['Exclusive'] },
+                    { name: 'Viceroy', type: 'Luxury', tags: ['Design'] }
+                ],
+                nightlife: [
+                    { name: 'Chandeliers', type: 'Club', tags: ['Gay Club'] },
+                    { name: 'El Squid Roe', type: 'Club', tags: ['Wild'] },
+                    { name: 'Cabo Wabo', type: 'Bar', tags: ['Live Music'] },
+                    { name: 'Mandala', type: 'Club', tags: ['Dance'] },
+                    { name: 'Nowhere Bar', type: 'Bar', tags: ['Marina'] },
+                    { name: 'Crush Nightspot', type: 'Club', tags: ['Hip Hop'] },
+                    { name: 'Omnia', type: 'Club', tags: ['Dayclub'] },
+                    { name: 'Happy Ending Cantina', type: 'Bar', tags: ['Cheap'] },
+                    { name: 'Jungle Bar', type: 'Bar', tags: ['Dive'] },
+                    { name: 'The Rooftop at The Cape', type: 'Bar', tags: ['Views'] }
+                ],
+                tours: ['El Arco de Cabo San Lucas', 'Whale Watching', 'Luxury Sailing',
+                    'Sunset Cruise Excursion',
+                    'Gay-Friendly Winery Tour',
+                    'City Highlights Bus Tour',
+                    'Hidden Gems Night Tour',
+                    'Local Pride Food Tasting',
+                    'Market & Shopping Spree',
+                    'Drag Queen Hosted Pub Crawl'
+                ]
             }
         };
 
@@ -9670,11 +10077,19 @@
                                             <span class="material-symbols-outlined font-black">hub</span>
                                         </div>
                                         <div>
-                                            <p class="text-xs font-bold text-slate-400 dark:text-slate-300 uppercase tracking-tighter mb-0.5">Gay District</p>
-                                            <p class="text-sm font-black text-slate-900 dark:text-white">${data.lgbtqDistrict}</p>
                                         </div>
                                     </div>
                                 </div>
+                                ${DESTINATION_LINKS[targetKey] ? `
+                                <div class="mt-6 pt-6 border-t border-slate-100 dark:border-slate-700">
+                                    <h4 class="text-sm font-bold text-slate-900 dark:text-white mb-3">LGBTQ+ Guides & Resources</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        ${DESTINATION_LINKS[targetKey].gaycities ? `<a href="${DESTINATION_LINKS[targetKey].gaycities}" target="_blank" class="px-3 py-1.5 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-lg text-xs font-bold hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">public</span> GayCities</a>` : ''}
+                                        ${DESTINATION_LINKS[targetKey].travelgay ? `<a href="${DESTINATION_LINKS[targetKey].travelgay}" target="_blank" class="px-3 py-1.5 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-lg text-xs font-bold hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">travel_explore</span> TravelGay</a>` : ''}
+                                        ${DESTINATION_LINKS[targetKey].youtube ? `<a href="${DESTINATION_LINKS[targetKey].youtube}" target="_blank" class="px-3 py-1.5 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-lg text-xs font-bold hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">play_circle</span> YouTube Guide</a>` : ''}
+                                    </div>
+                                </div>
+                                ` : ''}
                             </section>
 
                             <!-- 6. Bars & Nightlife -->
@@ -10099,4 +10514,3 @@
 </script>
 </body>
 
-</html>
