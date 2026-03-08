@@ -1351,339 +1351,338 @@
         })();
     </script>
 
-</body>
-<script src="destinations.js"></script>
-<script>
+    <script src="destinations.js"></script>
+    <script>
 
-    (function () {
-        // Standalone mode IDs matching HTML
-        const CONTAINER_ID = '';
+        (function () {
+            // Standalone mode IDs matching HTML
+            const CONTAINER_ID = '';
 
-        // --- VIEW MANAGEMENT ---
-        window.toggleView = function (viewId, navEl = null) {
-            const views = document.querySelectorAll('.view-section');
-            views.forEach(v => v.classList.remove('active'));
-            const target = document.getElementById(viewId);
-            if (target) {
-                target.classList.add('active');
-                window.scrollTo(0, 0);
-            }
-
-            // Update Bottom Nav state
-            if (navEl) {
-                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('text-primary', 'active-nav'));
-                document.querySelectorAll('.nav-item').forEach(n => n.classList.add('text-slate-400 dark:text-slate-300'));
-                navEl.classList.remove('text-slate-400 dark:text-slate-300');
-                navEl.classList.add('text-primary', 'active-nav');
-            }
-        };
-
-        window.showView = function (viewId) {
-            toggleView(viewId);
-        };
-
-        window.quickSearch = function (cityName, start, end) {
-            const destInput = document.getElementById('destination');
-            const dateStartInput = document.getElementById('dateStart');
-            const dateEndInput = document.getElementById('dateEnd');
-            const departureInput = document.getElementById('departure');
-
-            if (destInput) destInput.value = cityName;
-
-            if (start && dateStartInput && dateEndInput) {
-                // Event logic: pre-fill suggested departure (event start - 1) and return (event end + 1)
-                // These are one-time defaults — changing departure afterward does NOT recalculate return
-                try {
-                    const parts = start.split('-');
-                    const sDate = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
-
-                    const endParts = (end || start).split('-');
-                    const eDate = new Date(parseInt(endParts[0], 10), parseInt(endParts[1], 10) - 1, parseInt(endParts[2], 10));
-
-                    // Suggest: 1 day before event start
-                    sDate.setDate(sDate.getDate() - 1);
-                    // Suggest: 1 day after event end
-                    eDate.setDate(eDate.getDate() + 1);
-
-                    const formatDate = (d) => {
-                        const yyyy = d.getFullYear();
-                        const mm = String(d.getMonth() + 1).padStart(2, '0');
-                        const dd = String(d.getDate()).padStart(2, '0');
-                        return `${yyyy}-${mm}-${dd}`;
-                    };
-
-                    dateStartInput.value = formatDate(sDate);
-                    dateEndInput.value = formatDate(eDate);
-                } catch (e) {
-                    console.error("QuickSearch date error", e);
+            // --- VIEW MANAGEMENT ---
+            window.toggleView = function (viewId, navEl = null) {
+                const views = document.querySelectorAll('.view-section');
+                views.forEach(v => v.classList.remove('active'));
+                const target = document.getElementById(viewId);
+                if (target) {
+                    target.classList.add('active');
+                    window.scrollTo(0, 0);
                 }
-            }
 
-            // Always check if form is complete before searching
-            const isComplete = departureInput?.value && dateStartInput?.value && dateEndInput?.value;
-            if (isComplete) {
-                const searchForm = document.getElementById('searchForm');
-                if (searchForm) searchForm.dispatchEvent(new Event('submit'));
-            } else {
-                // Not complete: go home so user can fill in missing fields
-                toggleView('homeView');
-                window.scrollTo(0, 0);
-                if (!departureInput?.value && departureInput) {
-                    departureInput.focus();
-                } else if (destInput) {
-                    destInput.focus();
+                // Update Bottom Nav state
+                if (navEl) {
+                    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('text-primary', 'active-nav'));
+                    document.querySelectorAll('.nav-item').forEach(n => n.classList.add('text-slate-400 dark:text-slate-300'));
+                    navEl.classList.remove('text-slate-400 dark:text-slate-300');
+                    navEl.classList.add('text-primary', 'active-nav');
                 }
+            };
+
+            window.showView = function (viewId) {
+                toggleView(viewId);
+            };
+
+            window.quickSearch = function (cityName, start, end) {
+                const destInput = document.getElementById('destination');
+                const dateStartInput = document.getElementById('dateStart');
+                const dateEndInput = document.getElementById('dateEnd');
+                const departureInput = document.getElementById('departure');
+
+                if (destInput) destInput.value = cityName;
+
+                if (start && dateStartInput && dateEndInput) {
+                    // Event logic: pre-fill suggested departure (event start - 1) and return (event end + 1)
+                    // These are one-time defaults — changing departure afterward does NOT recalculate return
+                    try {
+                        const parts = start.split('-');
+                        const sDate = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+
+                        const endParts = (end || start).split('-');
+                        const eDate = new Date(parseInt(endParts[0], 10), parseInt(endParts[1], 10) - 1, parseInt(endParts[2], 10));
+
+                        // Suggest: 1 day before event start
+                        sDate.setDate(sDate.getDate() - 1);
+                        // Suggest: 1 day after event end
+                        eDate.setDate(eDate.getDate() + 1);
+
+                        const formatDate = (d) => {
+                            const yyyy = d.getFullYear();
+                            const mm = String(d.getMonth() + 1).padStart(2, '0');
+                            const dd = String(d.getDate()).padStart(2, '0');
+                            return `${yyyy}-${mm}-${dd}`;
+                        };
+
+                        dateStartInput.value = formatDate(sDate);
+                        dateEndInput.value = formatDate(eDate);
+                    } catch (e) {
+                        console.error("QuickSearch date error", e);
+                    }
+                }
+
+                // Always check if form is complete before searching
+                const isComplete = departureInput?.value && dateStartInput?.value && dateEndInput?.value;
+                if (isComplete) {
+                    const searchForm = document.getElementById('searchForm');
+                    if (searchForm) searchForm.dispatchEvent(new Event('submit'));
+                } else {
+                    // Not complete: go home so user can fill in missing fields
+                    toggleView('homeView');
+                    window.scrollTo(0, 0);
+                    if (!departureInput?.value && departureInput) {
+                        departureInput.focus();
+                    } else if (destInput) {
+                        destInput.focus();
+                    }
+                }
+            };
+            let DESTINATION_LINKS = {}; // Loaded from destinations.js
+            window.DATABASE = { mappings: { regions: {}, countries: {}, cities: {} }, details: {} };
+            let SPECIAL_EVENTS_DATA = [];
+            let SAFE_HOTSPOTS_DATA = [];
+
+            // === DESTINATIONS DATA LOADER ===
+            // Load all destination data from the external destinations.js script
+            let _destinationsLoaded = false;
+
+            function loadDestinationsData() {
+                if (_destinationsLoaded) return Promise.resolve();
+
+                const data = window.__DESTINATIONS_DATA__;
+                if (!data) {
+                    console.error('[Pride Travel Scout] destinations.js not loaded! Make sure destinations.js is in the same directory.');
+                    return Promise.reject('No destination data');
+                }
+
+                console.log('[Pride Travel Scout] Loading destinations data...');
+
+                // Populate DESTINATION_LINKS
+                if (data.destinationLinks) {
+                    Object.assign(DESTINATION_LINKS, data.destinationLinks);
+                    console.log('  ✓ Destination links:', Object.keys(DESTINATION_LINKS).length);
+                }
+
+                // Populate DATABASE mappings and details
+                if (data.mappings) {
+                    window.DATABASE.mappings = data.mappings;
+                    console.log('  ✓ Mappings loaded (regions:', Object.keys(data.mappings.regions || {}).length,
+                        ', countries:', Object.keys(data.mappings.countries || {}).length,
+                        ', cities:', Object.keys(data.mappings.cities || {}).length, ')');
+                }
+                if (data.details) {
+                    window.DATABASE.details = data.details;
+                    console.log('  ✓ Destination details:', Object.keys(data.details).length);
+                }
+
+                // Populate SPECIAL_EVENTS_DATA
+                if (data.specialEvents) {
+                    SPECIAL_EVENTS_DATA.push(...data.specialEvents);
+                    console.log('  ✓ Special events:', SPECIAL_EVENTS_DATA.length);
+                }
+
+                // Populate EVENT_HOTELS (stored on window for access inside form handler)
+                if (data.eventHotels) {
+                    window._EVENT_HOTELS = data.eventHotels;
+                    console.log('  ✓ Event hotels:', Object.keys(data.eventHotels).length);
+                }
+
+                // Populate SAFE_HOTSPOTS_DATA
+                if (data.safeHotspots) {
+                    SAFE_HOTSPOTS_DATA.push(...data.safeHotspots);
+                    console.log('  ✓ Safe hotspots:', SAFE_HOTSPOTS_DATA.length);
+                }
+
+                _destinationsLoaded = true;
+                console.log('[Pride Travel Scout] ✓ All destination data loaded successfully');
+
+                // Trigger UI population now that data is available
+                if (typeof populateTrendingEvents === 'function') populateTrendingEvents();
+                if (typeof populateSafeHotspots === 'function') populateSafeHotspots();
+
+                return Promise.resolve();
             }
-        };
-        let DESTINATION_LINKS = {}; // Loaded from destinations.js
-        window.DATABASE = { mappings: { regions: {}, countries: {}, cities: {} }, details: {} };
-        let SPECIAL_EVENTS_DATA = [];
-        let SAFE_HOTSPOTS_DATA = [];
 
-        // === DESTINATIONS DATA LOADER ===
-        // Load all destination data from the external destinations.js script
-        let _destinationsLoaded = false;
+            // Load data immediately (synchronous since destinations.js is already loaded)
+            loadDestinationsData();
+            // === END DESTINATIONS DATA LOADER ===
 
-        function loadDestinationsData() {
-            if (_destinationsLoaded) return Promise.resolve();
+            const form = document.querySelector('#searchForm');
+            const container = document.querySelector('#resultsContainer');
 
-            const data = window.__DESTINATIONS_DATA__;
-            if (!data) {
-                console.error('[Pride Travel Scout] destinations.js not loaded! Make sure destinations.js is in the same directory.');
-                return Promise.reject('No destination data');
-            }
+            if (form) {
+                // Auto-suggest return date only when it hasn't been set yet
+                const dateStartInput = document.querySelector('#dateStart');
+                const dateEndInput = document.querySelector('#dateEnd');
 
-            console.log('[Pride Travel Scout] Loading destinations data...');
+                if (dateStartInput && dateEndInput) {
+                    dateStartInput.addEventListener('input', function () {
+                        // Only auto-fill return date if it's empty (don't overwrite pre-filled event dates)
+                        if (this.value && !dateEndInput.value) {
+                            try {
+                                // Create date safely in local time
+                                const parts = this.value.split('-');
+                                if (parts.length !== 3) return;
 
-            // Populate DESTINATION_LINKS
-            if (data.destinationLinks) {
-                Object.assign(DESTINATION_LINKS, data.destinationLinks);
-                console.log('  ✓ Destination links:', Object.keys(DESTINATION_LINKS).length);
-            }
+                                const year = parseInt(parts[0], 10);
+                                const month = parseInt(parts[1], 10) - 1;
+                                const day = parseInt(parts[2], 10);
 
-            // Populate DATABASE mappings and details
-            if (data.mappings) {
-                window.DATABASE.mappings = data.mappings;
-                console.log('  ✓ Mappings loaded (regions:', Object.keys(data.mappings.regions || {}).length,
-                    ', countries:', Object.keys(data.mappings.countries || {}).length,
-                    ', cities:', Object.keys(data.mappings.cities || {}).length, ')');
-            }
-            if (data.details) {
-                window.DATABASE.details = data.details;
-                console.log('  ✓ Destination details:', Object.keys(data.details).length);
-            }
+                                // Do NOT auto-fill until the user has typed a full valid modern year.
+                                // This stops interstitial year typing (like '0002') from auto-filling as 1902.
+                                if (isNaN(year) || year < 2000) return;
 
-            // Populate SPECIAL_EVENTS_DATA
-            if (data.specialEvents) {
-                SPECIAL_EVENTS_DATA.push(...data.specialEvents);
-                console.log('  ✓ Special events:', SPECIAL_EVENTS_DATA.length);
-            }
+                                const startDate = new Date(year, month, day);
+                                startDate.setFullYear(year);
+                                const nextDay = new Date(startDate);
+                                nextDay.setDate(startDate.getDate() + 1);
 
-            // Populate EVENT_HOTELS (stored on window for access inside form handler)
-            if (data.eventHotels) {
-                window._EVENT_HOTELS = data.eventHotels;
-                console.log('  ✓ Event hotels:', Object.keys(data.eventHotels).length);
-            }
+                                const yyyy = String(nextDay.getFullYear()).padStart(4, '0');
+                                const mm = String(nextDay.getMonth() + 1).padStart(2, '0');
+                                const dd = String(nextDay.getDate()).padStart(2, '0');
 
-            // Populate SAFE_HOTSPOTS_DATA
-            if (data.safeHotspots) {
-                SAFE_HOTSPOTS_DATA.push(...data.safeHotspots);
-                console.log('  ✓ Safe hotspots:', SAFE_HOTSPOTS_DATA.length);
-            }
+                                dateEndInput.value = `${yyyy}-${mm}-${dd}`;
+                            } catch (e) {
+                                console.error("Date auto-update error", e);
+                            }
+                        }
+                    });
+                }
+                form.addEventListener('submit', async function (e) {
+                    e.preventDefault();
 
-            _destinationsLoaded = true;
-            console.log('[Pride Travel Scout] ✓ All destination data loaded successfully');
+                    // Ensure destination data is loaded before searching
+                    await loadDestinationsData();
 
-            // Trigger UI population now that data is available
-            if (typeof populateTrendingEvents === 'function') populateTrendingEvents();
-            if (typeof populateSafeHotspots === 'function') populateSafeHotspots();
+                    const origin = document.querySelector('#departure').value.trim();
+                    const destinationInput = document.querySelector('#destination').value.trim().toLowerCase();
+                    const dateStart = document.querySelector('#dateStart').value;
+                    const dateEnd = document.querySelector('#dateEnd').value;
 
-            return Promise.resolve();
-        }
+                    if (!origin || !destinationInput || !dateStart || !dateEnd) {
+                        alert("Please fill in all fields.");
+                        return;
+                    }
 
-        // Load data immediately (synchronous since destinations.js is already loaded)
-        loadDestinationsData();
-        // === END DESTINATIONS DATA LOADER ===
+                    let targets = [];
 
-        const form = document.querySelector('#searchForm');
-        const container = document.querySelector('#resultsContainer');
+                    if (DATABASE.mappings.regions[destinationInput]) {
+                        targets = DATABASE.mappings.regions[destinationInput];
+                    } else if (DATABASE.mappings.countries[destinationInput]) {
+                        targets = DATABASE.mappings.countries[destinationInput];
+                    } else if (DATABASE.mappings.cities && DATABASE.mappings.cities[destinationInput]) {
+                        targets = DATABASE.mappings.cities[destinationInput];
+                    } else {
+                        // Check if direct key exists or IATA match
+                        const iataMatch = Object.keys(DATABASE.details).find(key =>
+                            DATABASE.details[key].iata && DATABASE.details[key].iata.toLowerCase() === destinationInput
+                        );
 
-        if (form) {
-            // Auto-suggest return date only when it hasn't been set yet
-            const dateStartInput = document.querySelector('#dateStart');
-            const dateEndInput = document.querySelector('#dateEnd');
-
-            if (dateStartInput && dateEndInput) {
-                dateStartInput.addEventListener('input', function () {
-                    // Only auto-fill return date if it's empty (don't overwrite pre-filled event dates)
-                    if (this.value && !dateEndInput.value) {
-                        try {
-                            // Create date safely in local time
-                            const parts = this.value.split('-');
-                            if (parts.length !== 3) return;
-
-                            const year = parseInt(parts[0], 10);
-                            const month = parseInt(parts[1], 10) - 1;
-                            const day = parseInt(parts[2], 10);
-
-                            // Do NOT auto-fill until the user has typed a full valid modern year.
-                            // This stops interstitial year typing (like '0002') from auto-filling as 1902.
-                            if (isNaN(year) || year < 2000) return;
-
-                            const startDate = new Date(year, month, day);
-                            startDate.setFullYear(year);
-                            const nextDay = new Date(startDate);
-                            nextDay.setDate(startDate.getDate() + 1);
-
-                            const yyyy = String(nextDay.getFullYear()).padStart(4, '0');
-                            const mm = String(nextDay.getMonth() + 1).padStart(2, '0');
-                            const dd = String(nextDay.getDate()).padStart(2, '0');
-
-                            dateEndInput.value = `${yyyy}-${mm}-${dd}`;
-                        } catch (e) {
-                            console.error("Date auto-update error", e);
+                        if (DATABASE.details[destinationInput]) {
+                            targets = [destinationInput];
+                        } else if (iataMatch) {
+                            targets = [iataMatch];
+                        } else {
+                            alert("Destination not located in our curated list. Please try another city.");
+                            return;
                         }
                     }
-                });
-            }
-            form.addEventListener('submit', async function (e) {
-                e.preventDefault();
 
-                // Ensure destination data is loaded before searching
-                await loadDestinationsData();
+                    container.innerHTML = '';
+                    if (typeof showView === 'function') showView('resultsView');
 
-                const origin = document.querySelector('#departure').value.trim();
-                const destinationInput = document.querySelector('#destination').value.trim().toLowerCase();
-                const dateStart = document.querySelector('#dateStart').value;
-                const dateEnd = document.querySelector('#dateEnd').value;
+                    targets.forEach((targetKey, index) => {
+                        let data = DATABASE.details[targetKey];
 
-                if (!origin || !destinationInput || !dateStart || !dateEnd) {
-                    alert("Please fill in all fields.");
-                    return;
-                }
+                        // Safety check if mapping exists but details missing (shouldn't happen with correct data)
+                        if (!data) {
+                            alert("Destination details currently unavailable.");
+                            return;
+                        }
 
-                let targets = [];
+                        // Specific Hotels for Events
+                        const EVENT_HOTELS = window._EVENT_HOTELS || {}; // Loaded from destinations.json
 
-                if (DATABASE.mappings.regions[destinationInput]) {
-                    targets = DATABASE.mappings.regions[destinationInput];
-                } else if (DATABASE.mappings.countries[destinationInput]) {
-                    targets = DATABASE.mappings.countries[destinationInput];
-                } else if (DATABASE.mappings.cities && DATABASE.mappings.cities[destinationInput]) {
-                    targets = DATABASE.mappings.cities[destinationInput];
-                } else {
-                    // Check if direct key exists or IATA match
-                    const iataMatch = Object.keys(DATABASE.details).find(key =>
-                        DATABASE.details[key].iata && DATABASE.details[key].iata.toLowerCase() === destinationInput
-                    );
+                        // --- EVENT DETECTION LOGIC ---
+                        let eventContent = '';
+                        const searchStart = new Date(dateStart);
+                        const searchEnd = new Date(dateEnd);
+                        const bufferTime = 14 * 24 * 60 * 60 * 1000; // 14 Days Buffer
 
-                    if (DATABASE.details[destinationInput]) {
-                        targets = [destinationInput];
-                    } else if (iataMatch) {
-                        targets = [iataMatch];
-                    } else {
-                        alert("Destination not located in our curated list. Please try another city.");
-                        return;
-                    }
-                }
+                        // 1. Search in SPECIAL_EVENTS_DATA (Primary Source)
+                        let matchingEvents = SPECIAL_EVENTS_DATA.filter(e => {
+                            // Check city match - only match events for THIS specific city (targetKey)
+                            const normalize = s => s ? s.toLowerCase().trim() : '';
+                            const cityMatch = normalize(e.city) === normalize(targetKey);
 
-                container.innerHTML = '';
-                if (typeof showView === 'function') showView('resultsView');
+                            if (!cityMatch) return false;
 
-                targets.forEach((targetKey, index) => {
-                    let data = DATABASE.details[targetKey];
-
-                    // Safety check if mapping exists but details missing (shouldn't happen with correct data)
-                    if (!data) {
-                        alert("Destination details currently unavailable.");
-                        return;
-                    }
-
-                    // Specific Hotels for Events
-                    const EVENT_HOTELS = window._EVENT_HOTELS || {}; // Loaded from destinations.json
-
-                    // --- EVENT DETECTION LOGIC ---
-                    let eventContent = '';
-                    const searchStart = new Date(dateStart);
-                    const searchEnd = new Date(dateEnd);
-                    const bufferTime = 14 * 24 * 60 * 60 * 1000; // 14 Days Buffer
-
-                    // 1. Search in SPECIAL_EVENTS_DATA (Primary Source)
-                    let matchingEvents = SPECIAL_EVENTS_DATA.filter(e => {
-                        // Check city match - only match events for THIS specific city (targetKey)
-                        const normalize = s => s ? s.toLowerCase().trim() : '';
-                        const cityMatch = normalize(e.city) === normalize(targetKey);
-
-                        if (!cityMatch) return false;
-
-                        // Check Date Overlap with Buffer
-                        const eStart = new Date(e.start);
-                        const eEnd = new Date(e.end);
-                        const startBuffer = new Date(eStart.getTime() - bufferTime);
-                        const endBuffer = new Date(eEnd.getTime() + bufferTime);
-
-                        return (searchStart <= endBuffer && searchEnd >= startBuffer);
-                    });
-
-                    // 2. Fallback to internal DATABASE.details events
-                    if (matchingEvents.length === 0 && data.events) {
-                        const internalMatches = data.events.filter(e => {
+                            // Check Date Overlap with Buffer
                             const eStart = new Date(e.start);
                             const eEnd = new Date(e.end);
                             const startBuffer = new Date(eStart.getTime() - bufferTime);
                             const endBuffer = new Date(eEnd.getTime() + bufferTime);
+
                             return (searchStart <= endBuffer && searchEnd >= startBuffer);
                         });
-                        matchingEvents.push(...internalMatches);
-                    }
 
-                    // Randomize Standard Hotels
-                    let randomHotels = getRandomSubset(data.hotels, 4);
+                        // 2. Fallback to internal DATABASE.details events
+                        if (matchingEvents.length === 0 && data.events) {
+                            const internalMatches = data.events.filter(e => {
+                                const eStart = new Date(e.start);
+                                const eEnd = new Date(e.end);
+                                const startBuffer = new Date(eStart.getTime() - bufferTime);
+                                const endBuffer = new Date(eEnd.getTime() + bufferTime);
+                                return (searchStart <= endBuffer && searchEnd >= startBuffer);
+                            });
+                            matchingEvents.push(...internalMatches);
+                        }
 
-                    // Inject Featured Event Hotel
-                    let firstMatchingEvent = matchingEvents.length > 0 ? matchingEvents[0] : null;
+                        // Randomize Standard Hotels
+                        let randomHotels = getRandomSubset(data.hotels, 4);
 
-                    if (firstMatchingEvent && firstMatchingEvent.hotels && firstMatchingEvent.hotels.length > 0) {
-                        const randomEventHotelName = firstMatchingEvent.hotels[Math.floor(Math.random() * firstMatchingEvent.hotels.length)];
+                        // Inject Featured Event Hotel
+                        let firstMatchingEvent = matchingEvents.length > 0 ? matchingEvents[0] : null;
 
-                        const specialHotel = {
-                            name: randomEventHotelName,
-                            type: 'Event Special',
-                            tags: ['Featured', 'Pride Partner']
-                        };
+                        if (firstMatchingEvent && firstMatchingEvent.hotels && firstMatchingEvent.hotels.length > 0) {
+                            const randomEventHotelName = firstMatchingEvent.hotels[Math.floor(Math.random() * firstMatchingEvent.hotels.length)];
 
-                        // Prepend to top of list
-                        randomHotels.unshift(specialHotel);
-                        randomHotels = randomHotels.slice(0, 4); // Keep list size managed
-                    } else if (firstMatchingEvent && EVENT_HOTELS[firstMatchingEvent.name]) {
-                        // Legacy fallback if map matches old hardcoded name
-                        const eventHotelNames = EVENT_HOTELS[firstMatchingEvent.name];
-                        const randomEventHotelName = eventHotelNames[Math.floor(Math.random() * eventHotelNames.length)];
-                        const specialHotel = { name: randomEventHotelName, type: 'Event Special', tags: ['Featured'] };
-                        randomHotels.unshift(specialHotel);
-                        randomHotels = randomHotels.slice(0, 4);
-                    }
+                            const specialHotel = {
+                                name: randomEventHotelName,
+                                type: 'Event Special',
+                                tags: ['Featured', 'Pride Partner']
+                            };
 
-                    const randomNightlife = getRandomSubset(data.nightlife, 3);
-                    const randomTours = data.tours.slice(0, 5);
-                    const fareEstimate = calculateFareEstimate(data.baseFare);
-                    const delay = index * 200;
+                            // Prepend to top of list
+                            randomHotels.unshift(specialHotel);
+                            randomHotels = randomHotels.slice(0, 4); // Keep list size managed
+                        } else if (firstMatchingEvent && EVENT_HOTELS[firstMatchingEvent.name]) {
+                            // Legacy fallback if map matches old hardcoded name
+                            const eventHotelNames = EVENT_HOTELS[firstMatchingEvent.name];
+                            const randomEventHotelName = eventHotelNames[Math.floor(Math.random() * eventHotelNames.length)];
+                            const specialHotel = { name: randomEventHotelName, type: 'Event Special', tags: ['Featured'] };
+                            randomHotels.unshift(specialHotel);
+                            randomHotels = randomHotels.slice(0, 4);
+                        }
+
+                        const randomNightlife = getRandomSubset(data.nightlife, 3);
+                        const randomTours = data.tours.slice(0, 5);
+                        const fareEstimate = calculateFareEstimate(data.baseFare);
+                        const delay = index * 200;
 
 
-                    if (matchingEvents.length > 0) {
-                        const carouselItems = matchingEvents.map(event => {
-                            const hasTravelInPrideLink = event.link && event.link.includes('travelinpride.com');
-                            const isCruise = event.type === 'Cruise';
-                            // Cruise: show cruise website as "Official" + Google as second. TravelInPride: Official + Google. Others: only Google.
-                            const showOfficialBtn = hasTravelInPrideLink || isCruise || (event.link && !event.link.includes('google.com/search'));
-                            const officialLink = event.link || getEventsLink(data.name, dateStart);
-                            const link1 = officialLink;
-                            const link2 = `https://www.google.com/search?q=${encodeURIComponent(event.name + " 2026")}`;
+                        if (matchingEvents.length > 0) {
+                            const carouselItems = matchingEvents.map(event => {
+                                const hasTravelInPrideLink = event.link && event.link.includes('travelinpride.com');
+                                const isCruise = event.type === 'Cruise';
+                                // Cruise: show cruise website as "Official" + Google as second. TravelInPride: Official + Google. Others: only Google.
+                                const showOfficialBtn = hasTravelInPrideLink || isCruise || (event.link && !event.link.includes('google.com/search'));
+                                const officialLink = event.link || getEventsLink(data.name, dateStart);
+                                const link1 = officialLink;
+                                const link2 = `https://www.google.com/search?q=${encodeURIComponent(event.name + " 2026")}`;
 
-                            const bannerTitle = isCruise ? "LGBTQ Cruise Alert" : "Pride Event Detected!";
-                            const bannerIcon = isCruise ? "directions_boat" : "celebration";
-                            const bgClass = isCruise ? "from-blue-600 to-cyan-500" : "from-pride-purple to-pride-blue";
+                                const bannerTitle = isCruise ? "LGBTQ Cruise Alert" : "Pride Event Detected!";
+                                const bannerIcon = isCruise ? "directions_boat" : "celebration";
+                                const bgClass = isCruise ? "from-blue-600 to-cyan-500" : "from-pride-purple to-pride-blue";
 
-                            return `
+                                return `
                                 <div class="snap-center shrink-0 w-[85%] sm:w-80 bg-gradient-to-r ${bgClass} rounded-xl shadow-lg p-5 text-white relative overflow-hidden group">
                                     <div class="absolute top-0 right-0 p-4 opacity-10">
                                         <span class="material-symbols-outlined text-6xl">${bannerIcon}</span>
@@ -1715,37 +1714,37 @@
                                         </a>
                                     </div>
                                 </div>`;
-                        }).join('');
+                            }).join('');
 
-                        eventContent = `
+                            eventContent = `
                             <div class="mt-4 -mx-6 px-6">
                                 <div class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 hide-scrollbar" style="scroll-padding-left: 1.5rem;">
                                     ${carouselItems}
                                 </div>
                             </div>
                         `;
-                    }
+                        }
 
-                    // Calculate safety score properties
-                    const safetyScore = data.safetyScore || 85;
-                    let safetyColor = 'text-pride-green';
-                    let safetyLabel = 'Excellent Inclusivity';
-                    if (safetyScore < 50) {
-                        safetyColor = 'text-pride-red';
-                        safetyLabel = 'Caution Advised';
-                    } else if (safetyScore < 65) {
-                        safetyColor = 'text-pride-yellow';
-                        safetyLabel = 'Moderate Inclusivity';
-                    } else {
-                        safetyColor = 'text-pride-green';
-                        safetyLabel = 'Excellent Inclusivity';
-                    }
-                    const safetyOffset = 251.2 * (1 - safetyScore / 100);
+                        // Calculate safety score properties
+                        const safetyScore = data.safetyScore || 85;
+                        let safetyColor = 'text-pride-green';
+                        let safetyLabel = 'Excellent Inclusivity';
+                        if (safetyScore < 50) {
+                            safetyColor = 'text-pride-red';
+                            safetyLabel = 'Caution Advised';
+                        } else if (safetyScore < 65) {
+                            safetyColor = 'text-pride-yellow';
+                            safetyLabel = 'Moderate Inclusivity';
+                        } else {
+                            safetyColor = 'text-pride-green';
+                            safetyLabel = 'Excellent Inclusivity';
+                        }
+                        const safetyOffset = 251.2 * (1 - safetyScore / 100);
 
-                    const card = document.createElement('div');
-                    card.className = "bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-primary/10 overflow-hidden fade-in-up";
-                    card.style.animationDelay = `${delay}ms`;
-                    card.innerHTML = `
+                        const card = document.createElement('div');
+                        card.className = "bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-primary/10 overflow-hidden fade-in-up";
+                        card.style.animationDelay = `${delay}ms`;
+                        card.innerHTML = `
                          <!-- Result Header -->
                         <div class="pride-gradient-bg p-6 flex justify-between items-center"
                              >
@@ -1803,9 +1802,9 @@
                                     </div>
                                     <div class="space-y-3 mb-6">
                                         ${randomHotels.map(h => {
-                        const badge = getHotelBadge(h);
-                        const isLGBTQOwned = h.tags && h.tags.some(t => t === 'LGBTQ Owned/Operated' || t === 'LGBTQ Owned');
-                        return `
+                            const badge = getHotelBadge(h);
+                            const isLGBTQOwned = h.tags && h.tags.some(t => t === 'LGBTQ Owned/Operated' || t === 'LGBTQ Owned');
+                            return `
                                             <div class="flex items-start justify-between text-xs border-b border-slate-50 dark:border-slate-700 pb-2 last:border-0 gap-2">
                                                 <div class="flex-1 min-w-0">
                                                     <span class="font-black text-slate-800 dark:text-slate-100 block leading-tight">${h.name}</span>
@@ -1911,11 +1910,11 @@
                                 </h3>
                                 <div class="grid grid-cols-2 gap-3">
                                     ${randomNightlife.map((n, i) => {
-                            const colors = ['pride-red', 'pride-blue', 'pride-purple', 'pride-orange'];
-                            const icons = ['local_bar', 'celebration', 'music_note', 'wine_bar'];
-                            const color = colors[i % colors.length];
-                            const icon = icons[i % icons.length];
-                            return `
+                                const colors = ['pride-red', 'pride-blue', 'pride-purple', 'pride-orange'];
+                                const icons = ['local_bar', 'celebration', 'music_note', 'wine_bar'];
+                                const color = colors[i % colors.length];
+                                const icon = icons[i % icons.length];
+                                return `
                                         <div class="bg-white p-4 rounded-xl border border-${color}/20 group hover:bg-${color} transition-colors duration-300 relative cursor-default">
                                             <button onclick="window.psBookmarkPlace('${n.name.replace(/'/g, "\\'")}', 'Nightlife', '${data.name.replace(/'/g, "\\'")}', '${origin.replace(/'/g, "\\'")}', '${dateStart}', '${dateEnd}', this)" title="Bookmark this place" class="absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 transition-colors text-slate-400 z-10">
                                                 <span class="material-symbols-outlined text-[16px]">bookmark</span>
@@ -1927,7 +1926,7 @@
                                             <p class="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-300 group-hover:text-white/80">${n.type} &bull; ${n.tags[0]}</p>
                                         </div>
                                         `;
-                        }).join('')}
+                            }).join('')}
                                 </div>
                             </section>
 
@@ -1939,13 +1938,13 @@
                                 </div>
                                 <div class="flex justify-between">
                                     ${(() => {
-                            const monthIndex = new Date(dateStart).getUTCMonth();
-                            const monthName = getMonthName(dateStart);
-                            const mWeather = data.monthlyWeather ? data.monthlyWeather[monthIndex] : null;
-                            const highTemp = mWeather ? mWeather.high : '72°F';
-                            const lowTemp = mWeather ? mWeather.low : '55°F';
-                            const summary = mWeather ? mWeather.summary : 'Sunny';
-                            return `
+                                const monthIndex = new Date(dateStart).getUTCMonth();
+                                const monthName = getMonthName(dateStart);
+                                const mWeather = data.monthlyWeather ? data.monthlyWeather[monthIndex] : null;
+                                const highTemp = mWeather ? mWeather.high : '72°F';
+                                const lowTemp = mWeather ? mWeather.low : '55°F';
+                                const summary = mWeather ? mWeather.summary : 'Sunny';
+                                return `
                             <div class="w-full flex items-center gap-5 p-3 bg-white dark:bg-slate-800/60 rounded-xl">
                                 <div class="flex-shrink-0">${getWeatherIcon(summary)}</div>
                                 <div class="flex-1">
@@ -1960,7 +1959,7 @@
                                 </div>
                             </div>
                         `;
-                        })()}
+                            })()}
                                 </div>
                             </section>
 
@@ -1989,208 +1988,208 @@
                             </section>
                         </div>
                         `;
-                    container.appendChild(card);
+                        container.appendChild(card);
+                    });
+
                 });
-
-            });
-        }
-
-        function formatDisplayName(data) {
-            // Desired: "City, Airport Code, Country or Region"
-            // data.name is typically "City, Country"
-            // data.iata is "CODE"
-
-            if (data.name.includes(',')) {
-                const parts = data.name.split(',');
-                const city = parts[0].trim();
-                const country = parts.slice(1).join(',').trim();
-                return `${city}, ${data.iata}, ${country} `;
             }
-            return `${data.name}, ${data.iata} `;
-        }
 
-        function getRandomSubset(arr, count) {
-            if (!arr) return [];
-            const shuffled = [...arr].sort(() => 0.5 - Math.random());
-            return shuffled.slice(0, count);
-        }
+            function formatDisplayName(data) {
+                // Desired: "City, Airport Code, Country or Region"
+                // data.name is typically "City, Country"
+                // data.iata is "CODE"
 
-        function getHotelBadge(h) {
-            if (h.type === 'Event Special') return 'Event Special';
-            let specialTags = ['LGBTQ Owned/Operated', 'LGBTQ Friendly', 'LGBTQ Hotels & Resorts', 'LGBTQ Resort', 'LGBTQ Hotel', 'LGBTQ Owned', 'Gay Hotel', 'Men Only', 'Adults Only', 'Adults-Only', 'Mens Only'];
-            if (h.tags) {
-                let found = h.tags.find(t => specialTags.includes(t));
-                if (found) {
-                    if (found === 'Men Only' || found === 'Mens Only') found = 'Men-Only';
-                    if (found === 'Adults Only') found = 'Adults-Only';
-                    if (h.type && found.toLowerCase().includes(h.type.toLowerCase())) {
-                        return found;
-                    }
-                    return `${h.type} ${found}`;
+                if (data.name.includes(',')) {
+                    const parts = data.name.split(',');
+                    const city = parts[0].trim();
+                    const country = parts.slice(1).join(',').trim();
+                    return `${city}, ${data.iata}, ${country} `;
                 }
-            }
-            return h.type;
-        }
-
-        function calculateFareEstimate(baseRange) {
-            if (!baseRange) return "$500 - $1600";
-            const min = baseRange[0];
-            const max = baseRange[1] * 2; // Double top end
-            return `$${min} - $${max} `;
-        }
-
-        function getGoogleFlightsLink(origin, destination, start, end) {
-            const q = `Flights from ${origin} to ${destination} on ${start} returning ${end} `;
-            return `https://www.google.com/travel/flights?q=${encodeURIComponent(q)}`;
-        }
-
-        function getNightlifeIcon(type) {
-            const t = type.toLowerCase();
-            if (t.includes('sauna') || t.includes('bath')) return '<span class="material-symbols-outlined">hot_tub</span>';
-            if (t.includes('club') || t.includes('disco')) return '<span class="material-symbols-outlined">celebration</span>';
-            if (t.includes('bar')) return '<span class="material-symbols-outlined">local_bar</span>';
-            return '<span class="material-symbols-outlined">music_note</span>';
-        }
-
-        function getExpediaLink(destination, start, end) {
-            return `https://www.expedia.com/Hotel-Search?destination=${encodeURIComponent(destination)}&startDate=${start}&endDate=${end}&amenities=LGBTQ_WELCOMING`;
-        }
-
-        function getBookingComLink(destination, start, end) {
-            // Appends the Travel Proud filter if applicable (or uses keyword search workaround)
-            return `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(destination + ' LGBTQ Friendly')}&checkin=${start}&checkout=${end}&nflt=property_type%3D204`;
-        }
-
-        function getViatorLink(destination, start, end) {
-            return `https://www.viator.com/searchResults/all?text=${encodeURIComponent(destination)}&startDate=${start}&endDate=${end}`;
-        }
-
-        function getEmailLink(origin, data, start, end) {
-            const subject = `Trip Idea: ${data.name} for Pride Travel`;
-            const body = `Hey,\n\nI found a great trip idea using Pride Travel Scout!\n\nDestination: ${data.name}\nDates: ${start} to ${end}\nFrom: ${origin}\n\nWeather: ${data.weather}\nLGBTQ Safety: ${data.lgbtqSafety}\n\nCheck out flights:\nGoogle Flights: ${getGoogleFlightsLink(origin, data.name, start, end)}\n\nSent from Pride Travel Scout`;
-            return `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        }
-
-        function getWeatherIcon(weatherString) {
-            const w = weatherString.toLowerCase();
-            if (w.includes('rain')) return '<span class="material-symbols-outlined text-pride-blue">rainy</span>';
-            if (w.includes('cloud')) return '<span class="material-symbols-outlined text-slate-400 dark:text-slate-300">cloudy</span>';
-            if (w.includes('snow')) return '<span class="material-symbols-outlined text-slate-200">snowing</span>';
-            return '<span class="material-symbols-outlined text-pride-orange">sunny</span>';
-        }
-
-        function getEventsLink(destination, dateString) {
-            const month = getMonthName(dateString);
-            const q = `LGBTQ Events in ${destination} in ${month}`;
-            return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
-        }
-
-        function getMonthName(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
-        }
-
-        function formatDateShort(dateString) {
-            if (!dateString) return '';
-            const date = new Date(dateString + 'T00:00:00');
-            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-        }
-
-        window.showAllHotspots = function () {
-            populateAllHotspots();
-            toggleView('allHotspotsView');
-        };
-
-        function populateAllHotspots() {
-            const grid = document.getElementById('allHotspotsGrid');
-            if (!grid) return;
-
-            const eventPool = [];
-            const cityPool = [];
-            const districtPool = [];
-
-            // 1. Collect Events
-            if (typeof SPECIAL_EVENTS_DATA !== 'undefined') {
-                SPECIAL_EVENTS_DATA.forEach(e => {
-                    eventPool.push({
-                        type: e.type || 'Event',
-                        name: e.name,
-                        location: e.city,
-                        date: e.start,
-                        endDate: e.end,
-                        searchQuery: e.city
-                    });
-                });
+                return `${data.name}, ${data.iata} `;
             }
 
-            // 2. Collect Destinations & Districts
-            if (typeof DATABASE !== 'undefined' && DATABASE.details) {
-                Object.keys(DATABASE.details).forEach(key => {
-                    const data = DATABASE.details[key];
-                    // Add to City Pool
-                    const cityEqScore = data.safetyScore || null;
-                    cityPool.push({
-                        type: 'Destination',
-                        name: data.name,
-                        location: data.iata || '',
-                        searchQuery: key,
-                        eqScore: cityEqScore
-                    });
+            function getRandomSubset(arr, count) {
+                if (!arr) return [];
+                const shuffled = [...arr].sort(() => 0.5 - Math.random());
+                return shuffled.slice(0, count);
+            }
 
-                    // Add to District Pool if available
-                    if (data.lgbtqDistrict) {
-                        districtPool.push({
-                            type: 'District',
-                            name: data.lgbtqDistrict,
-                            location: data.name.split(',')[0],
+            function getHotelBadge(h) {
+                if (h.type === 'Event Special') return 'Event Special';
+                let specialTags = ['LGBTQ Owned/Operated', 'LGBTQ Friendly', 'LGBTQ Hotels & Resorts', 'LGBTQ Resort', 'LGBTQ Hotel', 'LGBTQ Owned', 'Gay Hotel', 'Men Only', 'Adults Only', 'Adults-Only', 'Mens Only'];
+                if (h.tags) {
+                    let found = h.tags.find(t => specialTags.includes(t));
+                    if (found) {
+                        if (found === 'Men Only' || found === 'Mens Only') found = 'Men-Only';
+                        if (found === 'Adults Only') found = 'Adults-Only';
+                        if (h.type && found.toLowerCase().includes(h.type.toLowerCase())) {
+                            return found;
+                        }
+                        return `${h.type} ${found}`;
+                    }
+                }
+                return h.type;
+            }
+
+            function calculateFareEstimate(baseRange) {
+                if (!baseRange) return "$500 - $1600";
+                const min = baseRange[0];
+                const max = baseRange[1] * 2; // Double top end
+                return `$${min} - $${max} `;
+            }
+
+            function getGoogleFlightsLink(origin, destination, start, end) {
+                const q = `Flights from ${origin} to ${destination} on ${start} returning ${end} `;
+                return `https://www.google.com/travel/flights?q=${encodeURIComponent(q)}`;
+            }
+
+            function getNightlifeIcon(type) {
+                const t = type.toLowerCase();
+                if (t.includes('sauna') || t.includes('bath')) return '<span class="material-symbols-outlined">hot_tub</span>';
+                if (t.includes('club') || t.includes('disco')) return '<span class="material-symbols-outlined">celebration</span>';
+                if (t.includes('bar')) return '<span class="material-symbols-outlined">local_bar</span>';
+                return '<span class="material-symbols-outlined">music_note</span>';
+            }
+
+            function getExpediaLink(destination, start, end) {
+                return `https://www.expedia.com/Hotel-Search?destination=${encodeURIComponent(destination)}&startDate=${start}&endDate=${end}&amenities=LGBTQ_WELCOMING`;
+            }
+
+            function getBookingComLink(destination, start, end) {
+                // Appends the Travel Proud filter if applicable (or uses keyword search workaround)
+                return `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(destination + ' LGBTQ Friendly')}&checkin=${start}&checkout=${end}&nflt=property_type%3D204`;
+            }
+
+            function getViatorLink(destination, start, end) {
+                return `https://www.viator.com/searchResults/all?text=${encodeURIComponent(destination)}&startDate=${start}&endDate=${end}`;
+            }
+
+            function getEmailLink(origin, data, start, end) {
+                const subject = `Trip Idea: ${data.name} for Pride Travel`;
+                const body = `Hey,\n\nI found a great trip idea using Pride Travel Scout!\n\nDestination: ${data.name}\nDates: ${start} to ${end}\nFrom: ${origin}\n\nWeather: ${data.weather}\nLGBTQ Safety: ${data.lgbtqSafety}\n\nCheck out flights:\nGoogle Flights: ${getGoogleFlightsLink(origin, data.name, start, end)}\n\nSent from Pride Travel Scout`;
+                return `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            }
+
+            function getWeatherIcon(weatherString) {
+                const w = weatherString.toLowerCase();
+                if (w.includes('rain')) return '<span class="material-symbols-outlined text-pride-blue">rainy</span>';
+                if (w.includes('cloud')) return '<span class="material-symbols-outlined text-slate-400 dark:text-slate-300">cloudy</span>';
+                if (w.includes('snow')) return '<span class="material-symbols-outlined text-slate-200">snowing</span>';
+                return '<span class="material-symbols-outlined text-pride-orange">sunny</span>';
+            }
+
+            function getEventsLink(destination, dateString) {
+                const month = getMonthName(dateString);
+                const q = `LGBTQ Events in ${destination} in ${month}`;
+                return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
+            }
+
+            function getMonthName(dateString) {
+                const date = new Date(dateString);
+                return date.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
+            }
+
+            function formatDateShort(dateString) {
+                if (!dateString) return '';
+                const date = new Date(dateString + 'T00:00:00');
+                return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            }
+
+            window.showAllHotspots = function () {
+                populateAllHotspots();
+                toggleView('allHotspotsView');
+            };
+
+            function populateAllHotspots() {
+                const grid = document.getElementById('allHotspotsGrid');
+                if (!grid) return;
+
+                const eventPool = [];
+                const cityPool = [];
+                const districtPool = [];
+
+                // 1. Collect Events
+                if (typeof SPECIAL_EVENTS_DATA !== 'undefined') {
+                    SPECIAL_EVENTS_DATA.forEach(e => {
+                        eventPool.push({
+                            type: e.type || 'Event',
+                            name: e.name,
+                            location: e.city,
+                            date: e.start,
+                            endDate: e.end,
+                            searchQuery: e.city
+                        });
+                    });
+                }
+
+                // 2. Collect Destinations & Districts
+                if (typeof DATABASE !== 'undefined' && DATABASE.details) {
+                    Object.keys(DATABASE.details).forEach(key => {
+                        const data = DATABASE.details[key];
+                        // Add to City Pool
+                        const cityEqScore = data.safetyScore || null;
+                        cityPool.push({
+                            type: 'Destination',
+                            name: data.name,
+                            location: data.iata || '',
                             searchQuery: key,
                             eqScore: cityEqScore
                         });
-                    }
-                });
-            }
 
-            // 3. Balanced Selection (Target 60 total: ~20 Events, ~20 Cities, ~20 Districts)
-            // Ensure 3-5 cruises show up in the view more tab
-            const cruisePool = eventPool.filter(e => e.type === 'Cruise');
-            const otherEventPool = eventPool.filter(e => e.type !== 'Cruise');
-
-            const numCruises = Math.floor(Math.random() * 3) + 3; // 3 to 5
-            const selectedCruises = getRandomSubset(cruisePool, Math.min(numCruises, cruisePool.length));
-            const selectedOtherEvents = getRandomSubset(otherEventPool, 20 - selectedCruises.length);
-            const selectedEvents = [...selectedCruises, ...selectedOtherEvents];
-
-            const selectedCities = getRandomSubset(cityPool, 20);
-            const selectedDistricts = getRandomSubset(districtPool, 20);
-
-            let selected = [...selectedEvents, ...selectedCities, ...selectedDistricts];
-
-            // 4. Backfill if total < 20
-            if (selected.length < 60) {
-                const remainingTarget = 60 - selected.length;
-                const usedNames = new Set(selected.map(s => s.name + s.type));
-                const allRemaining = [...eventPool, ...cityPool, ...districtPool]
-                    .filter(item => !usedNames.has(item.name + item.type));
-
-                const extra = getRandomSubset(allRemaining, remainingTarget);
-                selected = [...selected, ...extra];
-            }
-
-            // Shuffle final list
-            selected = getRandomSubset(selected, selected.length);
-
-            grid.innerHTML = selected.map(h => {
-                let icon = 'location_on';
-                let badgeClass = 'bg-primary text-white';
-                if (h.type === 'Event' || h.type === 'Cruise') {
-                    icon = h.type === 'Cruise' ? 'directions_boat' : 'event_upcoming';
-                    badgeClass = h.type === 'Cruise' ? 'bg-blue-500 text-white' : 'bg-yellow-400 text-slate-900 dark:text-white';
-                } else if (h.type === 'District') {
-                    icon = 'explore';
-                    badgeClass = 'bg-orange-500 text-white';
+                        // Add to District Pool if available
+                        if (data.lgbtqDistrict) {
+                            districtPool.push({
+                                type: 'District',
+                                name: data.lgbtqDistrict,
+                                location: data.name.split(',')[0],
+                                searchQuery: key,
+                                eqScore: cityEqScore
+                            });
+                        }
+                    });
                 }
 
-                return `
+                // 3. Balanced Selection (Target 60 total: ~20 Events, ~20 Cities, ~20 Districts)
+                // Ensure 3-5 cruises show up in the view more tab
+                const cruisePool = eventPool.filter(e => e.type === 'Cruise');
+                const otherEventPool = eventPool.filter(e => e.type !== 'Cruise');
+
+                const numCruises = Math.floor(Math.random() * 3) + 3; // 3 to 5
+                const selectedCruises = getRandomSubset(cruisePool, Math.min(numCruises, cruisePool.length));
+                const selectedOtherEvents = getRandomSubset(otherEventPool, 20 - selectedCruises.length);
+                const selectedEvents = [...selectedCruises, ...selectedOtherEvents];
+
+                const selectedCities = getRandomSubset(cityPool, 20);
+                const selectedDistricts = getRandomSubset(districtPool, 20);
+
+                let selected = [...selectedEvents, ...selectedCities, ...selectedDistricts];
+
+                // 4. Backfill if total < 20
+                if (selected.length < 60) {
+                    const remainingTarget = 60 - selected.length;
+                    const usedNames = new Set(selected.map(s => s.name + s.type));
+                    const allRemaining = [...eventPool, ...cityPool, ...districtPool]
+                        .filter(item => !usedNames.has(item.name + item.type));
+
+                    const extra = getRandomSubset(allRemaining, remainingTarget);
+                    selected = [...selected, ...extra];
+                }
+
+                // Shuffle final list
+                selected = getRandomSubset(selected, selected.length);
+
+                grid.innerHTML = selected.map(h => {
+                    let icon = 'location_on';
+                    let badgeClass = 'bg-primary text-white';
+                    if (h.type === 'Event' || h.type === 'Cruise') {
+                        icon = h.type === 'Cruise' ? 'directions_boat' : 'event_upcoming';
+                        badgeClass = h.type === 'Cruise' ? 'bg-blue-500 text-white' : 'bg-yellow-400 text-slate-900 dark:text-white';
+                    } else if (h.type === 'District') {
+                        icon = 'explore';
+                        badgeClass = 'bg-orange-500 text-white';
+                    }
+
+                    return `
                     <div onclick="quickSearch('${h.searchQuery}', '${h.date || ''}', '${h.endDate || ''}')" class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-lg border-l-4 border-primary flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform group relative">
                         <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
                             <span class="material-symbols-outlined">${icon}</span>
@@ -2210,37 +2209,37 @@
                         </button>
                     </div>
                 `;
-            }).join('');
-        }
+                }).join('');
+            }
 
 
 
-        function populateSafeHotspots() {
-            const container = document.getElementById('hotspotsContainer');
-            if (!container) return;
+            function populateSafeHotspots() {
+                const container = document.getElementById('hotspotsContainer');
+                if (!container) return;
 
-            // Make Amsterdam permanently featured for World Pride
-            const amsterdam = SAFE_HOTSPOTS_DATA.find(h => h.city === 'Amsterdam');
-            const others = SAFE_HOTSPOTS_DATA.filter(h => h.city !== 'Amsterdam');
-            const randomHotspots = [amsterdam, ...getRandomSubset(others, 2)];
+                // Make Amsterdam permanently featured for World Pride
+                const amsterdam = SAFE_HOTSPOTS_DATA.find(h => h.city === 'Amsterdam');
+                const others = SAFE_HOTSPOTS_DATA.filter(h => h.city !== 'Amsterdam');
+                const randomHotspots = [amsterdam, ...getRandomSubset(others, 2)];
 
-            container.innerHTML = randomHotspots.map(h => {
-                const cityEvents = SPECIAL_EVENTS_DATA.filter(e => e.city.toLowerCase() === h.city.toLowerCase() && e.type !== 'Cruise');
-                let eventTagHtml = '';
-                let searchParams = `\'${h.city}\'`;
+                container.innerHTML = randomHotspots.map(h => {
+                    const cityEvents = SPECIAL_EVENTS_DATA.filter(e => e.city.toLowerCase() === h.city.toLowerCase() && e.type !== 'Cruise');
+                    let eventTagHtml = '';
+                    let searchParams = `\'${h.city}\'`;
 
-                if (h.city.toLowerCase() === 'amsterdam') {
-                    eventTagHtml = `<span class="bg-pride-orange text-white text-[10px] font-black px-2 py-1 rounded-lg uppercase mb-2 inline-block shadow-lg truncate max-w-[200px]">World Pride & Amsterdam Pride 2026</span>`;
-                    searchParams = `'Amsterdam', '2026-07-25', '2026-08-08'`;
-                } else if (cityEvents.length > 0) {
-                    const randomEvent = cityEvents[Math.floor(Math.random() * cityEvents.length)];
-                    eventTagHtml = `<span class="bg-pride-orange text-white text-[10px] font-black px-2 py-1 rounded-lg uppercase mb-2 inline-block shadow-lg truncate max-w-[200px]">Event: ${randomEvent.name}</span>`;
-                    searchParams = `'${h.city}', '${randomEvent.start}', '${randomEvent.end}'`;
-                } else {
-                    eventTagHtml = `<span class="bg-pride-blue text-white text-[10px] font-black px-2 py-1 rounded-lg uppercase mb-2 inline-block shadow-lg max-w-[200px]">Trending Destination</span>`;
-                }
+                    if (h.city.toLowerCase() === 'amsterdam') {
+                        eventTagHtml = `<span class="bg-pride-orange text-white text-[10px] font-black px-2 py-1 rounded-lg uppercase mb-2 inline-block shadow-lg truncate max-w-[200px]">World Pride & Amsterdam Pride 2026</span>`;
+                        searchParams = `'Amsterdam', '2026-07-25', '2026-08-08'`;
+                    } else if (cityEvents.length > 0) {
+                        const randomEvent = cityEvents[Math.floor(Math.random() * cityEvents.length)];
+                        eventTagHtml = `<span class="bg-pride-orange text-white text-[10px] font-black px-2 py-1 rounded-lg uppercase mb-2 inline-block shadow-lg truncate max-w-[200px]">Event: ${randomEvent.name}</span>`;
+                        searchParams = `'${h.city}', '${randomEvent.start}', '${randomEvent.end}'`;
+                    } else {
+                        eventTagHtml = `<span class="bg-pride-blue text-white text-[10px] font-black px-2 py-1 rounded-lg uppercase mb-2 inline-block shadow-lg max-w-[200px]">Trending Destination</span>`;
+                    }
 
-                return `
+                    return `
                     <div onclick="quickSearch(${searchParams})"
                         class="min-w-[280px] snap-center rounded-3xl overflow-hidden relative group shadow-2xl cursor-pointer active:scale-95 transition-transform rainbow-border">
                         <img class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
@@ -2256,26 +2255,26 @@
                         </div>
                     </div>
                 `;
-            }).join('');
-        }
-
-        function populateTrendingEvents() {
-            const grid = document.getElementById('eventsGrid');
-            if (!grid) return;
-
-            const allCruises = SPECIAL_EVENTS_DATA.filter(e => e.type === 'Cruise');
-            const otherEvents = SPECIAL_EVENTS_DATA.filter(e => e.type !== 'Cruise');
-
-            let randomEvents = [];
-            if (allCruises.length > 0) {
-                const randomCruise = allCruises[Math.floor(Math.random() * allCruises.length)];
-                randomEvents.push(randomCruise);
-                randomEvents = randomEvents.concat(getRandomSubset(otherEvents, 3));
-                randomEvents.sort(() => Math.random() - 0.5);
-            } else {
-                randomEvents = getRandomSubset(SPECIAL_EVENTS_DATA, 4);
+                }).join('');
             }
-            grid.innerHTML = randomEvents.map(e => `
+
+            function populateTrendingEvents() {
+                const grid = document.getElementById('eventsGrid');
+                if (!grid) return;
+
+                const allCruises = SPECIAL_EVENTS_DATA.filter(e => e.type === 'Cruise');
+                const otherEvents = SPECIAL_EVENTS_DATA.filter(e => e.type !== 'Cruise');
+
+                let randomEvents = [];
+                if (allCruises.length > 0) {
+                    const randomCruise = allCruises[Math.floor(Math.random() * allCruises.length)];
+                    randomEvents.push(randomCruise);
+                    randomEvents = randomEvents.concat(getRandomSubset(otherEvents, 3));
+                    randomEvents.sort(() => Math.random() - 0.5);
+                } else {
+                    randomEvents = getRandomSubset(SPECIAL_EVENTS_DATA, 4);
+                }
+                grid.innerHTML = randomEvents.map(e => `
                                 <div onclick="quickSearch('${e.city}', '${e.start}', '${e.end}')" class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-lg border-l-4 border-primary flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform relative group">
                                     <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
                                         <span class="material-symbols-outlined">${e.type === 'Cruise' ? 'directions_boat' : 'event_upcoming'}</span>
@@ -2289,21 +2288,21 @@
                                     </button>
                                 </div>
                             `).join('');
+            }
+        })();
+    </script>
+    <script>
+        if (typeof navigator.serviceWorker !== 'undefined') {
+            navigator.serviceWorker.register('sw.js') // or your specific URL
+                .then(function (registration) {
+                    console.log('Service Worker registered successfully:', registration);
+                })
+                .catch(function (error) {
+                    console.log('Service Worker registration failed:', error);
+                });
         }
-    })();
-</script>
-<script>
-    if (typeof navigator.serviceWorker !== 'undefined') {
-        navigator.serviceWorker.register('sw.js') // or your specific URL
-            .then(function (registration) {
-                console.log('Service Worker registered successfully:', registration);
-            })
-            .catch(function (error) {
-                console.log('Service Worker registration failed:', error);
-            });
-    }
 
-</script>
+    </script>
 </body>
 
 </html>
