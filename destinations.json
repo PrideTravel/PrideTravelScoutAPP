@@ -1647,8 +1647,7 @@
     },
     "cities": {
       "lisbon": [
-        "lisbon",
-        "lis"
+        "lisbon"
       ],
       "lis": [
         "lisbon"
@@ -1681,7 +1680,6 @@
         "telluride"
       ],
       "cabo": [
-        "cabo san lucas",
         "cabo"
       ],
       "cabo san lucas": [
@@ -1790,8 +1788,7 @@
         "san juan"
       ],
       "london": [
-        "lhr",
-        "lgw"
+        "london"
       ],
       "paris": [
         "paris"
@@ -1848,8 +1845,7 @@
         "taipei"
       ],
       "osaka": [
-        "kix",
-        "itm"
+        "osaka"
       ],
       "kix": [
         "osaka"
@@ -2164,7 +2160,7 @@
         "nashville"
       ],
       "newark": [
-        "newark"
+        "nyc"
       ],
       "detroit": [
         "detroit"
@@ -2203,10 +2199,8 @@
         "manchester"
       ],
       "fire island": [
-        "isp",
-        "jfk",
-        "lga",
-        "ewr"
+        "fire island",
+        "fire"
       ],
       "isp": [
         "fire island"
@@ -2288,10 +2282,10 @@
         "los angeles"
       ],
       "ny": [
-        "new york"
+        "nyc"
       ],
       "big apple": [
-        "new york"
+        "nyc"
       ],
       "sf": [
         "san francisco"
@@ -2412,7 +2406,7 @@
         "maspalomas"
       ],
       "miami beach": [
-        "miami beach"
+        "miami"
       ],
       "montevideo": [
         "montevideo"
