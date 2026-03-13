@@ -23811,76 +23811,116 @@
     "nightlife": [
       {
         "name": "801 Bourbon Bar",
+        "type": "Bar/Club",
         "tags": [
           "Drag",
-          "Performance",
-          "Iconic"
+          "Karaoke",
+          "Local"
         ]
       },
       {
-        "name": "Bourbon St. Pub",
+        "name": "Bourbon Street Pub",
+        "type": "Bar/Club",
         "tags": [
-          "Go-Go Dancers",
-          "Pool Parties"
+          "Pool Parties",
+          "Go-Go Boys"
         ]
       },
       {
-        "name": "Aqua Bar & Nightclub",
+        "name": "Aqua Key West",
+        "type": "Bar/Club",
         "tags": [
-          "Drag",
+          "Drag Shows",
           "Dance",
-          "High Energy"
+          "Pop"
         ]
       },
       {
         "name": "La Te Da",
+        "type": "Bar/Club",
         "tags": [
           "Cabaret",
-          "Sunday Tea Dance"
+          "Piano Bar",
+          "Tea Dance"
         ]
       },
       {
         "name": "Bobby's Monkey Bar",
+        "type": "Bar/Club",
         "tags": [
-          "Neighborhood",
+          "Dive Bar",
           "Karaoke",
-          "Dive"
+          "Local"
         ]
       },
       {
-        "name": "Saloon 1",
+        "name": "Saloon 1 Key West",
+        "type": "Bar/Club",
         "tags": [
           "Leather",
           "Bear",
-          "Cruising"
+          "Men-only"
         ]
       },
       {
-        "name": "Sidebar",
+        "name": "Sidebar (at Aquaplex)",
+        "type": "Bar/Club",
         "tags": [
           "Burlesque",
-          "Cocktail Lounge"
+          "Social",
+          "Cocktails"
         ]
       },
       {
-        "name": "The Pink Monkey Bar",
+        "name": "22&Co",
+        "type": "Bar/Club",
+        "tags": [
+          "Martini Bar",
+          "Trendy",
+          "Social"
+        ]
+      },
+      {
+        "name": "Birdcage Cabaret",
+        "type": "Bar/Club",
+        "tags": [
+          "Cabaret",
+          "Drag",
+          "Shows"
+        ]
+      },
+      {
+        "name": "The Back Bar",
+        "type": "Bar/Club",
         "tags": [
           "Social",
-          "Guesthouse Bar"
+          "Cocktails",
+          "Outdoor"
         ]
       },
       {
         "name": "Garden of Eden",
+        "type": "Bar/Club",
         "tags": [
-          "Clothing Optional",
+          "Clothing-Optional",
           "Rooftop"
         ]
       },
       {
-        "name": "Island House Pool Bar",
+        "name": "The Roost",
+        "type": "Bar/Club",
         "tags": [
-          "Men-Only",
-          "Clothing Optional"
+          "Cocktails",
+          "Social",
+          "Intimate"
+        ]
+      },
+      {
+        "name": "Pink Monkey Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Guesthouse-Bar"
         ]
       }
     ],
@@ -24033,93 +24073,107 @@
     ],
     "saunas": [
       {
-        "name": "Island House (Facilities)",
+        "name": "Island House Resort",
+        "type": "Sauna",
         "tags": [
           "Sauna",
           "Steam Room",
-          "24/7 Pool"
+          "Gym",
+          "Cruising"
         ]
       },
       {
-        "name": "Equator Resort (Facilities)",
+        "name": "New Orleans House",
+        "type": "Sauna",
         "tags": [
-          "Steam Room",
-          "Men-Only",
-          "Social"
+          "Clothing-Optional",
+          "Social",
+          "Sauna"
         ]
       }
     ],
     "restaurants": [
       {
-        "name": "Banana Café",
-        "tags": [
-          "Cafe",
-          "French Bistro"
-        ]
+        "name": "Azur Restaurant",
+        "type": "Restaurant (Mediterranean)"
+      },
+      {
+        "name": "La Te Da",
+        "type": "Restaurant (Global/Fine Dining)"
       },
       {
         "name": "Blue Heaven",
-        "tags": [
-          "Restaurant",
-          "Caribbean"
-        ]
+        "type": "Restaurant (Caribbean/Bakery)"
       },
       {
-        "name": "Mangoes",
-        "tags": [
-          "Restaurant",
-          "Tropical"
-        ]
+        "name": "Moondog Cafe",
+        "type": "Cafe / Bakery"
       },
       {
-        "name": "Azur Restaurant",
-        "tags": [
-          "Restaurant",
-          "Mediterranean"
-        ]
+        "name": "Banana Cafe",
+        "type": "Cafe / Restaurant (French)"
       },
       {
         "name": "Nine One Five",
-        "tags": [
-          "Restaurant",
-          "Victorian Bistro"
-        ]
+        "type": "Restaurant (Upscale/Global)"
+      },
+      {
+        "name": "Mangoes",
+        "type": "Restaurant (Caribbean/Drag Brunch)"
+      },
+      {
+        "name": "Cuban Coffee Queen",
+        "type": "Cafe (Cuban Coffee)"
+      },
+      {
+        "name": "Santiago's Bodega",
+        "type": "Restaurant (Tapas)"
       },
       {
         "name": "Better Than Sex",
-        "tags": [
-          "Sweet Shop",
-          "Desserts"
-        ]
+        "type": "Sweet Shop (Dessert Restaurant)"
       },
       {
-        "name": "Glazed Donuts",
-        "tags": [
-          "Bakery"
-        ]
+        "name": "Flaming Buoy Filet Co.",
+        "type": "Restaurant (Seafood/Fusion)"
       }
     ],
     "stores": [
       {
-        "name": "Skivvies",
-        "tags": [
-          "Store",
-          "Men's Fashion"
-        ]
+        "name": "Leather Master",
+        "type": "Store (Fetish/Costume/Leather)"
       },
       {
-        "name": "Graffitti",
-        "tags": [
-          "Store",
-          "Boutique"
-        ]
+        "name": "Grafitti",
+        "type": "Store (Menswear/Swimwear)"
       },
       {
         "name": "Key West Business Guild",
-        "tags": [
-          "Visitor Center",
-          "Info Store"
-        ]
+        "type": "Store (Visitor Center / Gift Store)"
+      },
+      {
+        "name": "Kino Sandals",
+        "type": "Store (Iconic Footwear)"
+      },
+      {
+        "name": "Besame Mucho",
+        "type": "Store (Boutique/Home Goods)"
+      },
+      {
+        "name": "Washed Up Key West",
+        "type": "Store (Art/Local Goods)"
+      },
+      {
+        "name": "Fairvilla Megastore",
+        "type": "Store (Adult/Lingerie)"
+      },
+      {
+        "name": "Island Boy",
+        "type": "Store (Home Decor/Lifestyle)"
+      },
+      {
+        "name": "Gild It",
+        "type": "Store (Jewelry/Art)"
       }
     ],
     "destinationLinks": {
@@ -28373,55 +28427,89 @@
     "name": "Houston, Texas",
     "nightlife": [
       {
+        "name": "South Beach",
+        "type": "Bar/Club",
+        "tags": [
+          "Dance",
+          "Circuit",
+          "Laser Shows"
+        ]
+      },
+      {
         "name": "JR's Bar & Grill",
+        "type": "Bar/Club",
         "tags": [
-          "Video Bar",
-          "Patio",
-          "Iconic"
-        ]
-      },
-      {
-        "name": "Blur Bar",
-        "tags": [
-          "Dance",
-          "Multi-level",
-          "Youthful"
-        ]
-      },
-      {
-        "name": "Pearl Bar",
-        "tags": [
-          "Lesbian Bar",
-          "Dance",
-          "Drag"
+          "Iconic",
+          "Social",
+          "Patio"
         ]
       },
       {
         "name": "Ripcord",
+        "type": "Bar/Club",
         "tags": [
           "Leather",
-          "Levi's",
-          "Patio"
+          "Fetish",
+          "Men-only"
         ]
       },
       {
         "name": "Eagle Houston",
+        "type": "Bar/Club",
         "tags": [
+          "Bears",
           "Leather",
-          "Bear",
-          "Dance Floor"
+          "Social"
+        ]
+      },
+      {
+        "name": "Pearl Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Lesbian-centric",
+          "Dance",
+          "Social"
+        ]
+      },
+      {
+        "name": "Neon Boots Saloon",
+        "type": "Bar/Club",
+        "tags": [
+          "Country",
+          "Two-step",
+          "Dance Hall"
+        ]
+      },
+      {
+        "name": "Blur Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Dance",
+          "Multi-level",
+          "Young"
         ]
       },
       {
         "name": "Crocker Bar",
+        "type": "Bar/Club",
         "tags": [
           "Neighborhood",
-          "High Energy",
-          "Patio"
+          "Social",
+          "Local"
+        ]
+      },
+      {
+        "name": "George Country Sports Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Sports",
+          "Social",
+          "Casual"
         ]
       },
       {
         "name": "Michael's Outpost",
+        "type": "Bar/Club",
         "tags": [
           "Piano Bar",
           "Drag",
@@ -28429,27 +28517,80 @@
         ]
       },
       {
-        "name": "George Country Sports Bar",
+        "name": "Tony's Corner Pocket",
+        "type": "Bar/Club",
         "tags": [
-          "Sports Bar",
-          "Casual",
-          "Friendly"
+          "Male Dancers",
+          "Neighborhood"
+        ]
+      },
+      {
+        "name": "Montrose Country Club",
+        "type": "Bar/Club",
+        "tags": [
+          "Upscale",
+          "Events",
+          "Social"
+        ]
+      },
+      {
+        "name": "The Marigold Club",
+        "type": "Bar/Club",
+        "tags": [
+          "Upscale",
+          "Dining",
+          "Social"
         ]
       },
       {
         "name": "Barbarella",
+        "type": "Bar/Club",
         "tags": [
-          "Inclusive",
           "Alternative",
-          "Dance"
+          "Dance",
+          "Inclusive"
         ]
       },
       {
         "name": "Rich's Houston",
+        "type": "Bar/Club",
         "tags": [
-          "Dance Club",
-          "High Production",
-          "Drag"
+          "Dance",
+          "Circuit",
+          "Events"
+        ]
+      },
+      {
+        "name": "Barcode",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Neighborhood"
+        ]
+      },
+      {
+        "name": "Buddy's",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Modern",
+          "Inclusive"
+        ]
+      },
+      {
+        "name": "La Granja Disco y Cantina",
+        "type": "Bar/Club",
+        "tags": [
+          "Latino",
+          "Dance"
+        ]
+      },
+      {
+        "name": "The Room Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Video Bar"
         ]
       }
     ],
@@ -28603,87 +28744,121 @@
     "saunas": [
       {
         "name": "Club Houston",
+        "type": "Sauna",
         "tags": [
-          "Sauna",
+          "Pool",
           "Gym",
-          "Steam",
-          "Pool"
+          "Sauna",
+          "24/7"
         ]
       }
     ],
     "restaurants": [
       {
         "name": "Barnaby's Cafe",
-        "tags": [
-          "Cafe",
-          "Classic American"
-        ]
+        "type": "Restaurant (Multiple Locations)"
       },
       {
-        "name": "Harold's Restaurant & Tap Room",
-        "tags": [
-          "Restaurant",
-          "Southern",
-          "Heights"
-        ]
-      },
-      {
-        "name": "Koffeteria",
-        "tags": [
-          "Cafe",
-          "Upscale Pastries"
-        ]
+        "name": "Harold's in the Heights",
+        "type": "Restaurant / Taproom"
       },
       {
         "name": "La Sicilia Italian Bakery",
-        "tags": [
-          "Bakery",
-          "Authentic Italian"
-        ]
+        "type": "Bakery / Cafe"
+      },
+      {
+        "name": "Koffeteria",
+        "type": "Cafe / Specialty Bakery"
+      },
+      {
+        "name": "Urban Eats",
+        "type": "Restaurant / Bistro"
       },
       {
         "name": "Michael's Cookie Jar",
-        "tags": [
-          "Sweets Shop"
-        ]
-      },
-      {
-        "name": "Blacksmith",
-        "tags": [
-          "Cafe",
-          "Montrose Hub"
-        ]
+        "type": "Sweet Shop / Bakery"
       },
       {
         "name": "Dumpling Dudez",
-        "tags": [
-          "Restaurant",
-          "Cooking School"
-        ]
+        "type": "Restaurant / Classes"
       },
       {
-        "name": "Campesino Coffee House",
-        "tags": [
-          "Cafe",
-          "Latin Specialty"
-        ]
+        "name": "Sparrow Cookshop",
+        "type": "Restaurant / Catering"
+      },
+      {
+        "name": "Gotti's",
+        "type": "Restaurant (Seafood/Social)"
+      },
+      {
+        "name": "Lymbar",
+        "type": "Restaurant (Latin Fusion)"
+      },
+      {
+        "name": "The Bumpy Pickle",
+        "type": "Restaurant / Social Sports"
+      },
+      {
+        "name": "HortiProcess",
+        "type": "Cafe / Tropical Fruit Specialty"
+      },
+      {
+        "name": "Axelrad Beer Garden",
+        "type": "Cafe / Beer Garden (Inclusive)"
+      },
+      {
+        "name": "Eureka Heights Brew Co.",
+        "type": "Brewery (LGBTQ-owned/friendly)"
       }
     ],
     "stores": [
       {
-        "name": "Kuhl-Linscomb",
-        "tags": [
-          "Store",
-          "Luxury Lifestyle",
-          "Pet"
-        ]
+        "name": "Bespoke By GJCD",
+        "type": "Store (Home Decor/Interiors)"
       },
       {
-        "name": "Hamilton Bespoke Shirts",
-        "tags": [
-          "Store",
-          "High-end Custom Fashion"
-        ]
+        "name": "The Feisty Collective",
+        "type": "Store (Art/Gifts/LGBTQ Gear)"
+      },
+      {
+        "name": "Space Montrose",
+        "type": "Store (Local Artisan Gifts)"
+      },
+      {
+        "name": "Sam & Davy",
+        "type": "Store (Houston-themed Apparel)"
+      },
+      {
+        "name": "Offensive But Cute",
+        "type": "Store (Edgy Apparel/Gifts)"
+      },
+      {
+        "name": "Bloom Handcrafted Beauty",
+        "type": "Store (Skincare/Candles)"
+      },
+      {
+        "name": "BAKEDBONES",
+        "type": "Store (Dog Treats/Wellness)"
+      },
+      {
+        "name": "MANBUNS",
+        "type": "Store (Underwear/Socks)"
+      },
+      {
+        "name": "Ironworks Houston",
+        "type": "Store (Vendor Hub/Boutiques)"
+      },
+      {
+        "name": "YogaStrong",
+        "type": "Store (Yoga/Wellness Studio)"
+      },
+      {
+        "name": "Kuhl-Linscomb",
+        "type": "Store (Luxury Design/Lifestyle)"
+      },
+      {
+        "name": "Hamilton Shirts",
+        "type": "Store (Bespoke Apparel)"
       }
     ],
     "monthlyWeather": {
@@ -28977,55 +29152,89 @@
     "name": "Houston, Texas",
     "nightlife": [
       {
+        "name": "South Beach",
+        "type": "Bar/Club",
+        "tags": [
+          "Dance",
+          "Circuit",
+          "Laser Shows"
+        ]
+      },
+      {
         "name": "JR's Bar & Grill",
+        "type": "Bar/Club",
         "tags": [
-          "Video Bar",
-          "Patio",
-          "Iconic"
-        ]
-      },
-      {
-        "name": "Blur Bar",
-        "tags": [
-          "Dance",
-          "Multi-level",
-          "Youthful"
-        ]
-      },
-      {
-        "name": "Pearl Bar",
-        "tags": [
-          "Lesbian Bar",
-          "Dance",
-          "Drag"
+          "Iconic",
+          "Social",
+          "Patio"
         ]
       },
       {
         "name": "Ripcord",
+        "type": "Bar/Club",
         "tags": [
           "Leather",
-          "Levi's",
-          "Patio"
+          "Fetish",
+          "Men-only"
         ]
       },
       {
         "name": "Eagle Houston",
+        "type": "Bar/Club",
         "tags": [
+          "Bears",
           "Leather",
-          "Bear",
-          "Dance Floor"
+          "Social"
+        ]
+      },
+      {
+        "name": "Pearl Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Lesbian-centric",
+          "Dance",
+          "Social"
+        ]
+      },
+      {
+        "name": "Neon Boots Saloon",
+        "type": "Bar/Club",
+        "tags": [
+          "Country",
+          "Two-step",
+          "Dance Hall"
+        ]
+      },
+      {
+        "name": "Blur Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Dance",
+          "Multi-level",
+          "Young"
         ]
       },
       {
         "name": "Crocker Bar",
+        "type": "Bar/Club",
         "tags": [
           "Neighborhood",
-          "High Energy",
-          "Patio"
+          "Social",
+          "Local"
+        ]
+      },
+      {
+        "name": "George Country Sports Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Sports",
+          "Social",
+          "Casual"
         ]
       },
       {
         "name": "Michael's Outpost",
+        "type": "Bar/Club",
         "tags": [
           "Piano Bar",
           "Drag",
@@ -29033,27 +29242,80 @@
         ]
       },
       {
-        "name": "George Country Sports Bar",
+        "name": "Tony's Corner Pocket",
+        "type": "Bar/Club",
         "tags": [
-          "Sports Bar",
-          "Casual",
-          "Friendly"
+          "Male Dancers",
+          "Neighborhood"
+        ]
+      },
+      {
+        "name": "Montrose Country Club",
+        "type": "Bar/Club",
+        "tags": [
+          "Upscale",
+          "Events",
+          "Social"
+        ]
+      },
+      {
+        "name": "The Marigold Club",
+        "type": "Bar/Club",
+        "tags": [
+          "Upscale",
+          "Dining",
+          "Social"
         ]
       },
       {
         "name": "Barbarella",
+        "type": "Bar/Club",
         "tags": [
-          "Inclusive",
           "Alternative",
-          "Dance"
+          "Dance",
+          "Inclusive"
         ]
       },
       {
         "name": "Rich's Houston",
+        "type": "Bar/Club",
         "tags": [
-          "Dance Club",
-          "High Production",
-          "Drag"
+          "Dance",
+          "Circuit",
+          "Events"
+        ]
+      },
+      {
+        "name": "Barcode",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Neighborhood"
+        ]
+      },
+      {
+        "name": "Buddy's",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Modern",
+          "Inclusive"
+        ]
+      },
+      {
+        "name": "La Granja Disco y Cantina",
+        "type": "Bar/Club",
+        "tags": [
+          "Latino",
+          "Dance"
+        ]
+      },
+      {
+        "name": "The Room Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Video Bar"
         ]
       }
     ],
@@ -29207,87 +29469,121 @@
     "saunas": [
       {
         "name": "Club Houston",
+        "type": "Sauna",
         "tags": [
-          "Sauna",
+          "Pool",
           "Gym",
-          "Steam",
-          "Pool"
+          "Sauna",
+          "24/7"
         ]
       }
     ],
     "restaurants": [
       {
         "name": "Barnaby's Cafe",
-        "tags": [
-          "Cafe",
-          "Classic American"
-        ]
+        "type": "Restaurant (Multiple Locations)"
       },
       {
-        "name": "Harold's Restaurant & Tap Room",
-        "tags": [
-          "Restaurant",
-          "Southern",
-          "Heights"
-        ]
-      },
-      {
-        "name": "Koffeteria",
-        "tags": [
-          "Cafe",
-          "Upscale Pastries"
-        ]
+        "name": "Harold's in the Heights",
+        "type": "Restaurant / Taproom"
       },
       {
         "name": "La Sicilia Italian Bakery",
-        "tags": [
-          "Bakery",
-          "Authentic Italian"
-        ]
+        "type": "Bakery / Cafe"
+      },
+      {
+        "name": "Koffeteria",
+        "type": "Cafe / Specialty Bakery"
+      },
+      {
+        "name": "Urban Eats",
+        "type": "Restaurant / Bistro"
       },
       {
         "name": "Michael's Cookie Jar",
-        "tags": [
-          "Sweets Shop"
-        ]
-      },
-      {
-        "name": "Blacksmith",
-        "tags": [
-          "Cafe",
-          "Montrose Hub"
-        ]
+        "type": "Sweet Shop / Bakery"
       },
       {
         "name": "Dumpling Dudez",
-        "tags": [
-          "Restaurant",
-          "Cooking School"
-        ]
+        "type": "Restaurant / Classes"
       },
       {
-        "name": "Campesino Coffee House",
-        "tags": [
-          "Cafe",
-          "Latin Specialty"
-        ]
+        "name": "Sparrow Cookshop",
+        "type": "Restaurant / Catering"
+      },
+      {
+        "name": "Gotti's",
+        "type": "Restaurant (Seafood/Social)"
+      },
+      {
+        "name": "Lymbar",
+        "type": "Restaurant (Latin Fusion)"
+      },
+      {
+        "name": "The Bumpy Pickle",
+        "type": "Restaurant / Social Sports"
+      },
+      {
+        "name": "HortiProcess",
+        "type": "Cafe / Tropical Fruit Specialty"
+      },
+      {
+        "name": "Axelrad Beer Garden",
+        "type": "Cafe / Beer Garden (Inclusive)"
+      },
+      {
+        "name": "Eureka Heights Brew Co.",
+        "type": "Brewery (LGBTQ-owned/friendly)"
       }
     ],
     "stores": [
       {
-        "name": "Kuhl-Linscomb",
-        "tags": [
-          "Store",
-          "Luxury Lifestyle",
-          "Pet"
-        ]
+        "name": "Bespoke By GJCD",
+        "type": "Store (Home Decor/Interiors)"
       },
       {
-        "name": "Hamilton Bespoke Shirts",
-        "tags": [
-          "Store",
-          "High-end Custom Fashion"
-        ]
+        "name": "The Feisty Collective",
+        "type": "Store (Art/Gifts/LGBTQ Gear)"
+      },
+      {
+        "name": "Space Montrose",
+        "type": "Store (Local Artisan Gifts)"
+      },
+      {
+        "name": "Sam & Davy",
+        "type": "Store (Houston-themed Apparel)"
+      },
+      {
+        "name": "Offensive But Cute",
+        "type": "Store (Edgy Apparel/Gifts)"
+      },
+      {
+        "name": "Bloom Handcrafted Beauty",
+        "type": "Store (Skincare/Candles)"
+      },
+      {
+        "name": "BAKEDBONES",
+        "type": "Store (Dog Treats/Wellness)"
+      },
+      {
+        "name": "MANBUNS",
+        "type": "Store (Underwear/Socks)"
+      },
+      {
+        "name": "Ironworks Houston",
+        "type": "Store (Vendor Hub/Boutiques)"
+      },
+      {
+        "name": "YogaStrong",
+        "type": "Store (Yoga/Wellness Studio)"
+      },
+      {
+        "name": "Kuhl-Linscomb",
+        "type": "Store (Luxury Design/Lifestyle)"
+      },
+      {
+        "name": "Hamilton Shirts",
+        "type": "Store (Bespoke Apparel)"
       }
     ],
     "monthlyWeather": {
@@ -30273,55 +30569,89 @@
     "name": "Houston, Texas",
     "nightlife": [
       {
+        "name": "South Beach",
+        "type": "Bar/Club",
+        "tags": [
+          "Dance",
+          "Circuit",
+          "Laser Shows"
+        ]
+      },
+      {
         "name": "JR's Bar & Grill",
+        "type": "Bar/Club",
         "tags": [
-          "Video Bar",
-          "Patio",
-          "Iconic"
-        ]
-      },
-      {
-        "name": "Blur Bar",
-        "tags": [
-          "Dance",
-          "Multi-level",
-          "Youthful"
-        ]
-      },
-      {
-        "name": "Pearl Bar",
-        "tags": [
-          "Lesbian Bar",
-          "Dance",
-          "Drag"
+          "Iconic",
+          "Social",
+          "Patio"
         ]
       },
       {
         "name": "Ripcord",
+        "type": "Bar/Club",
         "tags": [
           "Leather",
-          "Levi's",
-          "Patio"
+          "Fetish",
+          "Men-only"
         ]
       },
       {
         "name": "Eagle Houston",
+        "type": "Bar/Club",
         "tags": [
+          "Bears",
           "Leather",
-          "Bear",
-          "Dance Floor"
+          "Social"
+        ]
+      },
+      {
+        "name": "Pearl Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Lesbian-centric",
+          "Dance",
+          "Social"
+        ]
+      },
+      {
+        "name": "Neon Boots Saloon",
+        "type": "Bar/Club",
+        "tags": [
+          "Country",
+          "Two-step",
+          "Dance Hall"
+        ]
+      },
+      {
+        "name": "Blur Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Dance",
+          "Multi-level",
+          "Young"
         ]
       },
       {
         "name": "Crocker Bar",
+        "type": "Bar/Club",
         "tags": [
           "Neighborhood",
-          "High Energy",
-          "Patio"
+          "Social",
+          "Local"
+        ]
+      },
+      {
+        "name": "George Country Sports Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Sports",
+          "Social",
+          "Casual"
         ]
       },
       {
         "name": "Michael's Outpost",
+        "type": "Bar/Club",
         "tags": [
           "Piano Bar",
           "Drag",
@@ -30329,27 +30659,80 @@
         ]
       },
       {
-        "name": "George Country Sports Bar",
+        "name": "Tony's Corner Pocket",
+        "type": "Bar/Club",
         "tags": [
-          "Sports Bar",
-          "Casual",
-          "Friendly"
+          "Male Dancers",
+          "Neighborhood"
+        ]
+      },
+      {
+        "name": "Montrose Country Club",
+        "type": "Bar/Club",
+        "tags": [
+          "Upscale",
+          "Events",
+          "Social"
+        ]
+      },
+      {
+        "name": "The Marigold Club",
+        "type": "Bar/Club",
+        "tags": [
+          "Upscale",
+          "Dining",
+          "Social"
         ]
       },
       {
         "name": "Barbarella",
+        "type": "Bar/Club",
         "tags": [
-          "Inclusive",
           "Alternative",
-          "Dance"
+          "Dance",
+          "Inclusive"
         ]
       },
       {
         "name": "Rich's Houston",
+        "type": "Bar/Club",
         "tags": [
-          "Dance Club",
-          "High Production",
-          "Drag"
+          "Dance",
+          "Circuit",
+          "Events"
+        ]
+      },
+      {
+        "name": "Barcode",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Neighborhood"
+        ]
+      },
+      {
+        "name": "Buddy's",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Modern",
+          "Inclusive"
+        ]
+      },
+      {
+        "name": "La Granja Disco y Cantina",
+        "type": "Bar/Club",
+        "tags": [
+          "Latino",
+          "Dance"
+        ]
+      },
+      {
+        "name": "The Room Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Video Bar"
         ]
       }
     ],
@@ -30503,87 +30886,121 @@
     "saunas": [
       {
         "name": "Club Houston",
+        "type": "Sauna",
         "tags": [
-          "Sauna",
+          "Pool",
           "Gym",
-          "Steam",
-          "Pool"
+          "Sauna",
+          "24/7"
         ]
       }
     ],
     "restaurants": [
       {
         "name": "Barnaby's Cafe",
-        "tags": [
-          "Cafe",
-          "Classic American"
-        ]
+        "type": "Restaurant (Multiple Locations)"
       },
       {
-        "name": "Harold's Restaurant & Tap Room",
-        "tags": [
-          "Restaurant",
-          "Southern",
-          "Heights"
-        ]
-      },
-      {
-        "name": "Koffeteria",
-        "tags": [
-          "Cafe",
-          "Upscale Pastries"
-        ]
+        "name": "Harold's in the Heights",
+        "type": "Restaurant / Taproom"
       },
       {
         "name": "La Sicilia Italian Bakery",
-        "tags": [
-          "Bakery",
-          "Authentic Italian"
-        ]
+        "type": "Bakery / Cafe"
+      },
+      {
+        "name": "Koffeteria",
+        "type": "Cafe / Specialty Bakery"
+      },
+      {
+        "name": "Urban Eats",
+        "type": "Restaurant / Bistro"
       },
       {
         "name": "Michael's Cookie Jar",
-        "tags": [
-          "Sweets Shop"
-        ]
-      },
-      {
-        "name": "Blacksmith",
-        "tags": [
-          "Cafe",
-          "Montrose Hub"
-        ]
+        "type": "Sweet Shop / Bakery"
       },
       {
         "name": "Dumpling Dudez",
-        "tags": [
-          "Restaurant",
-          "Cooking School"
-        ]
+        "type": "Restaurant / Classes"
       },
       {
-        "name": "Campesino Coffee House",
-        "tags": [
-          "Cafe",
-          "Latin Specialty"
-        ]
+        "name": "Sparrow Cookshop",
+        "type": "Restaurant / Catering"
+      },
+      {
+        "name": "Gotti's",
+        "type": "Restaurant (Seafood/Social)"
+      },
+      {
+        "name": "Lymbar",
+        "type": "Restaurant (Latin Fusion)"
+      },
+      {
+        "name": "The Bumpy Pickle",
+        "type": "Restaurant / Social Sports"
+      },
+      {
+        "name": "HortiProcess",
+        "type": "Cafe / Tropical Fruit Specialty"
+      },
+      {
+        "name": "Axelrad Beer Garden",
+        "type": "Cafe / Beer Garden (Inclusive)"
+      },
+      {
+        "name": "Eureka Heights Brew Co.",
+        "type": "Brewery (LGBTQ-owned/friendly)"
       }
     ],
     "stores": [
       {
-        "name": "Kuhl-Linscomb",
-        "tags": [
-          "Store",
-          "Luxury Lifestyle",
-          "Pet"
-        ]
+        "name": "Bespoke By GJCD",
+        "type": "Store (Home Decor/Interiors)"
       },
       {
-        "name": "Hamilton Bespoke Shirts",
-        "tags": [
-          "Store",
-          "High-end Custom Fashion"
-        ]
+        "name": "The Feisty Collective",
+        "type": "Store (Art/Gifts/LGBTQ Gear)"
+      },
+      {
+        "name": "Space Montrose",
+        "type": "Store (Local Artisan Gifts)"
+      },
+      {
+        "name": "Sam & Davy",
+        "type": "Store (Houston-themed Apparel)"
+      },
+      {
+        "name": "Offensive But Cute",
+        "type": "Store (Edgy Apparel/Gifts)"
+      },
+      {
+        "name": "Bloom Handcrafted Beauty",
+        "type": "Store (Skincare/Candles)"
+      },
+      {
+        "name": "BAKEDBONES",
+        "type": "Store (Dog Treats/Wellness)"
+      },
+      {
+        "name": "MANBUNS",
+        "type": "Store (Underwear/Socks)"
+      },
+      {
+        "name": "Ironworks Houston",
+        "type": "Store (Vendor Hub/Boutiques)"
+      },
+      {
+        "name": "YogaStrong",
+        "type": "Store (Yoga/Wellness Studio)"
+      },
+      {
+        "name": "Kuhl-Linscomb",
+        "type": "Store (Luxury Design/Lifestyle)"
+      },
+      {
+        "name": "Hamilton Shirts",
+        "type": "Store (Bespoke Apparel)"
       }
     ],
     "monthlyWeather": {
@@ -31174,76 +31591,116 @@
     "nightlife": [
       {
         "name": "801 Bourbon Bar",
+        "type": "Bar/Club",
         "tags": [
           "Drag",
-          "Performance",
-          "Iconic"
+          "Karaoke",
+          "Local"
         ]
       },
       {
-        "name": "Bourbon St. Pub",
+        "name": "Bourbon Street Pub",
+        "type": "Bar/Club",
         "tags": [
-          "Go-Go Dancers",
-          "Pool Parties"
+          "Pool Parties",
+          "Go-Go Boys"
         ]
       },
       {
-        "name": "Aqua Bar & Nightclub",
+        "name": "Aqua Key West",
+        "type": "Bar/Club",
         "tags": [
-          "Drag",
+          "Drag Shows",
           "Dance",
-          "High Energy"
+          "Pop"
         ]
       },
       {
         "name": "La Te Da",
+        "type": "Bar/Club",
         "tags": [
           "Cabaret",
-          "Sunday Tea Dance"
+          "Piano Bar",
+          "Tea Dance"
         ]
       },
       {
         "name": "Bobby's Monkey Bar",
+        "type": "Bar/Club",
         "tags": [
-          "Neighborhood",
+          "Dive Bar",
           "Karaoke",
-          "Dive"
+          "Local"
         ]
       },
       {
-        "name": "Saloon 1",
+        "name": "Saloon 1 Key West",
+        "type": "Bar/Club",
         "tags": [
           "Leather",
           "Bear",
-          "Cruising"
+          "Men-only"
         ]
       },
       {
-        "name": "Sidebar",
+        "name": "Sidebar (at Aquaplex)",
+        "type": "Bar/Club",
         "tags": [
           "Burlesque",
-          "Cocktail Lounge"
+          "Social",
+          "Cocktails"
         ]
       },
       {
-        "name": "The Pink Monkey Bar",
+        "name": "22&Co",
+        "type": "Bar/Club",
+        "tags": [
+          "Martini Bar",
+          "Trendy",
+          "Social"
+        ]
+      },
+      {
+        "name": "Birdcage Cabaret",
+        "type": "Bar/Club",
+        "tags": [
+          "Cabaret",
+          "Drag",
+          "Shows"
+        ]
+      },
+      {
+        "name": "The Back Bar",
+        "type": "Bar/Club",
         "tags": [
           "Social",
-          "Guesthouse Bar"
+          "Cocktails",
+          "Outdoor"
         ]
       },
       {
         "name": "Garden of Eden",
+        "type": "Bar/Club",
         "tags": [
-          "Clothing Optional",
+          "Clothing-Optional",
           "Rooftop"
         ]
       },
       {
-        "name": "Island House Pool Bar",
+        "name": "The Roost",
+        "type": "Bar/Club",
         "tags": [
-          "Men-Only",
-          "Clothing Optional"
+          "Cocktails",
+          "Social",
+          "Intimate"
+        ]
+      },
+      {
+        "name": "Pink Monkey Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Guesthouse-Bar"
         ]
       }
     ],
@@ -31396,93 +31853,107 @@
     ],
     "saunas": [
       {
-        "name": "Island House (Facilities)",
+        "name": "Island House Resort",
+        "type": "Sauna",
         "tags": [
           "Sauna",
           "Steam Room",
-          "24/7 Pool"
+          "Gym",
+          "Cruising"
         ]
       },
       {
-        "name": "Equator Resort (Facilities)",
+        "name": "New Orleans House",
+        "type": "Sauna",
         "tags": [
-          "Steam Room",
-          "Men-Only",
-          "Social"
+          "Clothing-Optional",
+          "Social",
+          "Sauna"
         ]
       }
     ],
     "restaurants": [
       {
-        "name": "Banana Café",
-        "tags": [
-          "Cafe",
-          "French Bistro"
-        ]
+        "name": "Azur Restaurant",
+        "type": "Restaurant (Mediterranean)"
+      },
+      {
+        "name": "La Te Da",
+        "type": "Restaurant (Global/Fine Dining)"
       },
       {
         "name": "Blue Heaven",
-        "tags": [
-          "Restaurant",
-          "Caribbean"
-        ]
+        "type": "Restaurant (Caribbean/Bakery)"
       },
       {
-        "name": "Mangoes",
-        "tags": [
-          "Restaurant",
-          "Tropical"
-        ]
+        "name": "Moondog Cafe",
+        "type": "Cafe / Bakery"
       },
       {
-        "name": "Azur Restaurant",
-        "tags": [
-          "Restaurant",
-          "Mediterranean"
-        ]
+        "name": "Banana Cafe",
+        "type": "Cafe / Restaurant (French)"
       },
       {
         "name": "Nine One Five",
-        "tags": [
-          "Restaurant",
-          "Victorian Bistro"
-        ]
+        "type": "Restaurant (Upscale/Global)"
+      },
+      {
+        "name": "Mangoes",
+        "type": "Restaurant (Caribbean/Drag Brunch)"
+      },
+      {
+        "name": "Cuban Coffee Queen",
+        "type": "Cafe (Cuban Coffee)"
+      },
+      {
+        "name": "Santiago's Bodega",
+        "type": "Restaurant (Tapas)"
       },
       {
         "name": "Better Than Sex",
-        "tags": [
-          "Sweet Shop",
-          "Desserts"
-        ]
+        "type": "Sweet Shop (Dessert Restaurant)"
       },
       {
-        "name": "Glazed Donuts",
-        "tags": [
-          "Bakery"
-        ]
+        "name": "Flaming Buoy Filet Co.",
+        "type": "Restaurant (Seafood/Fusion)"
       }
     ],
     "stores": [
       {
-        "name": "Skivvies",
-        "tags": [
-          "Store",
-          "Men's Fashion"
-        ]
+        "name": "Leather Master",
+        "type": "Store (Fetish/Costume/Leather)"
       },
       {
-        "name": "Graffitti",
-        "tags": [
-          "Store",
-          "Boutique"
-        ]
+        "name": "Grafitti",
+        "type": "Store (Menswear/Swimwear)"
       },
       {
         "name": "Key West Business Guild",
-        "tags": [
-          "Visitor Center",
-          "Info Store"
-        ]
+        "type": "Store (Visitor Center / Gift Store)"
+      },
+      {
+        "name": "Kino Sandals",
+        "type": "Store (Iconic Footwear)"
+      },
+      {
+        "name": "Besame Mucho",
+        "type": "Store (Boutique/Home Goods)"
+      },
+      {
+        "name": "Washed Up Key West",
+        "type": "Store (Art/Local Goods)"
+      },
+      {
+        "name": "Fairvilla Megastore",
+        "type": "Store (Adult/Lingerie)"
+      },
+      {
+        "name": "Island Boy",
+        "type": "Store (Home Decor/Lifestyle)"
+      },
+      {
+        "name": "Gild It",
+        "type": "Store (Jewelry/Art)"
       }
     ],
     "destinationLinks": {
@@ -37466,82 +37937,97 @@
     "name": "Minneapolis, MN",
     "nightlife": [
       {
-        "name": "19 Bar",
-        "tags": [
-          "Neighborhood",
-          "Dive",
-          "Oldest in City"
-        ]
-      },
-      {
         "name": "The Saloon",
+        "type": "Bar/Club",
         "tags": [
           "Dance",
-          "Shower Contest",
-          "Popular"
+          "Shower Shows",
+          "High Energy"
         ]
       },
       {
-        "name": "The Gay 90's",
+        "name": "Gay 90's",
+        "type": "Bar/Club",
         "tags": [
           "Multi-room",
-          "Dance",
-          "Drag"
+          "Drag",
+          "Dance"
         ]
       },
       {
         "name": "LUSH Lounge & Theater",
+        "type": "Bar/Club",
         "tags": [
-          "Drag Brunch",
-          "Theater",
-          "Lounge"
+          "Drag Cabaret",
+          "Events",
+          "Social"
+        ]
+      },
+      {
+        "name": "The 19 Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Dive Bar",
+          "Historic",
+          "Pool"
         ]
       },
       {
         "name": "Eagle MPLS",
+        "type": "Bar/Club",
         "tags": [
           "Leather",
-          "Bear",
-          "Neighborhood"
+          "Fetish",
+          "Men-only"
+        ]
+      },
+      {
+        "name": "Black Hart of St. Paul",
+        "type": "Bar/Club",
+        "tags": [
+          "Soccer Bar",
+          "Drag",
+          "Burlesque"
         ]
       },
       {
         "name": "Roxy's Cabaret",
+        "type": "Bar/Club",
         "tags": [
-          "Drag",
-          "Cabaret",
-          "High Production"
+          "Drag Cabaret",
+          "Dining"
         ]
       },
       {
         "name": "Jetset Underground",
+        "type": "Bar/Club",
         "tags": [
           "Dance",
-          "Sleek",
-          "Boutique"
-        ]
-      },
-      {
-        "name": "The Black Hart of Saint Paul",
-        "tags": [
-          "Soccer",
-          "Drag",
-          "Inclusive"
+          "Lounge",
+          "Sophisticated"
         ]
       },
       {
         "name": "A Bar of Their Own",
+        "type": "Bar/Club",
         "tags": [
-          "Sports Bar",
-          "Women's Sports",
-          "Family-friendly"
+          "Inclusive",
+          "Sports Bar"
         ]
       },
       {
-        "name": "On the Rox",
+        "name": "1920's Lounge (at Roxy's)",
+        "type": "Bar/Club",
         "tags": [
-          "Cocktails",
-          "Intimate",
+          "Social",
+          "Cocktails"
+        ]
+      },
+      {
+        "name": "The Brass Rail",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
           "Neighborhood"
         ]
       }
@@ -37696,90 +38182,124 @@
     "saunas": [
       {
         "name": "The Great Northern Sauna Village",
+        "type": "Sauna",
         "tags": [
-          "Public Wellness",
-          "LGBTQ+ Sessions"
+          "Pop-up",
+          "LGBTQ+ Steam Sessions"
         ]
       },
       {
-        "name": "Club Minneapolis (Private Membership)",
+        "name": "Coba Bathhouse",
+        "type": "Sauna",
         "tags": [
-          "Sauna",
-          "Gym",
-          "Steam"
+          "Wellness",
+          "Private",
+          "Men-only nights"
         ]
       }
     ],
     "restaurants": [
       {
+        "name": "Barbette",
+        "type": "Restaurant (French)"
+      },
+      {
+        "name": "Book Club",
+        "type": "Restaurant (Californian)"
+      },
+      {
+        "name": "French Meadow Bakery & Cafe",
+        "type": "Cafe / Bakery"
+      },
+      {
+        "name": "Backstory Coffee Roasters",
+        "type": "Cafe / Coffee Shop"
+      },
+      {
+        "name": "Third Culture Bakery",
+        "type": "Bakery (Mochi Specialist)"
+      },
+      {
+        "name": "Common Roots Cafe",
+        "type": "Cafe / Catering"
+      },
+      {
         "name": "Nicollet Diner",
-        "tags": [
-          "Restaurant",
-          "24-Hour"
-        ]
+        "type": "Restaurant (24/7 Diner)"
       },
       {
-        "name": "Muffin Top Cafe",
-        "tags": [
-          "Cafe"
-        ]
+        "name": "Lush Lounge & Theater",
+        "type": "Restaurant (Show/Dining)"
       },
       {
-        "name": "Cuppa Java",
-        "tags": [
-          "Cafe"
-        ]
+        "name": "Roxy's Cabaret",
+        "type": "Restaurant (Drag Brunch)"
       },
       {
-        "name": "Queermunity",
-        "tags": [
-          "Cafe",
-          "Social Club"
-        ]
+        "name": "Silver Fern",
+        "type": "Cafe / Wine Bar"
       },
       {
-        "name": "Good Cakes and Bakes",
-        "tags": [
-          "Bakery"
-        ]
+        "name": "At Sara's Table",
+        "type": "Restaurant (Farm-to-Table)"
       },
       {
-        "name": "Wise Acre Eatery",
-        "tags": [
-          "Restaurant",
-          "Farm-to-Table"
-        ]
+        "name": "Patisserie 46",
+        "type": "Bakery / Cafe"
       },
       {
-        "name": "The Dripping Root",
-        "tags": [
-          "Juice Bar"
-        ]
+        "name": "Sift Gluten Free",
+        "type": "Bakery (Specialty)"
+      },
+      {
+        "name": "Tiny Diner",
+        "type": "Restaurant (Eco-friendly American)"
       }
     ],
     "stores": [
       {
-        "name": "Black Garnet Books",
-        "tags": [
-          "Store",
-          "Books"
-        ]
+        "name": "Rainbow Road",
+        "type": "Store (Pride Gear / Gifts)"
       },
       {
-        "name": "Rainbow Road",
-        "tags": [
-          "Store",
-          "Apparel",
-          "Cards"
-        ]
+        "name": "Queermunity",
+        "type": "Store (Cafe / Co-working Space)"
+      },
+      {
+        "name": "Black Garnet Books",
+        "type": "Store (Independent Bookstore)"
       },
       {
         "name": "Tangletown Gardens",
-        "tags": [
-          "Store",
-          "Garden",
-          "Lifestyle"
-        ]
+        "type": "Store (Nursery / Home Decor)"
+      },
+      {
+        "name": "Magers & Quinn",
+        "type": "Store (Books / Inclusive)"
+      },
+      {
+        "name": "Solcana Fitness",
+        "type": "Store (Queer-owned Gym)"
+      },
+      {
+        "name": "The Rainbow Wardrobe",
+        "type": "Store (Boutique / Consignment)"
+      },
+      {
+        "name": "Quatrefoil Library",
+        "type": "Store (Lending / Cultural)"
+      },
+      {
+        "name": "Threshold Healing",
+        "type": "Store (Wellness / Retail)"
+      },
+      {
+        "name": "Moon Palace Books",
+        "type": "Store (Books / Records)"
+      },
+      {
+        "name": "Calavera Tattoo",
+        "type": "Store (Tattoo / Studio)"
       }
     ],
     "destinationLinks": {
@@ -38795,82 +39315,97 @@
     "name": "Minneapolis, MN",
     "nightlife": [
       {
-        "name": "19 Bar",
-        "tags": [
-          "Neighborhood",
-          "Dive",
-          "Oldest in City"
-        ]
-      },
-      {
         "name": "The Saloon",
+        "type": "Bar/Club",
         "tags": [
           "Dance",
-          "Shower Contest",
-          "Popular"
+          "Shower Shows",
+          "High Energy"
         ]
       },
       {
-        "name": "The Gay 90's",
+        "name": "Gay 90's",
+        "type": "Bar/Club",
         "tags": [
           "Multi-room",
-          "Dance",
-          "Drag"
+          "Drag",
+          "Dance"
         ]
       },
       {
         "name": "LUSH Lounge & Theater",
+        "type": "Bar/Club",
         "tags": [
-          "Drag Brunch",
-          "Theater",
-          "Lounge"
+          "Drag Cabaret",
+          "Events",
+          "Social"
+        ]
+      },
+      {
+        "name": "The 19 Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Dive Bar",
+          "Historic",
+          "Pool"
         ]
       },
       {
         "name": "Eagle MPLS",
+        "type": "Bar/Club",
         "tags": [
           "Leather",
-          "Bear",
-          "Neighborhood"
+          "Fetish",
+          "Men-only"
+        ]
+      },
+      {
+        "name": "Black Hart of St. Paul",
+        "type": "Bar/Club",
+        "tags": [
+          "Soccer Bar",
+          "Drag",
+          "Burlesque"
         ]
       },
       {
         "name": "Roxy's Cabaret",
+        "type": "Bar/Club",
         "tags": [
-          "Drag",
-          "Cabaret",
-          "High Production"
+          "Drag Cabaret",
+          "Dining"
         ]
       },
       {
         "name": "Jetset Underground",
+        "type": "Bar/Club",
         "tags": [
           "Dance",
-          "Sleek",
-          "Boutique"
-        ]
-      },
-      {
-        "name": "The Black Hart of Saint Paul",
-        "tags": [
-          "Soccer",
-          "Drag",
-          "Inclusive"
+          "Lounge",
+          "Sophisticated"
         ]
       },
       {
         "name": "A Bar of Their Own",
+        "type": "Bar/Club",
         "tags": [
-          "Sports Bar",
-          "Women's Sports",
-          "Family-friendly"
+          "Inclusive",
+          "Sports Bar"
         ]
       },
       {
-        "name": "On the Rox",
+        "name": "1920's Lounge (at Roxy's)",
+        "type": "Bar/Club",
         "tags": [
-          "Cocktails",
-          "Intimate",
+          "Social",
+          "Cocktails"
+        ]
+      },
+      {
+        "name": "The Brass Rail",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
           "Neighborhood"
         ]
       }
@@ -39025,90 +39560,124 @@
     "saunas": [
       {
         "name": "The Great Northern Sauna Village",
+        "type": "Sauna",
         "tags": [
-          "Public Wellness",
-          "LGBTQ+ Sessions"
+          "Pop-up",
+          "LGBTQ+ Steam Sessions"
         ]
       },
       {
-        "name": "Club Minneapolis (Private Membership)",
+        "name": "Coba Bathhouse",
+        "type": "Sauna",
         "tags": [
-          "Sauna",
-          "Gym",
-          "Steam"
+          "Wellness",
+          "Private",
+          "Men-only nights"
         ]
       }
     ],
     "restaurants": [
       {
+        "name": "Barbette",
+        "type": "Restaurant (French)"
+      },
+      {
+        "name": "Book Club",
+        "type": "Restaurant (Californian)"
+      },
+      {
+        "name": "French Meadow Bakery & Cafe",
+        "type": "Cafe / Bakery"
+      },
+      {
+        "name": "Backstory Coffee Roasters",
+        "type": "Cafe / Coffee Shop"
+      },
+      {
+        "name": "Third Culture Bakery",
+        "type": "Bakery (Mochi Specialist)"
+      },
+      {
+        "name": "Common Roots Cafe",
+        "type": "Cafe / Catering"
+      },
+      {
         "name": "Nicollet Diner",
-        "tags": [
-          "Restaurant",
-          "24-Hour"
-        ]
+        "type": "Restaurant (24/7 Diner)"
       },
       {
-        "name": "Muffin Top Cafe",
-        "tags": [
-          "Cafe"
-        ]
+        "name": "Lush Lounge & Theater",
+        "type": "Restaurant (Show/Dining)"
       },
       {
-        "name": "Cuppa Java",
-        "tags": [
-          "Cafe"
-        ]
+        "name": "Roxy's Cabaret",
+        "type": "Restaurant (Drag Brunch)"
       },
       {
-        "name": "Queermunity",
-        "tags": [
-          "Cafe",
-          "Social Club"
-        ]
+        "name": "Silver Fern",
+        "type": "Cafe / Wine Bar"
       },
       {
-        "name": "Good Cakes and Bakes",
-        "tags": [
-          "Bakery"
-        ]
+        "name": "At Sara's Table",
+        "type": "Restaurant (Farm-to-Table)"
       },
       {
-        "name": "Wise Acre Eatery",
-        "tags": [
-          "Restaurant",
-          "Farm-to-Table"
-        ]
+        "name": "Patisserie 46",
+        "type": "Bakery / Cafe"
       },
       {
-        "name": "The Dripping Root",
-        "tags": [
-          "Juice Bar"
-        ]
+        "name": "Sift Gluten Free",
+        "type": "Bakery (Specialty)"
+      },
+      {
+        "name": "Tiny Diner",
+        "type": "Restaurant (Eco-friendly American)"
       }
     ],
     "stores": [
       {
-        "name": "Black Garnet Books",
-        "tags": [
-          "Store",
-          "Books"
-        ]
+        "name": "Rainbow Road",
+        "type": "Store (Pride Gear / Gifts)"
       },
       {
-        "name": "Rainbow Road",
-        "tags": [
-          "Store",
-          "Apparel",
-          "Cards"
-        ]
+        "name": "Queermunity",
+        "type": "Store (Cafe / Co-working Space)"
+      },
+      {
+        "name": "Black Garnet Books",
+        "type": "Store (Independent Bookstore)"
       },
       {
         "name": "Tangletown Gardens",
-        "tags": [
-          "Store",
-          "Garden",
-          "Lifestyle"
-        ]
+        "type": "Store (Nursery / Home Decor)"
+      },
+      {
+        "name": "Magers & Quinn",
+        "type": "Store (Books / Inclusive)"
+      },
+      {
+        "name": "Solcana Fitness",
+        "type": "Store (Queer-owned Gym)"
+      },
+      {
+        "name": "The Rainbow Wardrobe",
+        "type": "Store (Boutique / Consignment)"
+      },
+      {
+        "name": "Quatrefoil Library",
+        "type": "Store (Lending / Cultural)"
+      },
+      {
+        "name": "Threshold Healing",
+        "type": "Store (Wellness / Retail)"
+      },
+      {
+        "name": "Moon Palace Books",
+        "type": "Store (Books / Records)"
+      },
+      {
+        "name": "Calavera Tattoo",
+        "type": "Store (Tattoo / Studio)"
       }
     ],
     "destinationLinks": {
@@ -39317,82 +39886,97 @@
     "name": "Minneapolis, MN",
     "nightlife": [
       {
-        "name": "19 Bar",
-        "tags": [
-          "Neighborhood",
-          "Dive",
-          "Oldest in City"
-        ]
-      },
-      {
         "name": "The Saloon",
+        "type": "Bar/Club",
         "tags": [
           "Dance",
-          "Shower Contest",
-          "Popular"
+          "Shower Shows",
+          "High Energy"
         ]
       },
       {
-        "name": "The Gay 90's",
+        "name": "Gay 90's",
+        "type": "Bar/Club",
         "tags": [
           "Multi-room",
-          "Dance",
-          "Drag"
+          "Drag",
+          "Dance"
         ]
       },
       {
         "name": "LUSH Lounge & Theater",
+        "type": "Bar/Club",
         "tags": [
-          "Drag Brunch",
-          "Theater",
-          "Lounge"
+          "Drag Cabaret",
+          "Events",
+          "Social"
+        ]
+      },
+      {
+        "name": "The 19 Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Dive Bar",
+          "Historic",
+          "Pool"
         ]
       },
       {
         "name": "Eagle MPLS",
+        "type": "Bar/Club",
         "tags": [
           "Leather",
-          "Bear",
-          "Neighborhood"
+          "Fetish",
+          "Men-only"
+        ]
+      },
+      {
+        "name": "Black Hart of St. Paul",
+        "type": "Bar/Club",
+        "tags": [
+          "Soccer Bar",
+          "Drag",
+          "Burlesque"
         ]
       },
       {
         "name": "Roxy's Cabaret",
+        "type": "Bar/Club",
         "tags": [
-          "Drag",
-          "Cabaret",
-          "High Production"
+          "Drag Cabaret",
+          "Dining"
         ]
       },
       {
         "name": "Jetset Underground",
+        "type": "Bar/Club",
         "tags": [
           "Dance",
-          "Sleek",
-          "Boutique"
-        ]
-      },
-      {
-        "name": "The Black Hart of Saint Paul",
-        "tags": [
-          "Soccer",
-          "Drag",
-          "Inclusive"
+          "Lounge",
+          "Sophisticated"
         ]
       },
       {
         "name": "A Bar of Their Own",
+        "type": "Bar/Club",
         "tags": [
-          "Sports Bar",
-          "Women's Sports",
-          "Family-friendly"
+          "Inclusive",
+          "Sports Bar"
         ]
       },
       {
-        "name": "On the Rox",
+        "name": "1920's Lounge (at Roxy's)",
+        "type": "Bar/Club",
         "tags": [
-          "Cocktails",
-          "Intimate",
+          "Social",
+          "Cocktails"
+        ]
+      },
+      {
+        "name": "The Brass Rail",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
           "Neighborhood"
         ]
       }
@@ -39547,90 +40131,124 @@
     "saunas": [
       {
         "name": "The Great Northern Sauna Village",
+        "type": "Sauna",
         "tags": [
-          "Public Wellness",
-          "LGBTQ+ Sessions"
+          "Pop-up",
+          "LGBTQ+ Steam Sessions"
         ]
       },
       {
-        "name": "Club Minneapolis (Private Membership)",
+        "name": "Coba Bathhouse",
+        "type": "Sauna",
         "tags": [
-          "Sauna",
-          "Gym",
-          "Steam"
+          "Wellness",
+          "Private",
+          "Men-only nights"
         ]
       }
     ],
     "restaurants": [
       {
+        "name": "Barbette",
+        "type": "Restaurant (French)"
+      },
+      {
+        "name": "Book Club",
+        "type": "Restaurant (Californian)"
+      },
+      {
+        "name": "French Meadow Bakery & Cafe",
+        "type": "Cafe / Bakery"
+      },
+      {
+        "name": "Backstory Coffee Roasters",
+        "type": "Cafe / Coffee Shop"
+      },
+      {
+        "name": "Third Culture Bakery",
+        "type": "Bakery (Mochi Specialist)"
+      },
+      {
+        "name": "Common Roots Cafe",
+        "type": "Cafe / Catering"
+      },
+      {
         "name": "Nicollet Diner",
-        "tags": [
-          "Restaurant",
-          "24-Hour"
-        ]
+        "type": "Restaurant (24/7 Diner)"
       },
       {
-        "name": "Muffin Top Cafe",
-        "tags": [
-          "Cafe"
-        ]
+        "name": "Lush Lounge & Theater",
+        "type": "Restaurant (Show/Dining)"
       },
       {
-        "name": "Cuppa Java",
-        "tags": [
-          "Cafe"
-        ]
+        "name": "Roxy's Cabaret",
+        "type": "Restaurant (Drag Brunch)"
       },
       {
-        "name": "Queermunity",
-        "tags": [
-          "Cafe",
-          "Social Club"
-        ]
+        "name": "Silver Fern",
+        "type": "Cafe / Wine Bar"
       },
       {
-        "name": "Good Cakes and Bakes",
-        "tags": [
-          "Bakery"
-        ]
+        "name": "At Sara's Table",
+        "type": "Restaurant (Farm-to-Table)"
       },
       {
-        "name": "Wise Acre Eatery",
-        "tags": [
-          "Restaurant",
-          "Farm-to-Table"
-        ]
+        "name": "Patisserie 46",
+        "type": "Bakery / Cafe"
       },
       {
-        "name": "The Dripping Root",
-        "tags": [
-          "Juice Bar"
-        ]
+        "name": "Sift Gluten Free",
+        "type": "Bakery (Specialty)"
+      },
+      {
+        "name": "Tiny Diner",
+        "type": "Restaurant (Eco-friendly American)"
       }
     ],
     "stores": [
       {
-        "name": "Black Garnet Books",
-        "tags": [
-          "Store",
-          "Books"
-        ]
+        "name": "Rainbow Road",
+        "type": "Store (Pride Gear / Gifts)"
       },
       {
-        "name": "Rainbow Road",
-        "tags": [
-          "Store",
-          "Apparel",
-          "Cards"
-        ]
+        "name": "Queermunity",
+        "type": "Store (Cafe / Co-working Space)"
+      },
+      {
+        "name": "Black Garnet Books",
+        "type": "Store (Independent Bookstore)"
       },
       {
         "name": "Tangletown Gardens",
-        "tags": [
-          "Store",
-          "Garden",
-          "Lifestyle"
-        ]
+        "type": "Store (Nursery / Home Decor)"
+      },
+      {
+        "name": "Magers & Quinn",
+        "type": "Store (Books / Inclusive)"
+      },
+      {
+        "name": "Solcana Fitness",
+        "type": "Store (Queer-owned Gym)"
+      },
+      {
+        "name": "The Rainbow Wardrobe",
+        "type": "Store (Boutique / Consignment)"
+      },
+      {
+        "name": "Quatrefoil Library",
+        "type": "Store (Lending / Cultural)"
+      },
+      {
+        "name": "Threshold Healing",
+        "type": "Store (Wellness / Retail)"
+      },
+      {
+        "name": "Moon Palace Books",
+        "type": "Store (Books / Records)"
+      },
+      {
+        "name": "Calavera Tattoo",
+        "type": "Store (Tattoo / Studio)"
       }
     ],
     "destinationLinks": {
@@ -44328,73 +44946,135 @@
     "name": "Portland, OR",
     "nightlife": [
       {
-        "name": "Badlands Portland",
+        "name": "Darcelle XV Showplace",
+        "type": "Bar/Club",
+        "tags": [
+          "Iconic",
+          "Drag Cabaret"
+        ]
+      },
+      {
+        "name": "CC Slaughters",
+        "type": "Bar/Club",
         "tags": [
           "Dance",
-          "Video Bar"
+          "Drag",
+          "High Energy"
+        ]
+      },
+      {
+        "name": "Silverado",
+        "type": "Bar/Club",
+        "tags": [
+          "Male Dancers",
+          "Dance",
+          "Old Town"
         ]
       },
       {
         "name": "Stag PDX",
+        "type": "Bar/Club",
         "tags": [
-          "Dancers",
-          "Entertainment"
-        ]
-      },
-      {
-        "name": "Darcelle XV Showplace",
-        "tags": [
-          "Drag",
-          "Historic"
-        ]
-      },
-      {
-        "name": "Scandals",
-        "tags": [
-          "Neighborhood",
+          "Male Dancers",
+          "Cocktails",
           "Social"
         ]
       },
       {
         "name": "Eagle Portland",
+        "type": "Bar/Club",
         "tags": [
           "Leather",
-          "Bear"
+          "Bear",
+          "Cruise"
         ]
       },
       {
-        "name": "Escape Bar & Grill",
+        "name": "Scandals East",
+        "type": "Bar/Club",
         "tags": [
-          "Sapphic-friendly",
-          "Neighborhood"
-        ]
-      },
-      {
-        "name": "The Sports Bra",
-        "tags": [
-          "LGBTQ+ Owned",
-          "Women's Sports"
-        ]
-      },
-      {
-        "name": "Doc Marie's",
-        "tags": [
-          "Lesbian Bar",
-          "Dance"
-        ]
-      },
-      {
-        "name": "Sissy Bar",
-        "tags": [
-          "Video Bar",
-          "Cocktails"
+          "Community",
+          "Food",
+          "Social"
         ]
       },
       {
         "name": "Crush Bar",
+        "type": "Bar/Club",
         "tags": [
-          "Burlesque",
+          "Inclusive",
+          "Social",
+          "Food"
+        ]
+      },
+      {
+        "name": "The Sports Bra",
+        "type": "Bar/Club",
+        "tags": [
+          "Women's Sports Bar",
           "Inclusive"
+        ]
+      },
+      {
+        "name": "Doc Marie's",
+        "type": "Bar/Club",
+        "tags": [
+          "Lesbian Bar",
+          "Dance",
+          "Social"
+        ]
+      },
+      {
+        "name": "Escape Bar & Grill",
+        "type": "Bar/Club",
+        "tags": [
+          "Neighborhood",
+          "Karaoke",
+          "Social"
+        ]
+      },
+      {
+        "name": "Back 2 Earth",
+        "type": "Bar/Club",
+        "tags": [
+          "Community",
+          "Events",
+          "Social"
+        ]
+      },
+      {
+        "name": "Peacock PDX",
+        "type": "Bar/Club",
+        "tags": [
+          "Cocktails",
+          "Trendy",
+          "Social"
+        ]
+      },
+      {
+        "name": "The Sissy Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Video Bar",
+          "Pop",
+          "Social"
+        ]
+      },
+      {
+        "name": "Shine Distillery & Grill",
+        "type": "Bar/Club",
+        "tags": [
+          "Drag Brunch",
+          "Distilled Spirits"
+        ]
+      },
+      {
+        "name": "Sante Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Cocktails",
+          "Intimate",
+          "Social"
         ]
       }
     ],
@@ -44548,85 +45228,149 @@
     "saunas": [
       {
         "name": "Hawks PDX",
+        "type": "Sauna",
         "tags": [
-          "Bathhouse",
-          "Community Space"
+          "Community",
+          "Wellness",
+          "Cruise"
         ]
       },
       {
         "name": "Steam Portland",
+        "type": "Sauna",
         "tags": [
+          "Steam",
           "Sauna",
-          "Kink Events"
+          "Social"
+        ]
+      },
+      {
+        "name": "SaunaGlo",
+        "type": "Sauna",
+        "tags": [
+          "Wellness",
+          "Queer Socials"
         ]
       }
     ],
     "restaurants": [
       {
+        "name": "Back to Eden Bakery",
+        "type": "Bakery (Vegan/Gluten-Free)"
+      },
+      {
+        "name": "Speed-O Cappuccino",
+        "type": "Cafe / Coffee Cart"
+      },
+      {
+        "name": "Either/Or",
+        "type": "Cafe / Coffee & Cocktails"
+      },
+      {
+        "name": "Dough Joy",
+        "type": "Bakery (Vegan Donuts)"
+      },
+      {
+        "name": "Cupcake Royale",
+        "type": "Bakery / Cupcakes"
+      },
+      {
+        "name": "Fried Egg I'm In Love",
+        "type": "Restaurant (Breakfast)"
+      },
+      {
+        "name": "Bridges Cafe",
+        "type": "Cafe / Breakfast"
+      },
+      {
+        "name": "Pasture PDX",
+        "type": "Restaurant (Sandwich/Wine)"
+      },
+      {
+        "name": "TPK Brewing",
+        "type": "Brewery / Gaming Cafe"
+      },
+      {
         "name": "Mis Tacones",
-        "tags": [
-          "Vegan Taqueria"
-        ]
+        "type": "Restaurant (Vegan Mexican)"
       },
       {
-        "name": "Queer Plants Cafe",
-        "tags": [
-          "Cafe",
-          "Plant Shop"
-        ]
+        "name": "Stem Wine Bar",
+        "type": "Restaurant / Wine Bar"
       },
       {
-        "name": "Friendship Kitchen",
-        "tags": [
-          "Vietnamese Restaurant"
-        ]
+        "name": "Basilisk",
+        "type": "Restaurant (Sandwiches)"
       },
       {
-        "name": "JinJu Patisserie",
-        "tags": [
-          "Bakery",
-          "Sweets"
-        ]
+        "name": "Beulahland",
+        "type": "Restaurant / Neighborhood Hub"
       },
       {
-        "name": "Taqueria Los Puñales",
-        "tags": [
-          "Restaurant"
-        ]
+        "name": "GiGi's Cafe",
+        "type": "Cafe / Brunch"
       },
       {
-        "name": "Cake Life Bake Shop",
-        "tags": [
-          "Bakery"
-        ]
-      },
-      {
-        "name": "Tin Shed Garden Cafe",
-        "tags": [
-          "Cafe"
-        ]
-      },
-      {
-        "name": "Republica",
-        "tags": [
-          "Restaurant"
-        ]
+        "name": "Gouri Kitchen",
+        "type": "Restaurant (Indian)"
       }
     ],
     "stores": [
       {
-        "name": "She Bop",
-        "tags": [
-          "Store",
-          "Boutique"
-        ]
+        "name": "WILDFANG",
+        "type": "Store (Androgynous Fashion)"
       },
       {
-        "name": "Citizen Ruth",
-        "tags": [
-          "Store",
-          "Gifts"
-        ]
+        "name": "Backstory Books & Yarn",
+        "type": "Store (Books / Yarn)"
+      },
+      {
+        "name": "Cloud Cap Games",
+        "type": "Store (Board Games)"
+      },
+      {
+        "name": "collage Art Supplies",
+        "type": "Store (Art Supplies)"
+      },
+      {
+        "name": "Sellwood Flower Co.",
+        "type": "Store (Florist)"
+      },
+      {
+        "name": "Fumerie Parfumerie",
+        "type": "Store (Specialty Perfume)"
+      },
+      {
+        "name": "Savory Spice Portland",
+        "type": "Store (Specialty Spices)"
+      },
+      {
+        "name": "Food Fight! Grocery",
+        "type": "Store (Vegan Grocery)"
+      },
+      {
+        "name": "Excalibur Comics",
+        "type": "Store (Comic Books)"
+      },
+      {
+        "name": "JP General",
+        "type": "Store (Gifts / Lifestyle)"
+      },
+      {
+        "name": "Poor Mouchette",
+        "type": "Store (Jewelry)"
+      },
+      {
+        "name": "Sunlan Lighting",
+        "type": "Store (Light Fixtures)"
+      },
+      {
+        "name": "Dye Dye My Darling",
+        "type": "Store (Hair Salon)"
+      },
+      {
+        "name": "Prism Moves",
+        "type": "Store (Fitness/Gym)"
       }
     ],
     "destinationLinks": {
@@ -44830,82 +45574,114 @@
     "nightlife": [
       {
         "name": "Woody's",
+        "type": "Bar/Club",
         "tags": [
-          "Dance",
-          "Multi-room",
-          "Iconic"
+          "Iconic",
+          "Dance"
         ]
       },
       {
         "name": "Voyeur Nightclub",
+        "type": "Bar/Club",
         "tags": [
-          "Late Night",
-          "Dance",
-          "Drag"
-        ]
-      },
-      {
-        "name": "The Bike Stop",
-        "tags": [
-          "Leather",
-          "Bear",
-          "Sports Bar"
+          "After-hours",
+          "Dance"
         ]
       },
       {
         "name": "Tavern on Camac",
+        "type": "Bar/Club",
         "tags": [
           "Piano Bar",
-          "Show Tunes",
-          "Intimate"
+          "Dance"
         ]
       },
       {
-        "name": "Knock Restaurant and Bar",
+        "name": "The Bike Stop",
+        "type": "Bar/Club",
         "tags": [
-          "Upscale",
-          "Dining",
-          "Social"
+          "Leather",
+          "Fetish"
         ]
       },
       {
         "name": "Tabu Lounge & Sports Bar",
+        "type": "Bar/Club",
         "tags": [
           "Sports",
-          "Drag",
-          "Burlesque"
+          "Drag"
         ]
       },
       {
-        "name": "Level Up Bar & Lounge",
+        "name": "Stir Lounge",
+        "type": "Bar/Club",
         "tags": [
-          "R&B",
-          "Dance",
-          "Inclusivity"
-        ]
-      },
-      {
-        "name": "Dirty Franks",
-        "tags": [
-          "Dive Bar",
-          "Artsy",
-          "Neighborhood"
+          "Cocktails",
+          "Lesbian-owned"
         ]
       },
       {
         "name": "U Bar",
+        "type": "Bar/Club",
         "tags": [
           "Neighborhood",
-          "No-frills",
           "Social"
         ]
       },
       {
-        "name": "Toasted Walnut",
+        "name": "Knock Restaurant & Bar",
+        "type": "Bar/Club",
         "tags": [
-          "Sapphic-centric",
+          "Upscale",
+          "Piano Lounge"
+        ]
+      },
+      {
+        "name": "Franky Bradley's",
+        "type": "Bar/Club",
+        "tags": [
+          "Burlesque",
+          "Social"
+        ]
+      },
+      {
+        "name": "Bob & Barbara's Lounge",
+        "type": "Bar/Club",
+        "tags": [
+          "Dive Bar",
+          "Drag"
+        ]
+      },
+      {
+        "name": "The Dolphin Tavern",
+        "type": "Bar/Club",
+        "tags": [
           "Dance",
-          "Events"
+          "Alternative"
+        ]
+      },
+      {
+        "name": "Level Up Bar & Lounge",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Urban"
+        ]
+      },
+      {
+        "name": "Writer's Block Rehab",
+        "type": "Bar/Club",
+        "tags": [
+          "Cocktails",
+          "Social"
+        ]
+      },
+      {
+        "name": "Cockatoo",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Latin-vibe"
         ]
       }
     ],
@@ -45058,88 +45834,142 @@
     ],
     "saunas": [
       {
-        "name": "Club Philadelphia",
+        "name": "Club Philly",
+        "type": "Sauna",
         "tags": [
-          "Sauna",
           "Steam",
+          "Sauna",
+          "Cruise"
+        ]
+      },
+      {
+        "name": "Sansom Street Gym",
+        "type": "Sauna",
+        "tags": [
           "Gym",
-          "Private Rooms"
+          "Sauna",
+          "Cruise"
+        ]
+      },
+      {
+        "name": "Bathhouse (Bellevue Hotel)",
+        "type": "Sauna",
+        "tags": [
+          "Social Wellness",
+          "Sauna"
         ]
       }
     ],
     "restaurants": [
       {
-        "name": "Philly Geste",
-        "tags": [
-          "Bakery"
-        ]
-      },
-      {
-        "name": "Miel Patisserie",
-        "tags": [
-          "Bakery",
-          "Cafe"
-        ]
-      },
-      {
-        "name": "Cake Life Bake Shop",
-        "tags": [
-          "Bakery",
-          "Sweets"
-        ]
-      },
-      {
-        "name": "Mission Taqueria",
-        "tags": [
-          "Restaurant",
-          "Tacos"
-        ]
-      },
-      {
         "name": "Bud & Marilyn's",
-        "tags": [
-          "Restaurant",
-          "Classic American"
-        ]
+        "type": "Restaurant (American)"
       },
       {
         "name": "Barbuzzo",
-        "tags": [
-          "Restaurant",
-          "Mediterranean"
-        ]
+        "type": "Restaurant (Mediterranean)"
       },
       {
         "name": "Little Nonna's",
-        "tags": [
-          "Restaurant",
-          "Italian"
-        ]
+        "type": "Restaurant (Italian)"
+      },
+      {
+        "name": "Darling Jack's Tavern",
+        "type": "Restaurant (American)"
+      },
+      {
+        "name": "Winkel",
+        "type": "Cafe (Breakfast/Brunch)"
+      },
+      {
+        "name": "Cake Life Bakeshop",
+        "type": "Bakery / Cafe"
+      },
+      {
+        "name": "Crust Vegan Bakery",
+        "type": "Bakery (Vegan)"
+      },
+      {
+        "name": "Darnel's Cakes",
+        "type": "Bakery / Cafe"
+      },
+      {
+        "name": "The Igloo",
+        "type": "Sweet Shop (Frozen Treats)"
+      },
+      {
+        "name": "Mission Taqueria",
+        "type": "Restaurant (Mexican)"
+      },
+      {
+        "name": "Oyster House",
+        "type": "Restaurant (Seafood)"
+      },
+      {
+        "name": "Dankbaar",
+        "type": "Restaurant (Dutch)"
+      },
+      {
+        "name": "Batter and Crumbs",
+        "type": "Cafe / Bakery"
+      },
+      {
+        "name": "Marcie Blaine Chocolates",
+        "type": "Sweet Shop (Chocolatier)"
+      },
+      {
+        "name": "Feast Your Eyes",
+        "type": "Catering / Cafe"
       }
     ],
     "stores": [
       {
-        "name": "Philly AIDS Thrift",
-        "tags": [
-          "Store",
-          "Thrift"
-        ]
-      },
-      {
         "name": "Giovanni's Room",
-        "tags": [
-          "Store",
-          "Books",
-          "LGBTQ"
-        ]
+        "type": "Store (Books / Gifts)"
       },
       {
-        "name": "Monster Hearts",
-        "tags": [
-          "Store",
-          "Gifts",
-          "Boutique"
-        ]
+        "name": "Open House",
+        "type": "Store (Home / Gifts)"
+      },
+      {
+        "name": "Verde",
+        "type": "Store (Jewelry / Gifts)"
+      },
+      {
+        "name": "Duross & Langel",
+        "type": "Store (Bath / Skincare)"
+      },
+      {
+        "name": "Danny's Midnight Confessions",
+        "type": "Store (Adult / Apparel)"
+      },
+      {
+        "name": "South Street Art Mart",
+        "type": "Store (Art / Gifts)"
+      },
+      {
+        "name": "Workshop Underground",
+        "type": "Store (Jewelry / Apparel)"
+      },
+      {
+        "name": "Philly AIDS Thrift",
+        "type": "Store (Thrift / Vintage)"
+      },
+      {
+        "name": "Halloween",
+        "type": "Store (Jewelry)"
+      },
+      {
+        "name": "LaserPhilly",
+        "type": "Store (Custom Laser Gifts)"
+      },
+      {
+        "name": "Trunc",
+        "type": "Store (Boutique / Gifts)"
+      },
+      {
+        "name": "Old City Canning Co.",
+        "type": "Store (Candles / Fragrance)"
       }
     ],
     "destinationLinks": {
@@ -45343,82 +46173,114 @@
     "nightlife": [
       {
         "name": "Woody's",
+        "type": "Bar/Club",
         "tags": [
-          "Dance",
-          "Multi-room",
-          "Iconic"
+          "Iconic",
+          "Dance"
         ]
       },
       {
         "name": "Voyeur Nightclub",
+        "type": "Bar/Club",
         "tags": [
-          "Late Night",
-          "Dance",
-          "Drag"
-        ]
-      },
-      {
-        "name": "The Bike Stop",
-        "tags": [
-          "Leather",
-          "Bear",
-          "Sports Bar"
+          "After-hours",
+          "Dance"
         ]
       },
       {
         "name": "Tavern on Camac",
+        "type": "Bar/Club",
         "tags": [
           "Piano Bar",
-          "Show Tunes",
-          "Intimate"
+          "Dance"
         ]
       },
       {
-        "name": "Knock Restaurant and Bar",
+        "name": "The Bike Stop",
+        "type": "Bar/Club",
         "tags": [
-          "Upscale",
-          "Dining",
-          "Social"
+          "Leather",
+          "Fetish"
         ]
       },
       {
         "name": "Tabu Lounge & Sports Bar",
+        "type": "Bar/Club",
         "tags": [
           "Sports",
-          "Drag",
-          "Burlesque"
+          "Drag"
         ]
       },
       {
-        "name": "Level Up Bar & Lounge",
+        "name": "Stir Lounge",
+        "type": "Bar/Club",
         "tags": [
-          "R&B",
-          "Dance",
-          "Inclusivity"
-        ]
-      },
-      {
-        "name": "Dirty Franks",
-        "tags": [
-          "Dive Bar",
-          "Artsy",
-          "Neighborhood"
+          "Cocktails",
+          "Lesbian-owned"
         ]
       },
       {
         "name": "U Bar",
+        "type": "Bar/Club",
         "tags": [
           "Neighborhood",
-          "No-frills",
           "Social"
         ]
       },
       {
-        "name": "Toasted Walnut",
+        "name": "Knock Restaurant & Bar",
+        "type": "Bar/Club",
         "tags": [
-          "Sapphic-centric",
+          "Upscale",
+          "Piano Lounge"
+        ]
+      },
+      {
+        "name": "Franky Bradley's",
+        "type": "Bar/Club",
+        "tags": [
+          "Burlesque",
+          "Social"
+        ]
+      },
+      {
+        "name": "Bob & Barbara's Lounge",
+        "type": "Bar/Club",
+        "tags": [
+          "Dive Bar",
+          "Drag"
+        ]
+      },
+      {
+        "name": "The Dolphin Tavern",
+        "type": "Bar/Club",
+        "tags": [
           "Dance",
-          "Events"
+          "Alternative"
+        ]
+      },
+      {
+        "name": "Level Up Bar & Lounge",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Urban"
+        ]
+      },
+      {
+        "name": "Writer's Block Rehab",
+        "type": "Bar/Club",
+        "tags": [
+          "Cocktails",
+          "Social"
+        ]
+      },
+      {
+        "name": "Cockatoo",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Latin-vibe"
         ]
       }
     ],
@@ -45571,88 +46433,142 @@
     ],
     "saunas": [
       {
-        "name": "Club Philadelphia",
+        "name": "Club Philly",
+        "type": "Sauna",
         "tags": [
-          "Sauna",
           "Steam",
+          "Sauna",
+          "Cruise"
+        ]
+      },
+      {
+        "name": "Sansom Street Gym",
+        "type": "Sauna",
+        "tags": [
           "Gym",
-          "Private Rooms"
+          "Sauna",
+          "Cruise"
+        ]
+      },
+      {
+        "name": "Bathhouse (Bellevue Hotel)",
+        "type": "Sauna",
+        "tags": [
+          "Social Wellness",
+          "Sauna"
         ]
       }
     ],
     "restaurants": [
       {
-        "name": "Philly Geste",
-        "tags": [
-          "Bakery"
-        ]
-      },
-      {
-        "name": "Miel Patisserie",
-        "tags": [
-          "Bakery",
-          "Cafe"
-        ]
-      },
-      {
-        "name": "Cake Life Bake Shop",
-        "tags": [
-          "Bakery",
-          "Sweets"
-        ]
-      },
-      {
-        "name": "Mission Taqueria",
-        "tags": [
-          "Restaurant",
-          "Tacos"
-        ]
-      },
-      {
         "name": "Bud & Marilyn's",
-        "tags": [
-          "Restaurant",
-          "Classic American"
-        ]
+        "type": "Restaurant (American)"
       },
       {
         "name": "Barbuzzo",
-        "tags": [
-          "Restaurant",
-          "Mediterranean"
-        ]
+        "type": "Restaurant (Mediterranean)"
       },
       {
         "name": "Little Nonna's",
-        "tags": [
-          "Restaurant",
-          "Italian"
-        ]
+        "type": "Restaurant (Italian)"
+      },
+      {
+        "name": "Darling Jack's Tavern",
+        "type": "Restaurant (American)"
+      },
+      {
+        "name": "Winkel",
+        "type": "Cafe (Breakfast/Brunch)"
+      },
+      {
+        "name": "Cake Life Bakeshop",
+        "type": "Bakery / Cafe"
+      },
+      {
+        "name": "Crust Vegan Bakery",
+        "type": "Bakery (Vegan)"
+      },
+      {
+        "name": "Darnel's Cakes",
+        "type": "Bakery / Cafe"
+      },
+      {
+        "name": "The Igloo",
+        "type": "Sweet Shop (Frozen Treats)"
+      },
+      {
+        "name": "Mission Taqueria",
+        "type": "Restaurant (Mexican)"
+      },
+      {
+        "name": "Oyster House",
+        "type": "Restaurant (Seafood)"
+      },
+      {
+        "name": "Dankbaar",
+        "type": "Restaurant (Dutch)"
+      },
+      {
+        "name": "Batter and Crumbs",
+        "type": "Cafe / Bakery"
+      },
+      {
+        "name": "Marcie Blaine Chocolates",
+        "type": "Sweet Shop (Chocolatier)"
+      },
+      {
+        "name": "Feast Your Eyes",
+        "type": "Catering / Cafe"
       }
     ],
     "stores": [
       {
-        "name": "Philly AIDS Thrift",
-        "tags": [
-          "Store",
-          "Thrift"
-        ]
-      },
-      {
         "name": "Giovanni's Room",
-        "tags": [
-          "Store",
-          "Books",
-          "LGBTQ"
-        ]
+        "type": "Store (Books / Gifts)"
       },
       {
-        "name": "Monster Hearts",
-        "tags": [
-          "Store",
-          "Gifts",
-          "Boutique"
-        ]
+        "name": "Open House",
+        "type": "Store (Home / Gifts)"
+      },
+      {
+        "name": "Verde",
+        "type": "Store (Jewelry / Gifts)"
+      },
+      {
+        "name": "Duross & Langel",
+        "type": "Store (Bath / Skincare)"
+      },
+      {
+        "name": "Danny's Midnight Confessions",
+        "type": "Store (Adult / Apparel)"
+      },
+      {
+        "name": "South Street Art Mart",
+        "type": "Store (Art / Gifts)"
+      },
+      {
+        "name": "Workshop Underground",
+        "type": "Store (Jewelry / Apparel)"
+      },
+      {
+        "name": "Philly AIDS Thrift",
+        "type": "Store (Thrift / Vintage)"
+      },
+      {
+        "name": "Halloween",
+        "type": "Store (Jewelry)"
+      },
+      {
+        "name": "LaserPhilly",
+        "type": "Store (Custom Laser Gifts)"
+      },
+      {
+        "name": "Trunc",
+        "type": "Store (Boutique / Gifts)"
+      },
+      {
+        "name": "Old City Canning Co.",
+        "type": "Store (Candles / Fragrance)"
       }
     ],
     "destinationLinks": {
@@ -45856,82 +46772,114 @@
     "nightlife": [
       {
         "name": "Woody's",
+        "type": "Bar/Club",
         "tags": [
-          "Dance",
-          "Multi-room",
-          "Iconic"
+          "Iconic",
+          "Dance"
         ]
       },
       {
         "name": "Voyeur Nightclub",
+        "type": "Bar/Club",
         "tags": [
-          "Late Night",
-          "Dance",
-          "Drag"
-        ]
-      },
-      {
-        "name": "The Bike Stop",
-        "tags": [
-          "Leather",
-          "Bear",
-          "Sports Bar"
+          "After-hours",
+          "Dance"
         ]
       },
       {
         "name": "Tavern on Camac",
+        "type": "Bar/Club",
         "tags": [
           "Piano Bar",
-          "Show Tunes",
-          "Intimate"
+          "Dance"
         ]
       },
       {
-        "name": "Knock Restaurant and Bar",
+        "name": "The Bike Stop",
+        "type": "Bar/Club",
         "tags": [
-          "Upscale",
-          "Dining",
-          "Social"
+          "Leather",
+          "Fetish"
         ]
       },
       {
         "name": "Tabu Lounge & Sports Bar",
+        "type": "Bar/Club",
         "tags": [
           "Sports",
-          "Drag",
-          "Burlesque"
+          "Drag"
         ]
       },
       {
-        "name": "Level Up Bar & Lounge",
+        "name": "Stir Lounge",
+        "type": "Bar/Club",
         "tags": [
-          "R&B",
-          "Dance",
-          "Inclusivity"
-        ]
-      },
-      {
-        "name": "Dirty Franks",
-        "tags": [
-          "Dive Bar",
-          "Artsy",
-          "Neighborhood"
+          "Cocktails",
+          "Lesbian-owned"
         ]
       },
       {
         "name": "U Bar",
+        "type": "Bar/Club",
         "tags": [
           "Neighborhood",
-          "No-frills",
           "Social"
         ]
       },
       {
-        "name": "Toasted Walnut",
+        "name": "Knock Restaurant & Bar",
+        "type": "Bar/Club",
         "tags": [
-          "Sapphic-centric",
+          "Upscale",
+          "Piano Lounge"
+        ]
+      },
+      {
+        "name": "Franky Bradley's",
+        "type": "Bar/Club",
+        "tags": [
+          "Burlesque",
+          "Social"
+        ]
+      },
+      {
+        "name": "Bob & Barbara's Lounge",
+        "type": "Bar/Club",
+        "tags": [
+          "Dive Bar",
+          "Drag"
+        ]
+      },
+      {
+        "name": "The Dolphin Tavern",
+        "type": "Bar/Club",
+        "tags": [
           "Dance",
-          "Events"
+          "Alternative"
+        ]
+      },
+      {
+        "name": "Level Up Bar & Lounge",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Urban"
+        ]
+      },
+      {
+        "name": "Writer's Block Rehab",
+        "type": "Bar/Club",
+        "tags": [
+          "Cocktails",
+          "Social"
+        ]
+      },
+      {
+        "name": "Cockatoo",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Latin-vibe"
         ]
       }
     ],
@@ -46084,88 +47032,142 @@
     ],
     "saunas": [
       {
-        "name": "Club Philadelphia",
+        "name": "Club Philly",
+        "type": "Sauna",
         "tags": [
-          "Sauna",
           "Steam",
+          "Sauna",
+          "Cruise"
+        ]
+      },
+      {
+        "name": "Sansom Street Gym",
+        "type": "Sauna",
+        "tags": [
           "Gym",
-          "Private Rooms"
+          "Sauna",
+          "Cruise"
+        ]
+      },
+      {
+        "name": "Bathhouse (Bellevue Hotel)",
+        "type": "Sauna",
+        "tags": [
+          "Social Wellness",
+          "Sauna"
         ]
       }
     ],
     "restaurants": [
       {
-        "name": "Philly Geste",
-        "tags": [
-          "Bakery"
-        ]
-      },
-      {
-        "name": "Miel Patisserie",
-        "tags": [
-          "Bakery",
-          "Cafe"
-        ]
-      },
-      {
-        "name": "Cake Life Bake Shop",
-        "tags": [
-          "Bakery",
-          "Sweets"
-        ]
-      },
-      {
-        "name": "Mission Taqueria",
-        "tags": [
-          "Restaurant",
-          "Tacos"
-        ]
-      },
-      {
         "name": "Bud & Marilyn's",
-        "tags": [
-          "Restaurant",
-          "Classic American"
-        ]
+        "type": "Restaurant (American)"
       },
       {
         "name": "Barbuzzo",
-        "tags": [
-          "Restaurant",
-          "Mediterranean"
-        ]
+        "type": "Restaurant (Mediterranean)"
       },
       {
         "name": "Little Nonna's",
-        "tags": [
-          "Restaurant",
-          "Italian"
-        ]
+        "type": "Restaurant (Italian)"
+      },
+      {
+        "name": "Darling Jack's Tavern",
+        "type": "Restaurant (American)"
+      },
+      {
+        "name": "Winkel",
+        "type": "Cafe (Breakfast/Brunch)"
+      },
+      {
+        "name": "Cake Life Bakeshop",
+        "type": "Bakery / Cafe"
+      },
+      {
+        "name": "Crust Vegan Bakery",
+        "type": "Bakery (Vegan)"
+      },
+      {
+        "name": "Darnel's Cakes",
+        "type": "Bakery / Cafe"
+      },
+      {
+        "name": "The Igloo",
+        "type": "Sweet Shop (Frozen Treats)"
+      },
+      {
+        "name": "Mission Taqueria",
+        "type": "Restaurant (Mexican)"
+      },
+      {
+        "name": "Oyster House",
+        "type": "Restaurant (Seafood)"
+      },
+      {
+        "name": "Dankbaar",
+        "type": "Restaurant (Dutch)"
+      },
+      {
+        "name": "Batter and Crumbs",
+        "type": "Cafe / Bakery"
+      },
+      {
+        "name": "Marcie Blaine Chocolates",
+        "type": "Sweet Shop (Chocolatier)"
+      },
+      {
+        "name": "Feast Your Eyes",
+        "type": "Catering / Cafe"
       }
     ],
     "stores": [
       {
-        "name": "Philly AIDS Thrift",
-        "tags": [
-          "Store",
-          "Thrift"
-        ]
-      },
-      {
         "name": "Giovanni's Room",
-        "tags": [
-          "Store",
-          "Books",
-          "LGBTQ"
-        ]
+        "type": "Store (Books / Gifts)"
       },
       {
-        "name": "Monster Hearts",
-        "tags": [
-          "Store",
-          "Gifts",
-          "Boutique"
-        ]
+        "name": "Open House",
+        "type": "Store (Home / Gifts)"
+      },
+      {
+        "name": "Verde",
+        "type": "Store (Jewelry / Gifts)"
+      },
+      {
+        "name": "Duross & Langel",
+        "type": "Store (Bath / Skincare)"
+      },
+      {
+        "name": "Danny's Midnight Confessions",
+        "type": "Store (Adult / Apparel)"
+      },
+      {
+        "name": "South Street Art Mart",
+        "type": "Store (Art / Gifts)"
+      },
+      {
+        "name": "Workshop Underground",
+        "type": "Store (Jewelry / Apparel)"
+      },
+      {
+        "name": "Philly AIDS Thrift",
+        "type": "Store (Thrift / Vintage)"
+      },
+      {
+        "name": "Halloween",
+        "type": "Store (Jewelry)"
+      },
+      {
+        "name": "LaserPhilly",
+        "type": "Store (Custom Laser Gifts)"
+      },
+      {
+        "name": "Trunc",
+        "type": "Store (Boutique / Gifts)"
+      },
+      {
+        "name": "Old City Canning Co.",
+        "type": "Store (Candles / Fragrance)"
       }
     ],
     "destinationLinks": {
@@ -47576,73 +48578,135 @@
     "name": "Portland, OR",
     "nightlife": [
       {
-        "name": "Badlands Portland",
+        "name": "Darcelle XV Showplace",
+        "type": "Bar/Club",
+        "tags": [
+          "Iconic",
+          "Drag Cabaret"
+        ]
+      },
+      {
+        "name": "CC Slaughters",
+        "type": "Bar/Club",
         "tags": [
           "Dance",
-          "Video Bar"
+          "Drag",
+          "High Energy"
+        ]
+      },
+      {
+        "name": "Silverado",
+        "type": "Bar/Club",
+        "tags": [
+          "Male Dancers",
+          "Dance",
+          "Old Town"
         ]
       },
       {
         "name": "Stag PDX",
+        "type": "Bar/Club",
         "tags": [
-          "Dancers",
-          "Entertainment"
-        ]
-      },
-      {
-        "name": "Darcelle XV Showplace",
-        "tags": [
-          "Drag",
-          "Historic"
-        ]
-      },
-      {
-        "name": "Scandals",
-        "tags": [
-          "Neighborhood",
+          "Male Dancers",
+          "Cocktails",
           "Social"
         ]
       },
       {
         "name": "Eagle Portland",
+        "type": "Bar/Club",
         "tags": [
           "Leather",
-          "Bear"
+          "Bear",
+          "Cruise"
         ]
       },
       {
-        "name": "Escape Bar & Grill",
+        "name": "Scandals East",
+        "type": "Bar/Club",
         "tags": [
-          "Sapphic-friendly",
-          "Neighborhood"
-        ]
-      },
-      {
-        "name": "The Sports Bra",
-        "tags": [
-          "LGBTQ+ Owned",
-          "Women's Sports"
-        ]
-      },
-      {
-        "name": "Doc Marie's",
-        "tags": [
-          "Lesbian Bar",
-          "Dance"
-        ]
-      },
-      {
-        "name": "Sissy Bar",
-        "tags": [
-          "Video Bar",
-          "Cocktails"
+          "Community",
+          "Food",
+          "Social"
         ]
       },
       {
         "name": "Crush Bar",
+        "type": "Bar/Club",
         "tags": [
-          "Burlesque",
+          "Inclusive",
+          "Social",
+          "Food"
+        ]
+      },
+      {
+        "name": "The Sports Bra",
+        "type": "Bar/Club",
+        "tags": [
+          "Women's Sports Bar",
           "Inclusive"
+        ]
+      },
+      {
+        "name": "Doc Marie's",
+        "type": "Bar/Club",
+        "tags": [
+          "Lesbian Bar",
+          "Dance",
+          "Social"
+        ]
+      },
+      {
+        "name": "Escape Bar & Grill",
+        "type": "Bar/Club",
+        "tags": [
+          "Neighborhood",
+          "Karaoke",
+          "Social"
+        ]
+      },
+      {
+        "name": "Back 2 Earth",
+        "type": "Bar/Club",
+        "tags": [
+          "Community",
+          "Events",
+          "Social"
+        ]
+      },
+      {
+        "name": "Peacock PDX",
+        "type": "Bar/Club",
+        "tags": [
+          "Cocktails",
+          "Trendy",
+          "Social"
+        ]
+      },
+      {
+        "name": "The Sissy Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Video Bar",
+          "Pop",
+          "Social"
+        ]
+      },
+      {
+        "name": "Shine Distillery & Grill",
+        "type": "Bar/Club",
+        "tags": [
+          "Drag Brunch",
+          "Distilled Spirits"
+        ]
+      },
+      {
+        "name": "Sante Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Cocktails",
+          "Intimate",
+          "Social"
         ]
       }
     ],
@@ -47796,85 +48860,149 @@
     "saunas": [
       {
         "name": "Hawks PDX",
+        "type": "Sauna",
         "tags": [
-          "Bathhouse",
-          "Community Space"
+          "Community",
+          "Wellness",
+          "Cruise"
         ]
       },
       {
         "name": "Steam Portland",
+        "type": "Sauna",
         "tags": [
+          "Steam",
           "Sauna",
-          "Kink Events"
+          "Social"
+        ]
+      },
+      {
+        "name": "SaunaGlo",
+        "type": "Sauna",
+        "tags": [
+          "Wellness",
+          "Queer Socials"
         ]
       }
     ],
     "restaurants": [
       {
+        "name": "Back to Eden Bakery",
+        "type": "Bakery (Vegan/Gluten-Free)"
+      },
+      {
+        "name": "Speed-O Cappuccino",
+        "type": "Cafe / Coffee Cart"
+      },
+      {
+        "name": "Either/Or",
+        "type": "Cafe / Coffee & Cocktails"
+      },
+      {
+        "name": "Dough Joy",
+        "type": "Bakery (Vegan Donuts)"
+      },
+      {
+        "name": "Cupcake Royale",
+        "type": "Bakery / Cupcakes"
+      },
+      {
+        "name": "Fried Egg I'm In Love",
+        "type": "Restaurant (Breakfast)"
+      },
+      {
+        "name": "Bridges Cafe",
+        "type": "Cafe / Breakfast"
+      },
+      {
+        "name": "Pasture PDX",
+        "type": "Restaurant (Sandwich/Wine)"
+      },
+      {
+        "name": "TPK Brewing",
+        "type": "Brewery / Gaming Cafe"
+      },
+      {
         "name": "Mis Tacones",
-        "tags": [
-          "Vegan Taqueria"
-        ]
+        "type": "Restaurant (Vegan Mexican)"
       },
       {
-        "name": "Queer Plants Cafe",
-        "tags": [
-          "Cafe",
-          "Plant Shop"
-        ]
+        "name": "Stem Wine Bar",
+        "type": "Restaurant / Wine Bar"
       },
       {
-        "name": "Friendship Kitchen",
-        "tags": [
-          "Vietnamese Restaurant"
-        ]
+        "name": "Basilisk",
+        "type": "Restaurant (Sandwiches)"
       },
       {
-        "name": "JinJu Patisserie",
-        "tags": [
-          "Bakery",
-          "Sweets"
-        ]
+        "name": "Beulahland",
+        "type": "Restaurant / Neighborhood Hub"
       },
       {
-        "name": "Taqueria Los Puñales",
-        "tags": [
-          "Restaurant"
-        ]
+        "name": "GiGi's Cafe",
+        "type": "Cafe / Brunch"
       },
       {
-        "name": "Cake Life Bake Shop",
-        "tags": [
-          "Bakery"
-        ]
-      },
-      {
-        "name": "Tin Shed Garden Cafe",
-        "tags": [
-          "Cafe"
-        ]
-      },
-      {
-        "name": "Republica",
-        "tags": [
-          "Restaurant"
-        ]
+        "name": "Gouri Kitchen",
+        "type": "Restaurant (Indian)"
       }
     ],
     "stores": [
       {
-        "name": "She Bop",
-        "tags": [
-          "Store",
-          "Boutique"
-        ]
+        "name": "WILDFANG",
+        "type": "Store (Androgynous Fashion)"
       },
       {
-        "name": "Citizen Ruth",
-        "tags": [
-          "Store",
-          "Gifts"
-        ]
+        "name": "Backstory Books & Yarn",
+        "type": "Store (Books / Yarn)"
+      },
+      {
+        "name": "Cloud Cap Games",
+        "type": "Store (Board Games)"
+      },
+      {
+        "name": "collage Art Supplies",
+        "type": "Store (Art Supplies)"
+      },
+      {
+        "name": "Sellwood Flower Co.",
+        "type": "Store (Florist)"
+      },
+      {
+        "name": "Fumerie Parfumerie",
+        "type": "Store (Specialty Perfume)"
+      },
+      {
+        "name": "Savory Spice Portland",
+        "type": "Store (Specialty Spices)"
+      },
+      {
+        "name": "Food Fight! Grocery",
+        "type": "Store (Vegan Grocery)"
+      },
+      {
+        "name": "Excalibur Comics",
+        "type": "Store (Comic Books)"
+      },
+      {
+        "name": "JP General",
+        "type": "Store (Gifts / Lifestyle)"
+      },
+      {
+        "name": "Poor Mouchette",
+        "type": "Store (Jewelry)"
+      },
+      {
+        "name": "Sunlan Lighting",
+        "type": "Store (Light Fixtures)"
+      },
+      {
+        "name": "Dye Dye My Darling",
+        "type": "Store (Hair Salon)"
+      },
+      {
+        "name": "Prism Moves",
+        "type": "Store (Fitness/Gym)"
       }
     ],
     "destinationLinks": {
@@ -48076,73 +49204,135 @@
     "name": "Portland, OR",
     "nightlife": [
       {
-        "name": "Badlands Portland",
+        "name": "Darcelle XV Showplace",
+        "type": "Bar/Club",
+        "tags": [
+          "Iconic",
+          "Drag Cabaret"
+        ]
+      },
+      {
+        "name": "CC Slaughters",
+        "type": "Bar/Club",
         "tags": [
           "Dance",
-          "Video Bar"
+          "Drag",
+          "High Energy"
+        ]
+      },
+      {
+        "name": "Silverado",
+        "type": "Bar/Club",
+        "tags": [
+          "Male Dancers",
+          "Dance",
+          "Old Town"
         ]
       },
       {
         "name": "Stag PDX",
+        "type": "Bar/Club",
         "tags": [
-          "Dancers",
-          "Entertainment"
-        ]
-      },
-      {
-        "name": "Darcelle XV Showplace",
-        "tags": [
-          "Drag",
-          "Historic"
-        ]
-      },
-      {
-        "name": "Scandals",
-        "tags": [
-          "Neighborhood",
+          "Male Dancers",
+          "Cocktails",
           "Social"
         ]
       },
       {
         "name": "Eagle Portland",
+        "type": "Bar/Club",
         "tags": [
           "Leather",
-          "Bear"
+          "Bear",
+          "Cruise"
         ]
       },
       {
-        "name": "Escape Bar & Grill",
+        "name": "Scandals East",
+        "type": "Bar/Club",
         "tags": [
-          "Sapphic-friendly",
-          "Neighborhood"
-        ]
-      },
-      {
-        "name": "The Sports Bra",
-        "tags": [
-          "LGBTQ+ Owned",
-          "Women's Sports"
-        ]
-      },
-      {
-        "name": "Doc Marie's",
-        "tags": [
-          "Lesbian Bar",
-          "Dance"
-        ]
-      },
-      {
-        "name": "Sissy Bar",
-        "tags": [
-          "Video Bar",
-          "Cocktails"
+          "Community",
+          "Food",
+          "Social"
         ]
       },
       {
         "name": "Crush Bar",
+        "type": "Bar/Club",
         "tags": [
-          "Burlesque",
+          "Inclusive",
+          "Social",
+          "Food"
+        ]
+      },
+      {
+        "name": "The Sports Bra",
+        "type": "Bar/Club",
+        "tags": [
+          "Women's Sports Bar",
           "Inclusive"
+        ]
+      },
+      {
+        "name": "Doc Marie's",
+        "type": "Bar/Club",
+        "tags": [
+          "Lesbian Bar",
+          "Dance",
+          "Social"
+        ]
+      },
+      {
+        "name": "Escape Bar & Grill",
+        "type": "Bar/Club",
+        "tags": [
+          "Neighborhood",
+          "Karaoke",
+          "Social"
+        ]
+      },
+      {
+        "name": "Back 2 Earth",
+        "type": "Bar/Club",
+        "tags": [
+          "Community",
+          "Events",
+          "Social"
+        ]
+      },
+      {
+        "name": "Peacock PDX",
+        "type": "Bar/Club",
+        "tags": [
+          "Cocktails",
+          "Trendy",
+          "Social"
+        ]
+      },
+      {
+        "name": "The Sissy Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Video Bar",
+          "Pop",
+          "Social"
+        ]
+      },
+      {
+        "name": "Shine Distillery & Grill",
+        "type": "Bar/Club",
+        "tags": [
+          "Drag Brunch",
+          "Distilled Spirits"
+        ]
+      },
+      {
+        "name": "Sante Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Cocktails",
+          "Intimate",
+          "Social"
         ]
       }
     ],
@@ -48296,85 +49486,149 @@
     "saunas": [
       {
         "name": "Hawks PDX",
+        "type": "Sauna",
         "tags": [
-          "Bathhouse",
-          "Community Space"
+          "Community",
+          "Wellness",
+          "Cruise"
         ]
       },
       {
         "name": "Steam Portland",
+        "type": "Sauna",
         "tags": [
+          "Steam",
           "Sauna",
-          "Kink Events"
+          "Social"
+        ]
+      },
+      {
+        "name": "SaunaGlo",
+        "type": "Sauna",
+        "tags": [
+          "Wellness",
+          "Queer Socials"
         ]
       }
     ],
     "restaurants": [
       {
+        "name": "Back to Eden Bakery",
+        "type": "Bakery (Vegan/Gluten-Free)"
+      },
+      {
+        "name": "Speed-O Cappuccino",
+        "type": "Cafe / Coffee Cart"
+      },
+      {
+        "name": "Either/Or",
+        "type": "Cafe / Coffee & Cocktails"
+      },
+      {
+        "name": "Dough Joy",
+        "type": "Bakery (Vegan Donuts)"
+      },
+      {
+        "name": "Cupcake Royale",
+        "type": "Bakery / Cupcakes"
+      },
+      {
+        "name": "Fried Egg I'm In Love",
+        "type": "Restaurant (Breakfast)"
+      },
+      {
+        "name": "Bridges Cafe",
+        "type": "Cafe / Breakfast"
+      },
+      {
+        "name": "Pasture PDX",
+        "type": "Restaurant (Sandwich/Wine)"
+      },
+      {
+        "name": "TPK Brewing",
+        "type": "Brewery / Gaming Cafe"
+      },
+      {
         "name": "Mis Tacones",
-        "tags": [
-          "Vegan Taqueria"
-        ]
+        "type": "Restaurant (Vegan Mexican)"
       },
       {
-        "name": "Queer Plants Cafe",
-        "tags": [
-          "Cafe",
-          "Plant Shop"
-        ]
+        "name": "Stem Wine Bar",
+        "type": "Restaurant / Wine Bar"
       },
       {
-        "name": "Friendship Kitchen",
-        "tags": [
-          "Vietnamese Restaurant"
-        ]
+        "name": "Basilisk",
+        "type": "Restaurant (Sandwiches)"
       },
       {
-        "name": "JinJu Patisserie",
-        "tags": [
-          "Bakery",
-          "Sweets"
-        ]
+        "name": "Beulahland",
+        "type": "Restaurant / Neighborhood Hub"
       },
       {
-        "name": "Taqueria Los Puñales",
-        "tags": [
-          "Restaurant"
-        ]
+        "name": "GiGi's Cafe",
+        "type": "Cafe / Brunch"
       },
       {
-        "name": "Cake Life Bake Shop",
-        "tags": [
-          "Bakery"
-        ]
-      },
-      {
-        "name": "Tin Shed Garden Cafe",
-        "tags": [
-          "Cafe"
-        ]
-      },
-      {
-        "name": "Republica",
-        "tags": [
-          "Restaurant"
-        ]
+        "name": "Gouri Kitchen",
+        "type": "Restaurant (Indian)"
       }
     ],
     "stores": [
       {
-        "name": "She Bop",
-        "tags": [
-          "Store",
-          "Boutique"
-        ]
+        "name": "WILDFANG",
+        "type": "Store (Androgynous Fashion)"
       },
       {
-        "name": "Citizen Ruth",
-        "tags": [
-          "Store",
-          "Gifts"
-        ]
+        "name": "Backstory Books & Yarn",
+        "type": "Store (Books / Yarn)"
+      },
+      {
+        "name": "Cloud Cap Games",
+        "type": "Store (Board Games)"
+      },
+      {
+        "name": "collage Art Supplies",
+        "type": "Store (Art Supplies)"
+      },
+      {
+        "name": "Sellwood Flower Co.",
+        "type": "Store (Florist)"
+      },
+      {
+        "name": "Fumerie Parfumerie",
+        "type": "Store (Specialty Perfume)"
+      },
+      {
+        "name": "Savory Spice Portland",
+        "type": "Store (Specialty Spices)"
+      },
+      {
+        "name": "Food Fight! Grocery",
+        "type": "Store (Vegan Grocery)"
+      },
+      {
+        "name": "Excalibur Comics",
+        "type": "Store (Comic Books)"
+      },
+      {
+        "name": "JP General",
+        "type": "Store (Gifts / Lifestyle)"
+      },
+      {
+        "name": "Poor Mouchette",
+        "type": "Store (Jewelry)"
+      },
+      {
+        "name": "Sunlan Lighting",
+        "type": "Store (Light Fixtures)"
+      },
+      {
+        "name": "Dye Dye My Darling",
+        "type": "Store (Hair Salon)"
+      },
+      {
+        "name": "Prism Moves",
+        "type": "Store (Fitness/Gym)"
       }
     ],
     "destinationLinks": {
@@ -53473,80 +54727,137 @@
     "name": "Seattle, WA",
     "nightlife": [
       {
-        "name": "The Cuff Seattle",
+        "name": "Queer/Bar",
+        "type": "Bar/Club",
         "tags": [
-          "Leather",
-          "Bear",
-          "Dance"
+          "Drag",
+          "Dance",
+          "High Energy"
         ]
       },
       {
-        "name": "The Eagle Seattle",
+        "name": "The Cuff Complex",
+        "type": "Bar/Club",
         "tags": [
           "Leather",
-          "Bear",
-          "Cruise"
+          "Dance",
+          "Darkroom"
         ]
       },
       {
         "name": "Pony",
+        "type": "Bar/Club",
         "tags": [
-          "Retro",
+          "Dive Bar",
           "Patio",
-          "Social"
+          "70s Vibe"
         ]
       },
       {
-        "name": "Queer Bar",
+        "name": "The Seattle Eagle",
+        "type": "Bar/Club",
         "tags": [
-          "Drag",
-          "Dance",
-          "Food"
-        ]
-      },
-      {
-        "name": "Unicorn",
-        "tags": [
-          "Carnival-themed",
-          "Drag",
-          "Arcade"
+          "Leather",
+          "Kink",
+          "Cruise"
         ]
       },
       {
         "name": "Wildrose",
+        "type": "Bar/Club",
         "tags": [
-          "Lesbian Bar",
-          "Historic",
+          "Iconic",
+          "Lesbian",
           "Social"
         ]
       },
       {
         "name": "Neighbors Nightclub",
+        "type": "Bar/Club",
         "tags": [
-          "Large Dance Floor",
-          "Iconic"
+          "Iconic",
+          "Dance",
+          "Large"
         ]
       },
       {
-        "name": "Madison Pub",
+        "name": "Union Bar",
+        "type": "Bar/Club",
         "tags": [
-          "Sports Bar",
+          "Social",
+          "Cocktails",
+          "Video"
+        ]
+      },
+      {
+        "name": "Diesel",
+        "type": "Bar/Club",
+        "tags": [
+          "Bears",
+          "Social",
           "Neighborhood"
         ]
       },
       {
-        "name": "Crescent Lounge",
+        "name": "Madison Pub",
+        "type": "Bar/Club",
         "tags": [
-          "Karaoke",
-          "Dive Bar"
+          "Sports Bar",
+          "Darts",
+          "Casual"
         ]
       },
       {
-        "name": "CC Attle's",
+        "name": "C.C. Attle's",
+        "type": "Bar/Club",
         "tags": [
-          "Bear",
-          "Pub Food",
-          "Casual"
+          "Social",
+          "Bears",
+          "Pub Food"
+        ]
+      },
+      {
+        "name": "The Crescent Lounge",
+        "type": "Bar/Club",
+        "tags": [
+          "Karaoke",
+          "Dive",
+          "Historic"
+        ]
+      },
+      {
+        "name": "Changes in Wallingford",
+        "type": "Bar/Club",
+        "tags": [
+          "Neighborhood",
+          "Karaoke",
+          "Patio"
+        ]
+      },
+      {
+        "name": "The Lumberyard",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Modern (White Center)"
+        ]
+      },
+      {
+        "name": "The Comeback",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Drag",
+          "Events"
+        ]
+      },
+      {
+        "name": "Alice's",
+        "type": "Bar/Club",
+        "tags": [
+          "Artsy",
+          "Alternative",
+          "Social"
         ]
       }
     ],
@@ -53699,89 +55010,138 @@
     ],
     "saunas": [
       {
-        "name": "Club Seattle",
+        "name": "The Z Club",
+        "type": "Sauna",
         "tags": [
-          "Sauna",
-          "Gym",
+          "Private Rooms",
           "Steam",
-          "Private Rooms"
+          "Sauna"
+        ]
+      },
+      {
+        "name": "Steamworks Seattle",
+        "type": "Sauna",
+        "tags": [
+          "Gym",
+          "Play Areas",
+          "Cruising"
         ]
       }
     ],
     "restaurants": [
       {
-        "name": "Terra Plata",
-        "tags": [
-          "Restaurant",
-          "Farm-to-Table"
-        ]
+        "name": "Dough Joy",
+        "type": "Bakery (Vegan Donuts)"
       },
       {
         "name": "Cupcake Royale",
-        "tags": [
-          "Bakery",
-          "Sweets"
-        ]
+        "type": "Bakery / Cupcakes"
       },
       {
-        "name": "Glo's Diner",
-        "tags": [
-          "Restaurant",
-          "Breakfast",
-          "Cafe"
-        ]
+        "name": "The Flora Bakehouse",
+        "type": "Bakery / Cafe"
       },
       {
-        "name": "Tio Baby's",
-        "tags": [
-          "Restaurant",
-          "Snack Bar"
-        ]
+        "name": "Cafe Flora",
+        "type": "Restaurant (Vegetarian/Fine)"
       },
       {
-        "name": "Fuel Coffee",
-        "tags": [
-          "Cafe"
-        ]
+        "name": "Tres Lecheria",
+        "type": "Bakery (Tres Leches)"
       },
       {
-        "name": "Fat's Chicken and Waffles",
-        "tags": [
-          "Restaurant"
-        ]
+        "name": "Honest Biscuits",
+        "type": "Bakery / Southern"
       },
       {
-        "name": "Nuflours Bakery",
-        "tags": [
-          "Bakery",
-          "Gluten-Free"
-        ]
+        "name": "Coping Cookies",
+        "type": "Sweet Shop / Bakery"
+      },
+      {
+        "name": "A La Mode Pies",
+        "type": "Sweet Shop / Bakery"
+      },
+      {
+        "name": "The Station",
+        "type": "Cafe / Coffee Shop"
+      },
+      {
+        "name": "Distant Worlds",
+        "type": "Cafe / Coffee Shop"
+      },
+      {
+        "name": "Broadcast Coffee",
+        "type": "Cafe / Coffee Shop"
+      },
+      {
+        "name": "Poquitos",
+        "type": "Restaurant (Mexican)"
+      },
+      {
+        "name": "Terra Plata",
+        "type": "Restaurant (Farm-to-Table)"
+      },
+      {
+        "name": "Fat's Chicken & Waffles",
+        "type": "Restaurant (Soul Food)"
+      },
+      {
+        "name": "Frelard Tamales",
+        "type": "Restaurant (Mexican)"
+      },
+      {
+        "name": "Tin Table",
+        "type": "Restaurant / Cocktails"
+      },
+      {
+        "name": "The Velvet Elk",
+        "type": "Cafe / Wine Bar"
       }
     ],
     "stores": [
       {
-        "name": "Elliott Bay Book Company",
-        "tags": [
-          "Store",
-          "Books",
-          "Community"
-        ]
+        "name": "Big Little News",
+        "type": "Store (Magazines/Snacks)"
       },
       {
-        "name": "SugarPill",
-        "tags": [
-          "Store",
-          "Apothecary",
-          "Gifts"
-        ]
+        "name": "Seattle Plant Daddy",
+        "type": "Store (Plants/Home)"
       },
       {
-        "name": "Cone & Steiner",
-        "tags": [
-          "Store",
-          "General Store",
-          "Market"
-        ]
+        "name": "Peace, Love, Happiness Club",
+        "type": "Store (Rare Plants)"
+      },
+      {
+        "name": "Virago Gallery",
+        "type": "Store (Jewelry/Art)"
+      },
+      {
+        "name": "Saltstone Ceramics",
+        "type": "Store (Handmade Goods)"
+      },
+      {
+        "name": "Mose Auto",
+        "type": "Store (Auto Repair/Classes)"
+      },
+      {
+        "name": "Out of the Closet",
+        "type": "Store (Thrift/Vintage)"
+      },
+      {
+        "name": "Little Tin Goods",
+        "type": "Store (Apothecary/Gifts)"
+      },
+      {
+        "name": "Fairvilla",
+        "type": "Store (Adult/Apparel)"
+      },
+      {
+        "name": "Under U 4 Men",
+        "type": "Store (Menswear/Swim)"
+      },
+      {
+        "name": "Beyond Thrift",
+        "type": "Store (Vintage/Queer)"
       }
     ],
     "destinationLinks": {
@@ -54015,80 +55375,137 @@
     "name": "Seattle, WA",
     "nightlife": [
       {
-        "name": "The Cuff Seattle",
+        "name": "Queer/Bar",
+        "type": "Bar/Club",
         "tags": [
-          "Leather",
-          "Bear",
-          "Dance"
+          "Drag",
+          "Dance",
+          "High Energy"
         ]
       },
       {
-        "name": "The Eagle Seattle",
+        "name": "The Cuff Complex",
+        "type": "Bar/Club",
         "tags": [
           "Leather",
-          "Bear",
-          "Cruise"
+          "Dance",
+          "Darkroom"
         ]
       },
       {
         "name": "Pony",
+        "type": "Bar/Club",
         "tags": [
-          "Retro",
+          "Dive Bar",
           "Patio",
-          "Social"
+          "70s Vibe"
         ]
       },
       {
-        "name": "Queer Bar",
+        "name": "The Seattle Eagle",
+        "type": "Bar/Club",
         "tags": [
-          "Drag",
-          "Dance",
-          "Food"
-        ]
-      },
-      {
-        "name": "Unicorn",
-        "tags": [
-          "Carnival-themed",
-          "Drag",
-          "Arcade"
+          "Leather",
+          "Kink",
+          "Cruise"
         ]
       },
       {
         "name": "Wildrose",
+        "type": "Bar/Club",
         "tags": [
-          "Lesbian Bar",
-          "Historic",
+          "Iconic",
+          "Lesbian",
           "Social"
         ]
       },
       {
         "name": "Neighbors Nightclub",
+        "type": "Bar/Club",
         "tags": [
-          "Large Dance Floor",
-          "Iconic"
+          "Iconic",
+          "Dance",
+          "Large"
         ]
       },
       {
-        "name": "Madison Pub",
+        "name": "Union Bar",
+        "type": "Bar/Club",
         "tags": [
-          "Sports Bar",
+          "Social",
+          "Cocktails",
+          "Video"
+        ]
+      },
+      {
+        "name": "Diesel",
+        "type": "Bar/Club",
+        "tags": [
+          "Bears",
+          "Social",
           "Neighborhood"
         ]
       },
       {
-        "name": "Crescent Lounge",
+        "name": "Madison Pub",
+        "type": "Bar/Club",
         "tags": [
-          "Karaoke",
-          "Dive Bar"
+          "Sports Bar",
+          "Darts",
+          "Casual"
         ]
       },
       {
-        "name": "CC Attle's",
+        "name": "C.C. Attle's",
+        "type": "Bar/Club",
         "tags": [
-          "Bear",
-          "Pub Food",
-          "Casual"
+          "Social",
+          "Bears",
+          "Pub Food"
+        ]
+      },
+      {
+        "name": "The Crescent Lounge",
+        "type": "Bar/Club",
+        "tags": [
+          "Karaoke",
+          "Dive",
+          "Historic"
+        ]
+      },
+      {
+        "name": "Changes in Wallingford",
+        "type": "Bar/Club",
+        "tags": [
+          "Neighborhood",
+          "Karaoke",
+          "Patio"
+        ]
+      },
+      {
+        "name": "The Lumberyard",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Modern (White Center)"
+        ]
+      },
+      {
+        "name": "The Comeback",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
+          "Drag",
+          "Events"
+        ]
+      },
+      {
+        "name": "Alice's",
+        "type": "Bar/Club",
+        "tags": [
+          "Artsy",
+          "Alternative",
+          "Social"
         ]
       }
     ],
@@ -54241,89 +55658,138 @@
     ],
     "saunas": [
       {
-        "name": "Club Seattle",
+        "name": "The Z Club",
+        "type": "Sauna",
         "tags": [
-          "Sauna",
-          "Gym",
+          "Private Rooms",
           "Steam",
-          "Private Rooms"
+          "Sauna"
+        ]
+      },
+      {
+        "name": "Steamworks Seattle",
+        "type": "Sauna",
+        "tags": [
+          "Gym",
+          "Play Areas",
+          "Cruising"
         ]
       }
     ],
     "restaurants": [
       {
-        "name": "Terra Plata",
-        "tags": [
-          "Restaurant",
-          "Farm-to-Table"
-        ]
+        "name": "Dough Joy",
+        "type": "Bakery (Vegan Donuts)"
       },
       {
         "name": "Cupcake Royale",
-        "tags": [
-          "Bakery",
-          "Sweets"
-        ]
+        "type": "Bakery / Cupcakes"
       },
       {
-        "name": "Glo's Diner",
-        "tags": [
-          "Restaurant",
-          "Breakfast",
-          "Cafe"
-        ]
+        "name": "The Flora Bakehouse",
+        "type": "Bakery / Cafe"
       },
       {
-        "name": "Tio Baby's",
-        "tags": [
-          "Restaurant",
-          "Snack Bar"
-        ]
+        "name": "Cafe Flora",
+        "type": "Restaurant (Vegetarian/Fine)"
       },
       {
-        "name": "Fuel Coffee",
-        "tags": [
-          "Cafe"
-        ]
+        "name": "Tres Lecheria",
+        "type": "Bakery (Tres Leches)"
       },
       {
-        "name": "Fat's Chicken and Waffles",
-        "tags": [
-          "Restaurant"
-        ]
+        "name": "Honest Biscuits",
+        "type": "Bakery / Southern"
       },
       {
-        "name": "Nuflours Bakery",
-        "tags": [
-          "Bakery",
-          "Gluten-Free"
-        ]
+        "name": "Coping Cookies",
+        "type": "Sweet Shop / Bakery"
+      },
+      {
+        "name": "A La Mode Pies",
+        "type": "Sweet Shop / Bakery"
+      },
+      {
+        "name": "The Station",
+        "type": "Cafe / Coffee Shop"
+      },
+      {
+        "name": "Distant Worlds",
+        "type": "Cafe / Coffee Shop"
+      },
+      {
+        "name": "Broadcast Coffee",
+        "type": "Cafe / Coffee Shop"
+      },
+      {
+        "name": "Poquitos",
+        "type": "Restaurant (Mexican)"
+      },
+      {
+        "name": "Terra Plata",
+        "type": "Restaurant (Farm-to-Table)"
+      },
+      {
+        "name": "Fat's Chicken & Waffles",
+        "type": "Restaurant (Soul Food)"
+      },
+      {
+        "name": "Frelard Tamales",
+        "type": "Restaurant (Mexican)"
+      },
+      {
+        "name": "Tin Table",
+        "type": "Restaurant / Cocktails"
+      },
+      {
+        "name": "The Velvet Elk",
+        "type": "Cafe / Wine Bar"
       }
     ],
     "stores": [
       {
-        "name": "Elliott Bay Book Company",
-        "tags": [
-          "Store",
-          "Books",
-          "Community"
-        ]
+        "name": "Big Little News",
+        "type": "Store (Magazines/Snacks)"
       },
       {
-        "name": "SugarPill",
-        "tags": [
-          "Store",
-          "Apothecary",
-          "Gifts"
-        ]
+        "name": "Seattle Plant Daddy",
+        "type": "Store (Plants/Home)"
       },
       {
-        "name": "Cone & Steiner",
-        "tags": [
-          "Store",
-          "General Store",
-          "Market"
-        ]
+        "name": "Peace, Love, Happiness Club",
+        "type": "Store (Rare Plants)"
+      },
+      {
+        "name": "Virago Gallery",
+        "type": "Store (Jewelry/Art)"
+      },
+      {
+        "name": "Saltstone Ceramics",
+        "type": "Store (Handmade Goods)"
+      },
+      {
+        "name": "Mose Auto",
+        "type": "Store (Auto Repair/Classes)"
+      },
+      {
+        "name": "Out of the Closet",
+        "type": "Store (Thrift/Vintage)"
+      },
+      {
+        "name": "Little Tin Goods",
+        "type": "Store (Apothecary/Gifts)"
+      },
+      {
+        "name": "Fairvilla",
+        "type": "Store (Adult/Apparel)"
+      },
+      {
+        "name": "Under U 4 Men",
+        "type": "Store (Menswear/Swim)"
+      },
+      {
+        "name": "Beyond Thrift",
+        "type": "Store (Vintage/Queer)"
       }
     ],
     "destinationLinks": {
@@ -55702,82 +57168,97 @@
     "name": "Minneapolis, MN",
     "nightlife": [
       {
-        "name": "19 Bar",
-        "tags": [
-          "Neighborhood",
-          "Dive",
-          "Oldest in City"
-        ]
-      },
-      {
         "name": "The Saloon",
+        "type": "Bar/Club",
         "tags": [
           "Dance",
-          "Shower Contest",
-          "Popular"
+          "Shower Shows",
+          "High Energy"
         ]
       },
       {
-        "name": "The Gay 90's",
+        "name": "Gay 90's",
+        "type": "Bar/Club",
         "tags": [
           "Multi-room",
-          "Dance",
-          "Drag"
+          "Drag",
+          "Dance"
         ]
       },
       {
         "name": "LUSH Lounge & Theater",
+        "type": "Bar/Club",
         "tags": [
-          "Drag Brunch",
-          "Theater",
-          "Lounge"
+          "Drag Cabaret",
+          "Events",
+          "Social"
+        ]
+      },
+      {
+        "name": "The 19 Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Dive Bar",
+          "Historic",
+          "Pool"
         ]
       },
       {
         "name": "Eagle MPLS",
+        "type": "Bar/Club",
         "tags": [
           "Leather",
-          "Bear",
-          "Neighborhood"
+          "Fetish",
+          "Men-only"
+        ]
+      },
+      {
+        "name": "Black Hart of St. Paul",
+        "type": "Bar/Club",
+        "tags": [
+          "Soccer Bar",
+          "Drag",
+          "Burlesque"
         ]
       },
       {
         "name": "Roxy's Cabaret",
+        "type": "Bar/Club",
         "tags": [
-          "Drag",
-          "Cabaret",
-          "High Production"
+          "Drag Cabaret",
+          "Dining"
         ]
       },
       {
         "name": "Jetset Underground",
+        "type": "Bar/Club",
         "tags": [
           "Dance",
-          "Sleek",
-          "Boutique"
-        ]
-      },
-      {
-        "name": "The Black Hart of Saint Paul",
-        "tags": [
-          "Soccer",
-          "Drag",
-          "Inclusive"
+          "Lounge",
+          "Sophisticated"
         ]
       },
       {
         "name": "A Bar of Their Own",
+        "type": "Bar/Club",
         "tags": [
-          "Sports Bar",
-          "Women's Sports",
-          "Family-friendly"
+          "Inclusive",
+          "Sports Bar"
         ]
       },
       {
-        "name": "On the Rox",
+        "name": "1920's Lounge (at Roxy's)",
+        "type": "Bar/Club",
         "tags": [
-          "Cocktails",
-          "Intimate",
+          "Social",
+          "Cocktails"
+        ]
+      },
+      {
+        "name": "The Brass Rail",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
           "Neighborhood"
         ]
       }
@@ -55932,90 +57413,124 @@
     "saunas": [
       {
         "name": "The Great Northern Sauna Village",
+        "type": "Sauna",
         "tags": [
-          "Public Wellness",
-          "LGBTQ+ Sessions"
+          "Pop-up",
+          "LGBTQ+ Steam Sessions"
         ]
       },
       {
-        "name": "Club Minneapolis (Private Membership)",
+        "name": "Coba Bathhouse",
+        "type": "Sauna",
         "tags": [
-          "Sauna",
-          "Gym",
-          "Steam"
+          "Wellness",
+          "Private",
+          "Men-only nights"
         ]
       }
     ],
     "restaurants": [
       {
+        "name": "Barbette",
+        "type": "Restaurant (French)"
+      },
+      {
+        "name": "Book Club",
+        "type": "Restaurant (Californian)"
+      },
+      {
+        "name": "French Meadow Bakery & Cafe",
+        "type": "Cafe / Bakery"
+      },
+      {
+        "name": "Backstory Coffee Roasters",
+        "type": "Cafe / Coffee Shop"
+      },
+      {
+        "name": "Third Culture Bakery",
+        "type": "Bakery (Mochi Specialist)"
+      },
+      {
+        "name": "Common Roots Cafe",
+        "type": "Cafe / Catering"
+      },
+      {
         "name": "Nicollet Diner",
-        "tags": [
-          "Restaurant",
-          "24-Hour"
-        ]
+        "type": "Restaurant (24/7 Diner)"
       },
       {
-        "name": "Muffin Top Cafe",
-        "tags": [
-          "Cafe"
-        ]
+        "name": "Lush Lounge & Theater",
+        "type": "Restaurant (Show/Dining)"
       },
       {
-        "name": "Cuppa Java",
-        "tags": [
-          "Cafe"
-        ]
+        "name": "Roxy's Cabaret",
+        "type": "Restaurant (Drag Brunch)"
       },
       {
-        "name": "Queermunity",
-        "tags": [
-          "Cafe",
-          "Social Club"
-        ]
+        "name": "Silver Fern",
+        "type": "Cafe / Wine Bar"
       },
       {
-        "name": "Good Cakes and Bakes",
-        "tags": [
-          "Bakery"
-        ]
+        "name": "At Sara's Table",
+        "type": "Restaurant (Farm-to-Table)"
       },
       {
-        "name": "Wise Acre Eatery",
-        "tags": [
-          "Restaurant",
-          "Farm-to-Table"
-        ]
+        "name": "Patisserie 46",
+        "type": "Bakery / Cafe"
       },
       {
-        "name": "The Dripping Root",
-        "tags": [
-          "Juice Bar"
-        ]
+        "name": "Sift Gluten Free",
+        "type": "Bakery (Specialty)"
+      },
+      {
+        "name": "Tiny Diner",
+        "type": "Restaurant (Eco-friendly American)"
       }
     ],
     "stores": [
       {
-        "name": "Black Garnet Books",
-        "tags": [
-          "Store",
-          "Books"
-        ]
+        "name": "Rainbow Road",
+        "type": "Store (Pride Gear / Gifts)"
       },
       {
-        "name": "Rainbow Road",
-        "tags": [
-          "Store",
-          "Apparel",
-          "Cards"
-        ]
+        "name": "Queermunity",
+        "type": "Store (Cafe / Co-working Space)"
+      },
+      {
+        "name": "Black Garnet Books",
+        "type": "Store (Independent Bookstore)"
       },
       {
         "name": "Tangletown Gardens",
-        "tags": [
-          "Store",
-          "Garden",
-          "Lifestyle"
-        ]
+        "type": "Store (Nursery / Home Decor)"
+      },
+      {
+        "name": "Magers & Quinn",
+        "type": "Store (Books / Inclusive)"
+      },
+      {
+        "name": "Solcana Fitness",
+        "type": "Store (Queer-owned Gym)"
+      },
+      {
+        "name": "The Rainbow Wardrobe",
+        "type": "Store (Boutique / Consignment)"
+      },
+      {
+        "name": "Quatrefoil Library",
+        "type": "Store (Lending / Cultural)"
+      },
+      {
+        "name": "Threshold Healing",
+        "type": "Store (Wellness / Retail)"
+      },
+      {
+        "name": "Moon Palace Books",
+        "type": "Store (Books / Records)"
+      },
+      {
+        "name": "Calavera Tattoo",
+        "type": "Store (Tattoo / Studio)"
       }
     ],
     "destinationLinks": {
@@ -56224,82 +57739,97 @@
     "name": "Minneapolis, MN",
     "nightlife": [
       {
-        "name": "19 Bar",
-        "tags": [
-          "Neighborhood",
-          "Dive",
-          "Oldest in City"
-        ]
-      },
-      {
         "name": "The Saloon",
+        "type": "Bar/Club",
         "tags": [
           "Dance",
-          "Shower Contest",
-          "Popular"
+          "Shower Shows",
+          "High Energy"
         ]
       },
       {
-        "name": "The Gay 90's",
+        "name": "Gay 90's",
+        "type": "Bar/Club",
         "tags": [
           "Multi-room",
-          "Dance",
-          "Drag"
+          "Drag",
+          "Dance"
         ]
       },
       {
         "name": "LUSH Lounge & Theater",
+        "type": "Bar/Club",
         "tags": [
-          "Drag Brunch",
-          "Theater",
-          "Lounge"
+          "Drag Cabaret",
+          "Events",
+          "Social"
+        ]
+      },
+      {
+        "name": "The 19 Bar",
+        "type": "Bar/Club",
+        "tags": [
+          "Dive Bar",
+          "Historic",
+          "Pool"
         ]
       },
       {
         "name": "Eagle MPLS",
+        "type": "Bar/Club",
         "tags": [
           "Leather",
-          "Bear",
-          "Neighborhood"
+          "Fetish",
+          "Men-only"
+        ]
+      },
+      {
+        "name": "Black Hart of St. Paul",
+        "type": "Bar/Club",
+        "tags": [
+          "Soccer Bar",
+          "Drag",
+          "Burlesque"
         ]
       },
       {
         "name": "Roxy's Cabaret",
+        "type": "Bar/Club",
         "tags": [
-          "Drag",
-          "Cabaret",
-          "High Production"
+          "Drag Cabaret",
+          "Dining"
         ]
       },
       {
         "name": "Jetset Underground",
+        "type": "Bar/Club",
         "tags": [
           "Dance",
-          "Sleek",
-          "Boutique"
-        ]
-      },
-      {
-        "name": "The Black Hart of Saint Paul",
-        "tags": [
-          "Soccer",
-          "Drag",
-          "Inclusive"
+          "Lounge",
+          "Sophisticated"
         ]
       },
       {
         "name": "A Bar of Their Own",
+        "type": "Bar/Club",
         "tags": [
-          "Sports Bar",
-          "Women's Sports",
-          "Family-friendly"
+          "Inclusive",
+          "Sports Bar"
         ]
       },
       {
-        "name": "On the Rox",
+        "name": "1920's Lounge (at Roxy's)",
+        "type": "Bar/Club",
         "tags": [
-          "Cocktails",
-          "Intimate",
+          "Social",
+          "Cocktails"
+        ]
+      },
+      {
+        "name": "The Brass Rail",
+        "type": "Bar/Club",
+        "tags": [
+          "Social",
           "Neighborhood"
         ]
       }
@@ -56454,90 +57984,124 @@
     "saunas": [
       {
         "name": "The Great Northern Sauna Village",
+        "type": "Sauna",
         "tags": [
-          "Public Wellness",
-          "LGBTQ+ Sessions"
+          "Pop-up",
+          "LGBTQ+ Steam Sessions"
         ]
       },
       {
-        "name": "Club Minneapolis (Private Membership)",
+        "name": "Coba Bathhouse",
+        "type": "Sauna",
         "tags": [
-          "Sauna",
-          "Gym",
-          "Steam"
+          "Wellness",
+          "Private",
+          "Men-only nights"
         ]
       }
     ],
     "restaurants": [
       {
+        "name": "Barbette",
+        "type": "Restaurant (French)"
+      },
+      {
+        "name": "Book Club",
+        "type": "Restaurant (Californian)"
+      },
+      {
+        "name": "French Meadow Bakery & Cafe",
+        "type": "Cafe / Bakery"
+      },
+      {
+        "name": "Backstory Coffee Roasters",
+        "type": "Cafe / Coffee Shop"
+      },
+      {
+        "name": "Third Culture Bakery",
+        "type": "Bakery (Mochi Specialist)"
+      },
+      {
+        "name": "Common Roots Cafe",
+        "type": "Cafe / Catering"
+      },
+      {
         "name": "Nicollet Diner",
-        "tags": [
-          "Restaurant",
-          "24-Hour"
-        ]
+        "type": "Restaurant (24/7 Diner)"
       },
       {
-        "name": "Muffin Top Cafe",
-        "tags": [
-          "Cafe"
-        ]
+        "name": "Lush Lounge & Theater",
+        "type": "Restaurant (Show/Dining)"
       },
       {
-        "name": "Cuppa Java",
-        "tags": [
-          "Cafe"
-        ]
+        "name": "Roxy's Cabaret",
+        "type": "Restaurant (Drag Brunch)"
       },
       {
-        "name": "Queermunity",
-        "tags": [
-          "Cafe",
-          "Social Club"
-        ]
+        "name": "Silver Fern",
+        "type": "Cafe / Wine Bar"
       },
       {
-        "name": "Good Cakes and Bakes",
-        "tags": [
-          "Bakery"
-        ]
+        "name": "At Sara's Table",
+        "type": "Restaurant (Farm-to-Table)"
       },
       {
-        "name": "Wise Acre Eatery",
-        "tags": [
-          "Restaurant",
-          "Farm-to-Table"
-        ]
+        "name": "Patisserie 46",
+        "type": "Bakery / Cafe"
       },
       {
-        "name": "The Dripping Root",
-        "tags": [
-          "Juice Bar"
-        ]
+        "name": "Sift Gluten Free",
+        "type": "Bakery (Specialty)"
+      },
+      {
+        "name": "Tiny Diner",
+        "type": "Restaurant (Eco-friendly American)"
       }
     ],
     "stores": [
       {
-        "name": "Black Garnet Books",
-        "tags": [
-          "Store",
-          "Books"
-        ]
+        "name": "Rainbow Road",
+        "type": "Store (Pride Gear / Gifts)"
       },
       {
-        "name": "Rainbow Road",
-        "tags": [
-          "Store",
-          "Apparel",
-          "Cards"
-        ]
+        "name": "Queermunity",
+        "type": "Store (Cafe / Co-working Space)"
+      },
+      {
+        "name": "Black Garnet Books",
+        "type": "Store (Independent Bookstore)"
       },
       {
         "name": "Tangletown Gardens",
-        "tags": [
-          "Store",
-          "Garden",
-          "Lifestyle"
-        ]
+        "type": "Store (Nursery / Home Decor)"
+      },
+      {
+        "name": "Magers & Quinn",
+        "type": "Store (Books / Inclusive)"
+      },
+      {
+        "name": "Solcana Fitness",
+        "type": "Store (Queer-owned Gym)"
+      },
+      {
+        "name": "The Rainbow Wardrobe",
+        "type": "Store (Boutique / Consignment)"
+      },
+      {
+        "name": "Quatrefoil Library",
+        "type": "Store (Lending / Cultural)"
+      },
+      {
+        "name": "Threshold Healing",
+        "type": "Store (Wellness / Retail)"
+      },
+      {
+        "name": "Moon Palace Books",
+        "type": "Store (Books / Records)"
+      },
+      {
+        "name": "Calavera Tattoo",
+        "type": "Store (Tattoo / Studio)"
       }
     ],
     "destinationLinks": {
@@ -57531,45 +59095,53 @@
         "name": "Bradley's on 7th",
         "type": "Bar/Club",
         "tags": [
+          "Iconic",
           "Drag",
-          "Dance",
-          "Social"
+          "Patio"
         ]
       },
       {
         "name": "Southern Nights Tampa",
         "type": "Bar/Club",
         "tags": [
-          "Dance",
-          "Drag",
-          "High Energy"
+          "Large Dance Club",
+          "Drag"
         ]
       },
       {
         "name": "City Side Lounge",
         "type": "Bar/Club",
         "tags": [
-          "Karaoke",
-          "Patio",
-          "Video Bar"
+          "Neighborhood",
+          "Video Bar",
+          "Bears"
+        ]
+      },
+      {
+        "name": "Johnsons Tampa",
+        "type": "Bar/Club",
+        "tags": [
+          "Men-only",
+          "Strip Club",
+          "Social"
+        ]
+      },
+      {
+        "name": "Mr. D'z Men's Emporium",
+        "type": "Bar/Club",
+        "tags": [
+          "Leather",
+          "Fetish",
+          "Bears"
         ]
       },
       {
         "name": "The Castle",
         "type": "Bar/Club",
         "tags": [
-          "Goth",
           "Alternative",
-          "Dance"
-        ]
-      },
-      {
-        "name": "Cristoph's",
-        "type": "Bar/Club",
-        "tags": [
-          "Dance",
-          "Social",
-          "Outdoor"
+          "Goth",
+          "Inclusive"
         ]
       },
       {
@@ -57578,93 +59150,173 @@
         "tags": [
           "Dive Bar",
           "Social",
-          "Pool"
+          "Inclusive"
+        ]
+      },
+      {
+        "name": "White Lie",
+        "type": "Bar/Club",
+        "tags": [
+          "Cocktails",
+          "Social",
+          "Trendy"
+        ]
+      },
+      {
+        "name": "Showbar Ybor",
+        "type": "Bar/Club",
+        "tags": [
+          "Performance",
+          "Drag",
+          "Social"
+        ]
+      },
+      {
+        "name": "Honey Pot (New Location)",
+        "type": "Bar/Club",
+        "tags": [
+          "Dance",
+          "Circuit",
+          "High-Energy"
         ]
       },
       {
         "name": "C. 1949",
         "type": "Bar/Club",
         "tags": [
-          "Craft Beer",
+          "Florida Craft Beer",
           "Patio",
-          "Chill"
+          "Social"
         ]
       },
       {
-        "name": "Mr. D'z Men's Emporium",
+        "name": "Steam Fridays (The Ritz)",
         "type": "Bar/Club",
         "tags": [
-          "Leather",
-          "Bear",
-          "Cruise"
+          "Dance Event",
+          "Weekly Party"
         ]
       },
       {
-        "name": "Johnsons Tampa",
+        "name": "Hamburger Mary's Ybor",
         "type": "Bar/Club",
         "tags": [
-          "Men-only",
-          "Dance",
-          "Strippers"
+          "Drag Dining",
+          "Events"
         ]
       },
       {
-        "name": "Bar 508",
+        "name": "Club Prana (Sky Bar)",
         "type": "Bar/Club",
         "tags": [
-          "Casual",
-          "Neighborhood"
+          "Multi-level",
+          "Inclusive",
+          "Views"
+        ]
+      },
+      {
+        "name": "La Setima Club",
+        "type": "Bar/Club",
+        "tags": [
+          "Wine Bar",
+          "Queer-inclusive"
         ]
       }
     ],
     "saunas": [
       {
-        "name": "Tampa Men's Club",
-        "type": "Sauna / Steam / Fitness / Cruising"
+        "name": "Tampa Men's Club (TMC)",
+        "type": "Sauna",
+        "tags": [
+          "24/7",
+          "Steam",
+          "Gym",
+          "Cruising"
+        ]
       }
     ],
     "restaurants": [
       {
         "name": "Flan Factory",
-        "type": "Restaurant (Cuban/Bakery)"
+        "type": "Restaurant (Cuban / Bakery)"
       },
       {
-        "name": "Cake Thieves Bakery",
-        "type": "Bakery (Vegan)"
-      },
-      {
-        "name": "La Sétima Club",
-        "type": "Restaurant (Natural Wine/Vegan)"
-      },
-      {
-        "name": "Curious Cat Bakery",
-        "type": "Bakery (Vegan Pastries)"
-      },
-      {
-        "name": "Lick Honest Ice Creams",
-        "type": "Sweet Shop"
-      },
-      {
-        "name": "7th + Grove",
-        "type": "Restaurant (Soul Food)"
+        "name": "La Setima Club",
+        "type": "Restaurant (Louisiana-inspired Vegan)"
       },
       {
         "name": "District Tavern",
-        "type": "Restaurant (Gastropub)"
+        "type": "Restaurant (Gastropub / Brunch)"
       },
       {
-        "name": "W D Deli & Bakery",
-        "type": "Cafe / Deli"
+        "name": "Cheese Please",
+        "type": "Specialty Shop / Restaurant"
       },
       {
-        "name": "Southside Coffee Brew Bar",
-        "type": "Cafe"
+        "name": "Due Amici",
+        "type": "Restaurant (Pizza / Italian)"
+      },
+      {
+        "name": "Gourmet Pizza Company",
+        "type": "Restaurant (Specialty Pizza)"
+      },
+      {
+        "name": "MetroChefs",
+        "type": "Cafe / Catering"
+      },
+      {
+        "name": "Hamburger Mary's",
+        "type": "Restaurant (Burgers / Bar)"
+      },
+      {
+        "name": "BellaBrava",
+        "type": "Restaurant (Italian)"
+      },
+      {
+        "name": "Uptown Eats",
+        "type": "Cafe / Bakery"
+      },
+      {
+        "name": "Mad Hatters Kava Bar",
+        "type": "Cafe (Tea / Hookah)"
       }
     ],
     "stores": [
       {
-        "name": "Cheese Please",
-        "type": "Store (Cheese/Wine/Charcuterie)"
+        "name": "Mr. D'z Retail Emporium",
+        "type": "Store (Leather / Apparel)"
+      },
+      {
+        "name": "Black & Denim",
+        "type": "Store (Apparel / Lifestyle)"
+      },
+      {
+        "name": "Smith & Associates",
+        "type": "Service (Real Estate)"
+      },
+      {
+        "name": "ZaZoo'd",
+        "type": "Store (Home Decor / Gifts)"
+      },
+      {
+        "name": "Fantasy Land",
+        "type": "Store (Adult / Toys)"
+      },
+      {
+        "name": "Rhino.LGBT",
+        "type": "Service (Business / Marketing)"
+      },
+      {
+        "name": "The Wellness Tree",
+        "type": "Service (Acupuncture / Health)"
+      },
+      {
+        "name": "13 Arrows Tattoo",
+        "type": "Service (Tattoo Shop)"
+      },
+      {
+        "name": "Vintage Marche",
+        "type": "Store (Antiques)"
       }
     ],
     "tours": [
