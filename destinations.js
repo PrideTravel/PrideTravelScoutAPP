@@ -1170,8 +1170,7 @@
         "san juan"
       ],
       "london": [
-        "lhr",
-        "lgw"
+        "london"
       ],
       "paris": [
         "cdg",
