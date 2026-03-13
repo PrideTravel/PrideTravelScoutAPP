@@ -1721,10 +1721,11 @@
                           randomHotels.push(...iglataHotels);
                         }
 
-                        // Add all remaining hotels
+                        // Add remaining hotels up to limit of 6
                         if (otherHotels.length > 0) {
                           randomHotels.push(...otherHotels);
                         }
+                        randomHotels = randomHotels.slice(0, 6);
 
                         // Inject Featured Event Hotel (prepend if exists)
                         let firstMatchingEvent = matchingEvents.length > 0 ? matchingEvents[0] : null;
@@ -1760,14 +1761,14 @@
                         const isSauna = n => { const t = (n.type || '').toLowerCase(); const tags = (n.tags || []).map(g => g.toLowerCase()); return t.includes('sauna') || t.includes('bath') || tags.some(g => g.includes('sauna') || g.includes('bathhouse')); };
                         const isRestaurant = n => { const t = (n.type || '').toLowerCase(); return t.includes('restaurant') || t.includes('diner') || t.includes('cafe') || t.includes('bakery') || t.includes('bistro'); };
 
-                        const randomStores    = availableNightlife.filter(n => isStore(n));
-                        const randomSaunas    = availableNightlife.filter(n => !isStore(n) && isSauna(n));
+                        const randomStores    = availableNightlife.filter(n => isStore(n)).slice(0, 2);
+                        const randomSaunas    = availableNightlife.filter(n => !isStore(n) && isSauna(n)).slice(0, 2);
                         const nightlifeRestaurants = availableNightlife.filter(n => !isStore(n) && !isSauna(n) && isRestaurant(n));
-                        const randomNightlife = availableNightlife.filter(n => !isStore(n) && !isSauna(n) && !isRestaurant(n));
+                        const randomNightlife = availableNightlife.filter(n => !isStore(n) && !isSauna(n) && !isRestaurant(n)).slice(0, 4);
 
                         // Restaurants: dedicated array + any restaurant-type items found in nightlife array
-                        const randomRestaurants = [...availableRestaurants, ...nightlifeRestaurants];
-                        const randomTours = (data.tours || []);
+                        const randomRestaurants = [...availableRestaurants, ...nightlifeRestaurants].slice(0, 2);
+                        const randomTours = (data.tours || []).slice(0, 6);
                         const fareEstimate = calculateFareEstimate(data.baseFare);
                         const delay = index * 200;
 
