@@ -1660,6 +1660,9 @@
                         }
                     }
 
+                    // Deduplicate targets to prevent duplicate weather summaries
+                    targets = [...new Set(targets)];
+
                     // Dateless search → show events-only listing page
                     if (!dateStart || !dateEnd) {
                         showEventsOnlyView(targets);
