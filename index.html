@@ -1416,18 +1416,19 @@
                         const dateStr = (t.dateStart && t.dateEnd) ? t.dateStart + ' to ' + t.dateEnd : '';
                         let bookmarksHtml = '';
                         if (t.bookmarks && t.bookmarks.length > 0) {
-                            bookmarksHtml = '<div style="margin-top:.5rem; font-size:.8rem; background:rgba(0,0,0,0.02); padding:.5rem; border-radius:6px;">' +
-                                '<div style="font-weight:bold; margin-bottom:.2rem; color:#f20d8f; display:flex; align-items:center; gap:4px;">' +
-                                '<span class="material-symbols-outlined" style="font-size:14px;">bookmarks</span> Bookmarked Places</div>' +
-                                '<ul style="list-style:none; padding:0; margin:0; color:#444;">' +
+                            bookmarksHtml = '<div style="margin-top:.5rem; font-size:.9rem; background:rgba(0,0,0,0.02); padding:.6rem; border-radius:6px;">' +
+                                '<div style="font-weight:bold; margin-bottom:.4rem; color:#f20d8f; display:flex; align-items:center; gap:4px; font-size:.95rem;">' +
+                                '<span class="material-symbols-outlined" style="font-size:18px;">bookmarks</span> Bookmarked Places</div>' +
+                                '<ul style="list-style:none; padding:0; margin:0; color:#444; display:flex; flex-direction:column; gap:.5rem;">' +
                                 t.bookmarks.map(b => {
                                     const bookmarkObjStr = encodeURIComponent(JSON.stringify(b));
-                                    return '<li style="margin-bottom:.3rem; display:flex; justify-content:space-between; align-items:flex-start; gap:4px; background:#fff; padding:6px; border-radius:4px; border:1px solid #eee;">' +
+                                    return '<li style="display:flex; justify-content:space-between; align-items:center; gap:.5rem; background:#fff; padding:.5rem .6rem; border-radius:6px; border:1px solid #ddd; min-height:2.5rem;">' +
                                         '<div style="flex:1; word-break:break-word;">' +
-                                        '<div style="display:flex; align-items:center; gap:6px; margin-bottom:2px;"><strong>' + b.name + '</strong> <span style="font-size:.7rem; color:#888;">(' + b.type + ')</span>' + (b.addedBy ? '<span style="font-size:.6rem; color:#fff; background:linear-gradient(90deg,#f20d8f,#86007D); padding:2px 5px; border-radius:99px; font-weight:bold;">' + b.addedBy + '</span>' : '') + '</div>' +
+                                        '<div style="display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; margin-bottom:.3rem;"><strong style="font-size:.95rem;">' + b.name + '</strong>' + (b.addedBy ? '<span style="font-size:.75rem; color:#fff; background:linear-gradient(90deg,#f20d8f,#86007D); padding:3px 7px; border-radius:99px; font-weight:bold; white-space:nowrap;">' + b.addedBy + '</span>' : '') + '</div>' +
+                                        '<div style="display:flex; align-items:center; gap:.4rem; font-weight:600; font-size:.85rem;"><span style="color:#f20d8f; background:#f20d8f20; padding:4px 8px; border-radius:4px; white-space:nowrap;">' + b.type + '</span></div>' +
                                         '</div>' +
-                                        '<button onclick="psDeleteBookmark(\'' + doc.id + '\', \'' + bookmarkObjStr + '\')" title="Delete Bookmark" style="background:none; border:none; color:#e11d48; cursor:pointer; padding:0; margin-left:4px; opacity:0.6; transition:opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.6">' +
-                                        '<span class="material-symbols-outlined" style="font-size:16px;">delete</span></button>' +
+                                        '<button onclick="psDeleteBookmark(\'' + doc.id + '\', \'' + bookmarkObjStr + '\')" title="Delete Bookmark" style="background:none; border:none; color:#e11d48; cursor:pointer; padding:0; margin-left:.5rem; opacity:0.6; transition:opacity 0.2s; flex-shrink:0;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.6">' +
+                                        '<span class="material-symbols-outlined" style="font-size:20px;">delete</span></button>' +
                                         '</li>';
                                 }).join('') +
                                 '</ul></div>';
