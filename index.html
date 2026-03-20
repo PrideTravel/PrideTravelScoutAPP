@@ -1738,8 +1738,8 @@
                 window.DATABASE.details = details;
                 _destinationsLoaded = true;
 
-                if (typeof populateTrendingEvents === 'function') populateTrendingEvents();
-                if (typeof populateSafeHotspots === 'function') populateSafeHotspots();
+                if (typeof populateTrendingEvents === 'function') { try { populateTrendingEvents(); } catch(e) { console.error('populateTrendingEvents error:', e); } }
+                if (typeof populateSafeHotspots === 'function') { try { populateSafeHotspots(); } catch(e) { console.error('populateSafeHotspots error:', e); } }
 
                 return Promise.resolve();
             }
@@ -2553,6 +2553,9 @@
                     else if (h.type && priceLevels.includes(h.type)) priceTag = h.type;
                 }
 
+                // Don't show priceTag if it duplicates the specialty tag
+                if (priceTag === specialty) priceTag = null;
+
                 return { specialty, priceTag, certifications };
             }
 
@@ -2813,8 +2816,8 @@
                         <div onclick="quickSearch(${params})"
                              class="rounded-3xl overflow-hidden relative group shadow-2xl cursor-pointer active:scale-95 transition-transform ${borderClass}">
                             <img class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110" src="${imageUrl}" alt="${h.city}" loading="lazy" />
-                            ${flagEmoji ? `<div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-900/40 via-transparent to-slate-900/40 text-8xl font-bold">${flagEmoji}</div>` : ''}
                             <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                            ${flagEmoji ? `<div class="absolute inset-0 flex items-center justify-center pb-16 text-8xl drop-shadow-lg">${flagEmoji}</div>` : ''}
                             <div class="absolute bottom-5 left-5 right-5">
                                 ${tag}
                                 <h4 class="text-white text-xl font-black mb-1">${h.city}, ${h.country}</h4>
@@ -2879,9 +2882,10 @@
                 const borderColor = type === 'Cruise' ? 'border-pride-blue' : 'border-pride-purple';
                 const bgColor = type === 'Cruise' ? 'bg-pride-blue/10' : 'bg-pride-purple/10';
                 const colorClass = type === 'Cruise' ? 'text-pride-blue' : 'text-pride-purple';
+                const cityName = (e.city || e.name || 'All').replace(/'/g, "\\'");
 
                 return `
-                    <div onclick="quickSearch('${e.city.replace(/'/g, "\\'")}', '${e.start}', '${e.end}')" 
+                    <div onclick="quickSearch('${cityName}', '${e.start}', '${e.end}')"
                          class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-lg border-l-4 ${borderColor} flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform relative group">
                         <div class="w-12 h-12 rounded-xl ${bgColor} flex items-center justify-center ${colorClass} shrink-0">
                             <span class="material-symbols-outlined">${icon}</span>
@@ -2937,8 +2941,8 @@
                         <div onclick="quickSearch(${params})"
                              class="min-w-[280px] snap-center rounded-3xl overflow-hidden relative group shadow-2xl cursor-pointer active:scale-95 transition-transform ${borderClass}">
                             <img class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110" src="${imageUrl}" />
-                            ${flagEmoji ? `<div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-900/40 via-transparent to-slate-900/40 text-9xl font-bold">${flagEmoji}</div>` : ''}
                             <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                            ${flagEmoji ? `<div class="absolute inset-0 flex items-center justify-center pb-20 text-9xl drop-shadow-lg">${flagEmoji}</div>` : ''}
                             <div class="absolute bottom-6 left-6 right-6">
                                 ${tag}
                                 <h4 class="text-white text-2xl font-black mb-1">${h.city}, ${h.country}</h4>
