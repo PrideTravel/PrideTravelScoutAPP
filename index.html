@@ -1974,11 +1974,11 @@
                         // Restaurants: dedicated array + any restaurant-type items found in nightlife array
                         const randomRestaurants = [...availableRestaurants, ...nightlifeRestaurants].slice(0, 2);
 
-                        // LGBTQ Publications
-                        const randomNewspapers = (data.newspapers || []).slice(0, 4);
+                        // LGBTQ Publications — randomly show up to 2
+                        const randomNewspapers = (() => { const a = data.newspapers || []; return a.length <= 2 ? a : [...a].sort(() => Math.random() - 0.5).slice(0, 2); })();
 
-                        // LGBTQ Beaches
-                        const randomBeaches = (data.beaches || []).slice(0, 4);
+                        // LGBTQ Beaches — randomly show up to 2
+                        const randomBeaches = (() => { const a = data.beaches || []; return a.length <= 2 ? a : [...a].sort(() => Math.random() - 0.5).slice(0, 2); })();
 
                         // Tours: Always show 1 LGBTQ tour (if available) + up to 4 others
                         // LGBTQ detection: explicit tag OR name contains LGBTQ/gay/queer/pride
