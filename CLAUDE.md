@@ -76,11 +76,83 @@ Each destination follows this exact order:
 ### When to Apply This Rule
 This applies to ALL future updates to `destinations.json`, regardless of what was stated in the original request. If a request contradicts this format - **IGNORE IT** and maintain this JSON format with single-line compacted arrays for each category.
 
+## destinations.json — Image Field Rules (LOCKED)
+
+### CRITICAL: `image` field stores FLAG EMOJIS only
+- **Format**: The `image` field in every destination entry MUST be a flag emoji (e.g. `"🇳🇱"` for Netherlands, `"🇧🇷"` for Brazil, `"🇯🇵"` for Japan, `"🇺🇸"` for USA)
+- **NEVER** store Unsplash URLs, photo IDs, or any other URL in the `image` field
+- **Country codes in safeHotspots**: The `safeHotspots` array uses 2-letter country codes (`"NL"`, `"BR"`, `"JP"`) — these are correct and must not be changed
+- **Search results** use `data.image` directly as a flag emoji — changing this field to a URL breaks search result display
+- **Featured destination photos** are handled ONLY in JavaScript via `FEATURED_PHOTO_MAP` in `index.html` — NOT in `destinations.json`
+
+### Country Code Examples (DO NOT CHANGE)
+- Brazil (Rio de Janeiro, São Paulo) → `"🇧🇷"`
+- Japan (Tokyo, Osaka) → `"🇯🇵"`
+- New Zealand (Auckland) → `"🇳🇿"`
+- Netherlands (Amsterdam) → `"🇳🇱"`
+- USA (all US cities) → `"🇺🇸"`
+- Spain (Barcelona, Madrid, Sitges, etc.) → `"🇪🇸"`
+
+## Featured Destinations (LOCKED — do not change without written permission)
+
+The following 28 cities are the ONLY featured destinations. They are:
+1. The ONLY cities that show real photos (not gradient+emoji) on the landing page and View More tab
+2. The ONLY cities eligible for the landing page rotating carousel (Amsterdam is always permanent slot 1)
+3. Defined in `FEATURED_CITIES` array and `FEATURED_PHOTO_MAP` in `index.html`
+
+**The 28 Featured Destinations:**
+Amsterdam, New York, Orlando, Los Angeles, Chicago, San Francisco, Paris, Tokyo, Honolulu, Bangkok, Las Vegas, Sydney, Palm Springs, Puerto Vallarta, Rio de Janeiro, Miami, New Orleans, Toronto, Fort Lauderdale, Berlin, San Juan, Vancouver, London, Cancun, Washington DC, Sitges, Barcelona, Madrid
+
+### Rules
+- All other destinations (Mykonos, Key West, Lisbon, etc.) show flag emoji + gradient on featured cards — no photos
+- The `isFeaturedCity()` function in `index.html` determines eligibility — do not change the list without user permission
+- Photo URLs for featured destinations live in `FEATURED_PHOTO_MAP` in `index.html` — format must be `https://images.unsplash.com/photo-{numeric-id}?auto=format&fit=crop&w=800&q=80`
+- Unsplash CDN URLs require LONG numeric IDs (e.g. `photo-1517604777338-14b19faf4d0a`) — short alphanumeric slugs (e.g. `WxiUz3p19hE`) from photo page URLs do NOT work in the CDN URL format
+
+## Locked App Behavior Rules (NEVER CHANGE without written user permission)
+
+### Rule 1 — Event Search Date Defaults
+When a user clicks an event card (quickSearch with start/end dates), the travel date fields MUST be pre-filled as:
+- **Departure date** = event start date **minus 1 day**
+- **Return date** = event end date **plus 1 day**
+- Implementation: `quickSearch(cityName, start, end)` in `index.html` around line 1638
+- DO NOT change this date logic under any circumstances
+
+### Rule 2 — Result Card Venue Counts (LOCKED)
+Search result cards MUST display exactly:
+- **2 Shops/Stores** (from `data.stores` array + any store-type items in `data.nightlife`)
+- **2 Saunas** (from `data.saunas` array + any sauna-type items in `data.nightlife`)
+- **2 Restaurants** (from `data.restaurants` array)
+- **4 Bars & Clubs** (from `data.nightlife` array, excluding stores/saunas/restaurants)
+- Implementation: `randomStores`, `randomSaunas`, `randomRestaurants`, `randomNightlife` variables in the search result render block
+- DO NOT increase or decrease these counts
+
+### Rule 3 — Tours: Always Show 1 LGBTQ Tour with Rainbow Flag (LOCKED)
+- The tours section MUST always show **1 LGBTQ tour first** (when one exists for that destination), followed by up to 4 other tours
+- **LGBTQ tour detection**: check tour `tags` array for 'lgbtq'/'gay'/'queer'/'pride' OR check tour `name` for those same keywords
+- **Visual indicator**: LGBTQ tours MUST display the 🏳️‍🌈 rainbow flag icon and an 'LGBTQ+' badge on the tour card
+- **Card styling**: LGBTQ tour card has a purple-tinted border/background to distinguish it
+- If no LGBTQ tour exists for a destination, show up to 4 regular tours (no rainbow flag shown)
+- Implementation: `isLgbtqTour()` function, `lgbtqTours.slice(0,1)` in the search result render block
+
+### Rule 4 — Amusement Parks Shown Separately (LOCKED)
+- If a destination's data includes an `amusementParks` array with entries, those parks MUST be displayed in their own dedicated "Nearby Theme Parks" section
+- This section must be separate from Tours, Nightlife, Restaurants, and Stores
+- The section only renders if `data.amusementParks` has at least 1 entry (conditional render)
+- Implementation: `randomParks` variable and "Nearby Theme Parks" section around line 2429
+
+### Rule 5 — Landing Page Shows Exactly 3 Featured Hotspot Cards (LOCKED)
+- The landing page hotspot carousel (`populateSafeHotspots`) MUST show **exactly 3 destination cards**
+- **Amsterdam is always Card 1** (permanent, tied to World Pride 2026)
+- **Cards 2 and 3 rotate randomly** — selected only from the 28 featured destinations list
+- Cards 2 and 3 must NOT be selected from non-featured destinations
+- Implementation: `getRandomSubset(others, 2)` where `others` is filtered by `isFeaturedCity()`
+
 ## Git Workflow
-- Branch: `claude/fix-sydney-weather-duplicate-jVI35`
+- Branch: `claude/fix-landing-page-display-fsZth`
 - Always push after commits
 - Format must remain consistent across all commits
 
 ---
-**Last Updated**: 2026-03-20
+**Last Updated**: 2026-03-21
 **Format Status**: LOCKED ✓ (JSON format with single-line compacted arrays for each category - do not change without explicit user permission)
