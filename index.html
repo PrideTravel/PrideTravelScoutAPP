@@ -1974,11 +1974,14 @@
                         // Restaurants: dedicated array + any restaurant-type items found in nightlife array
                         const randomRestaurants = [...availableRestaurants, ...nightlifeRestaurants].slice(0, 2);
 
-                        // LGBTQ Publications
-                        const randomNewspapers = (data.newspapers || []).slice(0, 4);
+                        // LGBTQ Publications — randomly show up to 2
+                        const randomNewspapers = (() => { const a = data.newspapers || []; return a.length <= 2 ? a : [...a].sort(() => Math.random() - 0.5).slice(0, 2); })();
 
-                        // LGBTQ Beaches
-                        const randomBeaches = (data.beaches || []).slice(0, 4);
+                        // LGBTQ Beaches — randomly show up to 2
+                        const randomBeaches = (() => { const a = data.beaches || []; return a.length <= 2 ? a : [...a].sort(() => Math.random() - 0.5).slice(0, 2); })();
+
+                        // LGBTQ Community Engagement — randomly show up to 2
+                        const randomCommunity = (() => { const a = data.community || []; return a.length <= 2 ? a : [...a].sort(() => Math.random() - 0.5).slice(0, 2); })();
 
                         // Tours: Always show 1 LGBTQ tour (if available) + up to 4 others
                         // LGBTQ detection: explicit tag OR name contains LGBTQ/gay/queer/pride
@@ -1992,8 +1995,8 @@
                         const lgbtqTours = allTours.filter(isLgbtqTour);
                         const otherTours = allTours.filter(t => !isLgbtqTour(t));
                         const randomTours = [
-                          ...shuffle(lgbtqTours).slice(0, 1),
-                          ...shuffle(otherTours).slice(0, 4)
+                          ...shuffle(lgbtqTours).slice(0, 2),
+                          ...shuffle(otherTours).slice(0, 3)
                         ];
 
                         const randomParks = shuffle(data.amusementParks || []).slice(0, 2);
@@ -2420,6 +2423,34 @@
                                             </div>
                                             <p class="font-bold group-hover:text-white text-black" style="color: black !important;">${beachName}</p>
                                             <p class="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-300 group-hover:text-white/80">${beachType}</p>
+                                        </div>
+                                        `;
+                            }).join('')}
+                                </div>
+                            </section>
+                            ` : ''}
+
+                            <!-- LGBTQ Community Engagement -->
+                            ${randomCommunity.length > 0 ? `
+                            <section>
+                                <h3 class="text-xl font-bold mb-4 inline-flex items-center gap-2 dark-pill">
+                                    <span class="material-symbols-outlined text-pride-orange text-xl">account_balance</span>
+                                    <span class="pride-gradient-text">Community Engagement</span>
+                                </h3>
+                                <div class="grid grid-cols-2 gap-3">
+                                    ${randomCommunity.map(c => {
+                                const placeName = typeof c === 'object' ? c.name : c;
+                                const placeType = typeof c === 'object' ? (c.type || 'Community') : 'Community';
+                                return `
+                                        <div class="bg-white p-4 rounded-xl border border-pride-orange/20 group hover:bg-pride-orange transition-colors duration-300 relative cursor-default">
+                                            <button onclick="window.psBookmarkPlace('${placeName.replace(/'/g, "\\'")}', 'Community', '${data.name.replace(/'/g, "\\'")}', '${origin.replace(/'/g, "\\'")}', '${dateStart}', '${dateEnd}', this)" title="Bookmark this place" class="absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 transition-colors text-slate-400 z-10">
+                                                <span class="material-symbols-outlined text-[16px]">bookmark</span>
+                                            </button>
+                                            <div class="w-10 h-10 bg-pride-orange rounded-full flex items-center justify-center text-white mb-3 group-hover:bg-white dark:bg-white dark:text-pride-orange group-hover:text-pride-orange">
+                                                <span class="material-symbols-outlined text-[20px]">account_balance</span>
+                                            </div>
+                                            <p class="font-bold group-hover:text-white text-black" style="color: black !important;">${placeName}</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-300 group-hover:text-white/80">${placeType}</p>
                                         </div>
                                         `;
                             }).join('')}
