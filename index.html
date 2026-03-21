@@ -1994,32 +1994,29 @@
                             const carouselItems = matchingEvents.map(event => {
                                 const hasTravelInPrideLink = event.link && event.link.includes('travelinpride.com');
                                 const isCruise = event.type === 'Cruise';
-                                // Cruise: show cruise website as "Official" + Google as second. TravelInPride: Official + Google. Others: only Google.
                                 const showOfficialBtn = hasTravelInPrideLink || isCruise || (event.link && !event.link.includes('google.com/search'));
                                 const officialLink = event.link || getEventsLink(data.name, dateStart);
                                 const link1 = officialLink;
                                 const link2 = `https://www.google.com/search?q=${encodeURIComponent(event.name + " 2026")}`;
 
-                                const bannerTitle = isCruise ? "LGBTQ Cruise Alert" : "Pride Event Detected!";
-                                const bannerIcon = isCruise ? "directions_boat" : "celebration";
-                                const bgClass = isCruise ? "from-blue-600 to-cyan-500" : "from-pride-purple to-pride-blue";
+                                const s = getEventTypeStyle(event.type);
+                                const bannerTitle = isCruise ? "LGBTQ Cruise Alert" : "LGBTQ Event Detected!";
 
                                 return `
-                                <div class="snap-center shrink-0 w-[85%] sm:w-80 bg-gradient-to-r ${bgClass} rounded-xl shadow-lg p-5 text-white relative overflow-hidden group">
-                                    <div class="absolute top-0 right-0 p-4 opacity-10">
-                                        <span class="material-symbols-outlined text-6xl">${bannerIcon}</span>
-                                    </div>
+                                <div class="snap-center shrink-0 w-[85%] sm:w-80 bg-gradient-to-r ${s.gradient} rounded-xl shadow-lg p-5 text-white relative overflow-hidden group">
+                                    <div class="absolute top-0 right-0 p-4 opacity-10 text-7xl leading-none select-none">${s.emoji}</div>
                                     <button onclick="window.psBookmarkPlace('${event.name.replace(/'/g, "\\'")}', '${isCruise ? 'Cruise' : 'Event'}', '${data.name.replace(/'/g, "\\'")}', '${origin.replace(/'/g, "\\'")}', '${dateStart}', '${dateEnd}', this)" title="Bookmark this event" class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/40 transition-colors text-white z-10 opacity-0 group-hover:opacity-100 cursor-pointer">
                                         <span class="material-symbols-outlined text-[18px] pointer-events-none">bookmark_border</span>
                                     </button>
                                     <div class="flex items-center gap-2 mb-3">
-                                        <span class="material-symbols-outlined text-pride-yellow fill-1">stars</span>
+                                        <span class="text-xl leading-none">${s.emoji}</span>
                                         <h4 class="font-bold text-lg leading-tight truncate">${bannerTitle}</h4>
                                         ${matchingEvents.length > 1 ? '<span class="ml-auto text-[10px] font-black uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded text-white backdrop-blur-sm shadow-sm ring-1 ring-white/30">MULTIPLE</span>' : ''}
                                     </div>
                                     <a href="${link1}" target="_blank" class="font-bold text-white text-xl mb-1 hover:underline cursor-pointer flex items-center gap-1 group block whitespace-nowrap overflow-hidden text-ellipsis">
                                         ${event.name}
                                     </a>
+                                    <span class="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wide bg-white/20 text-white px-2 py-0.5 rounded-full mb-2 backdrop-blur-sm">${s.emoji} ${s.label}</span>
                                     <p class="text-xs text-white/80 mb-4 flex items-center gap-1 font-medium">
                                         <span class="material-symbols-outlined text-sm">calendar_today</span>
                                         ${event.start} &ndash; ${event.end}
@@ -2670,23 +2667,20 @@
 
                     // Renders a card matching the trending events style on the home page
                     const renderEventCard = ev => {
-                        const isCruise = ev.type === 'Cruise';
-                        const icon        = isCruise ? 'directions_boat' : 'event_upcoming';
-                        const borderColor = isCruise ? 'border-pride-blue' : 'border-pride-purple';
-                        const bgColor     = isCruise ? 'bg-pride-blue/10' : 'bg-pride-purple/10';
-                        const colorClass  = isCruise ? 'text-pride-blue' : 'text-pride-purple';
-                        const city     = (ev.city || targetKey).replace(/'/g, "\\'");
+                        const s = getEventTypeStyle(ev.type);
+                        const city      = (ev.city || targetKey).replace(/'/g, "\\'");
                         const safeStart = (ev.start || '').replace(/'/g, "\\'");
                         const safeEnd   = (ev.end   || '').replace(/'/g, "\\'");
                         const cityLabel = ev.city || data.name.split(',')[0];
                         return `
                         <div onclick="quickSearch('${city}', '${safeStart}', '${safeEnd}')"
-                             class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-lg border-l-4 ${borderColor} flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform relative group">
-                            <div class="w-12 h-12 rounded-xl ${bgColor} flex items-center justify-center ${colorClass} shrink-0">
-                                <span class="material-symbols-outlined">${icon}</span>
+                             class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-lg border-l-4 ${s.border} flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform relative group">
+                            <div class="w-12 h-12 rounded-xl ${s.bg} flex items-center justify-center shrink-0 text-2xl leading-none">
+                                ${s.emoji}
                             </div>
                             <div class="overflow-hidden pr-6 flex-1">
                                 <p class="font-black text-slate-900 dark:text-white truncate text-base">${ev.name}</p>
+                                <span class="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wide ${s.badge} px-2 py-0.5 rounded-full mt-0.5 mb-1">${s.emoji} ${s.label}</span>
                                 <p class="text-xs font-bold text-slate-500 uppercase tracking-tighter">${cityLabel} &bull; ${formatDateShort(ev.start)}</p>
                             </div>
                             <div class="flex items-center">
@@ -2703,12 +2697,24 @@
                             </div>
                         </div>`;
 
+                    // Group all events by type for labeled sections
+                    const groupOrder = ['Pride Event','Bear','Fetish','Cruise','Circuit','Lesbian','Festival','Halloween','Christmas','NYE','Christmas,NYE','Easter','4th of July','Labor Day','Memorial Day','Thanksgiving','Themed Event','Carnival','Drag','Con','Amusement Park','Awards','Event'];
+                    const groupMap = {};
+                    allEvents.sort(byDate).forEach(ev => {
+                        const k = ev.type || 'Pride Event';
+                        if (!groupMap[k]) groupMap[k] = [];
+                        groupMap[k].push(ev);
+                    });
+                    const orderedKeys = [...groupOrder.filter(k => groupMap[k]), ...Object.keys(groupMap).filter(k => !groupOrder.includes(k))];
                     let sectionsHtml = '';
-                    if (prideEvents.length) sectionsHtml += sectionHeader('Pride Events', 'pride-purple', 'celebration') + `<div class="grid grid-cols-1 md:grid-cols-2 gap-3">${prideEvents.map(renderEventCard).join('')}</div>`;
-                    if (cruises.length)     sectionsHtml += sectionHeader('LGBTQ Cruises', 'pride-blue', 'directions_boat') + `<div class="grid grid-cols-1 md:grid-cols-2 gap-3">${cruises.map(renderEventCard).join('')}</div>`;
-                    if (!sectionsHtml)      sectionsHtml = `<p class="text-sm text-slate-500 dark:text-slate-400 py-6 text-center italic">No events currently listed for ${data.name}.</p>`;
+                    orderedKeys.forEach(k => {
+                        const s = getEventTypeStyle(k);
+                        const label = k === 'Pride Event' ? 'Pride Events' : k === 'Cruise' ? 'LGBTQ Cruises' : k;
+                        sectionsHtml += sectionHeader(label, s.border.replace('border-',''), s.icon) + `<div class="grid grid-cols-1 md:grid-cols-2 gap-3">${groupMap[k].map(renderEventCard).join('')}</div>`;
+                    });
+                    if (!sectionsHtml) sectionsHtml = `<p class="text-sm text-slate-500 dark:text-slate-400 py-6 text-center italic">No events currently listed for ${data.name}.</p>`;
 
-                    const total = prideEvents.length + cruises.length;
+                    const total = allEvents.length;
                     const card = document.createElement('div');
                     card.className = 'bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-primary/10 overflow-hidden fade-in-up mb-6';
                     card.innerHTML = `
@@ -2765,17 +2771,19 @@
                             </div>
                         </div>`;
                     const cards = items.map(h => {
+                        const s = getEventTypeStyle(h.type);
                         const location = h.location || h.city || '';
                         const meta = h.date ? `${location} • ${h.date}` : location;
                         const query = h.searchQuery || h.city || h.name;
                         return `
                             <div onclick="quickSearch('${query.replace(/'/g, "\\'")}', '${h.start || ''}', '${h.end || ''}')"
-                                 class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-lg border-l-4 border-${color} flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform group relative">
-                                <div class="w-12 h-12 rounded-xl bg-${color}/10 flex items-center justify-center text-${color} shrink-0">
-                                    <span class="material-symbols-outlined">${icon}</span>
+                                 class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-lg border-l-4 ${s.border} flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform group relative">
+                                <div class="w-12 h-12 rounded-xl ${s.bg} flex items-center justify-center shrink-0 text-2xl leading-none">
+                                    ${s.emoji}
                                 </div>
                                 <div class="overflow-hidden flex-1 pr-6">
                                     <p class="font-black text-slate-900 dark:text-white truncate text-lg">${h.name}</p>
+                                    <span class="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wide ${s.badge} px-2 py-0.5 rounded-full mt-0.5 mb-1">${s.emoji} ${s.label}</span>
                                     <p class="text-xs font-bold text-slate-500 uppercase tracking-tighter">${meta}</p>
                                 </div>
                                 <div class="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -2876,22 +2884,47 @@
                 grid.innerHTML = html;
             }
 
-            function renderTrendingCardSnippet(e) {
-                const type = e.type === 'Cruise' ? 'Cruise' : 'Event';
-                const icon = type === 'Cruise' ? 'directions_boat' : 'event_upcoming';
-                const borderColor = type === 'Cruise' ? 'border-pride-blue' : 'border-pride-purple';
-                const bgColor = type === 'Cruise' ? 'bg-pride-blue/10' : 'bg-pride-purple/10';
-                const colorClass = type === 'Cruise' ? 'text-pride-blue' : 'text-pride-purple';
-                const cityName = (e.city || e.name || 'All').replace(/'/g, "\\'");
+            function getEventTypeStyle(type) {
+                const t = (type || '').toLowerCase().trim();
+                if (t.includes('christmas') && t.includes('nye')) return {emoji:'🎄🥂',icon:'celebration',border:'border-green-600',bg:'bg-green-100 dark:bg-green-900/20',text:'text-green-700 dark:text-green-400',badge:'bg-green-600 text-white',gradient:'from-green-700 to-yellow-500',label:'Christmas & NYE'};
+                switch(t) {
+                    case 'cruise':       return {emoji:'🚢',icon:'directions_boat',border:'border-blue-500',bg:'bg-blue-100 dark:bg-blue-900/20',text:'text-blue-600 dark:text-blue-400',badge:'bg-blue-600 text-white',gradient:'from-blue-600 to-cyan-500',label:'Cruise'};
+                    case 'bear':         return {emoji:'🐻',icon:'pets',border:'border-amber-700',bg:'bg-amber-100 dark:bg-amber-900/20',text:'text-amber-700 dark:text-amber-400',badge:'bg-amber-700 text-white',gradient:'from-amber-800 to-amber-600',label:'Bear'};
+                    case 'fetish':       return {emoji:'⛓️',icon:'link',border:'border-slate-600',bg:'bg-slate-200 dark:bg-slate-700/50',text:'text-slate-700 dark:text-slate-300',badge:'bg-slate-700 text-white',gradient:'from-slate-800 to-slate-600',label:'Fetish'};
+                    case 'halloween':    return {emoji:'🎃',icon:'dark_mode',border:'border-orange-500',bg:'bg-orange-100 dark:bg-orange-900/20',text:'text-orange-600 dark:text-orange-400',badge:'bg-orange-500 text-white',gradient:'from-orange-600 to-amber-500',label:'Halloween'};
+                    case 'christmas':    return {emoji:'🎄',icon:'park',border:'border-green-600',bg:'bg-green-100 dark:bg-green-900/20',text:'text-green-700 dark:text-green-400',badge:'bg-green-600 text-white',gradient:'from-green-700 to-emerald-500',label:'Christmas'};
+                    case 'nye':          return {emoji:'🥂',icon:'celebration',border:'border-yellow-500',bg:'bg-yellow-100 dark:bg-yellow-900/20',text:'text-yellow-700 dark:text-yellow-500',badge:'bg-yellow-500 text-white',gradient:'from-yellow-500 to-amber-400',label:"New Year's Eve"};
+                    case 'circuit':      return {emoji:'🎵',icon:'music_note',border:'border-pink-500',bg:'bg-pink-100 dark:bg-pink-900/20',text:'text-pink-600 dark:text-pink-400',badge:'bg-pink-500 text-white',gradient:'from-pink-600 to-rose-500',label:'Circuit'};
+                    case 'lesbian':      return {emoji:'🌸',icon:'favorite',border:'border-pink-400',bg:'bg-pink-50 dark:bg-pink-900/20',text:'text-pink-500 dark:text-pink-300',badge:'bg-pink-400 text-white',gradient:'from-pink-500 to-rose-400',label:'Lesbian'};
+                    case 'easter':       return {emoji:'🐣',icon:'egg_alt',border:'border-yellow-400',bg:'bg-yellow-50 dark:bg-yellow-900/20',text:'text-yellow-600 dark:text-yellow-400',badge:'bg-yellow-400 text-slate-800',gradient:'from-yellow-400 to-lime-400',label:'Easter'};
+                    case '4th of july':  return {emoji:'🎆',icon:'flag',border:'border-red-600',bg:'bg-red-100 dark:bg-red-900/20',text:'text-red-700 dark:text-red-400',badge:'bg-red-600 text-white',gradient:'from-red-700 to-red-500',label:'4th of July'};
+                    case 'labor day':    return {emoji:'☀️',icon:'beach_access',border:'border-sky-500',bg:'bg-sky-100 dark:bg-sky-900/20',text:'text-sky-600 dark:text-sky-400',badge:'bg-sky-500 text-white',gradient:'from-sky-600 to-blue-400',label:'Labor Day'};
+                    case 'festival':     return {emoji:'🎉',icon:'festival',border:'border-rose-500',bg:'bg-rose-100 dark:bg-rose-900/20',text:'text-rose-600 dark:text-rose-400',badge:'bg-rose-500 text-white',gradient:'from-rose-600 to-pink-500',label:'Festival'};
+                    case 'themed event': return {emoji:'🎭',icon:'theater_comedy',border:'border-purple-500',bg:'bg-purple-100 dark:bg-purple-900/20',text:'text-purple-600 dark:text-purple-400',badge:'bg-purple-500 text-white',gradient:'from-purple-600 to-violet-500',label:'Themed Event'};
+                    case 'carnival':     return {emoji:'🎡',icon:'attractions',border:'border-orange-400',bg:'bg-orange-100 dark:bg-orange-900/20',text:'text-orange-500 dark:text-orange-300',badge:'bg-orange-400 text-white',gradient:'from-orange-500 to-yellow-400',label:'Carnival'};
+                    case 'drag':         return {emoji:'👑',icon:'auto_awesome',border:'border-fuchsia-500',bg:'bg-fuchsia-100 dark:bg-fuchsia-900/20',text:'text-fuchsia-600 dark:text-fuchsia-400',badge:'bg-fuchsia-500 text-white',gradient:'from-fuchsia-600 to-pink-500',label:'Drag'};
+                    case 'con':          return {emoji:'🎮',icon:'sports_esports',border:'border-indigo-500',bg:'bg-indigo-100 dark:bg-indigo-900/20',text:'text-indigo-600 dark:text-indigo-400',badge:'bg-indigo-500 text-white',gradient:'from-indigo-600 to-blue-500',label:'Con'};
+                    case 'amusement park': return {emoji:'🎡',icon:'attractions',border:'border-orange-400',bg:'bg-orange-100 dark:bg-orange-900/20',text:'text-orange-500 dark:text-orange-300',badge:'bg-orange-400 text-white',gradient:'from-orange-500 to-yellow-400',label:'Amusement Park'};
+                    case 'awards':       return {emoji:'🏆',icon:'emoji_events',border:'border-yellow-600',bg:'bg-yellow-100 dark:bg-yellow-900/20',text:'text-yellow-700 dark:text-yellow-400',badge:'bg-yellow-600 text-white',gradient:'from-yellow-600 to-amber-500',label:'Awards'};
+                    case 'memorial day': return {emoji:'🇺🇸',icon:'flag',border:'border-red-600',bg:'bg-red-100 dark:bg-red-900/20',text:'text-red-700 dark:text-red-400',badge:'bg-red-600 text-white',gradient:'from-red-700 to-blue-600',label:'Memorial Day'};
+                    case 'thanksgiving': return {emoji:'🦃',icon:'set_meal',border:'border-orange-700',bg:'bg-orange-100 dark:bg-orange-900/20',text:'text-orange-700 dark:text-orange-400',badge:'bg-orange-700 text-white',gradient:'from-orange-700 to-amber-600',label:'Thanksgiving'};
+                    case 'event':        return {emoji:'✨',icon:'star',border:'border-slate-400',bg:'bg-slate-100 dark:bg-slate-700/30',text:'text-slate-600 dark:text-slate-300',badge:'bg-slate-500 text-white',gradient:'from-slate-600 to-slate-500',label:'Event'};
+                    default:             return {emoji:'🌈',icon:'celebration',border:'border-pride-purple',bg:'bg-pride-purple/10',text:'text-pride-purple',badge:'bg-pride-purple text-white',gradient:'from-pride-purple to-pride-blue',label:'Pride Event'};
+                }
+            }
 
+            function renderTrendingCardSnippet(e) {
+                const s = getEventTypeStyle(e.type);
+                const cityName = (e.city || e.name || 'All').replace(/'/g, "\\'");
                 return `
                     <div onclick="quickSearch('${cityName}', '${e.start}', '${e.end}')"
-                         class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-lg border-l-4 ${borderColor} flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform relative group">
-                        <div class="w-12 h-12 rounded-xl ${bgColor} flex items-center justify-center ${colorClass} shrink-0">
-                            <span class="material-symbols-outlined">${icon}</span>
+                         class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-lg border-l-4 ${s.border} flex gap-4 cursor-pointer hover:scale-[1.02] transition-transform relative group">
+                        <div class="w-12 h-12 rounded-xl ${s.bg} flex items-center justify-center shrink-0 text-2xl leading-none">
+                            ${s.emoji}
                         </div>
                         <div class="overflow-hidden pr-6 flex-1">
                             <p class="font-black text-slate-900 dark:text-white truncate text-base">${e.name}</p>
+                            <span class="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wide ${s.badge} px-2 py-0.5 rounded-full mt-0.5 mb-1">${s.emoji} ${s.label}</span>
                             <p class="text-xs font-bold text-slate-500 uppercase tracking-tighter">${e.city} &bull; ${formatDateShort(e.start)}</p>
                         </div>
                         <div class="flex items-center">
