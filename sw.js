@@ -1,5 +1,5 @@
-const CACHE_NAME = 'outatlas-v2';
-const DATA_CACHE_NAME = 'outatlas-data-v2';
+const CACHE_NAME = 'outatlas-v3';
+const DATA_CACHE_NAME = 'outatlas-data-v3';
 
 // Static assets to cache on install
 const STATIC_ASSETS = [
@@ -51,7 +51,20 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
-    // Cache-first for local static assets (tailwind.min.css, manifest.json, icons)
+    // Network-first for HTML files so code updates are always reflected immediately
+    if (url.pathname.endsWith('.html') || url.pathname.endsWith('/') || url.pathname === '/OutAtlasAPP/') {
+        event.respondWith(
+            fetch(event.request).then((response) => {
+                if (response.ok) {
+                    caches.open(CACHE_NAME).then((cache) => cache.put(event.request, response.clone()));
+                }
+                return response;
+            }).catch(() => caches.match(event.request))
+        );
+        return;
+    }
+
+    // Cache-first for static assets (CSS, icons, manifest) — these never change without a new deploy
     if (url.origin === self.location.origin && !url.pathname.includes('firebase')) {
         event.respondWith(
             caches.match(event.request).then((cached) =>
