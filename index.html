@@ -3096,9 +3096,9 @@
 
                 const filterBtns = FILTER_TYPES.map(f => `
                     <button onclick="hotspotFilter('${f.key}')" data-fkey="${f.key}"
-                        class="hotspot-filter-btn shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-black border-2 transition-all
+                        class="hotspot-filter-btn shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-black border-2 transition-all
                                ${f.key==='all' ? 'border-primary bg-primary text-white' : 'border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:border-primary hover:text-primary'}">
-                        <span>${f.emoji}</span> ${f.label}
+                        <span class="text-base leading-none">${f.emoji}</span> ${f.label}
                     </button>`).join('');
 
                 const filterHeader = `
@@ -3107,7 +3107,7 @@
                             <span class="material-symbols-outlined text-pride-purple">filter_list</span>
                             <span class="font-extrabold text-xl pride-gradient-text">Browse LGBTQ Events</span>
                         </div>
-                        <div class="flex flex-wrap gap-2 pb-2">${filterBtns}</div>
+                        <div class="flex flex-wrap gap-3 pb-2">${filterBtns}</div>
                     </div>`;
 
                 grid.innerHTML =
