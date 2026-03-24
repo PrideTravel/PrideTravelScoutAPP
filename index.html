@@ -536,6 +536,9 @@
                 <div id="eventsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- JS populated -->
                 </div>
+                <div class="flex justify-center mt-6">
+                    <button onclick="showAllHotspots()" class="text-xl font-black text-primary bg-primary/10 hover:bg-primary/20 px-6 py-2 rounded-full border border-primary/30 transition-colors">View More</button>
+                </div>
             </section>
         </div>
 
@@ -570,8 +573,13 @@
             <button onclick="toggleView('homeView')" class="flex items-center gap-2 text-primary font-bold mb-4">
                 <span class="material-symbols-outlined">arrow_back</span> Back
             </button>
-            <h2 class="text-3xl font-black mb-2 inline-block dark-pill"><span class="pride-gradient-text">Explore More
-                    Safe Hotspots</span></h2>
+            <div class="flex items-center justify-between gap-4 mb-2">
+                <h2 class="text-3xl font-black inline-block dark-pill"><span class="pride-gradient-text">Explore More Safe Hotspots</span></h2>
+                <button onclick="hotspotFilter('all')" title="Reset to default view" class="flex flex-col items-center gap-1 text-primary bg-primary/10 hover:bg-primary/20 px-3 py-2 rounded-2xl border border-primary/30 transition-colors shrink-0">
+                    <span class="material-symbols-outlined text-2xl">smartphone</span>
+                    <span class="text-[10px] font-black uppercase">Reset</span>
+                </button>
+            </div>
             <p class="text-slate-500 dark:text-slate-400 dark:text-slate-300 text-sm font-medium mb-6">More featured LGBTQ+ destinations, trending events, and cruises from across the globe.</p>
 
             <div id="allHotspotsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -3169,13 +3177,24 @@
                 let html = '';
 
                 if (type === 'all') {
-                    // Default: 15 Pride Events + 5 Cruises
+                    // Default: 15 Pride Events + 5 Other + 5 Cruises (= 25 total)
                     const pride   = getRandomSubset(_evtByType['Pride Event'] || [], 15);
                     const cruises = getRandomSubset(_evtByType['Cruise'] || [], 5);
+                    const otherPool = [];
+                    Object.keys(_evtByType).forEach(t => {
+                        if (t === 'Pride Event' || t === 'Cruise') return;
+                        otherPool.push(...(_evtByType[t] || []));
+                    });
+                    const others = getRandomSubset(otherPool, 5);
                     if (pride.length) {
                         const s = getEventTypeStyle('Pride Event');
                         html += buildFilterSectionHead(`Pride Events (${pride.length})`, s);
                         html += `<div class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">${pride.map(buildHotspotEventCard).join('')}</div>`;
+                    }
+                    if (others.length) {
+                        const sO = {emoji:'✨',border:'border-slate-400',bg:'bg-slate-100 dark:bg-slate-700/30',badge:'bg-slate-500 text-white'};
+                        html += buildFilterSectionHead(`More LGBTQ Events (${others.length})`, sO);
+                        html += `<div class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">${others.map(buildHotspotEventCard).join('')}</div>`;
                     }
                     if (cruises.length) {
                         const s = getEventTypeStyle('Cruise');
@@ -3184,34 +3203,33 @@
                     }
 
                 } else if (type === 'Cruise') {
-                    // Cruise selected: show all 25 cruises first
+                    // Cruise selected: show up to 25 cruises
                     const cruises = getRandomSubset(_evtByType['Cruise'] || [], 25);
                     const s = getEventTypeStyle('Cruise');
                     html += buildFilterSectionHead(`LGBTQ Cruises (${cruises.length})`, s);
                     html += `<div class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">${cruises.map(buildHotspotEventCard).join('')}</div>`;
 
                 } else {
-                    // Selected type: up to 40, FIRST
-                    const selected = getRandomSubset(_evtByType[type] || [], 40);
+                    // Selected type: up to 15 of that type + 5 other + 5 cruises (= 25 total)
+                    const selected = getRandomSubset(_evtByType[type] || [], 15);
                     const s = getEventTypeStyle(type);
                     if (selected.length) {
                         html += buildFilterSectionHead(`${s.label} Events (${selected.length})`, s);
                         html += `<div class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">${selected.map(buildHotspotEventCard).join('')}</div>`;
                     }
-                    // Others: 15 mixed — Pride max 25, others uncapped (cruises excluded from pool)
+                    // 5 other mixed events (excluding selected type and cruises)
                     const othersPool = [];
                     Object.keys(_evtByType).forEach(t => {
                         if (t === type || t === 'Cruise') return;
-                        const cap = t === 'Pride Event' ? 25 : _evtByType[t].length;
-                        othersPool.push(...getRandomSubset(_evtByType[t], cap));
+                        othersPool.push(...(_evtByType[t] || []));
                     });
-                    const others = getRandomSubset(othersPool, 40);
+                    const others = getRandomSubset(othersPool, 5);
                     if (others.length) {
                         const sO = {emoji:'✨',border:'border-slate-400',bg:'bg-slate-100 dark:bg-slate-700/30',badge:'bg-slate-500 text-white'};
                         html += buildFilterSectionHead(`More LGBTQ Events (${others.length})`, sO);
                         html += `<div class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">${others.map(buildHotspotEventCard).join('')}</div>`;
                     }
-                    // Always show 5 cruises at the bottom when a non-Cruise filter is active
+                    // Always show 5 cruises at the bottom
                     const cruises = getRandomSubset(_evtByType['Cruise'] || [], 5);
                     if (cruises.length) {
                         const sc = getEventTypeStyle('Cruise');
