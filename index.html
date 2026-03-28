@@ -99,6 +99,48 @@
             color: #f1f5f9;
         }
 
+        /* Saved trips panel — dark mode */
+        html.dark #ps-trips-inner {
+            background: #1e293b;
+            color: #f1f5f9;
+        }
+
+        html.dark .ps-trip-card {
+            background: #334155;
+        }
+
+        html.dark .ps-trip-title {
+            color: #f1f5f9 !important;
+        }
+
+        html.dark .ps-trip-date {
+            color: #94a3b8 !important;
+        }
+
+        html.dark .ps-trip-section {
+            background: rgba(255,255,255,0.06) !important;
+        }
+
+        html.dark .ps-trip-item {
+            background: #1e293b !important;
+            border-color: #475569 !important;
+        }
+
+        html.dark .ps-trip-item-text {
+            color: #cbd5e1 !important;
+        }
+
+        html.dark .ps-trip-btn-secondary {
+            background: #475569 !important;
+            color: #e2e8f0 !important;
+        }
+
+        html.dark .ps-trip-input {
+            background: #1e293b !important;
+            border-color: #475569 !important;
+            color: #f1f5f9 !important;
+        }
+
         body {
             font-family: 'Outfit', sans-serif;
             background-color: #f8f5f7;
@@ -1415,13 +1457,13 @@
                         const dateStr = (t.dateStart && t.dateEnd) ? t.dateStart + ' to ' + t.dateEnd : '';
                         let bookmarksHtml = '';
                         if (t.bookmarks && t.bookmarks.length > 0) {
-                            bookmarksHtml = '<div style="margin-top:.5rem; font-size:.9rem; background:rgba(0,0,0,0.02); padding:.6rem; border-radius:6px;">' +
+                            bookmarksHtml = '<div class="ps-trip-section" style="margin-top:.5rem; font-size:.9rem; background:rgba(0,0,0,0.02); padding:.6rem; border-radius:6px;">' +
                                 '<div style="font-weight:bold; margin-bottom:.4rem; color:#f20d8f; display:flex; align-items:center; gap:4px; font-size:.95rem;">' +
                                 '<span class="material-symbols-outlined" style="font-size:18px;">bookmarks</span> Bookmarked Places</div>' +
-                                '<ul style="list-style:none; padding:0; margin:0; color:#444; display:flex; flex-direction:column; gap:.5rem;">' +
+                                '<ul class="ps-trip-item-text" style="list-style:none; padding:0; margin:0; color:#444; display:flex; flex-direction:column; gap:.5rem;">' +
                                 t.bookmarks.map(b => {
                                     const bookmarkObjStr = encodeURIComponent(JSON.stringify(b));
-                                    return '<li style="display:flex; justify-content:space-between; align-items:center; gap:.5rem; background:#fff; padding:.5rem .6rem; border-radius:6px; border:1px solid #ddd; min-height:2.5rem;">' +
+                                    return '<li class="ps-trip-item" style="display:flex; justify-content:space-between; align-items:center; gap:.5rem; background:#fff; padding:.5rem .6rem; border-radius:6px; border:1px solid #ddd; min-height:2.5rem;">' +
                                         '<div style="flex:1; word-break:break-word;">' +
                                         '<div style="display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; margin-bottom:.3rem;"><strong style="font-size:.95rem;">' + b.name + '</strong>' + (b.addedBy ? '<span style="font-size:.75rem; color:#fff; background:linear-gradient(90deg,#f20d8f,#86007D); padding:3px 7px; border-radius:99px; font-weight:bold; white-space:nowrap;">' + b.addedBy + '</span>' : '') + '</div>' +
                                         '<div style="display:flex; align-items:center; gap:.4rem; font-weight:600; font-size:.85rem;"><span style="color:#f20d8f; background:#f20d8f20; padding:4px 8px; border-radius:4px; white-space:nowrap;">' + b.type + '</span></div>' +
@@ -1434,15 +1476,15 @@
                         }
                         let notesHtml = '';
                         if (t.notes && t.notes.length > 0) {
-                            notesHtml = '<div style="margin-top:.5rem; font-size:.8rem; background:rgba(0,0,0,0.02); padding:.5rem; border-radius:6px;">' +
+                            notesHtml = '<div class="ps-trip-section" style="margin-top:.5rem; font-size:.8rem; background:rgba(0,0,0,0.02); padding:.5rem; border-radius:6px;">' +
                                 '<div style="font-weight:bold; margin-bottom:.4rem; color:#f20d8f; display:flex; align-items:center; gap:4px;">' +
                                 '<span class="material-symbols-outlined" style="font-size:14px;">notes</span> Saved Notes</div>' +
-                                '<ul style="list-style:none; padding:0; margin:0; color:#444;">' +
+                                '<ul class="ps-trip-item-text" style="list-style:none; padding:0; margin:0; color:#444;">' +
                                 t.notes.map(n => {
                                     const dateStr = new Date(n.addedAt).toLocaleDateString();
                                     const noteObjStr = encodeURIComponent(JSON.stringify(n));
                                     const addedByHtml = n.addedBy ? '<span style="font-size:.6rem; color:#fff; background:linear-gradient(90deg,#f20d8f,#86007D); padding:2px 5px; border-radius:99px; font-weight:bold;">' + n.addedBy + '</span>' : '';
-                                    return '<li style="margin-bottom:.3rem; display:flex; justify-content:space-between; align-items:flex-start; gap:4px; background:#fff; padding:6px; border-radius:4px; border:1px solid #eee;">' +
+                                    return '<li class="ps-trip-item" style="margin-bottom:.3rem; display:flex; justify-content:space-between; align-items:flex-start; gap:4px; background:#fff; padding:6px; border-radius:4px; border:1px solid #eee;">' +
                                         '<div style="flex:1; word-break:break-word;">' +
                                         '<div style="display:flex; align-items:center; gap:6px; margin-bottom:2px;"><span style="font-size:9px; font-weight:bold; text-transform:uppercase; color:#888;">' + dateStr + '</span>' + addedByHtml + '</div>' +
                                         '<span>' + n.text + '</span>' +
@@ -1457,23 +1499,23 @@
                         return '<div class="ps-trip-card" style="flex-direction:column; align-items:stretch; gap:.5rem;">'
                             + '<div style="display:flex; justify-content:space-between; align-items:flex-start;">'
                             + '<div style="flex:1;">'
-                            + '<div style="font-weight:800;font-size:.95rem;margin-bottom:.2rem;color:#000;">' + (t.shareId ? '<span class="material-symbols-outlined" style="font-size:1rem;color:#f20d8f;margin-right:4px;">group</span>' : '&#9992;&#65039; ')
+                            + '<div class="ps-trip-title" style="font-weight:800;font-size:.95rem;margin-bottom:.2rem;color:#000;">' + (t.shareId ? '<span class="material-symbols-outlined" style="font-size:1rem;color:#f20d8f;margin-right:4px;">group</span>' : '&#9992;&#65039; ')
                             + (t.departure || '?') + ' &#8594; ' + t.destination + '</div>'
-                            + (dateStr ? '<div style="font-size:.8rem;color:#333;margin-bottom:.4rem;">&#128197; ' + dateStr + '</div>' : '')
+                            + (dateStr ? '<div class="ps-trip-date" style="font-size:.8rem;color:#333;margin-bottom:.4rem;">&#128197; ' + dateStr + '</div>' : '')
                             + '<button onclick="psReSearch(\'' + t.destination + '\',\'' + (t.departure || '') + '\',\'' + (t.dateStart || '') + '\',\'' + (t.dateEnd || '') + '\')"'
                             + ' style="font-size:.75rem;font-weight:700;background:linear-gradient(90deg,#f20d8f,#86007D);color:#fff;border:none;border-radius:999px;padding:.3rem .75rem;cursor:pointer;font-family:inherit;margin-right:.5rem;">'
                             + '&#128269; Search Again</button>'
                             + '<button onclick="psEmailTrip(event, \'' + (t.departure || '') + '\', \'' + t.destination + '\', \'' + (t.dateStart || '') + '\', \'' + (t.dateEnd || '') + '\', \'Varies\', \'Varies\')"'
-                            + ' style="font-size:.75rem;font-weight:700;background:#e5e7eb;color:#374151;border:none;border-radius:999px;padding:.3rem .75rem;cursor:pointer;font-family:inherit;margin-right:.5rem;">'
+                            + ' class="ps-trip-btn-secondary" style="font-size:.75rem;font-weight:700;background:#e5e7eb;color:#374151;border:none;border-radius:999px;padding:.3rem .75rem;cursor:pointer;font-family:inherit;margin-right:.5rem;">'
                             + '&#x1F4E7; Email</button>'
                             + '<button onclick="psSmsTrip(event, \'' + (t.departure || '') + '\', \'' + t.destination + '\', \'' + (t.dateStart || '') + '\', \'' + (t.dateEnd || '') + '\', \'Varies\', \'Varies\')"'
-                            + ' style="font-size:.75rem;font-weight:700;background:#e5e7eb;color:#374151;border:none;border-radius:999px;padding:.3rem .75rem;cursor:pointer;font-family:inherit;margin-right:.5rem;">'
+                            + ' class="ps-trip-btn-secondary" style="font-size:.75rem;font-weight:700;background:#e5e7eb;color:#374151;border:none;border-radius:999px;padding:.3rem .75rem;cursor:pointer;font-family:inherit;margin-right:.5rem;">'
                             + '&#128241; Text</button>'
                             + '<button onclick="psShareTrip(\'' + doc.id + '\', \'' + t.tripKey + '\')"'
-                            + ' style="font-size:.75rem;font-weight:700;background:#e5e7eb;color:#374151;border:none;border-radius:999px;padding:.3rem .75rem;cursor:pointer;font-family:inherit;margin-right:.5rem;">'
+                            + ' class="ps-trip-btn-secondary" style="font-size:.75rem;font-weight:700;background:#e5e7eb;color:#374151;border:none;border-radius:999px;padding:.3rem .75rem;cursor:pointer;font-family:inherit;margin-right:.5rem;">'
                             + '&#128101; Collaborate</button>'
                             + '<button onclick="psDownloadTrip(\'' + (t.departure || '') + '\', \'' + t.destination + '\', \'' + (t.dateStart || '') + '\', \'' + (t.dateEnd || '') + '\')"'
-                            + ' style="font-size:.75rem;font-weight:700;background:#e5e7eb;color:#374151;border:none;border-radius:999px;padding:.3rem .75rem;cursor:pointer;font-family:inherit;">'
+                            + ' class="ps-trip-btn-secondary" style="font-size:.75rem;font-weight:700;background:#e5e7eb;color:#374151;border:none;border-radius:999px;padding:.3rem .75rem;cursor:pointer;font-family:inherit;">'
                             + '&#11015;&#65039; Download</button>'
                             + '</div>'
                             + '<button onclick="psDeleteTrip(\'' + doc.id + '\',\'' + t.tripKey + '\')" title="Remove" style="background:none;border:none;cursor:pointer;color:#e11d48;font-size:1.1rem;">&#128465;&#65039;</button>'
@@ -1483,7 +1525,7 @@
                             + (() => {
                                 const bookingTypes = ['flight', 'hotel', 'tour'];
                                 const bookingIcons = { flight: 'flight_takeoff', hotel: 'hotel', tour: 'explore' };
-                                let bookingHtml = '<div style="margin-top:.5rem; font-size:.8rem; background:rgba(0,0,0,0.02); padding:.5rem; border-radius:6px;">' +
+                                let bookingHtml = '<div class="ps-trip-section" style="margin-top:.5rem; font-size:.8rem; background:rgba(0,0,0,0.02); padding:.5rem; border-radius:6px;">' +
                                     '<div style="font-weight:bold; margin-bottom:.4rem; color:#f20d8f; display:flex; align-items:center; gap:4px;">' +
                                     '<span class="material-symbols-outlined" style="font-size:14px;">airplane_ticket</span> Booking Details</div>';
 
@@ -1507,12 +1549,12 @@
 
                                     // Show existing bookings from all users
                                     if (bookings.length > 0) {
-                                        bookingHtml += '<ul style="list-style:none; padding:0; margin:0 0 .4rem 0; color:#444;">';
+                                        bookingHtml += '<ul class="ps-trip-item-text" style="list-style:none; padding:0; margin:0 0 .4rem 0; color:#444;">';
                                         bookings.forEach(b => {
                                             const bookingObjStr = encodeURIComponent(JSON.stringify(b));
                                             const dateStr = b.addedAt ? new Date(b.addedAt).toLocaleDateString() : '';
                                             const canDelete = currentUser && b.initials === currentUserInitials;
-                                            bookingHtml += '<li style="margin-bottom:.2rem; display:flex; justify-content:space-between; align-items:flex-start; gap:4px; background:#fff; padding:6px; border-radius:4px; border:1px solid #eee;">' +
+                                            bookingHtml += '<li class="ps-trip-item" style="margin-bottom:.2rem; display:flex; justify-content:space-between; align-items:flex-start; gap:4px; background:#fff; padding:6px; border-radius:4px; border:1px solid #eee;">' +
                                                 '<div style="flex:1; word-break:break-word;">' +
                                                 '<div style="display:flex; align-items:center; gap:6px; margin-bottom:2px;"><span style="font-size:.6rem; color:#fff; background:linear-gradient(90deg,#f20d8f,#86007D); padding:2px 5px; border-radius:99px; font-weight:bold;">' + b.initials + '</span><span style="font-size:.7rem; color:#888;">' + b.user + '</span>' + (dateStr ? '<span style="font-size:.65rem; color:#999;">' + dateStr + '</span>' : '') + '</div>' +
                                                 '<span>' + b.info + '</span>' +
@@ -1526,8 +1568,8 @@
                                     // Show input for current user if they haven't added their booking yet
                                     if (currentUser && !userHasBooking) {
                                         bookingHtml += '<div style="display:flex; align-items:center; gap:6px;">' +
-                                            '<input type="text" id="booking-' + type + '-' + doc.id + '" placeholder="Add your ' + type + ' details..." style="flex:1; border:1px solid #ccc; border-radius:4px; padding:.3rem .5rem; font-size:.75rem; font-family:inherit; outline:none; color:#333;">' +
-                                            '<button onclick="psSaveBookingInfo(\'' + doc.id + '\', \'' + type + '\', \'booking-' + type + '-' + doc.id + '\')" style="background:#eee;color:#333;border:none;border-radius:4px;padding:.3rem .5rem;font-size:.7rem;font-weight:bold;cursor:pointer;">Save</button>' +
+                                            '<input type="text" id="booking-' + type + '-' + doc.id + '" placeholder="Add your ' + type + ' details..." class="ps-trip-input" style="flex:1; border:1px solid #ccc; border-radius:4px; padding:.3rem .5rem; font-size:.75rem; font-family:inherit; outline:none; color:#333;">' +
+                                            '<button onclick="psSaveBookingInfo(\'' + doc.id + '\', \'' + type + '\', \'booking-' + type + '-' + doc.id + '\')" class="ps-trip-btn-secondary" style="background:#eee;color:#333;border:none;border-radius:4px;padding:.3rem .5rem;font-size:.7rem;font-weight:bold;cursor:pointer;">Save</button>' +
                                             '</div>';
                                     }
 
@@ -1539,7 +1581,7 @@
                             })()
                             + '<div style="margin-top:.5rem; display:flex; gap:6px;">'
                             + '<input type="text" id="note-input-' + doc.id + '" placeholder="e.g. Meet friends at 8PM" '
-                            + 'style="flex:1; border:1px solid #ccc; border-radius:6px; padding:.4rem .6rem; font-size:.8rem; font-family:inherit; outline:none; color:#333; box-sizing:border-box;">'
+                            + 'class="ps-trip-input" style="flex:1; border:1px solid #ccc; border-radius:6px; padding:.4rem .6rem; font-size:.8rem; font-family:inherit; outline:none; color:#333; box-sizing:border-box;">'
                             + '<button onclick="psAddNote(\'' + doc.id + '\', \'note-input-' + doc.id + '\')" '
                             + 'style="background:linear-gradient(90deg,#f20d8f,#86007D);color:#fff;border:none;border-radius:6px;padding:.4rem .75rem;font-size:.8rem;font-weight:bold;cursor:pointer;font-family:inherit;">Save Note</button>'
                             + '</div>'
@@ -3081,8 +3123,9 @@
 
                 // Index all events by type for dynamic filter rendering
                 // Split comma-separated types so multi-type events appear in all relevant filters
+                // Events starting within 7 days of today are excluded from display
                 _evtByType = {};
-                SPECIAL_EVENTS_DATA.forEach(e => {
+                SPECIAL_EVENTS_DATA.filter(e => !isEventTooSoon(e)).forEach(e => {
                     const types = (e.type || 'Pride Event').split(',').map(t => t.trim()).filter(Boolean);
                     types.forEach(t => {
                         if (!_evtByType[t]) _evtByType[t] = [];
@@ -3254,6 +3297,17 @@
                 grid.innerHTML = html;
             };
 
+            // Returns true if the event starts within 7 days of today (should be hidden)
+            function isEventTooSoon(e) {
+                if (!e.start) return false;
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const threshold = new Date(today);
+                threshold.setDate(threshold.getDate() + 7);
+                const eventStart = new Date(e.start + 'T00:00:00');
+                return eventStart < threshold;
+            }
+
             function populateTrendingEvents() {
                 const grid = document.getElementById('eventsGrid');
                 if (!grid) return;
@@ -3263,8 +3317,8 @@
                     return;
                 }
 
-                const cruises = SPECIAL_EVENTS_DATA.filter(e => e.type === 'Cruise');
-                const events = SPECIAL_EVENTS_DATA.filter(e => e.type !== 'Cruise');
+                const cruises = SPECIAL_EVENTS_DATA.filter(e => e.type === 'Cruise' && !isEventTooSoon(e));
+                const events = SPECIAL_EVENTS_DATA.filter(e => e.type !== 'Cruise' && !isEventTooSoon(e));
 
                 // User wants 6 total: 4 events and 2 cruises
                 const selEvents = getRandomSubset(events, 4);
