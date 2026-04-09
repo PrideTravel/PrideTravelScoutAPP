@@ -123,9 +123,10 @@ body {
 }
 
 .badge-rainbow {
-    background: linear-gradient(135deg, #FF0018, #FFA52C, #eab308, #008018, #0000F9, #86007D);
+    /* Small badge (12px) - use solid color, never gradient */
+    background-color: var(--brand-teal);
     color: white;
-    border-color: transparent;
+    border-color: var(--brand-teal);
 }
 
 .badge-iglta {
@@ -381,6 +382,95 @@ body.high-contrast .price-luxury {
 }
 
 /* ============================================
+   LOGO & GRADIENT TEXT STYLES
+   ============================================ */
+
+/* Logo gradient - preserved in Light/Dark modes, solid in Clear View
+
+   Technique explanation:
+   -webkit-background-clip: text - Clips the background to the text shape
+   -webkit-text-fill-color: transparent - Makes text transparent so gradient shows through
+   background-clip: text - Standard property (for Firefox and other browsers)
+
+   This creates a gradient text effect while maintaining accessibility.
+*/
+.logo {
+    font-size: 1.875rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    /* Gradient for Light/Dark modes (24px+ - preserve colorful gradient) */
+    background: linear-gradient(135deg, #38bd99 0%, #f5c06e 50%, #e74c3c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+/* Clear View mode - logo becomes solid teal for maximum accessibility */
+body.clear-mode .logo {
+    background: none;
+    -webkit-text-fill-color: inherit;
+    color: #0d7d63;
+}
+
+/* Large title gradient - preserved in Light/Dark modes, solid in Clear View
+
+   For headings 24px and larger, this preserves the full rainbow gradient
+   in Light and Dark modes while providing accessible solid color in Clear View.
+*/
+.gradient-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    /* Colorful gradient for Light/Dark modes (24px+ - preserve rainbow) */
+    background: linear-gradient(90deg, #e74c3c 0%, #f39c12 25%, #2ecc71 50%, #3498db 75%, #9b59b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+/* Clear View mode - large titles become solid teal for maximum accessibility */
+body.clear-mode .gradient-title {
+    background: none;
+    -webkit-text-fill-color: inherit;
+    color: #0d7d63;
+}
+
+/* Ensure no small text (under 18px) ever uses gradients */
+.hotel-name,
+.section-title,
+.badge,
+.badge-hotel,
+.badge-tour,
+.badge-restaurant,
+.badge-nightlife,
+.badge-event,
+.badge-destination,
+.badge-rainbow,
+.badge-iglta {
+    /* These elements should NEVER have gradient backgrounds */
+    background: none !important;
+    -webkit-text-fill-color: inherit !important;
+    /* All badge text uses solid colors only */
+    color: var(--text-primary);
+}
+
+/* Badge text is always solid - ensure text colors are proper */
+.badge-hotel,
+.badge-tour,
+.badge-restaurant,
+.badge-nightlife,
+.badge-event {
+    color: var(--badge-text) !important;
+}
+
+.badge-destination {
+    color: white !important;
+}
+
+/* ============================================
    RESPONSIVE DESIGN
    ============================================ */
 
@@ -447,3 +537,9 @@ body.high-contrast .nav-item.active {
 body.high-contrast .stay-period {
     border-width: 3px;
 }
+
+/* ============================================
+   IMPORT ACCESSIBILITY FEATURES
+   Ensure all accessibility media queries and features are applied globally
+   ============================================ */
+@import './accessibility.css';
