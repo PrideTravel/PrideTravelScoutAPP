@@ -228,18 +228,18 @@ body.dark-mode .bookmark-card {
 }
 
 .badge-hotel {
-  background-color: #9c27b0;
-  color: white;
+  background-color: var(--badge-hotel);
+  color: var(--badge-text);
 }
 
 .badge-tour {
-  background-color: #2196f3;
-  color: white;
+  background-color: var(--badge-tour);
+  color: var(--badge-text);
 }
 
 .badge-restaurant {
-  background-color: #ff5722;
-  color: white;
+  background-color: var(--badge-restaurant);
+  color: var(--badge-text);
 }
 
 .bookmark-description {

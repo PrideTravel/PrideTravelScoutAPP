@@ -29,7 +29,18 @@
       "Bash(gcloud services:*)",
       "Bash(claude --version)",
       "Bash(git commit:*)",
-      "Bash(git pull:*)"
+      "Bash(git pull:*)",
+      "Bash(gh pr create --title 'Add Search, Bookmarks, Messages components with accessibility' --body ':*)",
+      "Bash(gh --version)",
+      "Read(//c/Program Files/**)",
+      "Read(//c/Users/**)",
+      "Bash('C:/Program Files/GitHub CLI/gh.exe' pr create --title 'Add Search, Bookmarks, Messages components with accessibility' --body ':*)",
+      "Bash(\"C:/Program Files/GitHub CLI/gh.exe\" auth login --web)",
+      "Bash(gh pr create --title 'Add Search, Bookmarks, and Messages components with accessibility features' --body ':*)",
+      "Bash(gh pr:*)",
+      "Bash(grep -r \"\\\\.hotel-card\\\\|\\\\.badge\\\\|\\\\.section-title\\\\|\\\\.price-tier\\\\|\\\\.nav-item\\\\|\\\\.bottom-nav\\\\|\\\\.stay-period\" src/components/*.css --include=\"*.css\")",
+      "Bash(find . -name \"*.css\" -type f ! -path \"*/node_modules/*\" ! -path \"*/.claude/*\" -exec grep -l \"hotel-card\\\\|price-moderate\\\\|bottom-nav\" {} \\\\;)",
+      "Bash(grep -r \"#[0-9a-fA-F]\\\\{6\\\\}\\\\|#[0-9a-fA-F]\\\\{3\\\\}\" src/components/*.css)"
     ]
   }
 }

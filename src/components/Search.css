@@ -108,7 +108,8 @@ body.dark-mode .search-input:focus {
 }
 
 .search-button:hover {
-  background-color: #2fa480;
+  background-color: var(--brand-teal);
+  opacity: 0.85;
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
@@ -279,13 +280,13 @@ body.dark-mode .result-card {
 }
 
 .badge-hotel {
-  background-color: #9c27b0;
-  color: white;
+  background-color: var(--badge-hotel);
+  color: var(--badge-text);
 }
 
 .badge-tour {
-  background-color: #2196f3;
-  color: white;
+  background-color: var(--badge-tour);
+  color: var(--badge-text);
 }
 
 .badge-event {
@@ -294,13 +295,13 @@ body.dark-mode .result-card {
 }
 
 .badge-restaurant {
-  background-color: #ff5722;
-  color: white;
+  background-color: var(--badge-restaurant);
+  color: var(--badge-text);
 }
 
 .badge-nightlife {
-  background-color: #e91e63;
-  color: white;
+  background-color: var(--badge-nightlife);
+  color: var(--badge-text);
 }
 
 /* ============================================================================
