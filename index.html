@@ -3855,23 +3855,52 @@
          * Open the Settings Modal
          */
         function openSettingsModal() {
-            const modal = document.getElementById('settingsModal');
-            modal.classList.add('open');
-            document.body.style.overflow = 'hidden';
-            updateThemeSelection();
-            updateReduceMotionCheckbox();
-            updateHighContrastCheckbox();
-            // Focus on modal for accessibility
-            modal.focus();
+            try {
+                const modal = document.getElementById('settingsModal');
+                if (!modal) {
+                    console.error('Settings modal element not found');
+                    return;
+                }
+
+                // Add open class to display modal
+                modal.classList.add('open');
+                console.log('Modal opened - open class added');
+
+                // Prevent body scroll
+                document.body.style.overflow = 'hidden';
+
+                // Update all state displays
+                updateThemeSelection();
+                updateReduceMotionCheckbox();
+                updateHighContrastCheckbox();
+
+                // Focus on modal for accessibility
+                modal.focus();
+            } catch (error) {
+                console.error('Error opening settings modal:', error);
+            }
         }
 
         /**
          * Close the Settings Modal
          */
         function closeSettingsModal() {
-            const modal = document.getElementById('settingsModal');
-            modal.classList.remove('open');
-            document.body.style.overflow = '';
+            try {
+                const modal = document.getElementById('settingsModal');
+                if (!modal) {
+                    console.error('Settings modal element not found');
+                    return;
+                }
+
+                // Remove open class to hide modal
+                modal.classList.remove('open');
+                console.log('Modal closed - open class removed');
+
+                // Restore body scroll
+                document.body.style.overflow = '';
+            } catch (error) {
+                console.error('Error closing settings modal:', error);
+            }
         }
 
         /**
@@ -3963,8 +3992,14 @@
          */
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('settingsModal');
-            const modalOverlay = modal.querySelector('.modal-overlay');
-            const modalContent = document.querySelector('.modal-content');
+
+            // Safety check: ensure modal exists before proceeding
+            if (!modal) {
+                console.error('Settings modal element not found on page load');
+                return;
+            }
+
+            const modalContent = modal.querySelector('.modal-content');
             const closeBtn = document.getElementById('close-modal');
             const themeButtons = document.querySelectorAll('[data-theme]');
             const darkModeToggle = document.getElementById('dark-mode-toggle');
@@ -3987,9 +4022,11 @@
             });
 
             // Prevent closing when clicking inside modal content
-            modalContent.addEventListener('click', function(e) {
-                e.stopPropagation();
-            });
+            if (modalContent) {
+                modalContent.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
 
             // Close button click handler
             if (closeBtn) {
