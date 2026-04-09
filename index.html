@@ -604,6 +604,18 @@
         }
 
         /* ============================================================================
+           Cycle Theme - Toggle between Clear View, Light, and Dark modes
+           ============================================================================ */
+        function cycleTheme() {
+            const currentTheme = localStorage.getItem(THEME_CONFIG.STORAGE_KEY) || 'clear';
+            const themes = ['clear', 'light', 'dark'];
+            const currentIndex = themes.indexOf(currentTheme);
+            const nextTheme = themes[(currentIndex + 1) % themes.length];
+            setTheme(nextTheme);
+            updateThemeSelection();
+        }
+
+        /* ============================================================================
            Initialize Theme on Page Load
 
            Runs when DOM is ready to:
@@ -744,14 +756,14 @@
                 <span class="material-symbols-outlined text-xl text-slate-200 hidden dark:block">dark_mode</span>
             </button>
 
-            <!-- Settings Button - Opens Theme & Accessibility Modal -->
+            <!-- Theme Toggle Button -->
             <button
-                id="settings-trigger"
-                onclick="openSettingsModal()"
+                id="theme-toggle"
+                onclick="cycleTheme()"
                 class="flex items-center justify-center w-10 h-10 rounded-lg transition-all hover:bg-slate-200 dark:hover:bg-slate-700 active:scale-95 mr-4"
-                aria-label="Open appearance and accessibility settings"
-                title="Settings (appearance, accessibility)">
-                <span class="material-symbols-outlined text-xl text-slate-700 dark:text-slate-200">settings</span>
+                aria-label="Toggle theme (Clear View, Light, Dark)"
+                title="Toggle theme">
+                <span class="material-symbols-outlined text-xl text-slate-700 dark:text-slate-200">brightness_4</span>
             </button>
         </div>
     </header>
@@ -2284,31 +2296,31 @@
                                 const bannerTitle = isCruise ? "LGBTQ Cruise Alert" : "LGBTQ Event Detected!";
 
                                 return `
-                                <div class="snap-center shrink-0 w-[85%] sm:w-80 bg-gradient-to-r ${s.gradient} rounded-xl shadow-lg p-5 text-white relative overflow-hidden group">
-                                    <div class="absolute top-0 right-0 p-4 opacity-10 text-7xl leading-none select-none">${s.emoji}</div>
-                                    <button onclick="window.psBookmarkPlace('${event.name.replace(/'/g, "\\'")}', '${isCruise ? 'Cruise' : 'Event'}', '${data.name.replace(/'/g, "\\'")}', '${origin.replace(/'/g, "\\'")}', '${dateStart}', '${dateEnd}', this)" title="Bookmark this event" class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/40 transition-colors text-white z-10 opacity-0 group-hover:opacity-100 cursor-pointer">
-                                        <span class="material-symbols-outlined text-[18px] pointer-events-none">bookmark_border</span>
+                                <div class="snap-center shrink-0 w-[85%] sm:w-80 bg-gradient-to-r ${s.gradient} rounded-xl shadow-lg p-5 relative overflow-hidden group">
+                                    <div class="absolute top-0 right-0 p-4 opacity-30 text-7xl leading-none select-none">${s.emoji}</div>
+                                    <button onclick="window.psBookmarkPlace('${event.name.replace(/'/g, "\\'")}', '${isCruise ? 'Cruise' : 'Event'}', '${data.name.replace(/'/g, "\\'")}', '${origin.replace(/'/g, "\\'")}', '${dateStart}', '${dateEnd}', this)" title="Bookmark this event" class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-full bg-white/30 hover:bg-white/50 transition-colors text-slate-900 z-10 opacity-0 group-hover:opacity-100 cursor-pointer">
+                                        <span class="material-symbols-outlined text-[18px] pointer-events-none fill-1">bookmark</span>
                                     </button>
                                     <div class="flex items-center gap-2 mb-3">
                                         <span class="text-xl leading-none">${s.emoji}</span>
-                                        <h4 class="font-bold text-lg leading-tight truncate">${bannerTitle}</h4>
-                                        ${matchingEvents.length > 1 ? '<span class="ml-auto text-[10px] font-black uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded text-white backdrop-blur-sm shadow-sm ring-1 ring-white/30">MULTIPLE</span>' : ''}
+                                        <h4 class="font-bold text-lg leading-tight truncate text-yellow-200">${bannerTitle}</h4>
+                                        ${matchingEvents.length > 1 ? '<span class="ml-auto text-[10px] font-black uppercase tracking-wider bg-white/25 px-2 py-0.5 rounded text-slate-900 backdrop-blur-sm shadow-sm ring-1 ring-white/40">MULTIPLE</span>' : ''}
                                     </div>
-                                    <a href="${link1}" target="_blank" class="font-bold text-white text-xl mb-1 hover:underline cursor-pointer flex items-center gap-1 group block">
+                                    <a href="${link1}" target="_blank" class="font-bold text-yellow-100 text-xl mb-1 hover:text-white hover:underline cursor-pointer flex items-center gap-1 group block transition-colors">
                                         ${event.name}
                                     </a>
-                                    <span class="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wide bg-white/20 text-white px-2 py-0.5 rounded-full mb-2 backdrop-blur-sm">${s.emoji} ${s.label}</span>
-                                    <p class="text-xs text-white mb-4 flex items-center gap-1 font-medium">
+                                    <span class="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wide bg-white/25 text-slate-900 px-2 py-0.5 rounded-full mb-2 backdrop-blur-sm">${s.emoji} ${s.label}</span>
+                                    <p class="text-xs text-yellow-100 mb-4 flex items-center gap-1 font-medium">
                                         <span class="material-symbols-outlined text-sm">calendar_today</span>
                                         ${event.start} &ndash; ${event.end}
                                     </p>
                                     <div class="flex gap-2">
                                         ${showOfficialBtn ? `
-                                        <a href="${link1}" target="_blank" class="flex-1 py-2 bg-white text-black dark:text-white dark:bg-slate-800/20 hover:bg-white dark:bg-slate-800/30 rounded-lg text-center text-xs font-bold backdrop-blur-sm transition-colors flex items-center justify-center gap-1 px-1">
+                                        <a href="${link1}" target="_blank" class="flex-1 py-2 bg-white text-slate-900 hover:bg-white/90 rounded-lg text-center text-xs font-bold transition-colors flex items-center justify-center gap-1 px-1">
                                             <span class="material-symbols-outlined text-sm">language</span>
                                             Official
                                         </a>` : ''}
-                                        <a href="${link2}" target="_blank" class="flex-1 py-2 border border-white/30 hover:bg-white/10 dark:bg-slate-800/10 rounded-lg text-center text-xs font-bold transition-colors flex items-center justify-center gap-1 px-1">
+                                        <a href="${link2}" target="_blank" class="flex-1 py-2 bg-white/20 text-slate-900 font-bold border border-white/40 hover:bg-white/30 rounded-lg text-center text-xs transition-colors flex items-center justify-center gap-1 px-1">
                                             <span class="material-symbols-outlined text-sm">search</span>
                                             Google
                                         </a>
