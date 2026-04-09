@@ -4,9 +4,12 @@
    Wraps entire app with ThemeProvider and includes basic layout structure
    ============================================================================ */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider } from '../context/ThemeContext';
 import { ThemeToggle } from './ThemeToggle';
+import { Search } from './Search';
+import { Bookmarks } from './Bookmarks';
+import { Messages } from './Messages';
 import '../styles/global.css';
 import './App.css';
 
@@ -62,6 +65,7 @@ import './App.css';
  */
 function App() {
   const currentYear = new Date().getFullYear();
+  const [currentPage, setCurrentPage] = useState('home');
 
   return (
     <ThemeProvider>
@@ -91,28 +95,83 @@ function App() {
         {/* MAIN CONTENT SECTION */}
         {/* ================================================================== */}
         <main className="app-main" role="main">
-          {/* Hero Section */}
-          <section className="hero" aria-labelledby="hero-heading">
-            <h2 id="hero-heading" className="hero-title">
-              Plan Your Journey
-            </h2>
-            <p className="hero-subtitle">
-              Discover LGBTQ+ friendly travel experiences around the world
-            </p>
-            <button className="btn btn-primary hero-cta">
-              Get Started
-            </button>
-          </section>
+          {currentPage === 'home' && (
+            <>
+              {/* Hero Section */}
+              <section className="hero" aria-labelledby="hero-heading">
+                <h2 id="hero-heading" className="hero-title">
+                  Plan Your Journey
+                </h2>
+                <p className="hero-subtitle">
+                  Discover LGBTQ+ friendly travel experiences around the world
+                </p>
+                <button
+                  className="btn btn-primary hero-cta"
+                  onClick={() => setCurrentPage('search')}
+                >
+                  Get Started
+                </button>
+              </section>
 
-          {/* Content Placeholder */}
-          <section className="content-section" aria-labelledby="content-heading">
-            <h2 id="content-heading">Welcome to OutAtlas</h2>
-            <p>
-              This is your application scaffold. The theme system is fully integrated
-              and ready for expansion. Use the theme toggle button in the top-right
-              corner to switch between light and dark modes.
-            </p>
-          </section>
+              {/* Navigation Section */}
+              <section className="content-section" aria-labelledby="content-heading">
+                <h2 id="content-heading">Explore OutAtlas</h2>
+                <div className="nav-buttons">
+                  <button
+                    className="btn btn-secondary"
+                    onClick={() => setCurrentPage('search')}
+                  >
+                    Search Destinations
+                  </button>
+                  <button
+                    className="btn btn-secondary"
+                    onClick={() => setCurrentPage('bookmarks')}
+                  >
+                    My Bookmarks
+                  </button>
+                  <button
+                    className="btn btn-secondary"
+                    onClick={() => setCurrentPage('messages')}
+                  >
+                    Travel Notes
+                  </button>
+                </div>
+              </section>
+            </>
+          )}
+
+          {currentPage === 'search' && (
+            <button
+              className="btn btn-secondary back-btn"
+              onClick={() => setCurrentPage('home')}
+              style={{ margin: '1rem', display: 'block' }}
+            >
+              ← Back to Home
+            </button>
+          )}
+          {currentPage === 'search' && <Search />}
+
+          {currentPage === 'bookmarks' && (
+            <button
+              className="btn btn-secondary back-btn"
+              onClick={() => setCurrentPage('home')}
+              style={{ margin: '1rem', display: 'block' }}
+            >
+              ← Back to Home
+            </button>
+          )}
+          {currentPage === 'bookmarks' && <Bookmarks />}
+
+          {currentPage === 'messages' && (
+            <button
+              className="btn btn-secondary back-btn"
+              onClick={() => setCurrentPage('home')}
+              style={{ margin: '1rem', display: 'block' }}
+            >
+              ← Back to Home
+            </button>
+          )}
+          {currentPage === 'messages' && <Messages />}
         </main>
 
         {/* ================================================================== */}
