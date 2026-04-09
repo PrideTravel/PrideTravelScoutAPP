@@ -584,10 +584,12 @@
             // Add the new theme class to document.body
             document.body.classList.add(themeClass);
 
-            // Set color-scheme for dark mode (helps native elements like inputs, scrollbars)
+            // Manage Tailwind's 'dark' class separately (Tailwind looks for 'dark', not 'dark-mode')
             if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
                 document.documentElement.style.colorScheme = 'dark';
             } else {
+                document.documentElement.classList.remove('dark');
                 document.documentElement.style.colorScheme = 'light';
             }
 
