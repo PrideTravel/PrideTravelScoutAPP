@@ -40,7 +40,16 @@
       "Bash(gh pr:*)",
       "Bash(grep -r \"\\\\.hotel-card\\\\|\\\\.badge\\\\|\\\\.section-title\\\\|\\\\.price-tier\\\\|\\\\.nav-item\\\\|\\\\.bottom-nav\\\\|\\\\.stay-period\" src/components/*.css --include=\"*.css\")",
       "Bash(find . -name \"*.css\" -type f ! -path \"*/node_modules/*\" ! -path \"*/.claude/*\" -exec grep -l \"hotel-card\\\\|price-moderate\\\\|bottom-nav\" {} \\\\;)",
-      "Bash(grep -r \"#[0-9a-fA-F]\\\\{6\\\\}\\\\|#[0-9a-fA-F]\\\\{3\\\\}\" src/components/*.css)"
+      "Bash(grep -r \"#[0-9a-fA-F]\\\\{6\\\\}\\\\|#[0-9a-fA-F]\\\\{3\\\\}\" src/components/*.css)",
+      "Bash(grep -E \"\\\\.js$|^d\")",
+      "Read(//tmp/**)",
+      "Bash(grep -n \"pride-gradient-bg\\\\|-top-8\" src/styles/*.css)",
+      "Bash(ls -lh src/components/*.css)",
+      "Bash(git fetch:*)",
+      "Bash(git checkout:*)",
+      "Bash(apt-get update:*)",
+      "Bash(apt-get install:*)",
+      "Read(//c/Users/lewi0/OutAtlas/**)"
     ]
   }
 }
