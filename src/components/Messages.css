@@ -210,7 +210,8 @@ body.dark-mode .form-textarea:focus {
 }
 
 .button-primary:hover {
-  background-color: #2fa480;
+  background-color: var(--brand-teal);
+  opacity: 0.85;
   box-shadow: var(--shadow-md);
 }
 
@@ -317,23 +318,23 @@ body.dark-mode .message-card {
 
 /* Color-specific card styles */
 .message-blue::before {
-  background-color: #2196f3;
+  background-color: var(--message-blue);
 }
 
 .message-green::before {
-  background-color: #4caf50;
+  background-color: var(--message-green);
 }
 
 .message-orange::before {
-  background-color: #ff9800;
+  background-color: var(--message-orange);
 }
 
 .message-purple::before {
-  background-color: #9c27b0;
+  background-color: var(--message-purple);
 }
 
 .message-pink::before {
-  background-color: #e91e63;
+  background-color: var(--message-pink);
 }
 
 .message-header {
@@ -362,9 +363,9 @@ body.dark-mode .message-card {
   min-height: 32px;
   padding: 0;
   background-color: transparent;
-  border: 2px solid #e91e63;
+  border: 2px solid var(--message-pink);
   border-radius: 50%;
-  color: #e91e63;
+  color: var(--message-pink);
   font-size: 18px;
   cursor: pointer;
   display: flex;
@@ -380,7 +381,7 @@ body.dark-mode .message-card {
 }
 
 .delete-button:focus-visible {
-  outline: 3px solid #e91e63;
+  outline: 3px solid var(--message-pink);
   outline-offset: 2px;
 }
 

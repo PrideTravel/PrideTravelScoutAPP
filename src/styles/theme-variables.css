@@ -27,6 +27,23 @@
   /* Brand Colors - Constant across all themes */
   --brand-teal: #0d7d63;          /* Primary brand color */
   --brand-gold: #d4932f;          /* Secondary brand color */
+
+  /* Badge Colors - Functional colors for components */
+  --badge-hotel: #9c27b0;         /* Hotel badge color */
+  --badge-tour: #2196f3;          /* Tour badge color */
+  --badge-restaurant: #ff5722;    /* Restaurant badge color */
+  --badge-nightlife: #e91e63;     /* Nightlife badge color */
+
+  /* Text on badges (constant across themes) */
+  --badge-text: #ffffff;          /* White text for dark badges */
+  --badge-text-light: #000000;    /* Black text for light badges */
+
+  /* Message category colors (constant across themes) */
+  --message-blue: #2196f3;        /* Blue message category */
+  --message-green: #4caf50;       /* Green message category */
+  --message-orange: #ff9800;      /* Orange message category */
+  --message-purple: #9c27b0;      /* Purple message category */
+  --message-pink: #e91e63;        /* Pink message category */
 }
 
 /* ============================================================================
@@ -52,6 +69,14 @@
     /* Brand Colors - Same across all themes */
     --brand-teal: #0d7d63;
     --brand-gold: #d4932f;
+
+    /* Badge Colors - Functional colors for components */
+    --badge-hotel: #9c27b0;
+    --badge-tour: #2196f3;
+    --badge-restaurant: #ff5722;
+    --badge-nightlife: #e91e63;
+    --badge-text: #ffffff;
+    --badge-text-light: #000000;
   }
 }
 
@@ -79,6 +104,14 @@
     /* Brand Colors - Same across all themes */
     --brand-teal: #0d7d63;
     --brand-gold: #d4932f;
+
+    /* Badge Colors - Functional colors for components */
+    --badge-hotel: #9c27b0;
+    --badge-tour: #2196f3;
+    --badge-restaurant: #ff5722;
+    --badge-nightlife: #e91e63;
+    --badge-text: #ffffff;
+    --badge-text-light: #000000;
   }
 }
 
@@ -102,6 +135,17 @@ body.clear-mode {
   --border-color: #1a1a1a;
   --brand-teal: #0d7d63;
   --brand-gold: #d4932f;
+  --badge-hotel: #9c27b0;
+  --badge-tour: #2196f3;
+  --badge-restaurant: #ff5722;
+  --badge-nightlife: #e91e63;
+  --badge-text: #ffffff;
+  --badge-text-light: #000000;
+  --message-blue: #2196f3;
+  --message-green: #4caf50;
+  --message-orange: #ff9800;
+  --message-purple: #9c27b0;
+  --message-pink: #e91e63;
 }
 
 /* Light Mode Override */
@@ -114,6 +158,17 @@ body.light-mode {
   --border-color: #d4d4d4;
   --brand-teal: #0d7d63;
   --brand-gold: #d4932f;
+  --badge-hotel: #9c27b0;
+  --badge-tour: #2196f3;
+  --badge-restaurant: #ff5722;
+  --badge-nightlife: #e91e63;
+  --badge-text: #ffffff;
+  --badge-text-light: #000000;
+  --message-blue: #2196f3;
+  --message-green: #4caf50;
+  --message-orange: #ff9800;
+  --message-purple: #9c27b0;
+  --message-pink: #e91e63;
 }
 
 /* Dark Mode Override */
@@ -126,6 +181,17 @@ body.dark-mode {
   --border-color: #3d3d3d;
   --brand-teal: #0d7d63;
   --brand-gold: #d4932f;
+  --badge-hotel: #9c27b0;
+  --badge-tour: #2196f3;
+  --badge-restaurant: #ff5722;
+  --badge-nightlife: #e91e63;
+  --badge-text: #ffffff;
+  --badge-text-light: #000000;
+  --message-blue: #2196f3;
+  --message-green: #4caf50;
+  --message-orange: #ff9800;
+  --message-purple: #9c27b0;
+  --message-pink: #e91e63;
 }
 
 /* ============================================================================
