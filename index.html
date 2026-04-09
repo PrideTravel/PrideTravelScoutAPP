@@ -4056,6 +4056,14 @@
                 // No need to manually update as CSS handles visibility via dark: pseudo-class
             }
         });
+
+        // Expose functions to global scope for onclick handlers
+        window.openSettingsModal = openSettingsModal;
+        window.closeSettingsModal = closeSettingsModal;
+        window.toggleDarkMode = toggleDarkMode;
+        window.setTheme = setTheme;
+        window.toggleReduceMotion = toggleReduceMotion;
+        window.toggleHighContrast = toggleHighContrast;
     </script>
 
 </body>
