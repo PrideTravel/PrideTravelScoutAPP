@@ -1,0 +1,52 @@
+{
+  "eval_id": 2,
+  "eval_name": "multi-platform-content-calendar-travel-in-pride",
+  "prompt": "I'm planning Travel in Pride content for Pride Month week (June 16-22, 2026). Here are 2 posts I want to schedule:\n\nPost 1: 'Best LGBTQ+ Pride Events Happening This June' - this is going on YouTube Shorts, Pinterest, and LinkedIn. It's a curated list of 5 must-visit Pride events globally.\n\nPost 2: 'Circuit Party Season Alert - 2026 Events You Can't Miss' - this goes on TikTok, Instagram Reels, and Reddit. It's about upcoming circuit events.\n\nFor Post 2, I want a voiceover script too in an energetic/hype tone. All content is Travel in Pride brand. The goal for Post 1 is community engagement and for Post 2 is to drive awareness and community engagement.\n\nWrite all captions and the voiceover script.",
+  "platforms": ["YouTube Shorts", "Pinterest", "LinkedIn", "TikTok", "Instagram Reels", "Reddit"],
+  "brand": "Travel in Pride",
+  "post_type": "calendar",
+  "includes_voiceover": true,
+  "voiceover_tone": "Hype & energetic",
+  "assertions": [
+    {
+      "id": "post-1-youtube-shorts-seo",
+      "name": "YouTube Shorts caption has SEO-optimized title and description",
+      "description": "Title should be 60 chars max, keyword-rich; description should have primary keyword in first sentence"
+    },
+    {
+      "id": "post-1-pinterest-keyword-rich",
+      "name": "Pinterest caption is keyword-rich without emoji overload",
+      "description": "Pin title 75-100 chars, description 150-300 chars with natural keywords, no exclamation spam"
+    },
+    {
+      "id": "post-1-linkedin-hook",
+      "name": "LinkedIn caption opens with bold hook sentence",
+      "description": "First line should be a compelling statement or question with no preamble"
+    },
+    {
+      "id": "post-2-tiktok-hook-first",
+      "name": "TikTok caption has conversational hook before truncation",
+      "description": "Hook must be in first line, visible before ~150 char truncation"
+    },
+    {
+      "id": "post-2-reddit-not-salesy",
+      "name": "Reddit caption has zero self-promo tone",
+      "description": "Reddit community-first, genuine value-led, OutAtlas mention only if naturally relevant"
+    },
+    {
+      "id": "voiceover-script-present",
+      "name": "Voiceover script is complete and ready to record",
+      "description": "Full word-for-word script with delivery notes, emphasis points, pause markers"
+    },
+    {
+      "id": "voiceover-tone-energetic",
+      "name": "Voiceover script matches energetic/hype tone",
+      "description": "Script should use CAPS for emphasis, exclamation energy, build-and-release pacing"
+    },
+    {
+      "id": "brand-voice-consistent",
+      "name": "All 6 captions maintain Travel in Pride brand voice",
+      "description": "Community-first, celebratory, inclusive tone across all platforms"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "skill_name": "caption-voiceover-writer",
+  "evals": [
+    {
+      "id": 1,
+      "eval_name": "urgent-single-post-outatlas",
+      "prompt": "I'm in Barcelona right now and just discovered this incredible queer-friendly hotel in Gràcia that has an amazing rooftop bar. I want to post about it ASAP on TikTok and Instagram Reels to drive awareness. The photo is a sunset shot from the rooftop with pride flags hanging. This is OutAtlas content. I want the goal to be 'build awareness and drive app signups'. Write captions for both platforms.",
+      "platforms": ["TikTok", "Instagram Reels"],
+      "brand": "OutAtlas",
+      "post_type": "urgent",
+      "includes_voiceover": false,
+      "expected_output": "Two platform-specific captions (TikTok and Instagram Reels) following best practices: TikTok caption should be conversational with strong hook in first line, 3-5 hashtags, and CTA driving comments. Instagram Reels should have more personality, 8-15 hashtags, and CTA with 'link in bio'. Both should maintain OutAtlas warm/knowledgeable brand voice."
+    },
+    {
+      "id": 2,
+      "eval_name": "multi-platform-content-calendar-travel-in-pride",
+      "prompt": "I'm planning Travel in Pride content for Pride Month week (June 16-22, 2026). Here are 2 posts I want to schedule:\n\nPost 1: 'Best LGBTQ+ Pride Events Happening This June' - this is going on YouTube Shorts, Pinterest, and LinkedIn. It's a curated list of 5 must-visit Pride events globally.\n\nPost 2: 'Circuit Party Season Alert - 2026 Events You Can't Miss' - this goes on TikTok, Instagram Reels, and Reddit. It's about upcoming circuit events.\n\nFor Post 2, I want a voiceover script too in an energetic/hype tone. All content is Travel in Pride brand. The goal for Post 1 is community engagement and for Post 2 is to drive awareness and community engagement.\n\nWrite all captions and the voiceover script.",
+      "platforms": ["YouTube Shorts", "Pinterest", "LinkedIn", "TikTok", "Instagram Reels", "Reddit"],
+      "brand": "Travel in Pride",
+      "post_type": "calendar",
+      "includes_voiceover": true,
+      "voiceover_tone": "Hype & energetic",
+      "expected_output": "6 platform-specific captions (YouTube Shorts, Pinterest, LinkedIn, TikTok, Instagram Reels, Reddit) following platform best practices. YouTube Shorts should have SEO-focused title and description. Pinterest should be keyword-rich. LinkedIn should have hook and professional tone. TikTok/Reels should be playful. Reddit should be community-first. Plus one energetic voiceover script (~30-45 seconds) for the circuit events post with natural pacing, emphasis points, and AI voiceover suggestions."
+    },
+    {
+      "id": 3,
+      "eval_name": "diverse-platforms-outatlas-travel-tips",
+      "prompt": "I want to create a content piece about 'Hidden LGBTQ+ Travel Gems in Southeast Asia' for OutAtlas. I'm posting this across Instagram Feed (carousel), YouTube Long-form, and Pinterest. I want different angles for each platform:\n\n- Instagram Feed (carousel): Story-focused, visual, personal recommendation\n- YouTube Long-form: SEO-optimized with chapters and timestamps\n- Pinterest: Keyword-rich, planning-focused\n\nThe goal is to drive awareness and app signups. The asset is a curated photo carousel from actual travel. Write all three platform captions with proper formatting.",
+      "platforms": ["Instagram Feed", "YouTube Long-form", "Pinterest"],
+      "brand": "OutAtlas",
+      "post_type": "calendar",
+      "includes_voiceover": false,
+      "expected_output": "3 platform-specific captions. Instagram Feed should tease the carousel swipe, use line breaks for readability, and have personal brand voice. YouTube Long-form should have SEO-optimized title, hook paragraph, chapters with timestamps, and keyword-rich description. Pinterest should have keyword-rich title and description without exclamation marks or emoji overload. All should maintain OutAtlas knowledgeable/aspirational brand voice and drive toward app signups."
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "eval_id": 1,
+  "eval_name": "urgent-single-post-outatlas",
+  "prompt": "I'm in Barcelona right now and just discovered this incredible queer-friendly hotel in Gràcia that has an amazing rooftop bar. I want to post about it ASAP on TikTok and Instagram Reels to drive awareness. The photo is a sunset shot from the rooftop with pride flags hanging. This is OutAtlas content. I want the goal to be 'build awareness and drive app signups'. Write captions for both platforms.",
+  "platforms": ["TikTok", "Instagram Reels"],
+  "brand": "OutAtlas",
+  "post_type": "urgent",
+  "includes_voiceover": false,
+  "assertions": [
+    {
+      "id": "tiktok-hook-first",
+      "name": "TikTok caption has compelling hook in first line",
+      "description": "First line should be conversational and immediately engaging, with no 'hey guys' or title card text"
+    },
+    {
+      "id": "tiktok-hashtags-count",
+      "name": "TikTok has 3-5 hashtags maximum",
+      "description": "TikTok best practice: quality over quantity, max 5 hashtags"
+    },
+    {
+      "id": "tiktok-cta-engagement",
+      "name": "TikTok CTA drives comments or follows, not external links",
+      "description": "TikTok suppresses link-heavy captions; CTA should ask for engagement (comments, saves, follows)"
+    },
+    {
+      "id": "instagram-reels-hook-truncation",
+      "name": "Instagram Reels hook appears before 125-char truncation",
+      "description": "First 125 characters should contain the most compelling hook before 'more' appears"
+    },
+    {
+      "id": "instagram-reels-hashtags-count",
+      "name": "Instagram Reels has 8-15 hashtags",
+      "description": "Instagram Reels best practice: 8-15 hashtags for reach"
+    },
+    {
+      "id": "brand-voice-consistency",
+      "name": "Both captions maintain OutAtlas brand voice",
+      "description": "Warm, knowledgeable, aspirational voice consistent across both platforms"
+    },
+    {
+      "id": "signup-cta-present",
+      "name": "Both captions include clear app signup CTA",
+      "description": "At least one caption should drive toward OutAtlas app signups per the goal"
+    }
+  ]
+}

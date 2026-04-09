@@ -1,0 +1,56 @@
+{
+  "eval_id": 3,
+  "eval_name": "diverse-platforms-outatlas-travel-tips",
+  "prompt": "I want to create a content piece about 'Hidden LGBTQ+ Travel Gems in Southeast Asia' for OutAtlas. I'm posting this across Instagram Feed (carousel), YouTube Long-form, and Pinterest. I want different angles for each platform:\n\n- Instagram Feed (carousel): Story-focused, visual, personal recommendation\n- YouTube Long-form: SEO-optimized with chapters and timestamps\n- Pinterest: Keyword-rich, planning-focused\n\nThe goal is to drive awareness and app signups. The asset is a curated photo carousel from actual travel. Write all three platform captions with proper formatting.",
+  "platforms": ["Instagram Feed", "YouTube Long-form", "Pinterest"],
+  "brand": "OutAtlas",
+  "post_type": "calendar",
+  "includes_voiceover": false,
+  "assertions": [
+    {
+      "id": "instagram-carousel-tease",
+      "name": "Instagram Feed carousel caption teases the swipe",
+      "description": "First line should tease 'swipe for [X]' to drive carousel interaction"
+    },
+    {
+      "id": "instagram-line-breaks",
+      "name": "Instagram caption uses line breaks for readability",
+      "description": "Short paragraphs and line breaks optimize for mobile reading"
+    },
+    {
+      "id": "youtube-title-seo",
+      "name": "YouTube Long-form title is SEO-optimized and 60-70 chars",
+      "description": "Front-loaded keyword, curiosity gap, sentence case"
+    },
+    {
+      "id": "youtube-chapters-timestamps",
+      "name": "YouTube description includes chapters with timestamps",
+      "description": "00:00, XX:XX format for each chapter/section"
+    },
+    {
+      "id": "youtube-links-section",
+      "name": "YouTube description includes links section with resources",
+      "description": "Links to OutAtlas app, waitlist, social media with emojis"
+    },
+    {
+      "id": "pinterest-title-descriptive",
+      "name": "Pinterest pin title is 75-100 chars and descriptive",
+      "description": "Keyword-rich, no clickbait, sentence case"
+    },
+    {
+      "id": "pinterest-description-keywords",
+      "name": "Pinterest description naturally includes keywords",
+      "description": "150-300 chars with natural keyword placement, 2-3 sentences"
+    },
+    {
+      "id": "brand-voice-consistent",
+      "name": "All 3 captions maintain OutAtlas warm/knowledgeable voice",
+      "description": "Consistent brand voice across all platforms"
+    },
+    {
+      "id": "signup-cta-aligned",
+      "name": "All captions drive toward app signups per goal",
+      "description": "Each caption should include CTA toward OutAtlas app or waitlist"
+    }
+  ]
+}
