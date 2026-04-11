@@ -77,6 +77,13 @@
             color: black !important;
         }
 
+        /* Light mode: Ensure all dark-pill text is black */
+        .dark-pill,
+        section h3.dark-pill,
+        h3.dark-pill {
+            color: black !important;
+        }
+
         /* Dark mode section headlines - ensure text is black for readability */
         html.dark section h3.dark-pill,
         html.dark h3.dark-pill {
@@ -3585,9 +3592,9 @@
             function buildFilterSectionHead(label, s) {
                 return `
                     <div class="col-span-full mt-5 mb-2">
-                        <div class="px-4 py-2 ${s.bg} dark:bg-white dark:text-slate-900 rounded-full inline-flex items-center gap-2 shadow-sm">
+                        <div class="px-4 py-2 ${s.bg} dark:bg-white text-slate-900 dark:text-slate-900 rounded-full inline-flex items-center gap-2 shadow-sm">
                             <span class="text-xl leading-none">${s.emoji}</span>
-                            <span class="font-extrabold text-lg dark:text-slate-900" style="font-weight: 900;">${label}</span>
+                            <span class="font-extrabold text-lg text-slate-900 dark:text-slate-900" style="font-weight: 900;">${label}</span>
                         </div>
                     </div>`;
             }
