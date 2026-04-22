@@ -14,7 +14,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@remotion/cli": "^4.0.448",
+    "@remotion/renderer": "^4.0.448",
     "@tailwindcss/cli": "^4.2.2",
+    "remotion": "^4.0.448",
     "tailwindcss": "^3.4.19"
   }
 }

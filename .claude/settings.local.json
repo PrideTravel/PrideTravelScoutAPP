@@ -58,7 +58,14 @@
       "Bash(xargs wc:*)",
       "Bash(xargs grep:*)",
       "Bash(curl -s http://localhost:51421)",
-      "Bash(curl -s http://localhost:63820/)"
+      "Bash(curl -s http://localhost:63820/)",
+      "Bash(npm install:*)",
+      "Bash(npx remotion:*)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(python3 -c \"import reportlab; print\\('ReportLab available'\\)\")",
+      "Bash(pandoc \"C:\\\\Users\\\\lewi0\\\\OutAtlas\\\\GEO-CLIENT-REPORT.md\" -o \"C:\\\\Users\\\\lewi0\\\\OutAtlas\\\\GEO-CLIENT-REPORT.docx\")",
+      "Bash(python3)",
+      "Bash(python3 -m pip install python-docx --quiet)"
     ]
   }
 }

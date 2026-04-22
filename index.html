@@ -2488,12 +2488,15 @@
                                     </span>
                                 </div>
                             </div>
-                            <a href="#" onclick="window.psEmailTrip(event, '${origin.replace(/'/g, "\\'")}', '${data.name.replace(/'/g, "\\'")}', '${dateStart}', '${dateEnd}', '${data.weather}', '${data.lgbtqSafety}')" 
+                            <a href="#" onclick="window.psEmailTrip(event, '${origin.replace(/'/g, "\\'")}', '${data.name.replace(/'/g, "\\'")}', '${dateStart}', '${dateEnd}', '${data.weather}', '${data.lgbtqSafety}')"
                                class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary transition-all active:scale-95 hover:bg-primary hover:text-white shadow-lg shadow-primary/10"
                                title="Email Result">
                                 <span class="material-symbols-outlined text-xl">mail</span>
                             </a>
-            ${psMakeSaveBtn(data.name, origin, dateStart, dateEnd)}
+                        </div>
+                        <!-- Save Button Row -->
+                        <div class="pride-gradient-bg px-6 pb-4 flex justify-center">
+                            ${psMakeSaveBtn(data.name, origin, dateStart, dateEnd)}
                         </div>
 
                         <div class="p-4 space-y-6 bg-slate-50 dark:bg-gray-800">

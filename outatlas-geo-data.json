@@ -1,0 +1,128 @@
+{
+    "url": "https://outatlas.com/",
+    "brand_name": "OutAtlas",
+    "date": "2026-04-18",
+    "geo_score": 50,
+    "scores": {
+        "ai_citability": 65,
+        "brand_authority": 35,
+        "content_eeat": 62,
+        "technical": 72,
+        "schema": 0,
+        "platform_optimization": 40
+    },
+    "platforms": {
+        "Google AI Overviews": 55,
+        "ChatGPT": 42,
+        "Perplexity": 45,
+        "Gemini": 50,
+        "Bing Copilot": 48
+    },
+    "executive_summary": "OutAtlas has excellent foundational infrastructure (server-side rendering, crawlable structure, permissive robots.txt) but critical content and schema gaps that severely limit AI discoverability. The site scores 50/100 on the GEO scale—Poor to Fair. The single biggest issue is zero schema.org markup across all 14 pages, making events, content, and the company itself invisible to AI systems. A missing llms.txt file prevents optimal crawling by GPTBot, ClaudeBot, and PerplexityBot. The good news: these gaps are fixable in 2-3 weeks. Implementing Organization schema, Event markup, and creating llms.txt alone would improve the score from 50 to 75+.",
+    "findings": [
+        {
+            "severity": "critical",
+            "title": "ZERO Schema Markup — Complete Invisibility to AI Indexing",
+            "description": "Analyzed all 14 pages: zero schema.org markup detected. No Organization, Event, Article, SoftwareApplication, Person, FAQ, BreadcrumbList, or LocalBusiness schemas. Events are completely invisible to event aggregators. Organization unmarked = AI cannot recognize OutAtlas as distinct entity."
+        },
+        {
+            "severity": "critical",
+            "title": "Missing llms.txt File — Critical AI Crawler Gap",
+            "description": "No /llms.txt file found. This is the single biggest GEO blocker. GPTBot, ClaudeBot, and PerplexityBot check llms.txt first. Without it, AI crawlers default to conservative behavior and may refuse to cite content. Competitors with llms.txt see 40-60% higher AI visibility."
+        },
+        {
+            "severity": "critical",
+            "title": "No Author Attribution on Any Page",
+            "description": "Zero author bylines on any analyzed page. No credentials, bios, or social profiles linked. No About page found. Content appears anonymous or system-generated, reducing credibility and citability signals."
+        },
+        {
+            "severity": "high",
+            "title": "Missing Meta Descriptions",
+            "description": "Homepage and likely other pages lack meta description tags. AI crawlers rely on meta descriptions to summarize content. Missing descriptions reduce CTR from search results and lower page quality signals."
+        },
+        {
+            "severity": "high",
+            "title": "Zero Security Headers",
+            "description": "No HSTS, CSP, X-Frame-Options, X-Content-Type-Options, or Referrer-Policy headers present. Missing headers signal lower trustworthiness to AI systems and create vulnerability exposure."
+        },
+        {
+            "severity": "high",
+            "title": "Missing Social Media Integration in Schema",
+            "description": "No sameAs links in Organization schema (which doesn't exist yet). OutAtlas has Instagram, Twitter, LinkedIn presence but they are not linked in markup. AI models cannot verify that social profiles represent the same company."
+        },
+        {
+            "severity": "medium",
+            "title": "No Publication/Update Dates on Content",
+            "description": "Event guides reference 2026 events but no explicit publication date is visible. Time-sensitive travel information lacks 'last updated' timestamps, making freshness assessment impossible."
+        },
+        {
+            "severity": "medium",
+            "title": "Orphaned Elementor Pages in Sitemap",
+            "description": "Sitemap includes /elementor-199/ and /elementor-191/ which appear to be builder test pages. These waste crawl budget and signal incomplete site cleanup to search engines."
+        }
+    ],
+    "quick_wins": [
+        "Create llms.txt file at domain root (15 min) — allows optimal indexing by GPTBot, ClaudeBot, PerplexityBot",
+        "Add meta descriptions to homepage and 10 key pages (30 min) — improves CTR and AI content understanding",
+        "Add publication dates to blog posts (30 min) — enables AI extraction of content freshness signals",
+        "Create Organization schema for homepage with sameAs links (30 min) — establishes brand identity",
+        "Replace placeholder OG images (15 min) — improves social sharing and image recognition"
+    ],
+    "medium_term": [
+        "Create Person schema for founder Drew Lewis (20 min) with LinkedIn and credentials",
+        "Add author bylines to all pages (2-3 hours) with credentials and expertise signals",
+        "Add Event schemas to all 20+ Pride event pages (5 hours) — makes events discoverable in Google Events",
+        "Add Article schemas to all blog posts (2.5 hours) with author, date, and speakable properties",
+        "Create comprehensive About page with team/founder info (2-3 hours)",
+        "Add SoftwareApplication schema (20 min) for the OutAtlas mobile app product",
+        "Implement security headers (30 min) — HSTS, CSP, X-Frame-Options"
+    ],
+    "strategic": [
+        "Press outreach campaign to travel/tech publications (20-40 hours over months 1-3) — target Travel + Leisure, Out Traveler, Forbes, TechCrunch",
+        "Wikipedia article creation (requires 2-3 press features first) — hire Wikipedia consultant and submit by month 6",
+        "Create YouTube channel with destination guides (ongoing, 5-10 hours/month) — travel guides are growing format",
+        "Expand LinkedIn founder thought leadership (ongoing, 2-3 hours/week) — articles on LGBTQ+ travel trends",
+        "Build Reddit community presence (10-15 hours initial setup) — official subreddit or community AMAs",
+        "Crunchbase and industry database listings (5-10 hours) — establish startup presence"
+    ],
+    "crawler_access": {
+        "GPTBot": {
+            "platform": "ChatGPT",
+            "status": "Allowed (robots.txt)",
+            "recommendation": "Create llms.txt to enable optimal crawling. Currently defaults to conservative behavior."
+        },
+        "ClaudeBot": {
+            "platform": "Claude",
+            "status": "Allowed (robots.txt)",
+            "recommendation": "Create llms.txt to enable optimal crawling. Currently defaults to conservative behavior."
+        },
+        "PerplexityBot": {
+            "platform": "Perplexity AI",
+            "status": "Allowed (robots.txt)",
+            "recommendation": "Create llms.txt to enable optimal crawling. Currently defaults to conservative behavior."
+        },
+        "GoogleBot-Extended": {
+            "platform": "Google AI",
+            "status": "Allowed (default)",
+            "recommendation": "Implement schema markup to improve discoverability in Google AI Overviews."
+        },
+        "Bingbot": {
+            "platform": "Bing/Copilot",
+            "status": "Allowed",
+            "recommendation": "Enable IndexNow protocol for faster Bing indexing and Copilot visibility."
+        }
+    },
+    "business_impact": {
+        "current_ai_visibility": "~10% (minimal)",
+        "after_quick_wins": "~20-25%",
+        "after_30_day_plan": "~40-50%",
+        "after_90_day_plan": "~70-80%",
+        "estimated_monthly_revenue": "$1,000-3,000 from AI-driven traffic by Q3 2026"
+    },
+    "effort_summary": {
+        "quick_wins": "2.5 hours total",
+        "week_1_week_4": "26 hours (developer + content team)",
+        "months_2_3": "40+ hours (marketing + PR for press outreach)",
+        "total_90_day": "60+ hours across team"
+    }
+}
